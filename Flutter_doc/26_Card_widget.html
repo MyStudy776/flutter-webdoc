@@ -1,0 +1,230 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Card Widget-</h1>
+
+<h2>1. Example - without a card widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Text('Hello World'),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>2. Example - using  Card widget - wrap text with card</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Card(
+            child: Text('Hello World', style: TextStyle(fontSize: 22),)),
+      ),
+    );
+  }
+}
+
+
+
+
+
+Note -
+Here we wrapped card widget with text widget. We can wrap card with any widget.
+
+</pre>
+
+<h2>3. Example -  Give some padding to the text - wrap text with padding </h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Card(
+            
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Hello World', style: TextStyle(fontSize: 22),),
+            )),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>4. Example -  Give elevation in the card widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Card(
+            <mark>elevation: 20,</mark>
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Hello World', style: TextStyle(fontSize: 22),),
+            )),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>5. Example -  Giving color to the elevation -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Card(
+            elevation: 20,
+            <mark>shadowColor: Colors.red,</mark>
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Hello World', style: TextStyle(fontSize: 22),),
+            )),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>6. Example - card widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Container(
+          width: double.infinity,
+          child: Card(
+            color: Colors.cyan,
+              child: Text('I am the text', style: TextStyle(fontSize: 22),)),
+        ),
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>6. Example - card widget -</h2>
+<pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

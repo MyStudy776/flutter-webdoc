@@ -1,0 +1,3587 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>NODE JS -</h1>
+
+<h2>1. Node JS Fundamental -</h2>
+<pre>
+- JS runs only on browser but
+- Node.js allows you to run JavaScript on the server.
+- Using node.js and js , we can develop ML,game,API etc.
+- node.js is non blocking .means Asnchronous means accept multiple request 
+  instead of waiting for response.
+- It can add,delete , modify on your database.
+</pre>
+
+<h2>2. Installation -</h2>
+<pre>
+- Download node.js
+- Command prompt: $node --version
+- create a directory and get inside to the directory, and create a file name index.js
+- open a terminal and run: $node index.js
+- For automatically save install nodemon - npm install -g nodemon.
+</pre>
+
+<h2>3. It wll show the output at terminal-</h2>
+<pre>
+index.js
+----------
+console.log("Hello");
+
+o/p
+====
+Hello
+
+</pre>
+
+
+<h2>4. Show the data at particular index-</h2>
+<pre>
+index.js
+----------
+let data1=[20,30,40,50];
+console.log(data1[2]);
+
+o/p
+====
+40
+
+</pre>
+
+<h2>5. Show the data in loop-</h2>
+<pre>
+index.js
+----------
+let data1=[20,30,40,50];
+data1.forEach((n)=>{console.log(n);});
+
+o/p
+====
+20
+30
+40
+50
+
+</pre>
+
+<h2>6. Show the json data-</h2>
+<pre>
+index.js
+----------
+let student = {
+    name: "ABC",
+    age: 22
+}
+console.log(student);
+console.log(student.name);
+
+o/p
+====
+{ name: 'ABC', age: 22 }
+ABC
+
+</pre>
+
+<h2>7. fs module -</h2>
+<pre>
+ - fs module, to read and write Files 
+ - asynchronous - non blocking. It will execute at the end.
+ - Read the data from the file asynchronously
+ - Here utf-8  is the encoding format, which computer is used to convert the binary data into human readable format.
+ - readFileSync - read the file in synchronous manner.
+ - readFile - read the file in asynchronous manner.
+
+
+index.js
+----------
+const fs1 = require('fs');
+let data1 = fs1.readFileSync('abc.txt','utf-8');
+console.log(data1);
+
+
+abc.txt
+---------
+Hello Everyone.
+How the things are going.
+It is a great opportunity.
+
+o/p
+====
+Hello Everyone.
+How the things are going.
+It is a great opportunity.
+
+If we remove utf-8
+
+index.js
+----------
+const fs1 = require('fs');
+let data1 = fs1.readFileSync('abc.txt');
+console.log(data1);
+
+o/p
+====
+Buffer 48 65 6c 6c 6f 20 45 76 65 72 79 6f 6e 65 2e 0d 0a 48 6f 77 20 74 68 65 20 74 68 69 6e 67 73 20 61 72 65 20 67 6f 69 6e 67 2e 0d 0a 49 74 20 69 73 20 ... 20 more bytes
+
+
+</pre>
+
+<h2>8. Asynchronous Run-</h2>
+<pre>
+- The asyncronous always execute at the end.
+- Here the asynchronous uses callback function to execute.
+- Two things can be used to run asynchronous - callback function and promises in java script.
+- Here the call back function is :(err,data)=>{}
+
+index.js
+----------
+const fs1 = require('fs');
+console.log("I am hungry");
+fs1.readFile('abc.txt','utf-8', (err,data)=>{
+    console.log(err);
+    console.log(data);
+});
+
+console.log("I am happy");
+
+
+o/p
+====
+
+I am hungry
+I am happy
+null ------------> for err, there is no error, so null.
+Hello Everyone.----->async data
+How the things are going.
+It is a great opportunity.
+
+
+</pre>
+
+<h2>9. writing to a file in synchronous wise-</h2>
+<pre>
+index.js
+----------
+const fs1 = require('fs');
+fs1.writeFileSync('xyz.txt',"It is dangerously");
+
+
+o/p
+====
+cat xyz.txt
+It is dangerously
+
+
+</pre>
+
+<h2>10. writing to a file in Asynchronous wise -</h2>
+<pre>
+- If the file name is not exist, it will create the file.
+-If file name exists, it will over write.
+index.js
+----------
+const fs1 = require('fs');
+fs1.writeFile('xyz.txt',"It is famous",(err,data)=>{
+    console.log(err); //If there is no error, it will provide null.
+    console.log(data);
+});
+
+
+o/p
+====
+cat xyz.txt
+It is famous
+
+
+</pre>
+<h2>11. Append File -</h2>
+<pre>
+index.js
+----------
+const fs1 = require('fs');
+fs1.appendFile('xyz.txt',"\nI am appended",(err,data)=>{
+    console.log(err);});
+
+
+o/p
+====
+cat xyz.txt   
+It is famous
+I am appended
+
+
+</pre>
+
+<h2>12. OS module-</h2>
+<pre>
+index.js
+----------
+const os = require('os');
+console.log(os.platform());
+console.log(os.hostname());
+console.log(os.freemem());
+
+
+o/p
+====
+win32
+MSI
+1103937536
+
+
+</pre>
+
+<h2>13. API-</h2>
+<pre>
+- Application programme interface.
+- API will communicate between frontend and backend.
+- webpage send a request to API, API take that request to Database, and get the response and send that 
+  response to webpage. And webpage display that data.
+  
+Component of requests : -
+- IP/address
+- route
+- Data
+- Method: GET - To fetch the data
+          POST - When you want to create something new.
+		  PUT - updating the data
+		  PATCH - also update
+		  DELETE - to delete something
+		  
+- Headers - if you want to send any extra information regarding  the request to the server, you can use header.
+
+
+Component of response : -
+- data
+- header
+- status code
+
+
+Every server  IP address in our computer is always : 127.0.0.1 or localhost
+</pre>
+
+<h2>14. http module -</h2>
+<pre>
+
+//browser : http://localhost:8080  //
+
+
+index.js
+----------
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.end('Hello World!');
+}).listen(8080);
+
+
+o/p
+====
+Hello World!
+
+</pre>
+
+<h2>15. Get a response using http module-</h2>
+<pre>
+//browser : http://localhost:8080  //
+
+index.js
+----------
+var http = require('http');
+http.createServer( (req, res) =>{
+    console.log("hello");
+    res.end("This is a response");
+}).listen(8080);
+
+
+o/p
+====
+console --->hello
+browser---->This is a response
+
+
+</pre>
+
+<h2>16. It will show the url and method type: e.g: GET, url: /-</h2>
+<pre>
+index.js
+----------
+var http = require('http');
+http.createServer( (req, res) =>{
+    console.log(req.url);
+    console.log(req.method);
+    res.end("This is a response");
+}).listen(8080);
+
+o/p
+====
+Console ---->
+/
+GET
+
+browser---->This is a response
+
+
+</pre>
+
+<h2>17. Get a reponse as per the url. -</h2>
+<pre>
+index.js
+----------
+var http = require('http');
+http.createServer( (req, res) =>{
+    console.log(req.url);
+    console.log(req.method);
+    if(req.url=="/add"){
+        res.end("This is added data");  
+    }
+    
+    else if(req.url=="/update"){
+        res.end("This is updated data");  
+    }
+   }).listen(8080);
+
+
+
+o/p
+====
+console -->whatever url like /add, or /update, will be given as per the request given in browser.
+           method type
+http://localhost:8080/add -----> This is added data
+http://localhost:8080/update -----> This is updated data
+
+
+</pre>
+
+<h2>18. Combination of requests -</h2>
+<pre>
+index.js
+----------
+var http = require('http');
+http.createServer( (req, res) =>{
+    console.log(req.url);
+    console.log(req.method);
+    if(req.url=="/products" && req.method=="POST"){
+        res.end("Created product  data");  
+    }
+    
+    else if(req.url=="/users" && req.method=="POST"){
+        res.end("created user");  
+    }
+   }).listen(8080);
+
+
+o/p
+====
+open thunder client
+http://localhost:8080/products , method:POST ---> Created product  data
+http://localhost:8080/users , method:POST ---> created user
+
+
+</pre>
+
+<h2>19. -</h2>
+<pre>
+
+As per the url request, the response will generate. Here request is to read the file and give the data
+//GET: http://localhost:8080/products
+
+index.js
+----------   
+const fs1 = require('fs');   
+var http = require('http');
+http.createServer( (req, res) =>{
+    if(req.url=="/products" && req.method=="GET"){
+
+        fs1.readFile("./products.json", "utf-8",(err,data)=>{
+            if(err==null) {
+                res.end(data);
+            }
+            else {
+                res.end("some problem happened");
+            }
+        })
+        
+    }    
+    else if(req.url=="/users" && req.method=="POST"){
+        res.end("created user");  
+    }
+   }).listen(8080);
+   
+
+
+o/p
+====
+http://localhost:8080/products , method:GET ------------>products file data in json 
+
+</pre>
+
+<h2>20. -</h2>
+<pre>
+It will show the url and method type: e.g: GET, url: /
+//GET: http://localhost:8080/products?id=2
+ 
+index.js
+---------- 
+var http = require('http');
+http.createServer( (req, res) =>{
+console.log(req.url);
+console.log(req.method);
+}).listen(8080);
+
+
+
+o/p
+====
+/
+GET
+
+
+</pre>
+
+<h2>21. url.parse will divide each portion of url like : query,path-</h2>
+<pre>
+
+
+//GET: http://localhost:8080/products?id=2
+ 
+index.js
+---------- 
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+//console.log(req.url);
+console.log(url.parse(req.url));
+res.end("Dummy response");
+}).listen(8080);
+
+
+o/p
+====
+browser http://localhost:8080/products?id=2 ----->Dummy response
+console ----->
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?id=2',
+  query: 'id=2',
+  pathname: '/products',
+  path: '/products?id=2',
+  href: '/products?id=2'
+}
+
+</pre>
+
+<h2>22. true - separate as a string.-</h2>
+<pre>
+index.js
+----------
+
+//GET: http://localhost:8080/products?id=2
+ 
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+console.log(url.parse(req.url, true));// each portion of url separated as a string. 
+res.end("Dummy response");
+}).listen(8080);
+
+
+o/p
+====
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?id=2',
+  query: [Object: null prototype] { id: '2' }, ------->this one
+  pathname: '/products',
+  path: '/products?id=2',
+  href: '/products?id=2'
+}
+
+</pre>
+
+<h2>23. parsedURL.pathname-</h2>
+<pre>
+read a json file.Fetch all the products
+//http://localhost:8080/products
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+
+let parsedURL = url.parse(req.url,true); //it will slice the url into different part
+console.log(parsedURL); //it will show the output of url like: query,path,pathname
+if(parsedURL.pathname=="/products" && req.method=="GET"){
+
+    fs1.readFile("./products.json", "utf-8",(err,data)=>{
+        if(err==null) {
+            res.end(data);//if no error , then data will be displayed.Here data is the json file
+        }
+        else {
+            res.end("some problem happened");
+        }
+    })
+    
+}    
+else if(req.url=="/users" && req.method=="POST"){
+    res.end("created user");  
+}
+}).listen(8080);
+
+
+
+o/p
+====
+
+
+
+</pre>
+
+<h2>24. -</h2>
+<pre>
+//23.read a json file using variable
+//json output is a string
+//parsedURL.query.id==undefined ---> means if the id=2 is not present in the url, then give full data
+//http://localhost:8080/products
+
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+
+http.createServer( (req, res) =>{
+let parsedURL = url.parse(req.url,true);
+console.log(parsedURL);
+let products = fs.readFileSync('./products.json','utf-8');//the content of a json file given to a variable
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);
+ }    
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+    res.end("for single product");  
+}
+}).listen(8080);
+
+
+o/p
+====
+http://localhost:8080/products -------->full json data
+http://localhost:8080/products?id=2 ---> for single product
+
+
+
+
+json data is in string format:
+[
+    {
+        "id": 1,
+        "title": "iPhone 9",
+        "description": "An apple mobile which is nothing like apple",
+        "price": 549,
+        "discountPercentage": 12.96,
+        "rating": 4.69,
+        "stock": 94,
+        "brand": "Apple",
+        "category": "smartphones",
+        "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+        "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/4.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+        ]
+    },
+
+
+</pre>
+
+<h2>25. -</h2>
+<pre>
+
+//24.convert json string to js array of object  - json.parse
+//When receiving data from a web server, the data is always a string.
+//Parse the data with JSON.parse(), and the data becomes a JavaScript object.
+//JSON.parse() - converting JSON strings into JavaScript objects
+//JSON.stringify() - converting an object into a JSON string
+//{"name":"John"} - JSON, keys must be strings
+//{"name":"John"} - JS, keys can be strings, numbers, or identifier names
+//The JSON format is almost identical to JavaScript objects.
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+let parsedURL = url.parse(req.url,true); //convert url into differnt part
+console.log(parsedURL);
+let products = fs.readFileSync('./products.json','utf-8'); // contain the json file in variable as string.
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);//It will show the json file
+ }    
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+    console.log(JSON.parse(products));//convert json string to js array of objects
+    //console.log(products);//The o/p will show just an string of array
+    res.end("for single product");  
+}
+}).listen(8080);
+
+o/p
+====
+json data in array of object format 
+[
+  {
+    id: 1,
+    title: 'iPhone 9',
+    description: 'An apple mobile which is nothing like apple',
+    price: 549,
+    discountPercentage: 12.96,
+    rating: 4.69,
+    stock: 94,
+    brand: 'Apple',
+    category: 'smartphones',
+    thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
+    images: [
+      'https://i.dummyjson.com/data/products/1/1.jpg',
+      'https://i.dummyjson.com/data/products/1/2.jpg',
+      'https://i.dummyjson.com/data/products/1/3.jpg',
+      'https://i.dummyjson.com/data/products/1/4.jpg',
+      'https://i.dummyjson.com/data/products/1/thumbnail.jpg'
+    ]
+  },
+
+
+</pre>
+
+<h2>26. productArray.find((product)-</h2>
+<pre>
+
+Display as per the id number
+//http://localhost:8080/products?id=1
+
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+let parsedURL = url.parse(req.url,true);
+console.log(parsedURL);
+
+let products = fs.readFileSync('./products.json','utf-8'); //assign the json file to the variable
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);
+ }    
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+
+    let productArray = JSON.parse(products);//convert json file to js array of objects and assigned to a variable
+    let product = productArray.find((product)=>{
+        return product.id==parsedURL.query.id;//return the product where it matches the the id==..
+    });
+    console.log(product);
+	//res.end(product); --->here product is array of object. it can not be a response. it will throw error.
+    res.end("for single product");  
+}
+}).listen(8080);
+
+
+o/p
+====
+
+
+</pre>
+
+<h2>27. JSON.stringify - conver JS array of object into string -</h2>
+<pre>
+
+
+- A response can not be js object or js array of objects. It should be always a string.
+- 
+//http://localhost:8080/products?id=1
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+let parsedURL = url.parse(req.url,true);
+console.log(parsedURL);
+let products = fs.readFileSync('./products.json','utf-8');
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);
+ }    
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+
+    let productArray = JSON.parse(products);//convert json file to js array of objects
+    let product = productArray.find((product)=>{
+        return product.id==parsedURL.query.id;//it returns js array of object
+    });
+
+    if (product!=undefined){
+        //res.end(product);// - can not send java script object as a response
+        res.end(JSON.stringify(product)); //conver JS object into string use: JSON.stringify
+
+    }
+    else {
+        res.end(JSON.stringify({"message": "product not found"}));
+    }
+    
+      
+};
+}).listen(8080);
+
+
+o/p
+====
+
+
+</pre>
+
+<h2>28. create a new product by sending data through request - POST -</h2>
+<pre>
+
+- We can not send big data through url. thats why we use data through request body.
+- In post the data is always transfers in chunks(bytes)
+- add data in data field with id=92 (new data) in Thunderbird
+//POST: http://localhost:8080/products
+//GET: http://localhost:8080/products?id=92
+
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+http.createServer( (req, res) =>{
+let parsedURL = url.parse(req.url,true);
+console.log(parsedURL);
+let products = fs.readFileSync('./products.json','utf-8');
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);
+ }    
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+
+    let productArray = JSON.parse(products);
+    let product = productArray.find((product)=>{
+        return product.id==parsedURL.query.id;
+    });
+
+    if (product!=undefined){
+        //res.end(product);// - can not send java script object as a response
+        res.end(JSON.stringify(product)); //conver JS object into string use: JSON.stringify
+
+    }
+    else {
+        res.end(JSON.stringify({"message": "product not found"}));
+    }
+    
+      
+}
+else if(parsedURL.pathname=="/products" && req.method=="POST" ){
+
+    let product="";
+   //console.log(req);
+   //In post the data is always transfers in chunks(bytes)
+   req.on("data",(chunk)=>{
+    product=product+chunk; //once chunk is received it will be added to product
+   })
+   
+   //Once all the chunks received from post, it will end.
+   req.on("end", ()=>{
+    console.log(product);
+   })
+   res.end("POST request working");
+    } 
+}).listen(8080);
+*/
+
+
+o/p
+====
+
+
+</pre>
+
+<h2>29. -</h2>
+<pre>
+
+- conver JS object into string use: JSON.stringify
+- parsedURL.query.id==undefined ---->means no query id mentioned in the url ---> GET: http://localhost:8080/products
+- parsedURL.query.id!==undefined --->means  query id mentioned in the url ---> GET: http://localhost:8080/products?id=2
+- Here products - json string data - let say 30 products
+       productArray - json array of object
+	   product - json array of object for a particura id
+	   
+- If you directly Append to a json file, it will add at the end after ], but we want the added thing should be an item of json array.      
+
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+
+http.createServer( (req, res) =>{
+let parsedURL = url.parse(req.url,true);  //divided the url
+console.log(parsedURL);
+
+let products = fs.readFileSync('./products.json','utf-8');//reading the file as string data
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);  //The data is in json string
+ } 
+ 
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+
+    let productArray = JSON.parse(products);//covert string into array of json objects
+    let product = productArray.find((product)=>{
+        return product.id==parsedURL.query.id;//return particular product object match id
+    });
+
+    if (product!=undefined){
+        //res.end(product);// - can not send java script object as a response
+        res.end(JSON.stringify(product)); //conver JS object into string use: JSON.stringify
+
+    }
+    else {
+        res.end(JSON.stringify({"message": "product not found"}));
+    }
+    
+      
+}
+else if(parsedURL.pathname=="/products" && req.method=="POST" ){
+
+    let product="";
+   //console.log(req);
+   req.on("data",(chunk)=>{
+    product=product+chunk; //once chunk is received it will be added to product
+   })
+   
+   //Once all the chunks received from post, it will end.
+   req.on("end", ()=>{
+   
+    //already defined above, just to refer: let product=""; (no data)
+    //already defined above, just to refer: let products = fs.readFileSync('./products.json','utf-8'); (data is there)
+	//Add the new json string data in body section of thunderbird. Then this will be accepted as data in string : req.on("data",(chunk).which is given to product.
+	
+    let productsArray=JSON.parse(products); //The json string we read from file are converting into array
+    let newProduct=JSON.parse(product);//creating a new object, and converting  json string to json array of object
+    productsArray.push(newProduct);//pushing the new object into the existing array of data
+    //Then write the data into the file and convert it into string: JSON.stringify
+    fs.writeFile("./products.json", JSON.stringify(productsArray),(err)=>{
+        if(err==null){
+            res.end(JSON.stringify({"message":"New product created"}))
+        }
+    })
+
+   })
+   
+    } 
+}).listen(8080);
+
+
+
+o/p
+====
+console --->url in part will show
+browser ---> GET: http://localhost:8080/products ---> products data will show in json string format : products variable o/p
+             GET: http://localhost:8080/products?id=9 ---> give the data for particular id in json string format : product variable o/p
+			 POST: http://localhost:8080/products ---> "message":"New product created". Go to the products.json file , 
+			 select all and right click --> format the document then you can see the new data in the json file .
+
+
+</pre>
+
+<h2>30. end point to delete a product based on id -</h2>
+<pre>
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+
+http.createServer( (req, res) =>{
+ let parsedURL = url.parse(req.url,true); //The each item will be defined like query,path, etc
+console.log(parsedURL);//The dissection output f the URL
+
+
+
+let products = fs.readFileSync('./products.json','utf-8');//reading the file as string data
+
+//Fetch All the products
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);
+ }
+
+//Fetch product based on id
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+  
+    let productArray = JSON.parse(products);//covert string into array of json objects
+    let product = productArray.find((product)=>{
+        return product.id==parsedURL.query.id;
+    });
+
+    if (product!=undefined){
+        //res.end(product);// - can not send java script object as a response
+        res.end(JSON.stringify(product)); //conver JS object into string use: JSON.stringify
+
+    }
+    else {
+        res.end(JSON.stringify({"message": "product not found"}));
+    }
+    
+      
+}
+
+//Create a new Product
+else if(parsedURL.pathname=="/products" && req.method=="POST" ){
+
+    let product="";
+   //console.log(req);
+   req.on("data",(chunk)=>{
+    product=product+chunk; //once chunk is received it will be added to product
+   })
+   
+   //Once all the chunks received from post, it will end.
+   req.on("end", ()=>{
+    //already defined above, just to refer: let product=""; (no data)
+    //already defined above, just to refer: let products = fs.readFileSync('./products.json','utf-8'); (data is there)
+    let productsArray=JSON.parse(products); //The json string we read from file are converting into array
+    let newProduct=JSON.parse(product);//creating a new object, and converting to array
+    productsArray.push(newProduct);//pushing the new object into the existing array of data
+    //Then write the data into the file and convert it into string: JSON.stringify
+    fs.writeFile("./products.json", JSON.stringify(productsArray),(err)=>{
+        if(err==null){
+            res.end(JSON.stringify({"message":"New product created"}))
+        }
+    })
+
+   })
+   
+    } 
+
+
+//end point to delete a product based on ID
+    else if (parsedURL.pathname=="/products" && req.method=="DELETE"){
+
+        //let id = parsedURL.query.id;
+        let productsArray = JSON.parse(products);//The json string we read from file are converting into array
+        
+        //find the index of the array item
+		//here product is an argument.
+        let index=productsArray.findIndex((product)=>{
+            return product.id == parsedURL.query.id;
+        } )
+
+       
+
+       //remove the item from the array which is present at the index number requested
+        productsArray.splice(index,1);
+
+        //write the array items into the file
+        fs.writeFile("./products.json", JSON.stringify(productsArray),(err)=>{
+            if(err==null){
+                res.end(JSON.stringify({"message":"Product successfully deleted"}))
+            }
+            else {
+                res.end(JSON.stringify({"message":"Some problem"}))
+            }
+        })
+
+
+
+    }
+}).listen(8080);
+
+
+
+o/p
+====
+Thunderbird --> DELETE: http://localhost:8080/products?id=31 ---> delete the data of id=31 json
+
+
+</pre>
+
+<h2>31. end point to Update a product based on id -</h2>
+<pre>
+index.js
+----------
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+
+http.createServer( (req, res) =>{
+ let parsedURL = url.parse(req.url,true); //The each item of url will be devided like query,path, etc
+console.log(parsedURL);//The dissection output of the URL
+
+
+
+let products = fs.readFileSync('./products.json','utf-8');//reading the file as string data
+
+//Fetch All the products
+if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id==undefined ){
+ res.end(products);
+ }
+
+//Fetch product based on id
+else if(parsedURL.pathname=="/products" && req.method=="GET" && parsedURL.query.id!==undefined){
+  
+    let productArray = JSON.parse(products);//covert string into array of json objects
+    let product = productArray.find((product)=>{
+        return product.id==parsedURL.query.id;
+    });
+
+    if (product!=undefined){
+        //res.end(product);// - can not send java script object as a response
+        res.end(JSON.stringify(product)); //conver JS object into string use: JSON.stringify
+
+    }
+    else {
+        res.end(JSON.stringify({"message": "product not found"}));
+    }
+    
+      
+}
+
+
+//Create a new Product
+else if(parsedURL.pathname=="/products" && req.method=="POST" ){
+
+    let product="";
+   //console.log(req);
+   req.on("data",(chunk)=>{
+    product=product+chunk; //once chunk is received it will be added to product
+   })
+   
+   //Once all the chunks received from post, it will end.
+   req.on("end", ()=>{
+    //already defined above, just to refer: let product=""; (no data)
+    //already defined above, just to refer: let products = fs.readFileSync('./products.json','utf-8'); (data is there)
+    let productsArray=JSON.parse(products); //The json string we read from file are converting into array
+    let newProduct=JSON.parse(product);//creating a new object, and converting to array
+    productsArray.push(newProduct);//pushing the new object into the existing array of data
+    //Then write the data into the file and convert it into string: JSON.stringify
+    fs.writeFile("./products.json", JSON.stringify(productsArray),(err)=>{
+        if(err==null){
+            res.end(JSON.stringify({"message":"New product created"}))
+        }
+    })
+
+   })
+   
+    } 
+
+
+   //end point to delete a product based on ID
+    else if (parsedURL.pathname=="/products" && req.method=="DELETE"){
+
+        //let id = parsedURL.query.id;
+        let productsArray = JSON.parse(products);//The json string we read from file are converting into array
+        
+        //find the index of the array item
+        let index=productsArray.findIndex((product)=>{
+            return product.id == parsedURL.query.id;
+        } )
+
+       
+
+       //remove the item from the array which is present at the index number requested
+        productsArray.splice(index,1);
+
+        //write the array items into the file
+        fs.writeFile("./products.json", JSON.stringify(productsArray),(err)=>{
+            if(err==null){
+                res.end(JSON.stringify({"message":"Product successfully deleted"}))
+            }
+            else {
+                res.end(JSON.stringify({"message":"Some problem"}))
+            }
+        })
+
+ }
+
+ //Go to thunderclient -->body-->paste the particular array item like (id:,name:,title:,price:) from the json file which you want to update
+ //We are updating the data through request body. so data will be chunk by chunk.
+ 
+  else if (parsedURL.pathname=="/products" && req.method=="PUT"){
+    let id=parsedURL.query.id;
+    let product="";
+    req.on("data",(chunk)=>{
+        product+=chunk; //The total update data in json
+    })
+    req.on("end",()=>{
+        let productsArray = JSON.parse(products); //convert json file to array of object
+        let productOBJ = JSON.parse(product); //convert json update data to array of object
+        let index = productsArray.findIndex((product)=>{
+            return product.id=parsedURL.query.id;
+        })
+
+        if(index!=-1) //means element at the index is found
+            {
+
+                productsArray[index]=productOBJ;//The update json data is updated in the array of file
+                fs.writeFile("./products.json", JSON.stringify(productsArray),(err)=>{
+                    if(err==null){
+                        res.end(JSON.stringify({"message":"Product successfully updated"}))
+                    }
+                    else {
+                        res.end(JSON.stringify({"message":"Some problem"}))
+                    }
+                })
+        
+
+
+        }
+        else {
+            res.end(JSON.stringify({"message":"Yhe element with given id is not there"}))
+        }
+    })
+  }
+}).listen(8080);
+
+
+o/p
+====
+PUT: http://localhost:8080/products?id=5 , and put the data for id=5 in data field of thunderbird, and do the changes 
+
+</pre>
+
+
+<h2>32. CORS -</h2>
+<pre>
+- Cross origin resource sharing.
+- This is a policy followed by every API.
+- As per the policy, other origins can not access the API server by default.
+- To allow to get the access to the API server, we need to send request. For this we need to specify the header: Access-Control-Allow-origin as 
+a response.
+.....
+....
+not complete
+</pre>
+
+<h1>MONGO DB </h1>
+<h2>1. -</h2>
+<pre>
+- Mongo DB does not store data in table format.
+- It stores data in document format.
+- Mongo Db is a no SQL DB.
+- MySQL: Table ------------MongoDB : Collection
+  MySQL: SQL --------------MongoDB : MQL (Mongo DB query Language)
+  MySQL: table: row ------------MongoDB : Collection: document
+  
+- Download and install mongo db with compass. Open the compass -->open mongo Shell.
+</pre>
+
+<h2>2. Show the list of dbs </h2>
+<pre>
+cmd: show dbs
+
+
+admin        40.00 KiB
+apidev-demo  40.00 KiB
+config       72.00 KiB
+local        72.00 KiB
+</pre>
+
+<h2>2. Create a new mongo DB database and connect to it if db exists</h2>
+<pre>
+cmd: use DB10
+
+switched to db DB10
+</pre>
+
+<h2>3. Create a collection named: products</h2>
+<pre>
+
+cmd: db.createCollection('products')
+
+</pre>
+
+<h2>4. Check the collection details</h2>
+<pre>
+cmd: show dbs
+DB10          8.00 KiB
+admin        40.00 KiB
+apidev-demo  40.00 KiB
+config       48.00 KiB
+local        72.00 KiB
+
+
+cmd: show collections
+products
+</pre>
+
+<h2>5. Insert a row </h2>
+<pre>
+cmd: db.products.insertOne({name: 'Sara', age: 20})
+
+
+
+{
+  acknowledged: true,
+  insertedId: ObjectId('6734c2bb6fe0bbbbd5a538f2') ---------->one unique id created for each document.
+}
+
+To see the collection -
+cmd: db.products.find()
+
+{
+  _id: ObjectId('6734c2bb6fe0bbbbd5a538f2'),
+  name: 'Sara',
+  age: 20
+</pre>
+
+<h2>6. Fetch the particular row/document</h2>
+<pre>
+Here fetch the products where age=20
+cmd: db.products.find({age:20})
+
+{
+  _id: ObjectId('6734c2bb6fe0bbbbd5a538f2'),
+  name: 'Sara',
+  age: 20
+}
+
+
+</pre>
+
+<h2>7. Update the age=40 where name=Helen</h2>
+<pre>
+cmd: db.products.updateOne({name: 'Helen'}, {$set: {age:40}}) ---->update only the 1st document.
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+
+cmd: db.products.find()
+</pre>
+
+<h2>8. Update many documents, here update the multiple documents where the age=60 , and name=Sara</h2>
+<pre>
+cmd: db.products.updateMany({name: 'Sara'}, {$set: {age: 60}})
+
+cmd: db.products.find()
+</pre>
+
+<h2>9. delete one record , it will delete the 1st document where age=20 </h2>
+<pre>
+cmd: db.products.deleteOne({age: 20})
+</pre>
+
+<h2>10. delete many record, it will delete all the documents where age=35  </h2>
+<pre>
+cmd: db.products.deleteMany({age: 35})
+</pre>
+
+<h2>11. Empty the whole collection</h2>
+<pre>
+cmd: cmd: db.products.deleteMany({})
+</pre>
+
+<h2>12. See the filtered records or dcuments</h2>
+<pre>
+cmd: db.products.find({age: {$eq: 40}}) -------->Here show the records where age=40
+cmd: db.products.find({age: {$gt: 40}}) -------->Here show the records where age>40
+cmd: db.products.find({price: {$gt: 40}, age: 20})--->Here show the records where price>40 and age=20
+cmd: db.products.find({$and: [{price: {$gt>40}}, {price: {$lt&lt;80}})--->Here show the records where price>40 and price&lt;60
+cmd: db.products.find({price: {$gte: 500,$lte: 1000}})---->Here show the records where price>=500 and price&lt;=1000
+cmd: db.products.find({price: {$in: [500,200,400]}})------->filter where price is 200, 400, 500
+cmd: db.products.find().limit(2) ----->Show 1st 2 records
+cmd: db.products.find().limit(2).skip(2)
+cmd: db.products.find().sort({price:1}) ---->sort the record in price ascending
+cmd: db.products.find().sort({price:1}) ---->sort the record in price descending
+
+$eq --> equal to
+$gt --> greater than
+$lt --> less than
+$lte -->less than equal to
+$and
+$or
+$in
+$nin --> not in
+</pre>
+
+<h2>13. Projection -- selecting specific properties to view </h2>
+<pre>
+cmd: db.products.find({}, {price: 1, age:1}) ---> It will display only the price and age field collect from all the records 
+cmd: db.products.find({}, {age:1})
+
+Id will be visible compulsorily.
+
+{
+  _id: ObjectId('6734c2bb6fe0bbbbd5a538f2'),
+  age: 60
+}
+
+{
+  _id: ObjectId('6734cdaa6fe0bbbbd5a538f3'),
+  age: 40
+}
+
+
+</pre>
+
+<h2>14. id won't be visible here</h2>
+<pre>
+cmd: db.products.find({}, {_id: 0, age:1})
+
+or
+
+cmd: db.products.find({}, {_id: false, age:true})
+</pre>
+
+<h2>15. Drop the existing collection</h2>
+<pre>
+cmd: db.products.drop()
+</pre>
+
+<h2>16. Create a collection</h2>
+<pre>
+cmd: db.createCollection('student')
+cmd: show collections
+</pre>
+
+<h2>17. Create the collection with schema validation </h2>
+<pre>
+cmd: db.createCollection('Stud',{
+          validator:{ 
+		  $jsonSchema: {bsonType: "object", 
+		                required: ["name","age"],
+	                    },
+		  properties: {
+		      name: {
+		      bsonType: "string",
+			  descrition: "name should be string",
+			  maxlength: 30
+			  } ,
+			  age: {
+		      bsonType: "int",
+			  descrition: "Age should be int",
+			  minimum: 12,
+			  maximum: 50
+			  },
+		      course: {
+		      bsonType: "array",
+			  descrition: "Course should be string and accept multiple values",
+              items: { bsontype: "string" }
+			  }
+		  }
+}})
+  
+
+
+
+cmd: db.Stud.insertOne({namee: "Ram"})
+
+MongoServerError: Document failed validation
+
+			
+</pre>
+
+<h2>18. Count total number of documents</h2>
+<pre>
+cmd: db.products.countDocuments()
+</pre>
+
+<h2>19. Filter the data using aggregate</h2>
+<pre>
+cmd: db.products.countDocuments([{$match: $age: {$lt: 30}}])
+</pre>
+
+<h2>20. Aggreagate -->process large number of data </h2>
+<pre>
+cmd: db.products.aggreagate([{$group: {$_id: "$name"}}]) ----> Only shows all the names
+</pre>
+
+<h2>21. Shows same name howmany times present</h2>
+<pre>
+cmd: db.products.aggreagate([{$group: {$_id: "$name", noofproducts: {$sum: 1}}}])
+</pre>
+
+<h2>22. </h2>
+<pre>
+cmd: db.products.aggreagate([{$group: {$_id: "$name", noofproducts: {$sum: 1}}}])
+</pre>
+
+<h2>23. Total price calculate </h2>
+<pre>
+cmd: db.products.aggreagate([{$group: {$_id: "$name", noofproducts: {$sum: "$price"}}}])
+</pre>
+
+<h2>24. </h2>
+<pre>
+cmd: db.products.aggreagate([
+{$match: $price: {price: {$lt: 50}}},
+{$group: {$_id: "$name", noofproducts: {$sum: "$price"}}},
+{$sort: {'avgPrice': -1}}
+]
+)
+
+</pre>
+
+<h1> Mongo DB with Node.js</h1>
+<h2>1. Mongoose </h2>
+<pre>
+- When we install node.js, bedfault it contains mongo db driver. so no need to separately install.
+- We need a third party package called "mongoose" to install
+- mongoose package will help easily connect our node.js to mongo DB database.
+- The data comes from mogo DB is in json format (bson data). Mongoose will convert the json data into JS object format.
+- mongoose is a JS package, It gives simple function using which we can insert,update, delet data . no need to run mongo DB query.
+
+</pre>
+
+<h2>2. Installation </h2>
+<pre>
+- Install mongo DB with compass.
+- create a database with name: apidev-demo
+- Install node.js
+- Open visual studio --> then create a folder with name: db-work
+- Open the terminal in visual studio
+- create a js file called : index.js
+- PS C:\PHILIP\APPDEV\nodejs_dir\db_work> npm init
+This utility will walk you through creating a package.json file.
+
+package name: (db_work)
+version: (1.0.0) 
+description: databse connection project   
+entry point: (index.js)
+test command:                                                                                            
+git repository:                                                                                                
+keywords:     
+author: Rasol                                                                                                 
+license: (ISC)                                                                                                 
+About to write to C:\PHILIP\APPDEV\nodejs_dir\db_work\package.json:
+
+{
+  "name": "db_work",
+  "version": "1.0.0",
+  "description": "database connection project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rasol",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.6.3"
+  },
+  "devDependencies": {}
+}
+
+
+Is this OK? (yes)
+
+
+It will create package.json file inside db work folder.
+This is the configuration file of the project.
+
+db_work&gt; npm install mongoose   --------> It is installed the package mongoose inside our project.
+db_work&gt; dir
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         9/20/2024   8:56 AM                node_modules ---->contain all mongoose related files
+-a----         9/22/2024  11:17 AM           4304 index.js 
+-
+-a----         9/20/2024   6:27 AM           8378 package-lock.json---->This is the detailed confilguration file
+-a----        11/14/2024   3:31 PM            310 package.json ------->all dependencies related to mongoose.This is the configuration file of the project.
+                                                                       This is the configuration file
+
+
+Note: whenever you share your project to someone don't share node_modules. It will be very big. Anyone can get it by installing 
+
+</pre>
+
+<h2>3. Connect to the database </h2>
+<pre>
+
+index.js
+===========
+//1. Connect to the mongo db database: apidev-demo
+
+
+const mong = require('mongoose');
+mong.connect("mongodb://localhost:27017/apidev-demo")
+.then(
+    ()=>{
+        console.log("Connection successful");
+    }
+)
+
+.catch((err)=>{console.log(err);})
+
+
+visual studio code editor --> 
+PS C:\PHILIP\APPDEV\nodejs_dir\db_work> node index.js
+Connection successful
+
+</pre>
+
+
+<h2>4. Create a schema using mongoose</h2>
+<pre>
+
+index.js
+===========
+........
+const userSchema = mong.Schema({
+    name:String,
+    age:Number
+})
+
+</pre>
+
+<h2>5. Create a model</h2>
+<pre>
+model ---> gives all the fnctionalities to work on this project.
+           It is a connection between your programme and collection .
+		   whatever we do on model object, it will happen on collection directly.
+		   Model keeps the relationship between schema and collections
+		   We can directly work with collections, so model is the representation of collection of documents  in the database you can search.
+		   
+//model - communicate between schema and collection.
+//Here collections: users, schema: userschema
+//we can do dml on collection using schema. model will give all the functions to do such works.
+
+
+index.js
+===========
+.....
+.....
+const userModel = mong.model("users", userSchema);	</mark>   
+</pre>
+
+
+<h2>6. inserting data in to the database</h2>
+<pre>
+
+index.js
+===========
+// create a data(this is a json type data), as a json object
+// extra properties are not allowed
+let user = {
+    name:"Soma",
+    age:22
+
+}
+
+
+
+//Insert the data
+//mongo db can understand only  bson type data. And everything is handelled by mongoose
+
+userModel.create(user)
+.then((data)=>{
+    console.log(data);
+    console.log("Data Inserted");
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+</pre>
+
+
+<h2>7. Full output</h2>
+<pre>
+index.js
+------------
+//Connect to the database
+const mong = require('mongoose');
+mong.connect("mongodb://localhost:27017/apidev-demo")
+.then(
+    ()=>{
+        console.log("Connection successful");
+    }
+)
+
+.catch((err)=>{console.log(err);})
+
+//create schema
+const userSchema = mong.Schema({
+    name:String,
+    age:Number
+})
+
+
+//create model
+const userModel = mong.model("users", userSchema);
+
+//Insert data using model
+let user = {
+    name:"Somaliii",
+    age:55
+
+}
+
+userModel.create(user)
+.then((data)=>{
+    console.log(data);
+    console.log("Data Inserted");
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+
+
+output
+-----
+PS C:\PHILIP\APPDEV\nodejs_dir\db_work> node index.js
+Connection successful
+{
+  name: 'Somaliii',
+  age: 55,
+  _id: new ObjectId('6735ef76bd7fd9aa2a3b26a3'),
+  __v: 0
+}
+Data Inserted
+
+</pre>
+
+
+<h2>8. schmea validation </h2>
+<pre>
+//Here we defining the properties, the collection should have
+
+index.js
+------------
+const userSchema = mong.Schema({
+    name: {
+        type:String,
+        //require:true,
+        require:[true,"Name is mandatory"]
+    },
+
+    age: {
+        type:Number, 
+        //min:20,       
+        min:[20, 'min age should be is 20'],
+        max:100
+    },
+
+    /*password: {
+        type:String,
+        minLength:[5,"minimum length is 5"],
+        maxLength:[20,"maximum length is 20"]
+    },, {timestamp: true}
+
+    role:{
+        type:String,
+        enum:["admin","manager","customer"] //enum - it is a collection  of constants, means only these mentioned roles are allowed as inserted data.
+    }
+    
+})
+</pre>
+
+
+<h2>9. Full output</h2>
+<pre>
+//connect to the database
+const mong = require('mongoose');
+mong.connect("mongodb://localhost:27017/apidev-demo")
+.then(
+    ()=>{
+        console.log("Connection successful");
+    }
+)
+
+.catch((err)=>{console.log(err);})
+
+
+//schema validation
+//Here we defining the properties, the collection should have
+const userSchema = mong.Schema({
+    name: {
+        type:String,
+        //require:true,
+        require:[true,"Name is mandatory"]
+    },
+
+    age: {
+        type:Number, 
+        //min:20,       
+        min:[20, 'min age should be is 20'],
+        max:100
+    },
+
+    /*password: {
+        type:String,
+        minLength:[5,"minimum length is 5"],
+        maxLength:[20,"maximum length is 20"]
+    },, {timestamp: true}
+
+    role:{
+        type:String,
+        enum:["admin","manager","customer"] //enum - it is a collection  of constants
+    }
+    
+})
+
+//model - communicate between schema and collection.
+//Here the users is the collection present in apidev-demo database.
+//we can do dml on collection using schema. model will give all the functions to do such works.
+
+const userModel = mong.model("users", userSchema);
+
+// create a data(this is a json type data), as a json object
+//extra properties are not allowed
+//Insert data
+let user = {
+    name:"Soman",
+    age:15
+
+}
+
+//Insert the data
+//mongo db can understand only  bson type data. And everything is handelled by mongoose
+
+userModel.create(user)
+.then((data)=>{
+    console.log(data);
+    console.log("Data Inserted");
+})
+.catch((err)=>{
+    console.log(err);
+})
+</pre>
+
+
+<h2>10. Fetching the data</h2>
+<pre>
+//Find with particular properties
+//find the records whose name is sumi
+
+userModel.find({name:"Sumi"})
+.then(
+    (data)=>{
+        console.log(data);
+    }
+)
+.catch((err)=>{console.log(err);})
+</pre>
+<pre>
+//find only single record. - findOne
+userModel.findOne({name:"Sumi"})
+.then(
+    (data)=>{
+        console.log(data);
+    }
+)
+.catch((err)=>{console.log(err);})
+</pre>
+<pre>
+//limit only 
+userModel.find.limit(2)
+.then(
+    (data)=>{
+        console.log(data);
+    }
+)
+.catch((err)=>{console.log(err);})
+</pre>
+
+
+<h2>11.Dete the document</h2>
+<pre>
+//delete one document
+
+userModel.deleteOne({age:25})
+.then(
+    (info)=>{
+        console.log(info);
+    }
+)
+.catch((err)=>{console.log(err);})
+
+
+(info) ---> mentioned info instead of data , because here we are not getting any data. so just info.
+
+</pre>
+
+<pre>
+//delete many  document
+
+userModel.deleteMany({age:25, name:Kura})
+.then(
+    (info)=>{
+        console.log(info);
+    }
+)
+.catch((err)=>{console.log(err);})
+
+</pre>
+
+
+<h2>12. Update the document</h2>
+<pre>
+//update one document
+//update the name as kura, where the 1st record age is 25
+
+userModel.updateOne({age:25}, {name:Kura})
+.then(
+    (info)=>{
+        console.log(info);
+    }
+)
+.catch((err)=>{console.log(err);})
+
+
+</pre>
+
+
+<h2>13.For every operation it will create a timestamp</h2>
+<pre>
+const userSchema = mong.Schema({
+    name: {
+        type:String,
+        //require:true,
+        require:[true,"Name is mandatory"]
+    },
+
+    age: {
+        type:Number, 
+        //min:20,       
+        min:[20, 'min age should be is 20'],
+        max:100
+    },
+
+    /*password: {
+        type:String,
+        minLength:[5,"minimum length is 5"],
+        maxLength:[20,"maximum length is 20"]
+    },, {timestamp: true}
+
+    role:{
+        type:String,
+        enum:["admin","manager","customer"] //enum - it is a collection  of constants
+    }
+    
+}, {timestamps: true})
+
+</pre>
+
+
+
+<h1>Express JS</h1>
+
+<h2>1.</h2>
+<pre>
+- Express is a library or module which is built using JS only.
+- It is a collection of functions which will help you to create api endpoints is much simpler way.
+- Express internally using http module.
+</pre>
+
+
+<h2>2. first: Create a JS project</h2>
+<pre>
+- Open vs cocode editor and create a new folder : api_express
+- Open the terminal in vscode editor
+- PS C:\PHILIP\APPDEV\nodejs_dir\api_express> npm init
+This utility will walk you through creating a package.json file.
+
+package name: (api_express)
+version: (1.0.0)  
+description: basic express API-
+entry point: (index.js)
+author: Rasol                                                                                      
+git repository:                                                                                         
+keywords:                                                                                               
+license: (ISC)                                                                                          
+About to write to C:\PHILIP\APPDEV\nodejs_dir\api_express\package.json:
+
+{
+  "name": "api_express",
+  "version": "1.0.0",
+  "description": "basic express Api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rasol siar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "mongoose": "^8.6.3"
+  },
+  "devDependencies": {}
+}
+
+
+Is this OK? (yes) yes
+
+PS C:\PHILIP\APPDEV\nodejs_dir\api_express>
+op
+</pre>
+
+<h2>3. 2nd: Install mongoose for database connection</h2>
+<pre>
+C:\PHILIP\APPDEV\nodejs_dir\api_express> npm install mongoose
+</pre>
+
+<h2>4. 3rd: Install Express to create API</h2>
+<pre>
+C:\PHILIP\APPDEV\nodejs_dir\api_express> npm install express
+</pre>
+
+<h2>5. we can verify the installation by seeing package.json file</h2>
+<pre>
+  "author": "Rasol siar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.8.1"
+  }
+}
+</pre>
+
+<h2>6. Call to express JS and connect to http server</h2>
+<pre>
+index.js
+----------
+const express = require('express'); //call express module
+
+const app = express(); //create an express object.
+
+
+//using express object we can create server, internally uses http module
+app.listen(8000, ()=>{
+    console.log("Server up and running");
+})
+
+
+o/p
+-----
+ C:\PHILIP\APPDEV\nodejs_dir\api_express> node index.js      
+Server up and running
+Server is up and Running
+</pre>
+
+<h2>7. send request and response using express </h2>
+<pre>
+//In JS object we are converting string to js array of object and viceversa using stringify etc. But in express no such things are required.
+//similar like "if(req.url=="/products" && req.method=="GET")" in node.js ,  In express app.get =>means GET request
+//In thuderclient give: GET: http://localhost:8000/products
+
+app.get("/products",(req,res)=>{
+    console.log("Get request incoming");
+    res.send({message:"Get request success"}); //same as res.end in JS
+})
+</pre>
+
+<h2>full</h2>
+<pre>
+index.js
+----------
+const express = require('express'); //call express module
+
+const app = express(); //create an express object.
+
+
+//using express object we can create server, internally uses http module
+app.listen(8000, ()=>{
+    console.log("Server up and running");
+})
+
+app.get("/products",(req,res)=>{
+    console.log("Get request incoming");
+    res.send({message:"Get request success"}); //same as res.end in JS
+})
+</pre>
+
+
+<h2>8.</h2>
+<pre>
+//Add one more endpoint
+app.get("/users/id",(req,res)=>{
+    res.send({message:"Users response"}); //same as res.end
+})
+
+
+in console run: node index.js
+in thunderclient run: http://localhost:8000/users/id ------->"message": "Users response"
+                      http://localhost:8000/users/2 ------->404 not found, because 2 endpoint does not exist.
+</pre>
+
+<h2>9. Give a variable</h2>
+<pre>
+//Here :id is a variable
+app.get("/users/:id",(req,res)=>{
+    console.log(req.params.id)
+    res.send({message:"Users response"}); 
+})
+
+
+in console run: node index.js
+in thunderclient run: http://localhost:8000/users/id ------->id
+                      http://localhost:8000/users/2 ------->2
+					  http://localhost:8000/users/ram ------->ram
+					  
+</pre>
+
+
+<pre>
+</pre>
+
+<h2>4.</h2>
+<pre>
+//Here :id and :name are variable
+app.get("/users/:id/:name",(req,res)=>{
+    console.log(req.params.id)
+    console.log(req.params.name)
+    res.send({message:"Users response"}); 
+})
+
+
+in console run: node index.js
+in thunderclient run: http://localhost:8000/users/2 ------->404 error
+					  http://localhost:8000/users/2/ram ------->2, ram
+
+
+//Here code is secured, as no one will know how the url works.				  
+</pre>
+
+<h2>5. Use of middleware</h2>
+<pre>
+- Express solves a lot of problem in node.js
+- In node.js, we have to use so many if , else statement, for post need to specify chunks, converting of js object to string and viceversa.
+  but in express it makes the code simpler.
+
+Middleware- It sits between request and endpoints . IT verifies the requests before reaching to the end points. It is mainly used for security.  
+</pre>
+<pre>
+app.get("/testing/:id",(req,res)=>{
+     res.send({message:"Users response"}); 
+})
+
+in console log run: node index.js
+in thunderclient run: http://localhost:6000/testing/20 ----> Users response
+
+So here when we send a request immediately we get a response.
+</pre>
+
+<pre>
+//Here we have testing endpoint, :id variable
+//Here middleware - a function with name : middleman is used.
+//So here when we send a request , 1st it will be verified in middleman function.
+//if id is less than 10, then in middleman itself it will give response.
+//if id is greater than 10, then it will go to testing end point and get the response.
+
+app.get("/testing/:id",<mark>middleman</mark>,(req,res)=>{
+    res.send({message:"Testing request"})
+})
+
+function middleman(req,res,next){
+    if(req.params.id&lt;10)
+        {
+            console.log("main endpoint")
+			res.send({message: "You are blocked"})
+
+        }
+    else{
+        next() //means just it will forward to main function that is testing
+    }
+}
+
+in console log run: node index.js
+in thunderclient run: http://localhost:6000/testing/20 ----> Testing request
+                      http://localhost:6000/testing/5 ----> You are blocked
+
+
+</pre>
+<h2>If you want to use, by default the middleman is used for all the endpoints</h2>
+<pre>
+app.use(middleman); //it will be used for both users and testing endpoints here.
+</pre>
+
+<h2>6. POST</h2>
+<pre>
+app.post("/products",(req,res)=>{
+    res.send({message:"Post working"})
+})
+
+
+o/p
+====
+in console log run: node index.js
+in thunderclient: POST:http://localhost:6000/products -----> Post working
+</pre>
+
+<h2>7. POST in express</h2>
+<pre>
+- In json, for post we have to use chunk, to add new data. like in express let say a middle ware function : -
+
+//This part not required , internally express will do
+express.json(req,res,next) //middleware
+{
+    let product="";
+    req.on("data", (chunk)=>{
+	  product+=chunk;
+	  })
+    req.on("end",()=>{
+	  req.body=JSON.parse(product); //body conains the json data
+	  next()
+	  })
+}
+
+
+app.use(express.json()); // it will be used for all the endpoints
+
+app.post("/products",(req,res)=>{
+    console.log(req.body)
+    res.send({message:"Post working"})
+})
+
+
+
+</pre>
+app.use(express.json()); // it will be used for all the endpoints
+
+app.post("/products",(req,res)=>{
+    console.log(req.body)
+    res.send({message:"Post working"})
+})
+
+
+</pre>
+
+<h2>8.delete in express</h2>
+<pre>
+app.delete("/productss/:id",(req,res)=>{
+    console.log(req.param.id);
+    res.send({message:"Deleted successfully"})
+})
+
+
+o/p
+====
+in console log run: node index.js
+in thunderclient run:DELETE:  http://localhost:6000/productss/2 ----> Deleted successfully
+                     
+</pre>
+
+<h2>9. PUT in express</h2>
+<pre>
+app.put("/productss/:id",(req,res)=>{
+    console.log(req.param.id);
+    console.log(req.body);
+    res.send({message:"Put successfully"})
+})
+
+
+o/p
+====
+in console log run: node index.js
+in thunderclient run:PUT:  http://localhost:6000/productss/2 ----> Deleted successfully
+</pre>
+
+<h2>10.  The full API</h2>
+<pre>
+//1. call express module
+const express = require('express');
+
+//2. create an express object 
+const app = express(); 
+
+//3. call mongoose to connect to the database
+  const mongoose = require('mongoose');
+
+//4. Use express as middleware
+app.use(express.json()) ;  
+
+//5. connect to the express server.
+app.listen(8000, ()=>{
+    console.log("Server up and running");
+     })
+
+
+//6. connect to the database
+mongoose.connect("mongodb://localhost:27017/mongotuts")
+ .then(()=>{
+    console.log("Database connection successful")
+ })
+ .catch((err)=>{
+    console.log(err)
+ })
+
+//7. create schema with validation
+  const productSchema = mongoose.Schema({
+    name: {
+        type:String,
+        require:[true,"Name is mandatory"]
+    },
+
+    price: {
+        type:Number, 
+        required:[true, "price is mandatory"],
+        min:1
+    },
+
+   quantity: {
+        type:Number,
+        required:[true, "quantity is mandatory"],
+    },
+
+    category: {
+        type:String,
+        enum:["Clothing","Electronics","Household"]
+    }
+    
+    
+}, {timestamp: true})
+
+//8. model creation
+const prodctModel = mongoose.model("products", productSchema);
+
+//9. POST method - Add data to products in DB
+app.post("/products",(req,res)=>{
+    //console.log(req.body)
+    let product= req.body;
+    prodctModel.create(product)
+    .then((document)=>{
+        res.send({data:document, message:"product created"})
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message:"some problem"})
+    })
+   // res.send({message:"Post working"})
+})
+
+
+//10. Get request
+     //http://localhost:8000/products
+     app.get("/products",(req,res)=>{
+        //console.log("Get request incoming");
+        //res.send({message:"Get request success"}); 
+        prodctModel.find()
+        .then((product)=>{
+            res.send(product);
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.send({message:"some problem"})
+        })
+    })
+
+
+//11. Get a single product using id
+//http://localhost:8000/products/id
+//http://localhost:8000/products/673b20c735d469118c2ef43c
+     app.get("/products/:id",(req,res)=>{
+         prodctModel.findOne({_id:req.params.id})
+        .then((product)=>{
+            res.send(product);
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.send({message:"some problem"})
+        })
+    })
+
+//12.DELETE request
+//http://localhost:8000/products/id
+//http://localhost:8000/products/673b3263c2fc9b61faf42b53
+app.delete("/products/:id",(req,res)=>{
+    //console.log(req.params.id);
+   // res.send({message:"Deleted successfully"})
+   prodctModel.deleteOne({_id:req.params.id})
+   .then((info)=>{
+       res.send({message: "product got deleted"});
+   })
+   .catch((err)=>{
+       console.log(err);
+       res.send({message:"some problem"})
+   }) 
+})
+
+
+//13. PUT request
+app.put("/products/:id",(req,res)=>{
+    //console.log(req.param.id);
+    //console.log(req.body);
+    //res.send({message:"Put successfully"})
+
+    let product = req.body;
+    prodctModel.updateOne({_id:req.params.id}, product)
+    .then((info)=>{
+        res.send({message: "product updaeted"});
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message:"some problem"})
+    }) 
+})
+
+
+
+
+
+//11.use a middleware
+//app.use(middlemanNew);
+
+
+//7. Get request using id
+     //http://localhost:8000/products/3
+     //http://localhost:8000/products?id=2
+     /*
+app.get("/products/:id",(req,res)=>{
+    console.log("Get request incoming");
+    console.log(req.params.id);
+    res.send({message:"Get request success"}); 
+})
+*/
+
+/*
+//8. define a middleware function
+function middleman(req,res,next){
+    if(req.params.id&lt;10)
+        {
+            res.send({message: "You are blocked"})
+
+        }
+    else{
+        next()
+    }
+}
+
+//9. Use middleware
+   //http://localhost:8000/products/3
+   //http://localhost:8000/products/16
+
+
+
+//10. define a middleware function 
+function middlemanNew(req,res,next){
+    if(req.params.id>500)
+        {
+            res.send({message: "You reached 80"})
+
+        }
+    else{
+        next()
+    }
+}
+
+
+app.get("/users/:id",middleman,(req,res)=>{
+    res.send({message:"Testing request"})
+})
+
+app.get("/usersnew/:id",(req,res)=>{
+    res.send({message:"Testing itself request"})
+})
+    */
+
+
+</pre>
+<pre>
+For post --->
+In thunderbird  body:
+{
+  "name":"Levaaa Tshirt",
+  "price":40000000000,
+  "quantity":170999,
+  "category":"Clothing"
+}
+
+
+header --->
+Content-Type: application/json, bydefault it is there.
+
+check in the database wheter uspdated or not.
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Authentication and Autherisation, JWT token</h1>
+
+<pre>
+- If a user is registered , then only it can login.
+- if a user is logged in, then only it can do create or delete post.
+- It means - 1st user has to register, then it has to login , then it has to create a post.
+</pre>
+
+<h2>1. Authentication - checking a user is valid</h2>
+<pre>
+Let say we will create endpoint for new user registration.
+1. create a new folder called : user_registration
+2. open vscode terminal
+3. create a file called : index.js inside he user_registration folder
+
+C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> dir
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        11/19/2024   7:16 AM              0 index.js
+
+
+
+==================
+4. create package.json file -
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> npm init
+
+package name: (users_registration)
+version: (1.0.0)                                                                     
+description: user registration                                                       
+entry point: (index.js)                                                              
+test command:                                                                        
+git repository:                                                                      
+keywords:                                                                            
+author:                                                                              
+license: (ISC)                                                                       
+About to write to C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration\package.json:
+
+{
+  "name": "users_registration",
+  "version": "1.0.0",
+  "description": "user registration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes) yes
+
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> dir
+    
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        11/19/2024   7:16 AM              0 index.js
+-a----        11/19/2024   7:18 AM            231 package.json
+
+
+===================
+5. Install mongoose
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> npm install mongoose
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> dir
+     
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        11/19/2024   7:23 AM                node_modules
+-a----        11/19/2024   7:16 AM              0 index.js
+-a----        11/19/2024   7:23 AM           8404 package-lock.json
+-a----        11/19/2024   7:23 AM            281 package.json
+
+
+
+===================
+6. Install express.
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> npm install express
+
+===================
+7. create a collection called: users  inside mogngo db database : mongotuts using compass.
+
+===================
+8. index.js
+----------------
+//1. call express module
+const express = require('express');
+
+//2. create an express object 
+const app = express(); 
+
+//3. call mongoose to connect to the database
+  const mongoose = require('mongoose');
+
+
+
+//4. connect to the server.
+app.listen(9000, ()=>{
+    console.log("Server up and running");
+     })
+
+
+//5. connect to the database named: mongotuts
+mongoose.connect("mongodb://localhost:27017/mongotuts")
+ .then(()=>{
+    console.log("Database connection successful")
+ })
+ .catch((err)=>{
+    console.log(err)
+ })
+
+
+ //6. create a schema for users
+ const userSchema = mongoose.Schema({
+    name: {
+        type:String,
+        required:[true,"Name is mandatory"]
+    },
+    email: {
+        type:String,
+        required:[true,"Email is mandatory"]
+    },
+    password: {
+        type:String,
+        required:[true,"password is mandatory"]
+    }
+ },{timestamps:true})
+
+ //7. create a model for users schema which connects schema to collection.
+const userModel = mongoose.model("users", userSchema);
+
+//8. Use express as middleware
+//so it can extracts the data from the body chunk by chunk and store in "body" variable
+//using this middleware , req.body can be used.
+app.use(express.json()) ;  
+
+//9. Endpoint to Add a new user to the userSchema
+app.post("/register",(req,res)=>{
+
+    // console.log(req.body);
+	// res.send("Post working");
+    let user=req.body;//The inserted data present in the body section in thunderclient
+    userModel.create(user)
+    .then((doc)=>{
+        res.send({message: "User registration successful"})
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"});
+
+    })
+   
+    
+})
+
+
+===================
+9. Go to the thunderclient and fill the user details in body section : -
+{
+  "name":"user1",
+  "email":"user123@gmail.com",
+  "password":123456
+}
+
+URL: POST : http://localhost:9000/register
+
+output
+--------
+status: 200 OK
+"message": "User registration successful"
+
+Go to compass and refrese on users collection. you will see the 1st record/document created -
+_id : 673bf6f348edda98df1f7689
+name : "user1"
+email : "user123@gmail.com"
+password : "123456"
+createdAt : 2024-11-19T02:24:51.836+00:00
+updatedAt : 2024-11-19T02:24:51.836+00:00
+__v : 0
+
+</pre>
+
+<h2>2. Encrypted password</h2>
+<pre>
+Encryption is a two-way process that scrambles data into an unreadable form, called ciphertext, which can be decrypted with a key. 
+
+Hashing is a one-way process that turns data into a unique, fixed-length code, called a hash value, that cannot be reversed back to its original form
+
+Encryption is used to protect the privacy of data, while hashing is used to verify the integrity of data.
+</pre>
+<h3>bcrypt js</h3>
+<pre>
+Usage - Async - To hash a password:
+
+var bcrypt = require('bcryptjs');
+bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash("B4c0/\/", salt, function(err, hash) {
+        // Store hash in your password DB.
+    });
+});
+
+- genSalt --> means generate salt ---> means generate key to mix while hashing.
+10 --> 10 times it will generate salt 
+(err, salt) --> If any error you will get err, or you will get salt.
+"B4c0/\/" ---> This is the password, you want to do hashing.
+</pre>
+<pre>
+In the above example the data is inserted, but the password is visible to everyone.
+
+- So we need to create an encrypted password.
+- so we have to use bcrypt.js library.
+
+
+//Install bcrypt js
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> npm install bcryptjs
+
+Then in 
+index.js
+----------
+const bcrypt = require('bcryptjs');
+
+//9. Endpoint to Add a new user to the userSchema
+app.post("/register",(req,res)=>{
+    let user=req.body;//The inserted data present in the body section in thunderclient
+    bcrypt.genSalt(10,(err,salt)=>{
+        if(!err){ //means if there is no error
+            bcrypt.hash(user.password,salt,(err,hpass)=>{
+                if(!err){
+                    console.log(hpass);
+                }
+            })
+        }
+    })
+    /*
+   // userModel.create(user)
+   // .then((doc)=>{
+   //     res.send({message: "User registration successful"})
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"});
+
+    })
+        */
+    res.send("working");
+    
+})
+
+
+POST: http://localhost:9000/register
+
+DATA: 
+{
+  "name":"user1",
+  "email":"user123@gmail.com",
+  "password":"Radhe"
+}
+
+Status : 200 OK
+working
+
+
+Terminal: 
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+Server up and running
+Database connection successful
+Server up and running
+Database connection successful
+$2a$10$iug92FrW0AqZTpuqLU5b0uFuMlb6eU34el59kWhKDJdU1mASJCLkO ------------> we can see here encrypted password
+
+
+</pre>
+
+<h2>3. Full</h2>
+<pre>
+//1. call express module
+const express = require('express');
+
+//2. create an express object 
+const app = express(); 
+
+//3. call mongoose to connect to the database
+  const mongoose = require('mongoose');
+
+//10.var bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+
+//4. Use express as middleware
+//so it contains the data in "body"
+app.use(express.json()) ;  
+
+//5. connect to the express server.
+app.listen(9000, ()=>{
+    console.log("Server up and running");
+     })
+
+
+//6. connect to the database
+mongoose.connect("mongodb://localhost:27017/mongotuts")
+ .then(()=>{
+    console.log("Database connection successful")
+ })
+ .catch((err)=>{
+    console.log(err)
+ })
+
+
+ //7. create a schema for users
+ const userSchema = mongoose.Schema({
+    name: {
+        type:String,
+        required:[true,"Name is mandatory"]
+    },
+    email: {
+        type:String,
+        required:[true,"Email is mandatory"]
+    },
+    password: {
+        type:String,
+        required:[true,"password is mandatory"]
+    }
+ },{timestamps:true})
+
+ //8. create a model for users schema
+const userModel = mongoose.model("users", userSchema);
+
+//9. Endpoint to Add a new user to the userSchema
+app.post("/register",(req,res)=>{
+    let user=req.body;//The inserted data present in the body section in thunderclient
+    bcrypt.genSalt(10,(err,salt)=>{
+        if(!err){
+            bcrypt.hash(user.password,salt,(err,hpass)=>{
+                if(!err){
+                    user.password = hpass;
+                    userModel.create(user)
+                    .then((doc)=>{
+                       res.send({message: "User registration successful"})
+                    })
+                    .catch((err)=>{
+                       console.log(err);
+                       res.send({message: "some problem"});
+                    })
+                }
+            })
+        }
+    })
+    
+    res.send("working");
+    
+})
+
+
+VSCODE terminal --->node index.js
+thunderbird ---> POST: http://localhost:9000/register
+      DATA:
+{
+  "name":"user1",
+  "email":"user123@gmail.com",
+  "password":"123456"
+}
+
+Status: OK
+working
+
+
+Go to Compass --> refresh
+
+_id: 673c13426fc5338426f8cbde
+name: "user1"
+email: "user123@gmail.com"
+password: "$2a$10$eksvOTy16OV5RkC4vkQjZeRtM/7wJkyRepsg2x7dkANOEnpY11cr6" -----------------> we can see out password is hashed.
+createdAt: 2024-11-19T04:25:38.631+00:00
+updatedAt: 2024-11-19T04:25:38.631+00:00
+__v: 0
+
+</pre>
+
+<h2>4. Login to the user</h2>
+<pre>
+- LOgin also happens using POST. becaues user will do login using email  and password.
+-If user use GET for login , it has to give mailid and password through url which is not secure. anyone can see the password.
+so LOgin happens through POST using body.
+- Here what we do, we will pass the data  of user, if it matcches the data present in database, then login happens.
+
+
+
+index.js
+----------
+//user Login
+app.post("/login",(req,res)=>{
+    //console.log(req.body);
+	//res.send("login working");
+	
+    let userCred=req.body;
+    userModel.findOne({email: userCred.email})
+    .then((user)=>{
+        console.log(user);
+        res.send({message:"login working"})
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"})
+    })
+    
+
+})
+
+
+
+//Here comparison happens for email id.
+
+
+output
+-----
+console --->  node index.js
+thunderbird ---> POST: http://localhost:9000/login
+
+give correcct mail id in body ---> {
+  "email":"user23@gmail.com",
+  "password":"12345"
+}
+
+status: 200 OK "message": "login working"
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+Server up and running
+Database connection successful
+{
+  _id: new ObjectId('673c15311db98d8337c47a82'),
+  name: 'user2',
+  email: 'user234@gmail.com',
+  password: '$2a$10$m1ZADD8H0S1H2KqWW/SPNec1nR8HY07WOKx8AaRqgpsZwB9I2GlrG',
+  createdAt: 2024-11-19T04:33:53.439Z,
+  updatedAt: 2024-11-19T04:33:53.439Z,
+  __v: 0
+}
+
+
+give wrong email id---> it will give null in console.log
+</pre>
+
+
+<h2>5.Verify mail id. - comapre email.</h2>
+<pre>
+//user Login
+app.post("/login",(req,res)=>{
+    //console.log(req.body);
+    let userCred=req.body;
+    userModel.findOne({email: userCred.email})
+    .then((user)=>{
+        
+        //console.log(user);
+        //res.send({message:"login working"})
+        if(user!==null){
+            res.send({message: "user found"})
+        }
+        else{
+            res.send({message: "wrong email"})
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"})
+    })
+    //res.send("login working");
+
+})
+
+
+
+o/p
+-----
+console --> node index.js
+thunderclient ---> POST: http://localhost:9000/login
+                body -->
+				{
+                  "email":"user23@gmail.com",
+                  "password":"12345"
+                }
+				
+given correct email id ---->message: "user found
+give wrong email id -----> message: "wrong email
+</pre>
+
+<h2>6. Compare Password</h2>
+<pre>
+bcrypt.compareSync("B4c0/\/", hash); 
+
+bcrypt.compare("B4c0/\/", hash, function(err, res) {
+    // res === true
+});
+
+
+
+B4c0/\/ ---> This is the password user entered.
+hash --->It is the hashing/encrypted password.
+Internally the brcypt convert the user entered password into has and compare with hashed password stored in the database.
+
+</pre>
+
+
+<pre>
+//user Login
+app.post("/login",(req,res)=>{
+    //console.log(req.body);
+    let userCred=req.body;
+    userModel.findOne({email: userCred.email})
+    .then((user)=>{
+        
+        //console.log(user);
+        //res.send({message:"login working"})
+        if(user!==null){
+            //res.send({message: "user found"})
+            bcrypt.compare(userCred.password,user.password,(err,result)=>{
+                if(result===true){
+                    res.send({message: "Login Successful"})
+                }
+                else{
+                    res.send({message: "Incorrect password"}) 
+                }
+            })
+        }
+        else{
+            res.send({message: "wrong email"})
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"})
+    })
+    //res.send("login working");
+
+
+
+
+output
+--------
+POST: http://localhost:9000/login
+
+body---> 
+{
+  "email":"user123@gmail.com",
+  "password":"12345" 
+}
+
+
+give incorrect password ---->"message": "Incorrect password	
+</pre>
+
+<h2>7. TOKEN</h2>
+<pre>
+JWT token - Json web token
+when a user successfully logged in, a token will be creaed and it will be given to the user. 
+Whenever user comes next time it has to provide the token. SO no need to authenticate the user again.
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> npm install jsonwebtoken
+
+</pre>
+
+<pre>
+jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' }, function(err, token) {
+                        console.log(token);
+                      });
+					  
+					  
+</pre>
+
+<h2>full</h2>
+<pre>
+
+//1. call express module
+const express = require('express');
+
+//2. create an express object 
+const app = express(); 
+
+//3. call mongoose to connect to the database
+  const mongoose = require('mongoose');
+
+//10.var bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+
+//call JWT token
+const jwt= require('jsonwebtoken');
+
+//4. Use express as middleware
+//so it contains the data in "body"
+app.use(express.json()) ;  
+
+//5. connect to the express server.
+app.listen(9000, ()=>{
+    console.log("Server up and running");
+     })
+
+
+//6. connect to the database
+mongoose.connect("mongodb://localhost:27017/mongotuts")
+ .then(()=>{
+    console.log("Database connection successful")
+ })
+ .catch((err)=>{
+    console.log(err)
+ })
+
+
+ //7. create a schema for users
+ const userSchema = mongoose.Schema({
+    name: {
+        type:String,
+        required:[true,"Name is mandatory"]
+    },
+    email: {
+        type:String,
+        required:[true,"Email is mandatory"]
+    },
+    password: {
+        type:String,
+        required:[true,"password is mandatory"]
+    }
+ },{timestamps:true})
+
+ //8. create a model for users schema
+const userModel = mongoose.model("users", userSchema);
+
+//9. Endpoint to Add a new user to the userSchema
+app.post("/register",(req,res)=>{
+    let user=req.body;//The inserted data present in the body section in thunderclient
+    bcrypt.genSalt(10,(err,salt)=>{
+        if(!err){
+            bcrypt.hash(user.password,salt,(err,hpass)=>{
+                if(!err){
+                    user.password = hpass;
+                    userModel.create(user)
+                    .then((doc)=>{
+                       res.send({message: "User registration successful"})
+                    })
+                    .catch((err)=>{
+                       console.log(err);
+                       res.send({message: "some problem"});
+                    })
+                }
+            })
+        }
+    })
+    
+    res.send("working");
+    
+})
+
+
+
+//user Login
+app.post("/login",(req,res)=>{
+    //console.log(req.body);
+    let userCred=req.body;
+    userModel.findOne({email: userCred.email})
+    .then((user)=>{
+        
+        //console.log(user);
+        //res.send({message:"login working"})
+        if(user!==null){
+            //res.send({message: "user found"})
+            bcrypt.compare(userCred.password,user.password,(err,result)=>{
+                if(result===true){
+                    //res.send({message: "Login Successful"})
+                    //generate a token and send it back
+                    jwt.sign({ email: userCred.email }, "deepiKey", (err, token)=>{
+                        if(!err){
+                            res.send({token:token})
+                        }
+                        else{
+                            res.send({message:"some issue while creating the token"})
+                        }
+                      });
+
+
+
+                }
+                else{
+                    res.send({message: "Incorrect password"}) 
+                }
+            })
+        }
+        else{
+            res.send({message: "wrong email"})
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"})
+    })
+    //res.send("login working");
+
+})
+
+
+
+
+
+output
+-------
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+POST: http://localhost:9000/login
+body:
+{
+  "email":"user123@gmail.com",
+  "password":"123456" 
+}
+
+token generated --->
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjNAZ21haWwuY29tIiwiaWF0IjoxNzMyNDM1ODE2fQ.jCjSLVHCEKA7R-diqzsCCKNqsu9MQIvxlAsSQCODOB0"
+}
+<pre>
+
+<h2> 8. Create endpooint to get access the data using JWT token </h2>
+
+<pre>
+//without token no one can access the data.
+//Tokens are sent via headers by the user.
+
+app.get("/getdata", verifyToken, (req,res)=>{
+    res.send({message: "I am a bad developer with a good heart"});
+})
+
+//create a middleware to verify the token before reaching the endpoint.
+function verifyToken(req,res,next){
+    console.log(req.headers); 
+    res.send("coming from middleware")
+
+
+output
+===========
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+GET: http://localhost:9000/getdata
+Header: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjNAZ21haWwuY29tIiwiaWF0IjoxNzMyNDM1ODE2fQ.jCjSLVHCEKA7R-diqzsCCKNqsu9MQIvxlAsSQCODOB0
+
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+Server up and running
+Database connection successful
+{
+  'content-length': '60',
+  'accept-encoding': 'gzip, deflate, br',
+  accept: '*/*',
+  'user-agent': 'Thunder Client (https://www.thunderclient.com)',
+  authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjNAZ21haWwuY29tIiwiaWF0IjoxNzMyNDM1ODE2fQ.jCjSLVHCEKA7R-diqzsCCKNqsu9MQIvxlAsSQCODOB0',
+  'content-type': 'application/json',
+  host: 'localhost:9000',
+  connection: 'close'
+}
+  host: 'localhost:9000',
+  host: 'localhost:9000',
+  connection: 'close'
+}
+
+</pre>
+
+
+<h2>Extract token</h2>
+<pre>
+function verifyToken(req,res,next){
+    console.log(req.headers.authorization); // If you give this you will get only token value in output.
+    res.send("coming from middleware")
+}
+
+
+output
+--------
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+Server up and running
+Database connection successful
+[Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjNAZ21haWwuY29tIiwiaWF0IjoxNzMyNDM1ODE2fQ.jCjSLVHCEKA7R-diqzsCCKNqsu9MQIvxlAsSQCODOB0]
+
+
+</pre>
+
+
+<pre>
+function verifyToken(req,res,next){
+    console.log(req.headers.authorization.split(" ")[1]); //split and display the index 1, Bearer is the index 0,
+    res.send("coming from middleware")
+}
+
+
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js     
+Server up and running
+Database connection successful
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjNAZ21haWwuY29tIiwiaWF0IjoxNzMyNDM1ODE2fQ.jCjSLVHCEKA7R-diqzsCCKNqsu9MQIvxlAsSQCODOB0
+
+</pre>
+
+<h2>Full</h2>
+<pre>
+//1. call express module
+const express = require('express');
+
+//2. create an express object 
+const app = express(); 
+
+//3. call mongoose to connect to the database
+  const mongoose = require('mongoose');
+
+//10.var bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+
+//call JWT token
+const jwt= require('jsonwebtoken');
+
+//4. Use express as middleware
+//so it contains the data in "body"
+app.use(express.json()) ;  
+
+//5. connect to the express server.
+app.listen(9000, ()=>{
+    console.log("Server up and running");
+     })
+
+
+//6. connect to the database
+mongoose.connect("mongodb://localhost:27017/mongotuts")
+ .then(()=>{
+    console.log("Database connection successful")
+ })
+ .catch((err)=>{
+    console.log(err)
+ })
+
+
+ //7. create a schema for users
+ const userSchema = mongoose.Schema({
+    name: {
+        type:String,
+        required:[true,"Name is mandatory"]
+    },
+    email: {
+        type:String,
+        required:[true,"Email is mandatory"]
+    },
+    password: {
+        type:String,
+        required:[true,"password is mandatory"]
+    }
+ },{timestamps:true})
+
+ //8. create a model for users schema
+const userModel = mongoose.model("users", userSchema);
+
+//9. Endpoint to Add a new user to the userSchema
+app.post("/register",(req,res)=>{
+    let user=req.body;//The inserted data present in the body section in thunderclient
+    bcrypt.genSalt(10,(err,salt)=>{
+        if(!err){
+            bcrypt.hash(user.password,salt,(err,hpass)=>{
+                if(!err){
+                    user.password = hpass;
+                    userModel.create(user)
+                    .then((doc)=>{
+                       res.send({message: "User registration successful"})
+                    })
+                    .catch((err)=>{
+                       console.log(err);
+                       res.send({message: "some problem"});
+                    })
+                }
+            })
+        }
+    })
+    
+    res.send("working");
+    
+})
+
+
+
+//user Login
+app.post("/login",(req,res)=>{
+    //console.log(req.body);
+    let userCred=req.body;
+    userModel.findOne({email: userCred.email})
+    .then((user)=>{
+        
+        //console.log(user);
+        //res.send({message:"login working"})
+        if(user!==null){
+            //res.send({message: "user found"})
+            bcrypt.compare(userCred.password,user.password,(err,result)=>{
+                if(result===true){
+                    //res.send({message: "Login Successful"})
+                    //generate a token and send it back
+                    jwt.sign({ email: userCred.email }, "deepiKey", (err, token)=>{
+                        if(!err){
+                            res.send({token:token})
+                        }
+                        else{
+                            res.send({message:"some issue while creating the token"})
+                        }
+                      });
+
+
+
+                }
+                else{
+                    res.send({message: "Incorrect password"}) 
+                }
+            })
+        }
+        else{
+            res.send({message: "wrong email"})
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"})
+    })
+    //res.send("login working");
+
+})
+
+
+//without token no one can access the data.
+//Tokens are sent via headers by the user.
+app.get("/getdata", verifyToken, (req,res)=>{
+    res.send({message: "I am a bad developer with a good heart"});
+})
+
+//create a middleware to verify the token before reaching the endpoint.
+function verifyToken(req,res,next){
+    let token = req.headers.authorization.split(" ")[1]; 
+    jwt.verify(token,"deepiKey",(err,data)=>{
+      if(!err){
+        console.log(data);
+        next();
+      }
+      else {
+        res.send({message:"Invalid token please login again"})
+      }
+    })
+    res.send("coming from middleware")
+}
+
+
+
+
+
+
+output
+===========
+PS C:\PHILIP\APPDEV\nodejs_dir\testing_express\users_registration> node index.js
+GET: http://localhost:9000/getdata
+Header: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxMjNAZ21haWwuY29tIiwiaWF0IjoxNzMyNDM1ODE2fQ.jCjSLVHCEKA7R-diqzsCCKNqsu9MQIvxlAsSQCODOB0
+</pre>
+
+<pre>
+//1. call express module
+const express = require('express');
+
+//2. create an express object 
+const app = express(); 
+
+//3. call mongoose to connect to the database
+  const mongoose = require('mongoose');
+
+//10.var bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+
+//call JWT token
+const jwt= require('jsonwebtoken');
+
+//4. Use express as middleware
+//so it contains the data in "body"
+app.use(express.json()) ;  
+
+//5. connect to the express server.
+app.listen(9000, ()=>{
+    console.log("Server up and running");
+     })
+
+
+//6. connect to the database
+mongoose.connect("mongodb://localhost:27017/mongotuts")
+ .then(()=>{
+    console.log("Database connection successful")
+ })
+ .catch((err)=>{
+    console.log(err)
+ })
+
+
+ //7. create a schema for users
+ const userSchema = mongoose.Schema({
+    name: {
+        type:String,
+        required:[true,"Name is mandatory"]
+    },
+    email: {
+        type:String,
+        required:[true,"Email is mandatory"]
+    },
+    password: {
+        type:String,
+        required:[true,"password is mandatory"]
+    }
+ },{timestamps:true})
+
+ //8. create a model for users schema
+const userModel = mongoose.model("users", userSchema);
+
+//9. Endpoint to Add a new user to the userSchema
+app.post("/register",(req,res)=>{
+    let user=req.body;//The inserted data present in the body section in thunderclient
+    bcrypt.genSalt(10,(err,salt)=>{
+        if(!err){
+            bcrypt.hash(user.password,salt,(err,hpass)=>{
+                if(!err){
+                    user.password = hpass;
+                    userModel.create(user)
+                    .then((doc)=>{
+                       res.send({message: "User registration successful"})
+                    })
+                    .catch((err)=>{
+                       console.log(err);
+                       res.send({message: "some problem"});
+                    })
+                }
+            })
+        }
+    })
+    
+    res.send("working");
+    
+})
+
+
+
+//user Login
+app.post("/login",(req,res)=>{
+    //console.log(req.body);
+    let userCred=req.body;
+    userModel.findOne({email: userCred.email})
+    .then((user)=>{
+        
+        //console.log(user);
+        //res.send({message:"login working"})
+        if(user!==null){
+            //res.send({message: "user found"})
+            bcrypt.compare(userCred.password,user.password,(err,result)=>{
+                if(result===true){
+                    //res.send({message: "Login Successful"})
+                    //generate a token and send it back
+                    jwt.sign({ email: userCred.email }, "deepiKey", (err, token)=>{
+                        if(!err){
+                            res.send({token:token})
+                        }
+                        else{
+                            res.send({message:"some issue while creating the token"})
+                        }
+                      });
+
+
+
+                }
+                else{
+                    res.send({message: "Incorrect password"}) 
+                }
+            })
+        }
+        else{
+            res.send({message: "wrong email"})
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.send({message: "some problem"})
+    })
+    //res.send("login working");
+
+})
+
+
+//without token no one can access the data.
+//Tokens are sent via headers by the user.
+app.get("/getdata", verifyToken, (req,res)=>{
+    res.send({message: "I am a bad developer with a good heart"});
+})
+
+//create a middleware to verify the token before reaching the endpoint.
+function verifyToken(req,res,next){
+    let token = req.headers.authorization.split(" ")[1]; 
+    jwt.verify(token,"deepiKey",(err,data)=>{
+      if(!err){
+        console.log(data);
+        next();
+      }
+      else {
+        //res.send({message:"Invalid token please login again"})
+        res.status(401).send({message:"Invalid token please login again"})
+      }
+    })
+    res.send("coming from middleware")
+}
+
+
+
+
+
+
+
+
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+   
+
+   
+
+
+
+

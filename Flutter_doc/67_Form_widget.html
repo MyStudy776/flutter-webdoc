@@ -1,0 +1,399 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Form</h1>
+<h2>1. Form -</h2>
+
+<pre>
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          //brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  final _formKey = GlobalKey&lt;FormState>();
+  String firstname = '';
+  String lastname = '';
+  String email = '';
+  String password = '';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Form'),
+      ),
+      body: Center(
+          child: Container(
+            margin: EdgeInsets.all(10),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Text("I am text"),
+                  TextFormField(
+                    decoration: InputDecoration(hintText: 'Enter First Name'),
+                    key: ValueKey('firstname'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'First Name should not be Empty';
+                      } else {
+                        return null;
+                      }
+                      },
+                    onSaved: (value) {
+                      firstname = value.toString();
+                    },
+
+                  )
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+</pre>
+
+
+<h2>2. </h2>
+<pre>
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          //brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  <mark>final _formKey = GlobalKey&lt;FormState>();
+  String firstname = '';
+  String lastname = '';
+  String email = '';
+  String password = '';</mark>
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Form'),
+      ),
+      body: Center(
+          child: Container(
+            margin: EdgeInsets.all(10),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Text("I am text"),
+                  <mark>TextFormField(</mark>
+                    decoration: InputDecoration(hintText: 'Enter First Name'),
+                    key: ValueKey('firstname'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'First Name should not be Empty';
+                      } else {
+                        return null;
+                      }
+                      },
+                    onSaved: (value) {
+                      firstname = value.toString();
+                    },
+
+                  ),
+                 <mark> TextFormField(</mark>
+                    decoration: InputDecoration(hintText: 'Enter Last Name'),
+                    key: ValueKey('lastname'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Last Name should not be Empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      lastname = value.toString();
+                    },
+                  ),
+                 <mark> TextFormField(</mark>
+                    decoration: InputDecoration(hintText: 'Enter Email'),
+                    key: ValueKey('email'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Email should not be Empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      email = value.toString();
+                    },
+                  ),
+                  <mark>TextFormField(</mark>
+                    obscureText: true,
+                    decoration: InputDecoration(hintText: 'Enter Password'),
+                    key: ValueKey('password'),
+                    validator: (value) {
+                      if (value.toString().length &lt;= 5) {
+                        return 'Minimum length of password should be 6';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      password = value.toString();
+                    },
+                  ),
+                  
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. </h2>
+<pre>
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          //brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  final _formKey = GlobalKey&lt;FormState>();
+  String firstname = '';
+  String lastname = '';
+  String email = '';
+  String password = '';
+
+
+  <mark>trysubmit() {
+    final isvalid = _formKey.currentState!.validate();
+    if (isvalid) {
+      _formKey.currentState!.save();
+      submitform();
+    } else {
+      print('Error');
+    }
+  }</mark>
+
+  <mark>submitform() {
+    print(firstname);
+    print(lastname);
+    print(email);
+    print(password);
+  }</mark>
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Form'),
+      ),
+      body: Center(
+          child: Container(
+            margin: EdgeInsets.all(10),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Text("I am text"),
+                  TextFormField(
+                    decoration: InputDecoration(hintText: 'Enter First Name'),
+                    key: ValueKey('firstname'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'First Name should not be Empty';
+                      } else {
+                        return null;
+                      }
+                      },
+                    onSaved: (value) {
+                      firstname = value.toString();
+                    },
+
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(hintText: 'Enter Last Name'),
+                    key: ValueKey('lastname'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Last Name should not be Empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      lastname = value.toString();
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(hintText: 'Enter Email'),
+                    key: ValueKey('email'),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Email should not be Empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      email = value.toString();
+                    },
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    decoration: InputDecoration(hintText: 'Enter Password'),
+                    key: ValueKey('password'),
+                    validator: (value) {
+                      if (value.toString().length &lt;= 5) {
+                        return 'Minimum length of password should be 6';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      password = value.toString();
+                    },
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        <mark>trysubmit();</mark>
+                      },
+                      child: Text('Submit'))
+
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+
+If we submit the button, it will show error as fields should not be empty.
+Fill all the field and submit ansd see the output in terminal
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

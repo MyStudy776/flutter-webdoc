@@ -1,0 +1,125 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>RichText Widget-</h1>
+
+
+<h2>1. Normal Text  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body: Row(
+            children: [
+              Text('Hello  ', style: TextStyle(fontSize: 20, color: Colors.green),),
+              Text('World', style: TextStyle(fontSize: 40, color: Colors.blue, fontWeight: FontWeight.bold),),
+            ],
+          )
+      ),
+    );
+  }
+}
+
+
+Here for each text text we need different style, so we used textStyle .
+</pre>
+
+
+
+
+<h2>2. RichText Widget  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body: RichText(
+            text: TextSpan(
+                style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 21
+                ),
+                children: [
+                  TextSpan(text: 'Hello ',),
+                  TextSpan(text: 'World ', style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold
+                  )),
+                  TextSpan(text: 'Welcome ',style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic
+                  )),
+
+                ]
+
+            ),
+          )
+      ),
+    );
+  }
+}
+
+
+
+Whatever style we will use inside TextSpan, the children texts will take that style bydefault.
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

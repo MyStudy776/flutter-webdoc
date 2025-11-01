@@ -1,0 +1,236 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Circle Avatar-</h1>
+
+<h2>1. Example -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Container(
+          width: 100,
+          height: 100,
+          child: CircleAvatar(
+            backgroundImage: AssetImage('assets/images/flutter.jpg'),
+            backgroundColor: Colors.red,
+          ),
+        )
+      ),
+    );
+  }
+}
+
+
+
+Add in pubsec.yaml file -
+assets 
+
+</pre>
+
+
+<h2>2. Increase the size of circle -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Center(
+
+          child: CircleAvatar(
+            child: Column(
+              children: [
+                Text("Ramu", style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),),
+              ],
+            ),
+            backgroundImage: AssetImage('assets/images/flutter.jpg'),
+            backgroundColor: Colors.red,
+            <mark>radius: 100,</mark>
+          ),
+        )
+      ),
+    );
+  }
+}
+
+
+
+
+</pre>
+
+
+<h2>3. Example -</h2>
+<pre>
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("Dashboard"),
+          ),
+          body: Center(
+            child: CircleAvatar(
+              child: Text('Name', style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
+              backgroundImage: AssetImage('assets/girl2.jpg'),
+              backgroundColor: Colors.red,
+              maxRadius: 70,
+            ),
+          )
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>4. Show only text inside circleAvatar -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("Dashboard"),
+          ),
+          body: Center(
+            child: CircleAvatar(
+              child: Text('Name', style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
+              backgroundColor: Colors.red,
+              maxRadius: 70,
+            ),
+          )
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>5. Show both text and image inside circleAvatar -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("Dashboard"),
+          ),
+          body: Center(
+            child: CircleAvatar(
+              child: Column(
+                children: [
+                  Container(
+                    width: 80,
+                      height: 80,
+                      child: Image.asset('assets/girl2.jpg')),
+                  Text('Name', style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
+                ]
+
+              ),
+              //
+              //backgroundImage: AssetImage('assets/girl2.jpg'),
+              backgroundColor: Colors.red,
+              maxRadius: 100,
+            ),
+          )
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>1. Example -</h2>
+<pre>
+
+
+</pre>
+
+<h2>1. Example -</h2>
+<pre>
+
+
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,158 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Inkwell widget</h1>
+<h2>1. -</h2>
+<pre>
+- We get ontap function only in buttons. but by default the widgets does not have ontap function.
+- Inkwell widget give option ontap, double Tap, long press etc on any widget.
+</pre>
+
+<h2>2. Use normal button without Inkwell</h3>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Container(
+          child: ElevatedButton(
+            child: Text('click me'),
+            onPressed: (){
+              print('click on button');
+            },
+
+
+          ),
+        )
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>3. Use of inkwell widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Center(
+          child: InkWell(
+            onTap: (){
+              print('Tapped on Container');
+            },
+            onLongPress: (){
+              print('Long Presses on Container');
+            },
+            onDoubleTap: (){
+              print('Double-Tapped on Container');
+            },
+            child: Container(
+              width: 200,
+                height: 200,
+                color: Colors.amber,
+            ),
+          ),
+        )
+      ),
+    );
+  }
+}
+</pre>
+
+
+<h2>4. use inkwell for text -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Center(
+          child: InkWell(
+            onTap: (){
+              print('Tapped on Container');
+            },
+            onLongPress: (){
+              print('Long Presses on Container');
+            },
+            onDoubleTap: (){
+              print('Double-Tapped on Container');
+            },
+            child: Container(
+              width: 200,
+                height: 200,
+                color: Colors.amber,
+                child: InkWell(
+                  onTap: (){
+                    print('Text widget Tapped');
+                  } ,
+                    child: Text('click here', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700, ),)),
+            ),
+          ),
+        )
+      ),
+    );
+  }
+}
+</pre>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

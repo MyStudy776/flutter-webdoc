@@ -1,0 +1,75 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h2>1. stdout -</h2>
+<pre>
+code -
+import 'dart:io';
+void main () {
+
+  print("Hello Dear");
+  stdout.write("I am Here");
+}
+
+o/p
+====
+Hello Dear
+I am Here
+
+
+Note: - stdout --> used same as print. But it is coming from dart.io package, which is imported here.
+</pre>
+
+<h2>2. stdin -</h2>
+<pre>
+code -
+import 'dart:io';
+void main () {
+  print("Enter your name:" );
+  var name = stdin.readLineSync();
+  print("Hello $name");
+
+}
+
+o/p
+====
+Enter your name:
+rama   <-----------------Enter the value
+Hello rama
+</pre>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,264 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Scroll widget -</h1>
+
+<h2>1. Below example , the content is beyond container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+            title: Text('Hello'),
+            backgroundColor: Colors.orange,
+        ),
+        body: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 11),
+                height: 200,
+                  width: 200,
+                  color: Colors.lightGreen,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 11),
+                height: 200,
+                width: 200,
+                color: Colors.lightBlue,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 11),
+                height: 200,
+                width: 200,
+                color: Colors.red,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 11),
+                height: 200,
+                width: 200,
+                color: Colors.lightGreen,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 11),
+                height: 200,
+                width: 200,
+                color: Colors.yellow,
+              )
+            ],),
+
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>2. Belw Example give the scroll view in vertical direction -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+            title: Text('Hello'),
+            backgroundColor: Colors.orange,
+        ),
+      <mark>  body: SingleChildScrollView( </mark>
+          child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                    width: 200,
+                    color: Colors.lightGreen,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  width: 200,
+                  color: Colors.lightBlue,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  width: 200,
+                  color: Colors.red,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  width: 200,
+                  color: Colors.lightGreen,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  width: 200,
+                  color: Colors.yellow,
+                )
+              ],),
+        ),
+
+      ),
+    );
+  }
+}
+
+
+
+If we remove the width the fulll page will be scrollable.
+
+- ListView can aslo be used instead of singlechildscrolll view , if the child contents are similar type.
+</pre>
+
+<h2>3. Below example gives horizontal scroll view -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+          backgroundColor: Colors.orange,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 11),
+                  <mark>child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,</mark>
+                    child: Row(                               -------------> row is wrapped with Singlechildscroll view.
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 11),
+                          height: 200,
+                          width: 200,
+                          color: Colors.lightGreen,
+                        ),
+
+                        Container(
+                          margin: EdgeInsets.only(bottom: 11),
+                          height: 200,
+                          width: 200,
+                          color: Colors.lightBlue,
+                        ),
+
+                        Container(
+                          margin: EdgeInsets.only(bottom: 11),
+                          height: 200,
+                          width: 200,
+                          color: Colors.yellow,
+                        ),
+
+                        Container(
+                          margin: EdgeInsets.only(bottom: 11),
+                          height: 200,
+                          width: 200,
+                          color: Colors.red,
+                        ),
+
+                        Container(
+                          margin: EdgeInsets.only(bottom: 11),
+                          height: 200,
+                          width: 200,
+                          color: Colors.lightGreen,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  color: Colors.lightBlue,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  color: Colors.red,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  color: Colors.lightGreen,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 11),
+                  height: 200,
+                  color: Colors.yellow,
+                )
+              ],),
+          ),
+        ),
+
+      ),
+    );
+  }
+}
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

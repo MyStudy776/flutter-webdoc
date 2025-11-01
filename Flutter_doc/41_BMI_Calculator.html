@@ -1,0 +1,754 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>BMI calculator -</h1>
+
+
+<h2>1. Version 1 -</h2>
+<pre>
+ import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends <mark>StatelessWidget {</mark>
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      
+     <mark> home: MyApp(),</mark>
+    );
+  }
+}
+
+</pre>
+
+<h2>2. Version 2 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends <mark>StatelessWidget {</mark>
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+     <mark> home: MyHomePage(), </mark>  
+    );
+  }
+}
+
+
+class MyHomePage extends <mark>StatefulWidget {</mark>
+ <mark> const MyHomePage({super.key});</mark>
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+</pre>
+
+<h2>3. Version 3 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: const MyHomePage<mark>(title: 'Flutter Demo Home Page'),</mark>---> variable is passed as an argument in class
+      //home: const MyHomePage(),
+    );
+  }
+}
+
+
+class MyHomePage extends StatefulWidget {
+  <mark>const MyHomePage({super.key, required this.title});</mark>----> Constructor
+  <mark>final String title;</mark> -----------> Variable declared for constructor to pass as an argument for class
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
+</pre>
+
+<h2>4. Version 4 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BMI calculator made By Vint and Dobi'),
+      ),
+      body: Column(
+        children: [
+          <mark>Text(</mark>
+            'BMI',
+            style: TextStyle(
+              fontSize: 34,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+		  
+		  
+          <mark>SizedBox(</mark>
+            height: 11,
+          ),
+		  
+		  
+          <mark>TextField(</mark>
+            decoration: InputDecoration(
+                label: Text('Enter your weight '),
+                prefixIcon: Icon(Icons.line_weight)),
+            keyboardType: TextInputType.number,
+          ),
+		  
+		  
+          <mark>SizedBox(</mark>
+            height: 11,
+          ),
+		  
+		  
+          <mark>TextField(</mark>
+            decoration: InputDecoration(
+                label: Text('Enter your height (in Feet)'),
+                prefixIcon: Icon(Icons.line_weight)),
+            keyboardType: TextInputType.number,
+          ),
+		  
+		  
+          <mark>SizedBox(</mark>
+            height: 11,
+          ),
+		  
+		  
+          <mark>TextField(</mark>
+            decoration: InputDecoration(
+                label: Text('Enter your height(In Inch) '),
+                prefixIcon: Icon(Icons.line_weight)),
+            keyboardType: TextInputType.number,
+          ),
+		  
+		  
+          <mark>SizedBox(</mark>
+            height: 11,
+          ),
+		  
+		  
+          <mark>ElevatedButton(</mark>
+		  onPressed: () {}, child: Text('Calculate')),
+		  
+		  
+          <mark>SizedBox(</mark>
+            height: 11,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>5. Version 5 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BMI calculator made By Vint and Dobi'),
+      ),
+     <mark> body: Container
+        width: 300,
+        height: 500,
+        color: Colors.yellow,(</mark>
+        child: Column(
+          <mark>mainAxisAlignment: MainAxisAlignment.center,</mark>---->columns are centered w.r.t container
+          children: [
+            Text(
+              'BMI',
+              style: TextStyle(
+                fontSize: 34,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 11,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  label: Text('Enter your weight '),
+                  prefixIcon: Icon(Icons.line_weight)),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(
+              height: 11,
+            ),
+            TextField(-----------------------------> It will take as much width as container
+              decoration: InputDecoration(
+                  label: Text('Enter your height (in Feet)'),
+                  prefixIcon: Icon(Icons.line_weight)),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(
+              height: 11,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  label: Text('Enter your height(In Inch) '),
+                  prefixIcon: Icon(Icons.line_weight)),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(
+              height: 11,
+            ),
+            ElevatedButton(onPressed: () {}, child: Text('Calculate')),
+            SizedBox(
+              height: 11,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>6. Version 6 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  <mark>var wtController = TextEditingController();
+  var ftController = TextEditingController();
+  var inController = TextEditingController();</mark>
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BMI calculator made By Vint and Dobi'),
+      ),
+      body: Center(
+        child: Container(
+          width: 300,
+          height: 500,
+          color: Colors.yellow,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'BMI',
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              TextField(
+                <mark>controller: wtController,</mark>
+                decoration: InputDecoration(
+                    label: Text('Enter your weight '),
+                    prefixIcon: Icon(Icons.line_weight)),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              TextField(
+                <mark>controller: ftController,</mark>
+                decoration: InputDecoration(
+                    label: Text('Enter your height (in Feet)'),
+                    prefixIcon: Icon(Icons.line_weight)),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              TextField(
+                <mark>controller: inController,</mark>
+                decoration: InputDecoration(
+                    label: Text('Enter your height(In Inch) '),
+                    prefixIcon: Icon(Icons.line_weight)),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              ElevatedButton(onPressed: () {}, child: Text('Calculate')),
+              SizedBox(
+                height: 11,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>7. Version 7 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  <mark>var wtController = TextEditingController();
+  var ftController = TextEditingController();
+  var inController = TextEditingController();
+  var result = "";
+  var bgColor = Colors.indigo.shade200;</mark>
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BMI calculator made By Vint and Dobi'),
+      ),
+      body: Center(
+        child: Container(
+          width: 300,
+          height: 500,
+          color: bgColor,
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'BMI',
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              TextField(
+                <mark>controller: wtController,</mark>
+                decoration: InputDecoration(
+                    label: Text('Enter your weight '),
+                    prefixIcon: Icon(Icons.line_weight)),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              TextField(
+                <mark>controller: ftController,</mark>
+                decoration: InputDecoration(
+                    label: Text('Enter your height (in Feet)'),
+                    prefixIcon: Icon(Icons.height)),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              TextField(
+                <mark>controller: inController,</mark>
+                decoration: InputDecoration(
+                    label: Text('Enter your height(In Inch) '),
+                    prefixIcon: Icon(Icons.line_weight)),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              ElevatedButton(onPressed: () {
+                <mark>var wt = wtController.text; 
+                var ft = ftController.text.toString();
+                var inch = inController.text.toString();
+                if(wt!="" && ft!="" && inch!=""){
+                  var rt = wt + ft + inch;
+                  setState(() {
+				  result ="result is $rt";
+				    
+					print(wtController.runtimeType);--->Type is extEditingcontroller
+                    print(wtController.text.runtimeType);----- Type is string
+                    print(wtController.text.toString().runtimeType); ----- Type is string
+                  });
+
+                }</mark>
+
+              }, child: Text('Calculate')),
+              SizedBox(
+                height: 11,
+              ),
+              Text(result, style: TextStyle(fontSize: 19, color: Colors.red, fontWeight: FontWeight.bold),) 
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+0/p
+====
+Enter your weight: 2
+Enter your height(in Feet) : 4
+Enter your height(In inch): 4
+
+result is 244 -----------------------> because rt is a string
+
+</pre>
+
+<h2>8. Version 8 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  <mark>var wtController = TextEditingController();
+  var ftController = TextEditingController();
+  var inController = TextEditingController();</mark>
+  var result = "";
+  var bgColor = Colors.indigo.shade200;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BMI calculator made By Vint and Dobi'),
+      ),
+      body: Container(
+        color: bgColor,
+        child: Center(
+          child: Container(
+            width: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'BMI',
+                  style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 11,
+                ),
+                TextField(
+                  <mark>controller: wtController,</mark>
+                  decoration: InputDecoration(
+                      label: Text('Enter your weight '),
+                      prefixIcon: Icon(Icons.line_weight)),
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(
+                  height: 11,
+                ),
+                TextField(
+                  <mark>controller: ftController,</mark>
+                  decoration: InputDecoration(
+                      label: Text('Enter your height (in Feet)'),
+                      prefixIcon: Icon(Icons.height)),
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(
+                  height: 11,
+                ),
+                TextField(
+                  <mark>controller: inController,</mark>
+                  decoration: InputDecoration(
+                      label: Text('Enter your height(In Inch) '),
+                      prefixIcon: Icon(Icons.line_weight)),
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(
+                  height: 11,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      <mark>var wt = wtController.text.toString();</mark>-----------> Convert the variables to string
+                     <mark> var ft = ftController.text.toString();</mark>
+                      <mark>var inch = inController.text.toString();</mark>
+					  
+                      if (wt != "" && ft != "" && inch != "") { --------------->All the field should be filled
+                        <mark>var iWt = int.parse(wt);</mark>---------------->convert string to integer
+                        <mark>var iFt = int.parse(ft);</mark>
+                        <mark>var iInch = int.parse(inch);</mark>
+                        <mark>var tInch = (iFt * 12) + iInch;</mark>
+                        <mark>var tCm = tInch * 2.54;</mark>
+                        <mark>var tM = tCm / 100;</mark>
+                       <mark> var bmi = iWt / (tM * tM);</mark>
+                        <mark>var msg = "";</mark>
+
+                        if (bmi > 25) {
+                          msg = "You are overweight";
+                          bgColor = Colors.orange.shade200;
+                        } else if (bmi &lt; 18) {
+                          msg = "You are underweight";
+                          bgColor = Colors.red.shade200;
+                        } else {
+                          msg = "You are healthy";
+                          bgColor = Colors.green.shade200;
+                        }
+                        <mark>setState(() {</mark>------------>When setstate called, the build method will rebuild.
+                          result = "$msg\nour BMI is:${bmi.toStringAsFixed(2)}";
+                        });
+                      } else {
+                        <mark>setState(() {</mark>
+                          result = "Please fill all the required blanks";
+                        });
+                      }
+                    },
+                    child: Text('Calculate')),
+                SizedBox(
+                  height: 11,
+                ),
+                Text(
+                  result,
+                  style: TextStyle(
+                      fontSize: 19,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,102 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>GestureDetector -</h1>
+<h2>1. Difference between Inkwell and GestureDetector</h2>
+<pre>
+Feedback Effect:
+=====================
+
+GestureDetector: It does not provide any visual feedback by default when the user interacts with it. 
+You need to manually handle the visual feedback by wrapping it with other widgets or implementing custom logic.
+
+
+InkWell: It provides a visual ink splash effect when tapped.
+ This effect is similar to the ripple effect on Material Design components. 
+ It automatically creates a visual ripple animation when tapped, providing visual feedback to the user.
+
+
+Interactivity:
+===================
+
+GestureDetector: It can detect various gestures such as taps, double taps, long presses, drags, etc.
+ You can specify callbacks for each type of gesture you want to handle.
+
+
+InkWell: It primarily focuses on handling taps. It has an onTap callback for handling tap events. 
+While it does support other gestures like long presses (onLongPress), its primary use case is for handling taps.
+
+
+Material Design Compatibility:
+==============================
+
+
+GestureDetector: It is a generic gesture detection widget and does not have any specific visual styling
+ or behavior adhering to Material Design guidelines.
+
+InkWell: It is specifically designed to be used within Material Design interfaces.
+ It provides the ink splash effect, which is a fundamental aspect of Material Design UI.
+
+
+Size Constraints:
+===================
+
+GestureDetector: It does not impose any size constraints on its child widget. 
+You can wrap any widget, regardless of its size, with a GestureDetector.
+
+InkWell: It expands to fill its parent by default, so it implicitly imposes size constraints on its child widget.
+ If you need to control the size of the InkWell, you might need to wrap it with another widget like SizedBox, Container, or Material.
+
+</pre>
+
+<h2>2. GestureDetector</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('GestureDetector Example')),
+        body: Center(
+          child: GestureDetector(
+            onTap: () {
+              print('You tapped the screen!');
+            },
+            child: Container(
+              width: 200,
+              height: 200,
+              color: Colors.blue,
+              child: Center(
+                child: Text(
+                  'Tap Me',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+</body>
+</html>

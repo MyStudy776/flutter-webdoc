@@ -1,0 +1,144 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Portfolio App-</h1>
+
+
+<h2>2. boxdecoration example -</h2>
+<pre>
+import 'package:flutter/material.dart';
+void main(){
+  runApp(MaterialApp(
+    home: Home(),
+  ));
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My Portfolio App'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/black.jpg"),
+            fit: BoxFit.cover,
+          )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20, left: 20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundImage: AssetImage('assets/girl2.jpg'),
+                  ),
+                  SizedBox(width: 30,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Vint Roy',style: TextStyle(fontSize: 30, color: Colors.white),),
+                      Text('Compter Engineer', style: TextStyle(fontSize: 25,color: Colors.white),)
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 50,),
+              Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.school,size: 40,color: Colors.white),
+                        SizedBox(width: 20,),
+                        Text("School Name", style: TextStyle(fontSize: 20,color: Colors.white),)
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.computer_rounded,size: 40,color: Colors.white),
+                        SizedBox(width: 20,),
+                        Text("School Name", style: TextStyle(fontSize: 20,color: Colors.white),)
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.location_on_outlined,size: 40,color: Colors.white),
+                        SizedBox(width: 20,),
+                        Text("School Name", style: TextStyle(fontSize: 20,color: Colors.white),)
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.email_outlined, size: 40,color: Colors.white),
+                        SizedBox(width: 20,),
+                        Text("School Name", style: TextStyle(fontSize: 20,color: Colors.white),)
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Text('About me: I am Vint Roy studying in 4th year computer science in citta college and I love software. I have experience in so many fields.'
+                          'I have an experience ',style: TextStyle(color: Colors.white),),
+                    ),
+                    SizedBox(height: 40,),
+                    Text('Created by me',style: TextStyle(color: Colors.white),),
+                  ],
+                ),
+              ),
+         ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

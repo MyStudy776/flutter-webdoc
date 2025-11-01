@@ -1,0 +1,117 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Callback Function-</h1>
+
+
+<h2>1. Example of an Elevated Button -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+          body: ElevatedButton(
+            child: Text('Click me'),
+            onPressed: () {
+              print('I am clicked!!!!!!!!!');
+            },
+          )
+        ));
+  }
+}
+
+
+</pre>
+
+
+<h2>2. Use callback function</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    <mark>callback1() {
+      print('I am clicked!!!!!!!!!');
+    }</mark>
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+          body: ElevatedButton(
+            child: Text('Click me'),
+            <mark>onPressed: callback1,</mark>
+          )
+        ));
+  }
+}
+
+
+create one function - callback1 and we can use it by calling from anywhere.
+
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

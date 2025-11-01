@@ -1,0 +1,858 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Acade Mind</h1>
+
+<h2>1. main</h2>
+<pre>
+void main() {}--> main is the default function, which automatically called whwn App starts.
+
+void - it is the type for main function which means main function returns void/no value.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. main function -</h2>
+<pre>
+void main() {
+  for (int i = 0; i &lt; 6; i++) {
+    print('hello ${i + 1}');
+  }
+}
+
+
+o/p
+===
+hello 1
+hello 2
+hello 3
+hello 4
+hello 5
+hello 6
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. Fuction calling -</h2>
+<pre>
+addnumbers(num1, num2) {
+   num1 + num2;
+}
+
+void main() {
+addnumbers(1, 2); --------->?function called but no output.
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. print the function -</h2>
+<pre>
+addnumbers(num1, num2) {
+   print(num1 + num2);------------>printed. 
+}
+
+void main() {
+addnumbers(1, 2);
+}
+
+
+o/p
+======
+3
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5.  -</h2>
+<pre>
+addnumbers(int num1, int num2) {---->here the arguments are given integer value.
+   print(num1 + num2);
+}
+
+void main() {
+addnumbers(1, 2.6);----->error, the argument does not allow double value.
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6.  -</h2>
+<pre>
+void addnumbers(int num1, int num2) {
+   print(num1 + num2);-------> printed but returns nothing.
+}
+
+void main() {
+addnumbers(1, 2);
+}
+
+
+o/p
+========
+no output
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. Type void  -</h2>
+<pre>
+ void addnumbers(int num1, int num2) {
+   print(num1 + num2) ;
+}
+
+void main() {
+print(addnumbers(1, 2));
+}
+
+
+o/p
+===
+Error: This expression has type 'void' and can't be used
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. return  -</h2>
+<pre>
+ int addnumbers(int num1, int num2) {------->return type is int
+   return num1 + num2 ; --------->return int value.
+}
+
+void main() {
+print(addnumbers(1, 2));
+}
+
+o/p
+====
+3
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. class -</h2>
+<pre>
+class Person {
+  String name = 'Max';
+  int age = 25;
+}
+
+void main() {
+var p1 = Person();
+print(p1);
+print("Hello");
+print(p1.age);
+}
+
+
+o/p
+=====
+Instance of 'Person'
+Hello
+25
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10.  -</h2>
+<pre>
+- Variable inside class called properties.
+- Fuctions inside class called methods.
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {} }
+
+- build() {} --> build is a function/method which can contain arguments.
+- build(context) {} ---> context is an argument.
+- build(BuildContext context) {} --> context object have type  BuildContext
+- Widget build(BuildContext context) {} -->the build method return an widget. so retuntype is Widget
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+  return MaterialApp(
+  home: Text("Hello)} }
+  
+- The build method return a widget called MaterialApp.
+- MaterialApp widget contains the named argumnet : home
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>11. Class constructor -</h2>
+<pre>
+class Person {
+  String name ;
+  int age ;
+}
+
+void main() {
+var p1 = Person('Max',25);
+print(p1);
+print("Hello");
+  print(p1.age);
+}
+
+
+o/p
+====
+main.dart:7:16: Error: Too many positional arguments: 0 allowed, but 2 found.
+Try removing the extra positional arguments.
+var p1 = Person('Max',25);
+               ^
+main.dart:1:7: Context: The class 'Person' has a constructor that takes no arguments.
+class Person {
+      ^
+main.dart:2:10: Error: Field 'name' should be initialized because its type 'String' doesn't allow null.
+  String name ;
+         ^^^^
+main.dart:3:7: Error: Field 'age' should be initialized because its type 'int' doesn't allow null.
+  int age ;
+      ^^^
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>12. constructor -</h2>
+<pre>
+
+class Person {
+  String name ;
+  int age ;
+  
+  `
+  Person(name1, age1){-------------->constructor always same name as class
+    name=name1;--->This name variable is not the variable of class, which is declared above.
+    age = age1;--->This name variable is not the variable of class, which is declared above.
+  }
+}
+
+void main() {
+var p1 = Person('Max',25);
+print(p1);
+print("Hello");
+  print(p1.age);
+}
+
+o/p
+====
+Error: Field 'name' should be initialized because its type 'String' doesn't allow null.
+  String name ;
+Error: Field 'age' should be initialized because its type 'int' doesn't allow null.
+  int age ;
+
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>13. Constructor -</h2>
+<pre>
+
+class Person {
+  String? name ;
+  int? age ;
+  
+  
+  Person(name1, age1){
+    name=name1;
+    this.age = age1;
+  }
+}
+
+void main() {
+var p1 = Person('Max',25);
+print(p1);
+print(p1.name);
+  print(p1.age);
+}
+
+o/p
+====
+Instance of 'Person'
+Max
+25
+
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>14. Constructor -</h2>
+<pre>
+
+
+class Person {
+  String name ;
+  int age ;
+  
+  
+Person(this.name, this.age){}-->this -->means referring to the variable of class
+}
+
+void main() {
+var p1 = Person('Max',25);
+print(p1);
+print(p1.name);
+  print(p1.age);
+}
+
+
+o/p
+====
+Instance of 'Person'
+Max
+25
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>15. Constructor -</h2>
+<pre>
+
+
+class Person {
+  String? name ;
+  int? age ;
+  
+  
+  Person({name1, age1}){------>arguments are in {} bracket
+    this.name = name1;
+    this.age = age1;
+
+  }
+}
+
+void main() {
+var p1 = Person(name1: 'Max',age1: 25);----->named argument
+print(p1);
+print(p1.name);
+  print(p1.age);
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>16. Constructor -</h2>
+<pre>
+
+
+class Person {
+  String? name ;
+  int? age ;
+  
+  
+  Person({name1, age1}){
+    this.name = name1;
+    this.age = age1;
+
+  }
+}
+
+void main() {
+var p1 = Person(name1: 'Max');-->no argument passed for age
+print(p1);
+print(p1.name);
+  print(p1.age);
+}
+
+o/p
+=====
+Instance of 'Person'
+Max
+null
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>17. Constructor  -</h2>
+<pre>
+
+class Person {
+  String? name ;
+  int? age ;
+  
+  
+  Person({name1, age1=30}){
+    this.name = name1;
+    this.age = age1;
+
+  }
+}
+
+void main() {
+var p1 = Person(name1: 'Max');
+print(p1);
+print(p1.name);
+  print(p1.age);
+}
+
+o/p
+=====
+Instance of 'Person'
+Max
+30
+
+
+
+</pre>
+
+<h2><mark>Note: Instead of "this" we can use "@required" in Flutter  -</mark></h2>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>18. Passing Function  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  void fun1() {
+    print("Answer1");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Column(
+          children: [
+             <mark>ElevatedButton(onPressed: fun1()</mark>, child: Text("belo Q"))
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+ElevatedButton(onPressed: fun1()--->error, This expression has type void so its value can not be used.
+
+Here as the code read by compiler , it will execute the function fun1().It does not wait for the button to be pressed.
+Here the return value of fun1() is passe to onpressed.
+
+
+
+So to correct this use like this -
+
+ElevatedButton(onPressed: <mark>fun1</mark>, child: Text("bolo Q"))--->pass the function name, not to call the function.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>19. Anonymous function -</h2>
+<pre>
+
+<mark>ElevatedButton(onPressed: (){print("Answer1");}</mark>, child: Text("belo Q"))
+
+or
+
+<mark>ElevatedButton(onPressed: () => print("Answer1");</mark>, child: Text("belo Q"))
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>20.  Stateless -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends <mark>StatelessWidget</mark> {
+
+
+  <mark>var questionindex = 0;</mark>
+
+  <mark>void answers() {
+    print("Answer1");
+    questionindex = questionindex + 1;
+    print(questionindex);
+  }</mark>
+
+  @override
+  Widget build(BuildContext context) {
+
+    <mark>var questions = [
+      '1.Who is PM of India?',
+      '2.What is the capital of India?',
+      '3.What is the national flower of India?',
+    ];</mark>
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Quiz'),
+        ),
+        body: Column(
+          children: [
+            <mark>Text(questions[questionindex]),</mark>---------->The q will not change after pressing any button
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: <mark>answers</mark>, child: Text("Answer 1"),),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: <mark>answers</mark>, child: Text("Answer 2")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: <mark>answers</mark>, child: Text("Answer 3")),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+o/p on pressing buttons
+=======
+Answer1
+1
+Answer1
+2
+Answer1
+3
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>21. Stateful -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends <mark>StatefulWidget</mark> {
+
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {----------->_MyAppState - private class, can not used by outside by anyother file.
+  var questionindex = 0;
+
+  void answers() {
+    print("Answer1");
+   <mark> setState(() {
+      questionindex = questionindex + 1;
+    });</mark>
+
+    print(questionindex);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    var questions = [
+      '1.Who is PM of India?',
+      '2.What is the capital of India?',
+      '3.What is the national flower of India?',
+    ];
+
+
+
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Quiz'),
+        ),
+        body: Column(
+          children: [
+            Text(questions[questionindex]),---------->The q will change after pressing any button
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: answers, child: Text("Answer 1"),),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: answers, child: Text("Answer 2")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: answers, child: Text("Answer 3")),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+
+setstate() --->rebuild the build() method.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>22.  -</h2>
+<pre>
+lib/question.dart -
+
+import 'package:flutter/material.dart';
+
+class Question extends StatelessWidget {-------------> create a new question class.
+  String questionText ;------------------------>variable declared
+
+ <mark> Question(this.questionText);</mark>-------------------->constructor, argument passed - variable name, positional argument
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(<mark>questionText</mark>, style: TextStyle(color: Colors.red,fontSize: 25),);-------->The variable value will be returned.It will fetch the value from main.dart - where Question class called and the the argumment passed. style is the named argument
+  }
+}
+
+
+lib/main.dart -
+=================
+import 'package:flutter/material.dart';
+import 'package:cost1/question.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+
+  @override
+  State&lt;MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State&lt;MyApp> {
+  var questionindex = 0;
+
+  void answers() {
+    print("Answer1");
+    setState(() {
+      questionindex = questionindex + 1;
+    });
+
+    print(questionindex);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    var questions = [
+      '1.Who is PM of India?',
+      '2.What is the capital of India?',
+      '3.What is the national flower of India?',
+    ];
+
+
+
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Quiz'),
+        ),
+        body: Column(
+          children: [
+            <mark>Question</mark>(questions[questionindex]),----------->Class Question class is called and the argument is passed as questions
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: answers, child: Text("Answer 1"),),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: answers, child: Text("Answer 2")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: answers, child: Text("Answer 3")),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>23.  -</h2>
+<pre>
+answers.dart
+===========
+import 'package:flutter/material.dart';
+
+class Answers extends StatelessWidget {
+  <mark>final  VoidCallback handler1;</mark>----------->Declare a variable handler1
+  //final function handler1; ----------->Error: The argument type 'Function' can't be assigned to the parameter type 'void Function()?'.so not using.
+  <mark>Answers(this.handler1);</mark>----------->Create a constructor, variable is passed an argument.
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: Colors.blue,
+      margin: EdgeInsets.all(12),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+        <mark>onPressed: handler1,</mark>------->after pressing button, variable value will be displayed.
+        
+        child: Text("Answer 1",style: TextStyle(color: Colors.white),),
+      ),
+
+
+    );
+  }
+}
+
+
+main.dart
+===========
+import 'package:flutter/material.dart';
+import 'package:cost1/question.dart';
+import 'package:cost1/answers.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  State&lt;MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State&lt;MyApp> {
+  var questionindex = 0;
+
+  void answersquestion() {
+    print("Answer1");
+    setState(() {
+      questionindex = questionindex + 1;
+      
+    });
+
+    print(questionindex);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    var questions = [
+      '1.Who is PM of India?',
+      '2.What is the capital of India?',
+      '3.What is the national flower of India?',
+    ];
+
+ return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Quiz'),
+        ),
+        body: Column(
+          children: [
+            Question(questions[questionindex]),
+            SizedBox(height: 10,),
+            Answers(answersquestion),--->Class Answers is called, and the parameter answersquestion is passed which is the value for handler1.
+            Answers(answersquestion),
+            Answers(answersquestion),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+
+
+Note -
+mark>VoidCallback</mark>-------->represents a function that takes no arguments and returns void. 
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

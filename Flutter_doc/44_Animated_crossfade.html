@@ -1,0 +1,404 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Crossfade Animation-</h1>
+
+
+<h2>1. Crossfade Animation -</h2>
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State {
+
+ 
+  @override
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text("Made by Dobi And Vint"),
+      ),
+      body: Center(
+        <mark>child: AnimatedCrossFade(</mark>
+          duration: Duration(seconds: 20),
+          <mark>firstChild: Container(</mark>
+            width: 200,
+            height: 200,
+            color: Colors.grey.shade200,
+          ),
+          <mark>secondChild: Image.asset(</mark>
+            'assets/girl2.jpg',
+            width: 200,
+            height: 200,
+            ),
+
+
+          <mark>crossFadeState: CrossFadeState.showSecond,</mark>---->second child will display.- image
+        ),
+      ),
+
+    );
+  }
+}
+</pre>
+
+<h2>2. Crossfade Animation -</h2>
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State {
+
+  <mark>bool isFirst = true;</mark>
+
+ @override
+ <mark>void initState(){
+   super.initState();
+   Timer(Duration(seconds: 1),(){ ------>when build method is initialized, after 1sec, reload() function will execute.
+     reload();
+   });
+ }</mark>
+
+ <mark> void reload(){</mark>---->It will execute setstate, which will rebuild the build method, so isfalse given to false.means after 1sec isfalse convert from true to false.
+   <mark> setState(() {
+      isFirst = false;
+    });
+  }</mark>
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text("Made by Dobi And Vint"),
+      ),
+      body: Center(
+        child: AnimatedCrossFade(
+          duration: Duration(seconds: 4),
+          firstChild: Container(
+            width: 200,
+            height: 200,
+            color: Colors.grey.shade200,
+          ),
+          secondChild: Image.asset(
+            'assets/girl2.jpg',
+            width: 200,
+            height: 200,
+            ),
+
+
+          <mark>crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,</mark>
+        ),
+      ),
+
+    );
+  }
+}
+
+
+
+
+
+disection -
+crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond ----->
+     ----> if isFirst is true then first child will display , else 2nd child will display.
+	 
+Note -
+Directly never call setstate() function inside initstate, because, initstate build which widget,before the widget built, initstate is called.It means we are rebuilding a widget, which has never called before.
+</pre>
+
+<h2>3. Crossfade Animation -</h2>
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State {
+
+  bool isFirst = true;
+
+  @override
+  void initState(){
+    super.initState();
+    //Timer(Duration(seconds: 1),(){------------------>removed the timer, because here we will toggle the image using button press.
+      //reload();
+    //}
+    //);
+  }
+
+  <mark>void reload(){
+  setState(() {
+    if(isFirst){
+      isFirst = false;
+    }
+    else {
+      isFirst = true;
+    }
+
+  });
+  }</mark>
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text("Made by Dobi And Vint"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            AnimatedCrossFade(
+              duration: Duration(seconds: 2),
+              firstChild: Container(
+                width: 200,
+                height: 200,
+                color: Colors.grey.shade200,
+              ),
+              secondChild: Image.asset(
+                'assets/girl2.jpg',
+                width: 200,
+                height: 200,
+              ),
+
+
+              <mark>crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,</mark>
+            ),
+            <mark>ElevatedButton(
+                onPressed: (){
+                   reload();</mark>
+                },
+                child: Text('Show'))
+          ],
+        ),
+      ),
+
+    );
+  }
+}
+</pre>
+
+
+<h2>4. Cossfade </h2>
+
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State {
+
+  bool isFirst = true;
+
+  @override
+  void initState(){
+    super.initState();
+    //Timer(Duration(seconds: 1),(){
+      //reload();
+    //}
+    //);
+  }
+
+  void reload(){
+  setState(() {
+    if(isFirst){
+      isFirst = false;
+    }
+    else {
+      isFirst = true;
+    }
+
+  });
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text("Made by Dobi And Vint"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            AnimatedCrossFade(
+              duration: Duration(seconds: 2),
+              firstChild: Container(
+                width: 200,
+                height: 200,
+                color: Colors.grey.shade200,
+              ),
+              secondChild: Image.asset(
+                'assets/girl2.jpg',
+                width: 100,
+                height: 100,
+              ),
+             <mark>sizeCurve: Curves.fastOutSlowIn,</mark>
+
+              crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+            ),
+            ElevatedButton(
+                onPressed: (){
+                  //isFirst = false;
+                  reload();
+                },
+                child: Text('Show'))
+          ],
+        ),
+      ),
+
+    );
+  }
+}
+
+</pre>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

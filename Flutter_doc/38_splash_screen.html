@@ -1,0 +1,153 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Splash Screen -</h1>
+
+
+<h2>1. splash screen  -</h2>
+<pre>
+- A splash screen refers to a screen that is displayed for a short period when an app is launched. 
+- It is the initial screen that users see while the app is loading or initializing. 
+- The purpose of a splash screen is to provide a smooth transition between the launch of the app 
+  and the main content of the application.
+- A splash screen typically displays the app's logo, branding, or some form of visual representation 
+  that gives users a brief preview of what the app is about. 
+- The duration of the splash screen is usually short, just long enough to give the app time to set up 
+  its initial resources before transitioning to the main screen.
+
+</pre>
+
+<h2>2. main.dart page  -</h2>
+<pre>
+import 'package:disk1/splash_screen.dart';
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: SplashScreen(), -------------------------> 1st the splash screen will show
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Classico'),
+      ),
+      body: Text('Hello World'),backgroundColor: Colors.yellow,
+    );
+  }
+
+}
+
+</pre>
+
+<h2>3. splash_screen page  -</h2>
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:disk1/main.dart';
+
+
+class SplashScreen extends StatefulWidget{ ------> stateful, because its state will change after a timer
+  @override
+  State createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State {
+  @override
+  <mark>void initState() {</mark>----->whenever this stateful widget will be initialized, the initstate() function will be called.
+    super.initState();
+    Timer(
+      Duration(seconds: 2),---------------->After 2 second MyHomePage() will be called.
+        () {
+        <mark>Navigator.pushReplacement(context,
+            MaterialPageRoute(
+                builder: (context) => MyHomePage(),</mark>
+            ));
+        }
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+          color: Colors.blue,
+          child: Center(
+            child:   Text('Classico', style: TextStyle(
+
+                fontSize: 34,
+
+                fontWeight: FontWeight.w700,
+
+                color: Colors.white
+
+            )),
+          ),
+        )
+    );
+  }
+}
+
+
+
+Navigator.push -->back button will be visible.
+Navigator.pushReplacement ---> back button will not be visible.It means from splash screen , no need to go to previous screen through back button.
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

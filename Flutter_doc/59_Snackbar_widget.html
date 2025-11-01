@@ -1,0 +1,233 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Snackbar</h1>
+<h2>1. Snackbar Example -</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text('Snack bar'),
+        backgroundColor: Colors.cyan,
+        elevation: 0,
+      ),
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                <mark>final snackbar1 = SnackBar(</mark>--------->declared a variable and assign it to Snackbar widget
+				content: Text('This is an error'));
+                <mark>ScaffoldMessenger.of(context).showSnackBar(snackbar1);</mark>------->calling the variable
+              },
+              child: Text('click me')),
+        ),
+      ),
+
+    );
+  }
+}
+
+
+
+o/p --> At the bottom ,  pop up page will show with output "This is an error"
+
+
+</pre>
+
+<h2>2. Styling the snackbar -</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text('Snack bar'),
+        backgroundColor: Colors.cyan,
+        elevation: 0,
+      ),
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                final snackbar1 = SnackBar(
+                    <mark>shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),</mark>
+                    <mark>behavior: SnackBarBehavior.floating,</mark>
+                     <mark>padding: EdgeInsets.all(20),</mark>
+                    <mark>duration: const Duration(milliseconds: 3000),</mark>
+                     <mark>backgroundColor: Colors.red,</mark>
+                    content: Text('This is an error'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar1);
+              },
+              child: Text('Show Snackbar')),
+        ),
+      ),
+
+    );
+  }
+}
+
+
+</pre>
+
+<h2>3. Styling Snackbar</h2>
+<pre>
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text('Snack bar'),
+        backgroundColor: Colors.cyan,
+        elevation: 0,
+      ),
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                <mark>final snackbar1 = SnackBar(
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      textColor: Colors.blue,
+                      onPressed: () {},
+                    ),</mark>
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    behavior: SnackBarBehavior.floating,
+                     padding: EdgeInsets.all(20),
+                    duration: const Duration(milliseconds: 3000),
+                     backgroundColor: Colors.red,
+                    content: Text('This is an error'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar1);
+              },
+              child: Text('Show Snackbar')),
+        ),
+      ),
+
+    );
+  }
+}
+
+</pre>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

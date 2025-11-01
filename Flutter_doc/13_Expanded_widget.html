@@ -1,0 +1,315 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Expanded widget-</h1>
+
+<h2>1. Expanded widget - Example 1 - Below example shows the column are not fit to the size   -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Row(
+          children: [
+            Container(
+              width: 50,
+                height: 100,
+                color: Colors.red,
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.green,
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.yellow,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>2. Expanded widget - Example - 2, We expanded the 2nd column  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Row(
+          children: [
+            Container(
+              width: 50,
+                height: 100,
+                color: Colors.red,
+            ),
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.green,
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.yellow,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. Expanded widget - Example - 3, we expanded equally -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Row(
+          children: [
+            Expanded(
+              child: Container(
+                width: 50,
+                  height: 100,
+                  color: Colors.red,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.green,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.yellow,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>Expanded widget - Example - 4, Give ratio to each container using flex -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: 50,
+                  height: 100,
+                  color: Colors.red,
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.green,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 100,
+                color: Colors.yellow,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>Expanded widget - Example - 5, for column -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: 300,
+                  height: 100,
+                  color: Colors.red,
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: Container(
+                width: 300,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 300,
+                height: 100,
+                color: Colors.green,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 300,
+                height: 100,
+                color: Colors.yellow,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

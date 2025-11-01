@@ -1,0 +1,499 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>SizedBox Widget-</h1>
+
+
+<h2>1. Example SizedBox  -</h2>
+<pre>
+1. It contains only height and width.
+2. It z used as a margin between two container.
+
+
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: SizedBox(
+            width: 200,
+            height: 40,
+
+
+            child: ElevatedButton(
+
+              onPressed: () {},
+                child: Text('Hello World'),),
+
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>2.SizedBox.expand </h2>
+<pre>
+- It does not allow width and height attribute.
+- It will use the maximum width - screen width.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: SizedBox.expand(
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text('Hello World'),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. SizedBox.shrink</h2>
+<pre>
+SizedBox.shrink - There is no minimu width . so no output.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: SizedBox.shrink(
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text('Hello World'),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>4. ConstrainedBox</h2>
+<pre>
+Here we given min width and height to SizedBox.shrink by using constrained box, but still output does not show,
+because, the sizedbox is under center widget and center widget does not have any height and width.
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+       <mark> body: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 200,
+            minHeight: 40,
+            maxHeight: 80,
+            maxWidth: 400,</mark>
+          ),
+          child: Center(
+            child: SizedBox.shrink(
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Hello World'),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>5. ConstrainedBox</h2>
+<pre>
+removed center here. and output came.
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 200,
+            minHeight: 40,
+            maxHeight: 80,
+            maxWidth: 400,
+          ),
+          child: SizedBox.shrink(
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text('Hello World'),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>6. SizedBox.square - Particular dimension we can give</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: SizedBox.square(
+            dimension: 200,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text('Hello World'),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>7. Using Row</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Row(
+          children: [
+            SizedBox.square(
+              dimension: 200,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Hello World'),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            SizedBox.square(
+              dimension: 200,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>8. Using Wrap</h2>
+<pre>import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Wrap(
+          direction: Axis.vertical,
+          children: [
+            SizedBox.square(
+              dimension: 200,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Hello World'),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            SizedBox.square(
+              dimension: 200,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('click me'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</pre>
+
+<h2> 9 -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body: Column(
+            children: [
+              SizedBox.square(
+                dimension: 100,
+
+                  child: ElevatedButton(
+
+                  onPressed: (){
+
+                  },
+                  child: Text('Click'),
+                ),
+              ),
+              SizedBox(
+               height: 50,
+              ),
+              SizedBox.square(
+                dimension: 100,
+
+                child: ElevatedButton(
+
+                  onPressed: (){
+
+                  },
+                  child: Text('Click'),
+                ),
+              ),
+            ],
+          ),
+      ),
+    );
+  }
+}
+</pre>
+
+
+<h2> 10. ConstrainedBox Widget -</h2>
+<pre>
+A box having limit --> maxwidth, maxheight, minwidth, minheight.
+By default constraint box having one child.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body:ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: 200,
+              maxHeight: 100,
+            ),
+            child: Text('Hello World Hello World Hello World Hello World Hello World 
+			Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World', 
+			style: TextStyle(
+              fontSize: 21,
+              overflow: TextOverflow.fade  ----------->if text will come out of the box, then it will show like this ......
+            ),),
+          )
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2> 11. ConstrainedBox Widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body:ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: 300,
+              minWidth: 200,
+              minHeight: 100,
+              maxHeight: 100,
+            ),
+            child: ElevatedButton(
+              onPressed: (){
+
+              },
+              child: Text('click'),
+            )
+          )
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

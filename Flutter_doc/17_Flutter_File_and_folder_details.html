@@ -1,0 +1,103 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+
+<h2>1. Generated Files and Folders  -</h2>
+<pre>
+Folders----
+
+.idea ----> code editor's Project related specific setting will be stored.no need of any manual change
+            Contain some configuration related files.
+android --> contains android platform related specific setting , resources and code.
+            If we need to write any platform specific code , we can change here,
+
+build -----> The build folder contains the output generated when you build or run the flutter project.
+             You will find all the release related files/folders like apks and app bundles in here.
+			 Automatically files will be created 
+
+ios ------->similar to android folder , the ios folder contains ios specific settingg, resources and codes			 
+ 
+lib --> lib stands for library.
+       All the dart files we create are stored here.
+        here we write all our flutter app related codes.
+        - main.dart -- initially will be created
+
+test --> manual testing
+         Automation test
+         It is set to contain any testing related codes that you write
+         If you decide to write test/test cases you will be adding code here.
+
+.gitignore --> git is used for version control system.Mostly we upload our codes into git and push or pull required files.
+               but some my personal codes(example created some own modules), unnecessary files we can store here which we do not want to upload to git.
+			   --This is git specific files .
+			   -- You can adjust the .gitignore file to include/exclude any files/folders as you need.
+			   
+.metadata --> .metadata file contains the flutter project related all metadata that flutter tool uses will be stored here.
+              You should not make any manual changes to this files.
+			  
+.packages --> pre installed packages
+              User defined packages 
+			  A flutter code composed of numerous libraries and packages .
+			  Some packages are pre installed with flutter while others are downloaded during development.
+			  The .packages holds the paths to each of the libraries and packages in your computer 
+			  You do not need to do any manual changes to this file.
+			  
+
+pubspec.yaml ---> whatever changes we need in app like font changes,library adding, image adding -all the declaration are done here in this file.
+                  Once you do all the changes in this pubsec.yaml file, then pubsec.get call is needed.So that all the changes will be applied.
+                  It contains flutter app specific metadata and configuration.
+                  It configure dependencies such as external packages,images,assets,font files, app versions etc with the help of this file.
+                  You will often make changes to the pubsec.yaml file to add external dependencies, 3rd pary packages.				  
+
+
+pubspec.lock --->This file is dependent on pubsec.yaml file.
+                 whatever packages, libraries  you use in runtime,you build when do pub get. On this basis the pubbsec.lock file will be created in runtime.
+                 whenever you do "pub get", or any changes happened in library files then the pbspec.lock file will be created. 
+                 - The pubsec.lock file is a helper file created next to pubsec.yaml file.
+                 - It lists the specific version of each dependency that packages use in your app and ensures the version stays consistent across different developer machine.
+                 - No need to make any changes here.
+				 - Whenever you want to run your project i different machine , no need to upload this file to the new machine, as the file will be created automatically, once the pubsec.yaml file will run.
+				 
+readme.md ---> This file tells about your project and project version details
+               The readme.md is a markdown format file which is primarily used to describe your project in git repo.
+			   You can write project specific things like what your project does or how to use certain libraries in the readme.md file.
+
+</pre>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

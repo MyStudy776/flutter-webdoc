@@ -1,0 +1,553 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1> Food Recepie App -</h1>
+
+<h2>1. main.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'home.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      <mark>home: Home(),</mark>
+    );
+  }
+}
+
+</pre>
+
+<h2>2.  home.dart - </h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {--------->make a stateful widget
+  const Home({super.key});
+
+  @override
+  State&lt;Home> createState() => _HomeState();
+}
+
+class _HomeState extends State&lt;Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      <mark>body: Text("Iam Home"),</mark>
+    );
+  }
+}
+</pre>
+
+<h2>3. home.dart - Use media query</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State&lt;Home> createState() => _HomeState();
+}
+
+class _HomeState extends State&lt;Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     <mark> body: Stack(</mark>
+        children: [
+          Container(
+            <mark>width: MediaQuery.of(context).size.width,</mark>----------->It will use the full width of the screen
+            <mark>height: MediaQuery.of(context).size.height,</mark>-------->It will use the full height of the screen
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xff213A50),
+                  Color(0xff071938)
+                ]
+              )
+            ),
+          ),
+          SafeArea(child: Text("I am Home", style: TextStyle(color: Colors.white),)),--->safearea used -->Text will be written under the navigator page
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>4. home.dart - Use Boxdecoration, Linear gradient, stack, searchbox</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State&lt;Home> createState() => _HomeState();
+}
+
+class _HomeState extends State&lt;Home> {
+
+  <mark>TextEditingController searchController = new TextEditingController();</mark>
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        <mark>body: Stack(</mark>---->one widget placed on top of another widget, LIFO- last in first out.
+      children: [
+        <mark>Container(</mark>------------->This is screen area container.
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [Color(0xff213A50), Color(0xff071938)]),
+          ),
+        ),
+
+        
+        Column(
+          children: [
+            SafeArea(
+              <mark>child: Container(</mark>----------->Search Bar container on top of 1st container
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        if ((searchController.text).replaceAll(" ", "") == "") {
+                          print("Blank search");
+                        } else {
+                          Navigator.pushReplacementNamed(context, "/loading",
+                              arguments: {
+                                "searchText": searchController.text,
+                              });
+                        }
+                      },
+                      <mark>child: Container(</mark>--------->container for icon search
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.blueAccent,
+                        ),
+                        margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                      ),
+                    ), //GestureDetector
+                    Expanded(
+                      <mark>child: TextField(</mark>------------->for Text Field
+                        <mark>controller: searchController,</mark>
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Let's Cook Something!"),
+                      ),
+                    )
+                  ],
+                ),//Row
+              ),
+            ),
+             <mark>Container( </mark>
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "WHAT DO YOU WANT TO COOK TODAY?",
+                    style: TextStyle(fontSize: 33, color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Let's Cook Something New!",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )
+                ],
+              ),
+            )//Container
+          ],
+        ),//Column
+      ],
+    ),//Stack
+	);//Scaffold
+  }
+}
+</pre>
+
+<h2>5. home.dart, use API from edamam website</h2>
+<pre>
+edmam.com --->login--->go to documentation--->food recepies ap--->older version ---> copy Example get request -
+
+curl "https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free"
+
+https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free
+
+
+Go to Account-->Dashboard--->Application--->click on view ---> get API key and API id
+
+
+key: 4036aae0db0001e3d101fc098b8cf12b	
+ID: 33e6002a
+
+https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free
+https://api.edamam.com/search?q=chicken&app_id=33e6002a&app_key=4036aae0db0001e3d101fc098b8cf12b -----> will get the data in json
+
+</pre>
+
+<h2>6. main.dart</h2>
+<pre>
+<mark>Add the package "http" in pubsec.yaml file.</mark>
+
+
+main.dart
+=========
+import 'dart:convert';
+import 'package:flutter/material.dart';
+<mark>import 'package:http/http.dart' as http;</mark>
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State&lt;Home> createState() => _HomeState();
+}
+
+class _HomeState extends State&lt;Home> {
+  <mark>TextEditingController searchController = new TextEditingController();</mark>
+
+
+ <mark> getRecipe(String query) async
+  {
+    String url = "https://api.edamam.com/search?q=$query&app_id=33e6002a&app_key=4036aae0db0001e3d101fc098b8cf12b";
+    var response = await http.get(Uri.parse(url));
+    Map data = jsonDecode(response.body);
+    print(data);
+  }</mark>
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRecipe("chicken");
+  }
+
+ 
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Stack(
+      children: [
+        //1. Screen Area
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [Color(0xff213A50), Color(0xff071938)]),
+          ),
+        ),
+
+        <mark>//2.Search Bar container on top of 1st container</mark>
+        Column(
+          children: [
+            SafeArea(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        if ((searchController.text).replaceAll(" ", "") == "") {
+                          print("Blank search");
+                        } else {
+                          Navigator.pushReplacementNamed(context, "/loading",
+                              arguments: {
+                                "searchText": searchController.text,
+                              });
+                        }
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.blueAccent,
+                        ),
+                        margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                      ),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Let's Cook Something!"),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "WHAT DO YOU WANT TO COOK TODAY?",
+                    style: TextStyle(fontSize: 33, color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Let's Cook Something New!",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ],
+    ));
+  }
+}
+
+</pre>
+
+<h2>7. main.dart - search the recepie in searchbar </h2>
+<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+<mark>import 'package:http/http.dart' ;</mark> ----> removed as http
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State&lt;Home> createState() => _HomeState();
+}
+
+class _HomeState extends State&lt;Home> {
+  TextEditingController searchController = new TextEditingController();
+
+
+
+  getRecipe(String query) async
+  {
+    String url = "https://api.edamam.com/search?q=$query&app_id=33e6002a&app_key=4036aae0db0001e3d101fc098b8cf12b";
+     <mark>Response response = await get(Uri.parse(url));</mark>---> instead of var use Response.
+    Map data = jsonDecode(response.body);
+    print(data);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRecipe("chicken");
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Stack(
+      children: [
+        //1. Screen Area
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [Color(0xff213A50), Color(0xff071938)]),
+          ),
+        ),
+
+        //2.Search Bar container on top of 1st container
+        Column(
+          children: [
+            SafeArea(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        if ((searchController.text).replaceAll(" ", "") == "") {
+                          print("Blank search");
+                        } else {
+                          <mark>getRecipe(searchController.text);</mark>
+                        }
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.blueAccent,
+                        ),
+                        margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                      ),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Let's Cook Something!"),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "WHAT DO YOU WANT TO COOK TODAY?",
+                    style: TextStyle(fontSize: 33, color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Let's Cook Something New!",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ],
+    ));
+  }
+}
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+<h2>1. Version 1 - main.dart</h2>
+<pre>
+
+</pre>
+
+
+
+
+</body>
+</html>

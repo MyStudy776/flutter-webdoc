@@ -1,0 +1,304 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Buttons</h1>
+<h2>1. Buttons type -</h2>
+<pre>
+1. Text Button(Flat Button)
+2. Elevated Button(Raised Button) - contain little shadow at bottom.
+3. Outlined Button
+</pre>
+<h2>2. Text Button -</h2>
+<pre>
+body: TextButton(
+          child: Text('click here!'),
+          onPressed: (){
+            print('Dobi is a bad girl');
+          },
+          onLongPress: (){
+            print('Long pressed');
+          },
+        )
+
+    );
+  }
+}
+</pre>
+<h2>3. ElevatedButton  -</h2>
+<pre>
+body: ElevatedButton(
+          child: Text('Elevated Button'),
+          onPressed: (){
+            print('Button Pressed');
+          },
+        )
+
+    );
+  }
+}
+</pre>
+<h2>4. OutlinedButton -</h2>
+<pre>
+body: OutlinedButton(
+          child: Text('Outlined Button'),
+          onPressed: (){
+            print('Outlined Clicked');
+          },
+        )
+    );
+  }
+}
+</pre>
+
+<h2>5. Text Button</h2>
+<pre>
+  TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/home");
+                },
+                icon: Icon(
+                    Icons.add_to_home_screen), 
+                label: Text("Go to home")),
+				
+</pre>
+
+<h2>6. Styling the Elevated Button</h2>
+<pre>
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+
+        onPressed: null,
+        child: Text("Answer 1"),
+      )
+				
+</pre>
+
+
+<h2>7. Example Button</h2>
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    var w = MediaQuery.of(context).size.width;
+    var h = MediaQuery.of(context).size.height;
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text('Button'),
+      ),
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          <mark>TextButton(</mark>
+            <mark>style: ButtonStyle(</mark>
+                <mark>padding: MaterialStateProperty.all(EdgeInsets.all(30)),</mark>
+                <mark>overlayColor: MaterialStateProperty.all(Colors.green),</mark>
+                <mark>elevation: MaterialStateProperty.all(20),</mark>
+                <mark>backgroundColor: MaterialStateProperty.all(Colors.yellow)),</mark>
+            child: Text(
+              'Press me',
+              style: TextStyle(fontSize: 20, color: Colors.black),
+            ),
+            onPressed: () {},
+          ),
+          SizedBox(height: 20),
+          Container(
+            height: 50,
+            width: 300,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                  <mark>MaterialStateProperty.all(Theme.of(context).primaryColor),</mark>
+                  <mark>shape: MaterialStateProperty.all(RoundedRectangleBorder(</mark>
+                      <mark>borderRadius: BorderRadius.circular(40)))),</mark>
+              onPressed: () {
+                print('Like');
+              },
+              child: Text(
+                'Press me',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+            ),
+          )
+        ]),
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>Display a widgt once click the button</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+class Test123 extends StatefulWidget {
+  const Test123({super.key});
+
+  @override
+  State&lt;Test123> createState() => _Test123State();
+}
+
+class _Test123State extends State&lt;Test123> {
+ <mark> bool _showContainer = false;</mark>-------------->declare a variable
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+            body:  Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Update state to show container
+                      setState(() {
+                       <mark> _showContainer = true;</mark>
+                      });
+                    },
+                    <mark>child: Text('Show Colored Container'),</mark>
+                  ),
+                  SizedBox(height: 20),
+                  // Show container only when _showContainer is true
+                  if (_showContainer)
+                    Container(
+                      width: 200,
+                      height: 200,
+                      color: Colors.blue, // Change the color as desired
+                    ),
+                ],
+              ),
+            ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>Display an alert box once click the button</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Colored Container Example'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  // Call a function to display the colored container
+                 <mark> _showColoredContainer(context);</mark>
+                },
+                child: Text('Show Colored Container'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+ <mark> void _showColoredContainer(BuildContext context) {</mark>
+    // Show a dialog with a colored container
+    <mark>showDialog(</mark>
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Colored Container'),
+          content: Container(
+            width: 200,
+            height: 200,
+            color: Colors.blue, // Change the color as desired
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+</pre>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

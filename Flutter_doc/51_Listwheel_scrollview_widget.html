@@ -1,0 +1,186 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1> Listwheel Scroll view widget -</h1>
+
+<h2>1. main.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+     final String title;
+
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State {
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+        appBar: AppBar(
+
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+          title: Text("Vint and Dobi"),
+        ),
+       <mark> body: ListWheelScrollView(</mark>
+          children: [
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 200,
+              color: Colors.blue,
+            ),
+          ],
+         <mark> itemExtent: 100,</mark>
+
+        )
+
+    );
+  }
+}
+
+</pre>
+
+<h2>2. main.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+
+
+  final String title;
+
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State {
+
+  <mark>var arrIndex = [1,2,3,4,5,6,7,8,9,10];</mark>
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+        appBar: AppBar(
+
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+          title: Text("Vint and Dobi"),
+        ),
+        body: Center(
+          <mark>child: ListWheelScrollView(</mark>
+            <mark>itemExtent: 200,</mark>
+            <mark>children: arrIndex.map((value) =>   Padding(</mark>
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: Center(child: Text('$value',style: TextStyle(fontSize: 21, color: Colors.white),)),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(21),
+                ),
+                width: double.infinity,
+
+
+              ),
+          <mark>  )).toList(),</mark>
+		 
+
+          ),
+        ));
+  }
+}
+
+
+
+
+ //Example : - <mark>children: arrIndex.map((value) =>   Container(...).toList()(</mark>----->convert map to List
+We can create one array and call like this, so that multiple time no need to define container here.
+
+</pre>
+
+
+</body>
+</html>

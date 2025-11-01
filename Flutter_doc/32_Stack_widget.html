@@ -1,0 +1,238 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Stack Widget-</h1>
+
+
+<h2>1. Stack Widget defn  -</h2>
+<pre>
+- A widget that position its children relative to the edges of its box.
+- This class is useful if you want to overlap several children in a simple way.
+- For example having some text and an image, overlaid with a gradient and a button attached to the bottom.
+
+</pre>
+
+<h2>2. Example  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        <mark>body: Stack(</mark>
+          children: [
+            Container(
+              width: 200,
+              height: 200,
+              color: Colors.grey,
+              child: Text('1st Container'),
+            ),
+            Positioned(
+                left: 21,
+                top: 21,
+            child: Container(
+              width: 160,
+              height: 160,
+              color: Colors.green,
+                child: Text('2nd Container')
+            )),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+2nd container placed on top of 1st container.
+In stack widget, the 1st entry is the 1st layer. 
+
+</pre>
+
+<h2>3. Example Stack -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Container(
+          width: 400,
+          height: 400,
+          color: Colors.yellow,
+          child: Stack(
+            children: [
+              Container(
+                width: 200,
+                height: 200,
+                color: Colors.grey,
+                child: Text('1st Container'),
+              ),
+              Positioned(
+                  left: 21,
+                  top: 21,
+              child: Container(
+                width: 160,
+                height: 160,
+                color: Colors.green,
+                  child: Text('2nd Container')
+              )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>4. Positioned Widget</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body: Container(
+            color: Colors.blue,
+            width: double.infinity,
+            height: double.infinity,
+            child: Stack(
+              children: [
+                Positioned(
+                  bottom: 41,
+                  right: 41,
+                  child: Container(
+                    width: 100,
+                      height: 100,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+
+            ),
+          )
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+
+<h2>Another Example</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class StackWidget extends StatelessWidget {
+  const StackWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          // backgroundColor: Colors.black,
+          title: Text('Stack'),
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+              child: Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    image: DecorationImage(
+                        image: AssetImage('assets/download.jpg'),
+                        fit: BoxFit.cover)),
+              ),
+            ),
+            Positioned(
+              left: 20,
+              top: 20,
+              child: Container(height: 50, width: 50, color: Colors.yellow),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(height: 50, width: 50, color: Colors.yellow),
+            )
+          ],
+        ));
+  }
+}
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

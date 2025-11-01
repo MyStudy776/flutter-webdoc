@@ -1,0 +1,130 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>List Tile-</h1>
+
+<h2>1. Using List Tile in ListView.separated -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var arrNames = ['Raman','Rita','Naina','Ricky','Shruti'];
+    return MaterialApp(
+      theme: ThemeData.dark(),
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("Dashboard"),
+          ),
+          body: ListView.separated(
+              itemBuilder: (context, index){
+                return ListTile(
+                  leading: Text('$index') ,
+                    title: Text(arrNames[index]),
+                    subtitle: Text('Number'),
+                  trailing: Icon(Icons.add),
+                );
+              },
+
+              itemCount: arrNames.length,
+            separatorBuilder: (context, index){
+                return Divider(height: 100, thickness: 2,);
+            },
+          )
+
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>2. indexing start from 1-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var arrNames = ['Raman','Rita','Naina','Ricky','Shruti'];
+    return MaterialApp(
+      theme: ThemeData.dark(),
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("Dashboard"),
+          ),
+          body: ListView.separated(
+              itemBuilder: (context, index){
+                return ListTile(
+                  <mark>leading: Text('${index+1}') ,</mark>
+                    title: Text(arrNames[index]),
+                    subtitle: Text('Number'),
+                  trailing: Icon(Icons.add),
+                );
+              },
+
+              itemCount: arrNames.length,
+            separatorBuilder: (context, index){
+                return Divider(height: 20, thickness: 2,);
+            },
+          )
+
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

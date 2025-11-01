@@ -1,0 +1,542 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Grid View-</h1>
+
+
+<h2>1. Use GridView.count -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+      title: 'Flutter Demo',
+
+
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purple,
+          title: Text('Hello'),
+        ),
+    <mark>body: GridView.count(crossAxisCount: 2,</mark>
+    children: [
+      Container(color: aryColors[0],),
+      Container(color: aryColors[1],),
+      Container(color: aryColors[2],),
+      Container(color: aryColors[3],),
+      Container(color: aryColors[4],),
+      Container(color: aryColors[5],),
+      Container(color: aryColors[6],),
+    ],),
+
+
+
+      )
+    );
+
+  }
+}
+
+
+
+
+
+
+===
+
+
+mainAxis -->means row
+crossAxis ---> means column
+GridView.count(crossAxisCount: 2 ---> the total width will be divided 2 column.
+children ---> it is an attribute of gridview. So no need to use row/column widget.
+In gridview, the items are scrollable.
+</pre>
+
+
+
+<h2>2. Use Padding</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+      title: 'Flutter Demo',
+
+
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purple,
+          title: Text('Hello'),
+        ),
+    body: GridView.count(crossAxisCount: 3, ---------------> 3 column will show
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[0],),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[1],),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[2],),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[3],),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[4],),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[5],),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(color: aryColors[6],),
+      ),
+    ],),
+
+
+
+      )
+    );
+
+  }
+}
+
+
+</pre>
+
+
+<h2>3. wrap the grid view in a container</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+      title: 'Flutter Demo',
+
+
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purple,
+          title: Text('Hello'),
+        ),
+    body: Container(
+      width: 300,
+      child: GridView.count(crossAxisCount: 3,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[0],),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[1],),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[2],),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[3],),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[4],),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[5],),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(color: aryColors[6],),
+        ),
+      ],),
+    ),
+
+
+
+      )
+    );
+
+  }
+}
+
+
+</pre>
+
+
+<h2>4. Use crossAxisSpacing instead of Padding</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+        title: 'Flutter Demo',
+
+
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+          body: GridView.count(crossAxisCount: 5,
+            <mark>crossAxisSpacing: 11,</mark>
+            children: [
+              Container(color: aryColors[0],),
+              Container(color: aryColors[1],),
+              Container(color: aryColors[2],),
+              Container(color: aryColors[3],),
+              Container(color: aryColors[4],),
+              Container(color: aryColors[5],),
+              Container(color: aryColors[6],),
+            ],),
+
+
+
+        )
+    );
+
+  }
+}
+</pre>
+
+
+<h2>5. Use spacing both row and column side - maixAxisSpacing(row), crossaxisspacing(column)</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+        title: 'Flutter Demo',
+
+
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+          <mark>body: GridView.count(crossAxisCount: 5,
+            crossAxisSpacing: 11,
+            mainAxisSpacing: 11,</mark>
+            children: [
+              Container(color: aryColors[0],),
+              Container(color: aryColors[1],),
+              Container(color: aryColors[2],),
+              Container(color: aryColors[3],),
+              Container(color: aryColors[4],),
+              Container(color: aryColors[5],),
+              Container(color: aryColors[6],),
+            ],),
+
+
+
+        )
+    );
+
+  }
+}
+</pre>
+
+
+<h2>6. Use GridView.extent</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+        title: 'Flutter Demo',
+
+
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+          <mark>body: GridView.extent(
+            maxCrossAxisExtent: 100,</mark>
+            crossAxisSpacing: 11,
+            mainAxisSpacing: 11,
+            children: [
+              Container(color: aryColors[0],),
+              Container(color: aryColors[1],),
+              Container(color: aryColors[2],),
+              Container(color: aryColors[3],),
+              Container(color: aryColors[4],),
+              Container(color: aryColors[5],),
+              Container(color: aryColors[6],),
+            ],),
+
+
+
+        )
+    );
+
+  }
+}
+
+
+GridView.extent - 
+Here we have given a particular width to the box - 100 size(maxCrossAxisExtent: 100). It will create as much box as per the width.
+If you move the phone in landscape mode or web screen size big or small, according to the width the boxes will be created. 
+
+
+But in GridView.count(crossAxisCount: 5 --> only 5 boxes will be created and the box width will be increase or decrease  as per the screen width.
+</pre>
+
+<h2>7. Use GridView Builder - SliverGridDelegateWithFixedCrossAxisCount, similar function as gridview.count</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+        title: 'Flutter Demo',
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+         <mark> body: GridView.builder(
+              itemBuilder: (context, index) {
+                return Container(
+                  color: aryColors[index],
+                );
+              },
+              itemCount: aryColors.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 11,
+                  mainAxisSpacing: 11),</mark>
+
+          ),
+        ));
+  }
+}
+
+
+
+It will use howmany colors are used in array as per array length.
+It is scrollable.
+crossAxisCount: 3 --> only 3 column will be created and it will resize as per the screensize.
+no need to put manually the array item. Automatically it will build as per the list.
+
+</pre>
+
+
+
+<h2>8. Use GridView Builder - SliverGridDelegateWithMaxCrossAxisExtent, similar function as gridview.extent - </h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var aryColors = [
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.blue,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal
+    ];
+    return MaterialApp(
+        title: 'Flutter Demo',
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text('Hello'),
+          ),
+          body: GridView.builder(
+              itemBuilder: (context, index) {
+                return Container(
+                  color: aryColors[index],
+                );
+              },
+              itemCount: aryColors.length,
+              <mark>gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(</mark>
+                  maxCrossAxisExtent: 100,
+                  crossAxisSpacing: 11,
+                  mainAxisSpacing: 11),
+
+          ),
+        ));
+  }
+}
+
+
+
+The size of the box is 100. and the same size box as much as box will be created as per the width of the screen.
+
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

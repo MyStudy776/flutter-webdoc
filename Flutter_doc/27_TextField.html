@@ -1,0 +1,719 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>TextField Widget-</h1>
+
+<h2>1. TextField -</h2>
+<pre>
+A textField is an input element which holds the alphanumeric data such as name, password etc.
+</pre>
+
+<h2>2. Example TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Container(
+            width: 300,
+            child: TextField(),
+          )),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. Example TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+
+              ),
+            ),
+          )),
+    );
+  }
+}
+</pre>
+
+<h2>4. Example TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+</pre>
+
+<h2>5. Focused border and enable border in Text field -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      <mark>focusedBorder: </mark> OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                          width: 2,
+                        )
+                      ),
+                      <mark> enabledBorder</mark>: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+                    ),
+
+                  ), 
+                  Container(height: 11,),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+</pre>
+
+<h2>6. suffixText and suffixIcon in TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      focusedBorder:  OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                          width: 2,
+                        )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+                      <mark> suffixText: "Username",</mark> 
+                      <mark> suffixIcon: IconButton(</mark> 
+                        icon: Icon(Icons.remove_red_eye, color: Colors.blue,),
+                        onPressed: (){
+
+                        },
+                      )
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+</pre>
+
+<h2>7. prefixIcon in TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      focusedBorder:  OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                          width: 2,
+                        )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+                      suffixText: "Username",
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.remove_red_eye, color: Colors.blue,),
+                        onPressed: (){
+
+                        },
+                      ),
+                     <mark> prefixIcon: Icon(Icons.email, color: Colors.yellow,),</mark> 
+
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>8. hints in decoration-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    
+                    decoration: InputDecoration(
+                     <mark> hintText: "Enter your username",</mark>
+                      focusedBorder:  OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                          width: 2,
+                        )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.remove_red_eye, color: Colors.blue,),
+                        onPressed: (){
+
+                        },
+                      ),
+                      prefixIcon: Icon(Icons.email, color: Colors.yellow,),
+
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    decoration: InputDecoration(
+                      <mark>hintText: "Enter your password",</mark>
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>9. obscureText and obscuringCharacter in TextField  - make the textfield hidden-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    
+                    decoration: InputDecoration(
+                      hintText: "Enter your username",
+                      focusedBorder:  OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.remove_red_eye, color: Colors.blue,),
+                        onPressed: (){
+
+                        },
+                      ),
+                      prefixIcon: Icon(Icons.email, color: Colors.yellow,),
+
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    
+                    <mark>obscureText: true,</mark>
+                   <mark> obscuringCharacter: '*',</mark> --------------->password won't visible , it will be visible as astric.
+
+                    decoration: InputDecoration(
+                      hintText: "Enter your password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+</pre>
+
+<h2>10. Giving input to the TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  <mark>var emailText = TextEditingController();</mark>
+ <mark> var passText = TextEditingController();</mark>
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                   <mark> controller: emailText,</mark>
+                    decoration: InputDecoration(
+                      hintText: "Enter your username",
+                      focusedBorder:  OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.remove_red_eye, color: Colors.blue,),
+                        onPressed: (){
+
+                        },
+                      ),
+                      prefixIcon: Icon(Icons.email, color: Colors.yellow,),
+
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    <mark>controller: passText,</mark>
+                    obscureText: true,
+                    obscuringCharacter: '*',
+
+                    decoration: InputDecoration(
+                      hintText: "Enter your password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                  ElevatedButton(onPressed: () {
+                   <mark>String uEmail = emailText.text.toString();</mark>
+                   <mark>String uPass = passText.text;</mark>
+                    <mark>print("Email: $uEmail, Pass:$uPass");</mark>
+
+                  }, child: Text('Login'))
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>11. The type of keyboard in TextField -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var emailText = TextEditingController();
+  var passText = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    <mark>keyboardType: TextInputType.phone,</mark>------------>numpad will be visible to enter the keys
+                    controller: emailText,
+                    decoration: InputDecoration(
+                      hintText: "Enter your username",
+                      focusedBorder:  OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(21),
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 4,
+                          )
+                      ),
+
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.remove_red_eye, color: Colors.blue,),
+                        onPressed: (){
+
+                        },
+                      ),
+                      prefixIcon: Icon(Icons.email, color: Colors.yellow,),
+
+                    ),
+
+                  ),
+                  Container(height: 11,),
+                  TextField(
+                    controller: passText,
+                    obscureText: true,
+                    obscuringCharacter: '*',
+
+                    decoration: InputDecoration(
+                      hintText: "Enter your password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(21),
+                      ),
+                    ),
+
+                  ),
+                  ElevatedButton(onPressed: () {
+                   String uEmail = emailText.text.toString();
+                   String uPass = passText.text;
+                    print("Email: $uEmail, Pass:$uPass");
+
+                  }, child: Text('Login'))
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,3425 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Dart Programming</h1>
+<!-- ############################################################################### -->
+
+<h2><mark>A. Comments</mark></h2>
+
+<h2>1. Dart comment -</h2>
+<pre>
+// This is a single line comment. 
+
+/* .....*/  This is a multi line comment.
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>B. Variable</mark></h2>
+
+
+<h2>1. Dart Variable declaration -</h2>
+<pre>
+To declare a variable: -
+type variable_name;
+
+
+To declare multiple variables of same type: 
+type variable1_name, variable2_name, variable3_name, ....variableN_name;
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Type of dart variable -</h2>
+<pre>
+1. Integer
+2. Double
+3. String
+4. Booleans
+5. Lists
+6. Maps
+7. num - can accept both integer and double value.
+8. var
+9. final
+10. const
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Variable name rule-</h2>
+<pre>
+Variable name or identifiers can’t be the keyword.
+Variable name or identifiers can contain alphabets and numbers.
+Variable name or identifiers can’t contain spaces and special characters, except the underscore(_) and the dollar($) sign.
+Variable name or identifiers can’t begin with number. 
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. Assign value to variable-</h2>
+<pre>
+void main()
+{
+    int x = 10;
+    double y = 0.2; 
+    bool z = false; 
+    String x1 = "0", x2 = "Geeks for Geeks";
+ 
+    print(x); 
+    print(y); 
+    print(z); 
+    print(x1); 
+    print(x2); 
+}
+
+o/p
+=======
+10
+0.2
+false
+0
+Geeks for Geeks
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. Static variable -</h2>
+<pre>
+void main()
+{
+int x = 10;
+  print(x); --------> 10
+  x = 20;
+  print(x); --------> 20
+  x = "aa";
+  print(x); --------> error,A value of type 'String' can't be assigned to a variable of type 'int'.
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>6. dynamic variable -</h2>
+<pre>
+void main()
+{
+dynamic x = 10;
+  print(x); ----------> 10
+  x = "aa";
+  print(x); --------> aa
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>7. var keyword with initialization during declaration-</h2>
+<pre>
+void main()
+{
+var x = 10;
+  print(x); --------> 10
+  x = 20;
+  print(x); --------> 20
+  x = "aa";
+  print(x); --------> error,A value of type 'String' can't be assigned to a variable of type 'int'.
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. var keyword without initialization during declaration-</h2>
+<pre>
+void main()
+{
+  var x ;
+  x = 10;
+  print(x); --------> 10
+  x = 20;
+  print(x); --------> 20
+  x = "aa";
+  print(x); --------> aa
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9. final -</h2>
+<pre>
+void main()
+{
+  final x ; 
+  x = 30;
+  print(x); ----------> 30
+  x = 20;
+  print(x); ----------> error, Final variable 'x' might already be assigned at this point.
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. const  -</h2>
+<pre>
+void main()
+{
+  const x ; 
+  x = 30;
+  print(x); ----------> error, The const variable 'x' must be initialized.
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2> 11. final or const-</h2>
+<pre>
+final : - once value is assigned, then it can not be changed. We can add or overwrite values.
+const : - we must assign value to const variable during declaration.it will accept only if it has a value at compile  time.
+        - It prevents if any value of the variable change accidentally.
+
+
+variable initialization -
+
+final string name1 = "aaa";
+or
+final  name1 = "aaa";
+or
+const name1 = "aaa";
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>12. const must be initialized -</h2>
+<pre>
+void main()
+{
+  const x = 40; 
+  print(x); ----------> 40
+  x = 20;
+  print(x);----------> error,Can't assign to the const variable 'x'. 
+}
+</pre>
+
+<pre>
+void main()
+{
+ final DateTime.now(); --->The value will be changed at runtime, which will be accepted .
+ const DateTime.now(); ----> It will show error,because it willnot accept the changed value at runtime.
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>13. static vs dynamic vs var  -</h2>
+<pre>
+var a = 10;--> The moment you assign the data to variable with var keyword it is replaced with the appropriate data type.
+           ---> It is static variable
+		   
+var a;     --->Dynamic variable, any data type it will accept.
+
+dynamic c; --->dynamic variable. any data type it will accept.
+
+int a; --> static variable. It will accept only integer
+int a = 10; --> static variable. It will accept only integer
+
+final x; ---> must not initalize. Its value won't change
+final int x;
+
+const x = 30; --->must initalize. Its value won't change
+const int x = 30; 
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- ############################################################################### -->
+
+<h2><mark>C. Operator</mark></h2>
+
+<h2>1. Type of operators-</h2>
+<pre>
+Arithmetic Operators ----> +, -, *, /, %,
+Relational Operators ----> >, >=, ==, &lt;, &lt;=,!=
+Type Test Operators -----> is, is!
+Bitwise Operators -------> &   (Bitwise AND)
+                  -------> |   (Bitwise OR)
+				  -------> ^   (Bitwise XOR)
+				  -------> ~   (Bitwise NOT)
+				  -------> &lt;&lt; (Left Shift)
+				  -------> &gt;&gt; (right Shift)
+Assignment Operators-----> =   (equal to)
+                    -----> ??= (Assign the value only if it is null.)
+Logical Operators--------> &&  (and)
+                 --------> ||  (or)
+                 --------> !   (not)
+Conditional Operator ----------> condition ? expersion1 :
+Cascade Notation Operator
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.Arithmetic operator use -</h2>
+<pre>
+void main()
+{
+	int a = 10;
+	int b = 3;
+  int c = a + b;
+  print(a + b );
+  print("a + b = $c" );
+  print("The value of " + "a + b = " + c.toString());
+  print("$c is the sum of a + b" );
+  String r = "Hello \n worldddd";
+  print(r)
+}
+
+
+o/p
+===
+13
+a + b = 13
+The value of a + b = 13
+13 is the sum of a + b
+Hello 
+ worldddd
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. Type Test Operators-</h2>
+<pre>
+void main()
+{
+    String a = 'aa';
+    double b = 3.3;
+ 
+    print(a is String);
+    print(b is !int);
+}
+
+o/p
+=====
+true
+true
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. Assignment operator-</h2>
+<pre>
+void main()
+{
+    int a = 5;
+    int b = 7;
+    var c = a * b;
+    print(c);
+    var d;
+    d ??= a + b; // Value is assign as it is null
+    print(d);
+    // Again trying to assign value to d
+    d ??= a - b; // Value is not assign as it is not null
+    print(d);
+}
+
+o/p
+=====
+35
+12
+12
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. ?? operator -</h2>
+<pre>
+- In Dart, the ?? operator is known as the null-aware assignment operator. 
+- It is used to assign a value to a variable only if that variable is currently null.
+
+void main()
+{
+    int a = 10;
+    int b = 20;      
+    var d = 20;
+    var h;
+    d ??= a + b; // d is not null, so it will not assign a new value.
+    h ??= a + b; // h is null, so it will assign a new value.
+    print(d);
+    print(h);
+
+}
+
+o/p
+=====
+20
+30
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. nullable variable or optional variable -</h2>
+<pre>
+- Nullable variable having 2 values.
+- It can have one value(int/string/bool) and null value.
+
+void main()
+{
+
+  int x = null; ----> error, integer data type can not accept null vaue.
+  
+}
+
+
+=====
+void main()
+{
+
+  int? x  null;--->no error, It will accept integer value or null value.
+  int? y;
+  print(y)----->o/p will be null.
+  
+}
+
+===========
+void main() {
+   
+   String? x = null;
+   print(x);
+   print(x??10);
+   
+ }
+ 
+o/p
+====
+null
+10
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. ? operator -</h2>
+<pre>
+ void main() {
+  String x = "Hi";
+  print(x.startsWith('H') ? 'It is' : 'It is not');
+  print(x.startsWith('K') ? 'It is' : 'It is not');
+   }
+   
+o/p
+========
+It is
+It is not
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. Logical operator -</h2>
+<pre>
+void main()
+{
+    int a = 5;
+    int b = 7;
+ 
+    // Using And Operator
+    bool c = a &gt; 10 && b &lt; 10;
+    print(c);
+ 
+    // Using Or Operator
+    bool d = a &gt;  10 || b &lt; 10;
+    print(d);
+ 
+    // Using Not Operator
+    bool e = !(a &gt;  10);
+    print(e);
+}
+
+
+o/p
+====
+false
+true
+true
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9.Conditional operator. -</h2>
+<pre>
+void main()
+{
+	int a = 5;
+	int b = 7;
+	var c = (a &lt; 10) ? "a is less than 10";
+	print(c);--------------------------------------------> false
+	
+	
+    int? n1; ------------------->variable n1 can hold an integer value or a null value.
+	int? n2 = 10; ------------------->variable n2  hold an integer value 10.
+	var d = n1 ?? "n has Null value";
+	var e = n2 ?? "n has Null value";
+	print(d);---------------o/p: n has Null value 
+	print(e);---------------o/p: 10
+
+}
+
+
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10. Cascade notation operator -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2><mark>D. Input and Output</mark></h2>
+
+<h2>1. Dart – Standard Input - stdin</h2>
+<pre>
+import 'dart:io';
+
+void main()
+{
+  print("Enter your name?");
+  String? name = stdin.readLineSync();  -------------->means name variable can be a string or a null
+  print("Hello, $name! \nWelcome to App world");
+}
+
+o/p
+===
+Enter your name?
+rama
+
+Hello, rama! 
+Welcome to App world
+
+==========
+Note: If you will give no value and enter then o/p will be -
+
+Hello, ! 
+Welcome to App world
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>2. Dart – Standard Output - stdout.write</h2>
+<pre>
+import 'dart:io';
+ 
+void main()
+{
+    print("Hello World");
+    stdout.write("Good morning");
+}
+
+
+o/p
+====
+Hello World
+Good morning
+
+Note -
+The print() statement brings the cursor to next line while stdout.write() don’t bring the cursor to the next line,
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3.  Use of parse in variable -</h2>
+<pre>
+import 'dart:io';
+
+void main()
+{
+  print("Enter your favourite number:");
+  int? n = int.parse(stdin.readLineSync()!);
+  print("Your favourite number is $n");
+}
+
+o/p
+===
+Enter your favourite number:
+12
+Your favourite number is 12
+
+Note -
+parse method - it is a method used to convert a String into a specific data type.
+               It's often used with classes like int, double, DateTime, etc., to convert a string representation of a value into an actual instance of that data type.
+			   
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4.  parse() -</h2>
+<pre>
+The parse() function is used parsing a string containing numeric literal and convert to the number.
+
+void main()
+{
+    
+  var a1 = num.parse("1");  
+  var b1 = num.parse("2.34");  
+  
+  var c1 = a1+b1;   
+  print("Product = ${c1}");  
+}  
+
+
+o/p
+====
+Product = 3.34
+
+   
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>E. Data type</mark></h2>
+
+<h2>1. Check the data type of a variable -</h2>
+<pre>
+void main() {
+  String x = '42';
+  int num = int.parse(x);
+  print(x);
+  print(x.runtimeType);
+  print(num);
+  print(num.runtimeType);
+}
+
+
+o/p
+====
+42
+String
+42
+int
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Dart data type-</h2>
+<pre>
+Number ------- int, double, num, BigInt
+Strings
+bool --------- Boolean values true and false
+List --------- It is an ordered group of objects
+Map  --------- It represents a set of values as key-value pairs
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. convert int to double -</h2>
+<pre>
+void main() {
+  int x = 5;
+  double y;
+  y = x.toDouble();
+  print(y);
+  y = 8.2;
+  x = y.toInt();
+  print(x);
+}
+
+o/p
+====
+5
+8
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. Adding 2 string  -</h2>
+<pre>
+void main() {
+String x ="I have ";
+String y = "10 rupees";
+print
+(x + y);
+}
+
+o/p
+====
+I have 10 rupees
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. num type  and down casting -   (as)</h2>
+<pre>
+void main() {
+  num x = 5;
+  int y = x; //error, a num type variable can not assign to an int type variable.
+  print(y);
+}
+
+
+
+===================
+
+void main() {
+  num x = 5;
+  int y = x as int; //this is down casting
+  print(y);
+}
+
+
+o/p
+==
+5
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. String Interpolation  -</h2>
+<pre>
+void main() {
+ var fname = "Ramoj";
+  var lname = "Siddhi";
+  print ('$fname    $lname and age is ${20} ');
+}
+
+
+o/p
+====
+Ramoj    Siddhi and age is 20 
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. new line  -</h2>
+<pre>
+void main() {
+ var fname = "Hello\nWelcome to\nOur world";
+  print(fname);
+  
+}
+
+
+o/p
+====
+Hello
+Welcome to
+Our world
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. Multiline string -</h2>
+<pre>
+void main() {
+ var fname = '''Hello
+ Welcome to
+ Our world''';
+  print(fname);
+  
+}
+
+o/p
+====
+Hello
+ Welcome to
+ Our world
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. Equal to operator -</h2>
+<pre>
+void main() {
+int x = 20;
+int y = 30;
+print(x == y);
+ 
+}
+
+o/p
+====
+false
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2><mark>F. List</mark></h2>
+<h2>1.  Dynamic List  -</h2>
+<pre>
+void main() {
+List x = [10, 20, 30, 'Hi'];
+x[0] = 50;
+print(x);
+}
+
+o/p
+===
+[50, 20, 30, 'Hi']
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2.  Static List  -</h2>
+
+<pre>
+void main() {
+List &lt;int&gt; x = [10, 20, 30];  ---->Like this you can not add other type of value except int.
+x[0] = 50;
+print(x);
+}
+
+o/p
+===
+[50, 20, 30]
+
+
+&lt;int&gt; ---->This is called generic.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. Adding item in list -</h2>
+<pre>
+void main () {
+
+  var listNames = [10,20,30,40];
+  listNames.add(50);
+
+  var name2 = [];
+  name2.add("Mira");
+  print("$name2");
+  name2.addAll(listNames);
+  print("$name2");
+  print("$listNames");
+}
+
+o/p
+=====
+[Mira]
+[Mira, 10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. add items to the list -</h2>
+<pre>
+void main () {
+
+  var listNames = [10,20,30,40];
+  listNames.add(50);
+
+  print("$listNames");
+}
+
+o/p
+====
+[10, 20, 30, 40, 50]
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>5. insert in particular index using - insert, insertAll to the list-</h2>
+<pre>
+
+void main () {
+  var listNames = [10, 20, 30, 40];
+  var name1 = [10, 20, "goa"];
+
+   name1.insert(1,300);
+   print("$name1");
+  name1.insertAll(3,listNames);
+   print("$name1");
+}
+
+o/p
+====
+[10, 300, 20, goa]
+[10, 300, 20, 10, 20, 30, 40, goa]
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Replace item in a particular index using - replaceRange to the list -</h2>
+<pre>
+void main () {
+  var listNames = [10, 20, 30, 40];
+  var name1 = [10, 20, "goa"];
+
+   name1.insert(1,300);
+   print("$name1");
+  name1.insertAll(3,listNames);
+   print("$name1");
+
+   name1.replaceRange(2, 4, ["kk","mm"]);
+  print("$name1");
+}
+
+o/p
+===
+[10, 300, 20, goa]
+[10, 300, 20, 10, 20, 30, 40, goa]
+[10, 300, kk, mm, 20, 30, 40, goa]
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. Remove item from the list -</h2>
+<pre>
+void main () {
+    var name1 = [10, 20, "goa", 300, 200, 700];
+    name1.removeLast();
+    print("$name1");
+    name1.remove(20);
+    print("$name1");
+    name1.removeAt(2);
+    print("$name1");
+    name1.insert(1,[99,77,66,55,88]);
+    print("$name1");
+    name1.removeRange(0,4);
+    print("$name1");
+}
+
+
+o/p
+====
+[10, 20, goa, 300, 200]
+[10, goa, 300, 200]
+[10, goa, 200]
+[10, [99, 77, 66, 55, 88], goa, 200]
+[]
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. removeRange in the list-</h2>
+<pre>
+void main () {
+    var name1 = [10, 20, "goa", 300, 200, 700];
+    var name2 = ["bb", "cc", "goa", 66, 55, 99];
+    name1.removeLast();
+    print("$name1");
+    name1.remove(20);
+    print("$name1");
+    name1.removeAt(2);
+    print("$name1");
+    name1.addAll(name2);
+    print("$name1");
+    name1.removeRange(0,4);
+    print("$name1");
+}
+
+o/p
+===
+[10, 20, goa, 300, 200]
+[10, goa, 300, 200]
+[10, goa, 200]
+[10, goa, 200, bb, cc, goa, 66, 55, 99]
+[cc, goa, 66, 55, 99]
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9. Other items Example in the list -</h2>
+<pre>
+void main () {
+    var name1 = [10, 20, "goa", 300, 200, 700];
+    print("${name1.length}");
+    print("${name1.reversed}");
+    print(" ${name1.first}");
+    print(" ${name1.last}");
+    print(" ${name1.isEmpty}");
+    print(" ${name1.isNotEmpty}");
+    print(" ${name1.elementAt(2)}");
+	print(name1.isEmpty);
+    
+}
+
+o/p
+====
+6
+(700, 200, 300, goa, 20, 10)
+ 10
+ 700
+ false
+ true
+ goa
+ false
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>G. Map</mark></h2>
+
+<h2>1. Map. -</h2>
+<pre>
+
+- Maps are dictionary type data type.
+- It exists in key- value form. Lock -key concept.
+- There is no restriction on the type of data that goes in Map data type. Any kind of data(like string, list, bool, int etc) can be stored inside Map.
+- It does not have any order.
+- Key should be unique.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Map. -</h2>
+<pre>
+- Key pair value
+
+void main() {
+  Map x = {};
+  x["a1"] = 'aa';
+  x["b1"] = 12;
+  x["c1"] = true;
+  print(x);
+}
+
+o/p
+===
+{a1: aa, b1: 12, c1: true}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Map -</h2>
+<pre>
+
+
+void main () {
+    var map_name1 = {
+       'a': 100,
+        'b': 200,
+        'c': true,
+        'd': "mama"
+    };
+
+print(map_name1);
+print(map_name1['b']);
+print(map_name1['e']);
+print(map_name1['B']);
+map_name1['b'] = "ggg";
+print(map_name1);
+print(map_name1.length);
+print(map_name1.isEmpty);
+print(map_name1.containsKey('a'));
+}
+
+o/p
+====
+{a: 100, b: 200, c: true, d: mama}
+200
+null
+null
+{a: 100, b: ggg, c: true, d: mama}
+4
+false
+true
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. Map -</h2>
+<pre>
+void main () {
+       var map_name1 = {
+       'k1': [20,30,40],
+       'k2': ['rr','kk',12]
+     };
+  
+  print(map_name1['k2']);
+  print(map_name1['k2'][1]);
+  
+}
+
+
+o/p
+====
+Error compiling to JavaScript:
+lib/main.dart:9:24:
+Error: Operator '[]' cannot be called on 'List&lt;Object&gt?' because it is potentially null.
+ - 'List' is from 'dart:core'.
+ - 'Object' is from 'dart:core'.
+  print(map_name1['k2'][1]);
+                       ^
+Error: Compilation failed.
+
+
+
+
+The error message you are encountering is due to null-safety rules in Dart.
+Starting from Dart 2.12, Dart introduced null safety, which means that variables can't hold null values unless explicitly specified. In your case, the error is due to the possibility that the key 'k2' might not exist in the map or that the value associated with 'k2' might be null.
+
+
+
+correct statement -
+void main () {
+       var map_name1 = {
+       'k1': [20,30,40],
+       'k2': ['rr','kk',12]
+     };
+  
+  print(map_name1['k2']);
+  print(map_name1['k2']?[1]);
+  
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Map -</h2>
+<pre>
+void main () {
+     Map&lt;String, dynamic&gt; map_name1 = {     
+       'k1': [20,30,40],
+       'k2': ['rr','kk',12]
+     };
+  
+  print(map_name1['k2']);
+  print(map_name1['k2'][1]);
+  
+}
+
+
+o/p
+====
+[rr, kk, 12]
+kk
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Another way of representing Map -</h2>
+<pre>
+void main () {
+     var mp1 = Map();
+  
+  mp1['k1']= [20,80,40];
+  mp1['k2']= [50,30,20];
+ 
+  
+  print(mp1['k2']);
+  print(mp1['k2'][1]);
+  
+}
+
+
+o/p
+====
+[20, 80, 40]
+30
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>H. Number</mark></h2>
+<h2>1. Number -</h2>
+<pre>
+Properties: 
+
+hashcode: This property is used to get the hash code of the given number.
+isFinite: If the given number is finite, then this property will return true.
+isInfinite: If the number is infinite, then this property will return true.
+isNan: If the number is non-negative then this property will return true.
+isNegative: If the number is negative then this property will return true.
+sign: This property is used to get -1, 0, or 1 depending upon the sign of the given number.
+isEven: If the given number is an even then this property will return true.
+isOdd: If the given number is odd then this property will return true.
+Methods: 
+
+abs(): This method gives the absolute value of the given number.
+ceil(): This method gives the ceiling value of the given number.
+floor(): This method gives the floor value of the given number.
+compareTo(): This method compares the value with other numbers.
+remainder(): This method gives the truncated remainder after dividing the two numbers.
+round(): This method returns the round of the number.
+toDouble(): This method gives the double equivalent representation of the number.
+toInt(): This method returns the integer equivalent representation of the number.
+toString(): This method returns the String equivalent representation of the number
+truncate(): This method returns the integer after discarding fraction digits. 
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>I. String</mark></h2>
+<h2>1. String-</h2>
+<pre>
+void main()
+{
+ var x = "I have ";
+ var z = " red coloured cycles ";
+ var k ="$x 5 $z ";
+ print(k );
+}
+
+o/p
+===
+I have  5  red coloured cycles
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>J. Sets</mark></h2>
+<h2>1. Sets-</h2>
+<pre>
+-  It is a special case in List.
+- It does not contain duplicate value.
+- It is unordered array.
+
+void main()
+{
+ var x = <String>{'Rama',  "Asha"};
+ print("Output is: $x");
+
+ Set<String> y = {'gamo','gigi','gigi'};
+ print("Output is: $y");
+
+}
+
+o/p
+===
+Output is: {Rama, Asha}
+Output is: {gamo, gigi}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Set commands-</h2>
+<pre>
+void main()
+{
+ var x = <String>{'Rama',  "Asha"}; // Declaring set in First Way
+ print("Output is: $x");
+
+ Set<String> y = {'gamo','gigi','gigi'};// Declaring set in Second Way
+ print("Output is: $y");
+
+ print(y.length);
+ print(y.elementAt(1));
+ print(y.contains('gamo'));
+ print(y.contains('pupa'));
+
+ y.remove('gamo');
+ print(y.length);
+
+}
+
+
+o/p
+===
+Output is: {Rama, Asha}
+Output is: {gamo, gigi}
+2
+gigi
+true
+false
+1
+
+
+1.	variable_name.elementAt(index);	It returns the element at the corresponding index. The type of output depends on the type of set defined.
+2.	variable_name.length;	It returns the length of the set. The output is of integer type.
+3.	variable_name.contains(element_name);	It returns boolean value true if the element_name is present in the set else return false.
+4.	variable_name.remove(element_name);	It deletes the element whose name is present inside it.
+5.	variable_name.forEach(…);	It runs the command defined inside forEach() function for all the elements inside the set.
+6.	variable_name.clear();	It deletes all the element inside the set.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Adding value to a set-</h2>
+<pre>
+void main()
+{
+ var x = <String>{'Rama',  "Asha"};
+ x.add('kiti');
+ print("Output is: $x");
+}
+
+o/p
+===
+Output is: {Rama, Asha, kiti}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. addAll in sets -</h2>
+<pre>
+void main()
+{
+ var x = <String>{'Rama',  "Asha"};
+ var y = <String>{'aa',  "bb"};
+ print("Output is: $x");
+ print("Output is: $y");
+ y.addAll(x);
+ print("Output is: $y");
+}
+
+o/p
+===
+Output is: {Rama, Asha}
+Output is: {aa, bb}
+Output is: {aa, bb, Rama, Asha}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Function : add two numbers in set : print-</h2>
+<pre>
+addNumbers(num1, num2) {
+   print(num1 + num2) ;
+}
+
+void main() {
+  addNumbers(4, 5);
+  
+}
+
+
+o/p
+====
+9
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>6. Function : add two numbers in set : return -</h2>
+<pre>
+addNumbers(num1, num2) {
+  return num1 + num2 ;
+}
+
+void main() {
+  print(addNumbers(4, 5));
+  
+}
+
+
+o/p
+====
+9
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>7. Function : add two numbers in set : void -</h2>
+<pre>
+void addNumbers(num1, num2) {
+  return num1 + num2 ;
+}
+
+void main() {
+  print(addNumbers(4, 5));
+  
+}
+
+o/p
+====
+error
+
+void addNumbers(num1, num2) --->function type is void ---> It should not return anything.
+return num1 + num2 ; ---> but return is used. so error.type mismatch.
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. Function : add two numbers in set : int -</h2>
+
+<pre>
+int addNumbers(num1, num2) {
+  return num1 + num2 ;
+}
+
+void main() {
+  print(addNumbers(4, 5));
+  
+}
+
+o/p
+====
+9
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2><mark>Queue</mark></h2>
+
+<h2>1. Queue -</h2>
+<pre>
+- A queue is a FIFO (First In First Out) data structure where the element that is added first will be deleted first. 
+- It takes the data from one end and removes it from the other end. 
+- It must be noted that to use a queue in a dart program you have to import ‘dart:collection’ module.
+
+
+import 'dart:collection';
+ 
+void main()
+{
+ 
+  Queue<String> abc = new Queue<String>(); 
+  print(abc);
+  abc.add("Geeks");
+  abc.add("For");
+  abc.add("Geeks");
+  print(abc);
+}
+
+
+o/p
+=====
+{}
+{Geeks, For, Geeks}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2><mark>Loop</mark></h2>
+
+<h2>1.1 if-else condition -</h2>
+<pre>
+void main () {
+
+var a = 100;
+var b = 50;
+
+if (a &lt;200) {
+  print("a is less than 200");
+  }
+else if (a>b) {
+  print("a is greater");
+}
+else {
+  print("Good day");
+}
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1.2  shorcut in if condition -</h2>
+<pre>
+void main() {
+var x = 100;
+ String msg = 
+   (x >= 100) ? "x is bigger" : "x is normal";
+  print(msg);
+}
+
+o/p
+====
+x is bigger
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. for loop -</h2>
+<pre>
+void main () {
+
+var a = 100;
+
+for (int a=1; a&lt;=10; a++)
+  print("value is $a");
+
+}
+
+o/p
+====
+value is 1
+value is 2
+value is 3
+value is 4
+value is 5
+value is 6
+value is 7
+value is 8
+value is 9
+value is 10
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. for loop -</h2>
+<pre>
+void main () {
+var a = [10, 20, 30, 40 ,50];
+for (int i in a)
+  print(i);
+}
+
+o/p
+====
+10
+20
+30
+40
+50
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. for each</h2>
+<pre>
+void main () {
+var a = [10, 20, 30, 40 ,50];
+a.forEach((var num) => print(num));
+}
+
+o/p
+====
+10
+20
+30
+40
+50
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. for each</h2>
+<pre>
+void main() 
+{ 
+  var list = ["Shubham","Nick","Adil","Puthal"]; 
+  print("GeeksforGeeks - Anonymous function in Dart"); 
+  list.forEach((item) { 
+    print('${list.indexOf(item)} : $item'); 
+  }); 
+}
+
+GeeksforGeeks - Anonymous function in Dart
+0 : Shubham
+1 : Nick
+2 : Adil
+3 : Puthal
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. while loop -</h2>
+<pre>
+void main () {
+  var a = 2;
+
+  while (a &lt; 10) {
+    print("a = $a");
+    a++;
+  }
+}
+
+o/p
+====
+a = 2
+a = 3
+a = 4
+a = 5
+a = 6
+a = 7
+a = 8
+a = 9
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. Switch case loop -</h2>
+<pre>
+void main() {
+  String fruit = 'apple';
+
+  switch (fruit) {
+    case 'apple':
+      print('Selected fruit is an apple');
+      break;
+    case 'banana':
+      print('Selected fruit is a banana');
+      break;
+    case 'orange':
+      print('Selected fruit is an orange');
+      break;
+    default:
+      print('Selected fruit is not in the list');
+  }
+}
+
+o/p: apple
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. if condition -</h2>
+<pre>
+void main() {
+   
+  int x = 10;
+  
+   if (x &lt; 10) {
+     print ('x is small');
+   }
+   else if(x==10) {
+     print("x is normal");
+   }
+   else {
+     print("x is big");
+   }
+  
+ }
+
+o/p
+=====
+x is normal
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. switch case -</h2>
+<pre>
+vvoid main() {
+   
+  int x = 10;
+  
+   switch(x) {
+     case 8:
+     print ('$x is small');
+     case 10:
+     print("$x is normal");
+     case 112:
+     print("$x is big");
+     default:
+     print("Good");
+   }
+ }
+
+o/p
+=====
+10 is normal
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10. do while loop -</h2>
+<pre>
+void main()
+{
+    var GeeksForGeeks = 4;
+    int i = 1;
+    do {
+        print('Hello Geek');
+        i++;
+    } while (i &lt;= GeeksForGeeks);
+}
+
+
+o/p
+====
+Hello Geek
+Hello Geek
+Hello Geek
+Hello Geek
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>11. break in loop -</h2>
+<pre>
+void main() 
+{ 
+    int count = 1; 
+  
+    while (count &lt;= 10) { 
+        print("Geek, you are inside loop $count"); 
+        count++; 
+  
+        if (count == 4) { 
+            break; 
+        } 
+    } 
+    print("Geek, you are out of while loop"); 
+} 
+
+
+o/p
+========
+Geek, you are inside loop 1
+Geek, you are inside loop 2
+Geek, you are inside loop 3
+Geek, you are out of while loop
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>12. break in do-while loop -</h2>
+<pre>
+void main() 
+{ 
+    int count = 1; 
+  
+    do { 
+        print("Geek, you are inside loop $count"); 
+        count++; 
+  
+        if (count == 5) { 
+            break; 
+        } 
+    } while (count &lt;= 10); 
+    print("Geek, you are out of do..while loop"); 
+} 
+
+
+o/p
+======
+Geek, you are inside loop 1
+Geek, you are inside loop 2
+Geek, you are inside loop 3
+Geek, you are inside loop 4
+Geek, you are out of do..while loop
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>13. break in for loop -</h2>
+<pre>
+void main() 
+{ 
+    for (int i = 1; i &lt;= 10; ++i) { 
+        if (i == 2) 
+            break; 
+  
+        print("Geek, you are inside loop $i"); 
+    } 
+  
+    print("Geek, you are out of loop"); 
+}
+
+o/p
+===
+Geek, you are inside loop 1
+Geek, you are out of loop 
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>14. continue inside while loop -</h2>
+<pre>
+While the break is used to end the flow of control, continue on the other hand is used to continue the flow of control. 
+When a continue statement is encountered in a loop it doesn’t terminate the loop but rather jump the flow to next iteration.
+
+void main() 
+{ 
+    int count = 0; 
+  
+    while (count &lt;= 10) { 
+        count++; 
+  
+        if (count == 4) { 
+            print("Number 4 is skipped"); 
+            continue; 
+        } 
+  
+        print("Geek, you are inside loop $count"); 
+    } 
+  
+    print("Geek, you are out of while loop"); 
+} 
+
+
+
+o/p
+====
+Geek, you are inside loop 1
+Geek, you are inside loop 2
+Geek, you are inside loop 3
+Number 4 is skipped
+Geek, you are inside loop 5
+Geek, you are inside loop 6
+Geek, you are inside loop 7
+Geek, you are inside loop 8
+Geek, you are inside loop 9
+Geek, you are inside loop 10
+Geek, you are inside loop 11
+Geek, you are out of while loop
+
+</pre>
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Function</mark></h2>
+
+<h2>1.  Function : print-</h2>
+<pre>
+ 
+void main() {
+    fun1();
+}
+
+
+void fun1() {
+   print("Hello Dear");
+ }
+ 
+
+o/p
+====
+Hello Dear
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Function : return -</h2>
+<pre>
+void main() {
+fun1();
+}
+
+String fun1() {
+   return 'Radha'; ----> return does not mean that it will print anything.
+ }
+ 
+ 
+o/p
+====
+no output
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3.  Function-</h2>
+<pre>
+void main() {
+   
+print(fun1());
+}
+
+ String fun1() {
+   return 'Radha';
+ }
+ 
+o/p
+====
+Radha
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>4. Assign multiple datatype to a function -</h2>
+<pre>
+void main() {
+   
+var n1 = fun1();
+print(n1);
+print(n1.$2);
+print(n1.$2.runtimeType);
+}
+
+ (int, String) fun1() {
+   return (12,'Radha');
+ }
+ 
+ o/p
+ =====
+(12, Radha)
+Radha
+String
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Function   -</h2>
+<pre>
+void main() {
+   
+var (name, age) = fun1();
+print(name);
+print(age);
+
+}
+
+ (int, String) fun1() {
+   return (12,'Radha');
+ }
+ 
+ 
+o/p
+====
+12
+Radha 
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>6. Function  -</h2>
+<pre>
+void main() {
+   
+String name ='Manoj';
+fun1(name);
+print(name);
+
+
+}
+
+ void fun1(String name) {
+   print ('Radha');
+ }
+ 
+ 
+ o/p
+ ===
+ Radha
+ Manoj
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7.Function  -</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(name, 12);
+ }
+
+void fun1(String name, int age) {
+   print (name);
+   print (age);
+ }
+ 
+ 
+o/p
+====
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>8. Function  -</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(name, 12, false);
+ }
+
+ void fun1(String name, int age, bool rrr) {
+   print (name);
+   print (age);
+ }
+ 
+ 
+o/p
+=====
+Manoj
+12
+
+-Note: But the above program is not the way to represent. 
+void fun1(String name, int age, bool rrr) --->It will check the positional argument.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. using <mark>required </mark>, change positional argument to named argument  in Function-</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(age:12, rrr: false, name: name);
+ }
+
+ void fun1({required String name, required int age, required bool rrr}) {
+   print (name);
+   print (age);
+ }
+ 
+o/p
+====
+Manoj
+12
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10. Function  -</h2>
+<pre>
+void main() {
+   
+String name ='Manoj';
+fun1(rrr: false, name: name);
+ }
+
+ void fun1({required String name,  int? age, required bool rrr}) {
+   print (name);
+   print (age);
+ }
+ 
+o/p
+====
+Manoj
+null
+
+
+int? age ----> if we don't pass any value , then its value will be null. no need to put required keyword.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>11. both positional and named arguments in Fuction -</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(12, rrr: false, name: name);
+ }
+
+ void fun1(int age, {required String name,  required bool rrr}) {
+   print (name);
+   print (age);
+ }
+ 
+ 
+ o/p
+ ====
+Manoj
+12
+
+
+note:
+void fun1(int age, {required String name,  required bool rrr})---> age is positional argument and name and rrr are named argument
+                                                              ---> age is at first position means the value will passed at first position: fun1(12, rrr: false, name: name)
+
+
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>12. Function  -</h2>
+<pre>
+void main() {
+   
+final(age,name) = fun1();
+   print(age);
+   print(name);
+ }
+
+ (int, String) fun1() {
+   return(12, 'Radha');
+ }
+ 
+ o/p
+ ===
+ 12
+Radha
+
+****************************************
+void main() {
+   
+final x = fun1();
+   print(x.name);
+   print(x.age);
+ }
+
+ ({int age, String name}) fun1() {
+   return(age:12, name: 'Radha');
+ }
+
+
+ o/p
+ ===
+Radha
+ 12
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>13. return a function under a function -</h2>
+<pre>
+void main() {
+   
+final x = fun1();
+   print(x());
+   
+ }
+
+ Function fun1() {
+   return() {
+     print('Yoooo');
+   };
+ }
+ 
+ 
+o/p
+====
+Yoooo
+null
+
+</pre>
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>await and async</mark></h2>
+
+<h2>1.  await async in Dart-</h2>
+<pre>
+In Dart, async and await are keywords used in asynchronous programming to work with Futures.
+
+Async :
+==========
+- When an async function is called, a Future is immediately returned.and the body of the function is executed later.
+- - Asynchronous programming is crucial for handling operations that may take some time to complete, 
+   .such as network requests or file I/O, without blocking the execution of the program
+- The async keyword is used to mark a function as asynchronous. This means that the function can perform asynchronous operations, and it may return a Future.
+  The presence of async in a function's signature allows the use of the await keyword inside that function.
+
+
+
+e.g:
+void hello() async { 
+  print('something exciting is going to happen here...'); 
+}
+
+e.g:
+Future&lt;void> fetchData() async {
+  // Asynchronous operations can be performed here
+}
+
+
+Await
+=======
+- Await expressions makes you write the asynchronous code almost as if it were synchronous.
+- Typically, it is an asynchronous computation and is expected to evaluate to a Future.
+- The await expressions evaluate the main function, and then 
+  suspends the currently running function until the result is ready–that is, until the Future has completed. 
+- The result of the await expression is the completion of the Future.
+- Here we use the async modifier on the main method because we are going to run the hello() function asynchronously.
+- Secondly, we place the await modifier directly in front of our asynchronous function. Hence, 
+  this is frequently referred to as the async/await pattern.
+- Just remember, if you are going to use await, make sure that both the caller function 
+  and any functions you call within that function all use the async modifier.
+  
+- The await keyword is used to pause the execution of a function until the awaited operation completes. It can only be used inside a function marked as async.
+- When you await a Future, the surrounding function is paused until the Future completes, and the result is then used.
+e.g:
+void main() async { 
+  await hello(); 
+  print('all done'); 
+}
+
+e.g:
+Future&lt;void> fetchData() async {
+  // Asynchronous operation that returns a Future
+  var result = await someAsyncFunction();
+
+  // Code here will only execute after someAsyncFunction completes
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>2. Example await  and async -</h2>
+<pre>
+Future&lt;void> fetchData() async {
+  print("Start fetching data...");
+
+  // Simulating an asynchronous operation that takes 2 seconds
+  await Future.delayed(Duration(seconds: 2));
+
+  print("Data fetched!");
+}
+
+void main() {
+  print("Before fetchData()");
+
+  fetchData();
+
+  print("After fetchData()");
+}
+
+
+
+o/p
+======
+Before fetchData()
+Start fetching data...
+After fetchData()
+Data fetched! --------------->The output will come after 2sec
+
+
+
+- In this example, fetchData() is an asynchronous function.that simulates a delay of 2 seconds using Future.delayed.
+- The await keyword is used to wait for this delay.
+- The output will demonstrate that the program doesn't block at the await statement, 
+  allowing other operations to proceed while waiting for the asynchronous operation to complete.
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2><mark>Class</mark></h2>
+
+<h2>1. Create a class and call using class object -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  myC.printName();
+
+}
+
+class myClass {
+  void printName() {
+    print("hello world");
+  }
+}
+
+o/p
+====
+hello world
+
+Note: void printName() ---> void is used in function printName, means it can accept to retun any kind of data type.
+      int printName() ----> int is used means it will return only integer type data type.
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Enter a string in class -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  myC.printName("Raman");
+  myC.printName("Seili");
+  
+
+}
+
+class myClass {
+  void printName(String name1) {
+    print(name1);
+  }
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>3. Use int to add numbers using class -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  print(myC.Add(5,6));
+}
+
+class myClass {
+  int Add(int n1, int n2) {
+
+     int sum = n1+n2;
+     return sum;
+  }
+}
+
+o/p
+===
+11
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. Use void to add numbers in class -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  myC.Add(5,6);
+}
+
+class myClass {
+  void Add(int n1, int n2) {
+
+     int sum = n1+n2;
+     print(sum);
+  }
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Create a constructor using class-</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  print(myC.Add(5,6));
+}
+
+class myClass {
+
+  myClass(){
+    print("myClass Object created");
+  }
+
+  int Add(int n1, int n2) {
+
+    int sum = n1+n2;
+    return sum;
+  }
+}
+
+
+o/p
+====
+myClass Object created
+11
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Class -</h2>
+<pre>
+- Class is the blueprint of objects .
+- Objects are the instance of the class.
+- Objects are declared by using new keyword followed by the class name.
+
+class Cls1 {
+ 
+    String name = '';
+    String name2 = " ";
+     
+    void fun1()
+    {
+        print("Welcome to $name");
+    }
+
+     
+     String get fun2 { 
+         return name2; 
+     } 
+  
+    void set fun2(String name2) { 
+         this.name2 = name2; 
+     } 
+  
+     void result(){
+         print(name2);
+    }
+} 
+ 
+void main()
+{
+    // Creating Instance of class
+    Cls1 x = new Cls1();
+ 
+    x.name = 'Radha';
+    x.fun1();
+    x.name2="Hell the world";
+    x.result(); 
+  
+  
+}
+
+
+o/p
+====
+Welcome to Radha
+Hell the world
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. Class -</h2>
+<pre>
+ void main() {
+   
+   print(Cookie().shape);
+   print(Cookie());
+   print('${Cookie().size}cm');
+   Cookie().baking();
+   final x = Cookie().iscooling();
+   print(x);
+
+ }
+
+
+class Cookie {
+  
+  //variables
+  String shape = 'circle';
+  double size = 12.2; //cm
+  
+  //method
+  void baking(){
+    print('baking has started');
+  }
+  
+  bool iscooling() {
+    return false;
+  }
+}
+
+
+o/p
+=====
+circle
+Instance of 'Cookie'
+12.2cm
+baking has started
+false
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. create object for the class  -</h2>
+<pre>
+void main() {
+   
+   
+   Cookie cok = Cookie(); ------------>Type class , assign variable cok to cookie() instance
+   print(cok.shape);
+   print(cok);
+   print('${cok.size}cm');
+   cok.baking();
+   final x = cok.iscooling();
+   print(x);
+
+ }
+
+
+class Cookie {
+  
+  //variables
+  String shape = 'circle';
+  double size = 12.2; //cm
+  
+  //method
+  void baking(){
+    print('baking has started');
+  }
+  
+  bool iscooling() {
+    return false;
+  }
+}
+
+
+o/p
+====
+circle
+Instance of 'Cookie'
+12.2cm
+baking has started
+false
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. class</h2>
+<pre>
+void main() {
+    
+print(Cookie().shape); ------> This cookie object take the property of Cookie class.
+Cookie().shape = 'rectangle'; ---> Another cookie class initiated and the shape proeprty changed. But it can not be used until it stored in a variable.
+print(Cookie().shape);   
+
+ }
+
+class Cookie {
+  String shape = 'circle';
+ }
+ 
+ 
+o/p
+====
+circle
+circle
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. object creation in class -</h2>
+<pre>
+ void main() {
+    
+print(Cookie().shape);
+final cok = Cookie(); ----->object created. here final is given to cookie() class, not to the string shape. so shape value when changed, it accepted.
+cok.shape = 'rectangle';
+print(cok.shape);   
+
+ }
+
+
+class Cookie {
+  String shape = 'circle';
+ }
+ 
+o/p
+====
+circle
+rectangle
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>11. Class Constructor  -</h2>
+<pre>
+- constructor runs, when you create instance of the cookie class Cookei().
+- constructor name should be identical to the class name.
+- It should not return anything. so no return type.
+
+
+ void main() {
+    
+final cok = Cookie('round', 20);
+print(cok.shape);
+print(cok.size);
+  
+
+ }
+
+
+class Cookie {
+  
+  String shape;
+  double size;
+  
+  Cookie(this.shape,this.size){
+    print("Cookie constructor called");
+    baking();
+    
+  }
+  
+  void baking(){
+    print('baking has started');
+  }
+  
+  bool iscooling() {
+    return false;
+  }
+  
+ }
+ 
+ 
+ o/p
+ ===
+Cookie constructor called
+baking has started
+round
+20
+
+
+
+this --> keyword --> It will access to the current class.
+        without "this",  the variables are not considered the variables of Cookie class.
+		
+		
+Note -
+class Cookie {
+  
+  String? shape;
+  double? size;
+  
+  Cookie(shape,size){
+    print("Cookie constructor called");
+    baking();
+    
+  }
+  
+  
+without this o/p will be : -
+
+Cookie constructor called
+baking has started
+null
+null
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>12. Static variable and Static function -</h2>
+
+<pre>
+Creating object is an memory consumption.
+If we do not want to create any object so we can use static variable and static function.
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<pre>
+void main() {
+    
+//create instance
+   final con = Constantt(); 
+   
+   print(con.greet); //object creation , consuming memory
+   print(con.bye);
+
+ }
+
+
+class Constantt {
+  
+String greet = 'Hello, How are u?';
+String bye = 'Bye forever';
+  
+ }
+ 
+o/p
+===
+Hello, How are u?
+Bye forever
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>13. By using Static - -</h2>
+<pre>
+But using Static -
+
+void main() {
+ 
+   print(Constantt.greet); 
+   print(Constantt.bye); 
+   print(Constantt.fun1()); 
+ }
+
+
+class Constantt {
+static String greet = 'Hello, How are u?'; //static variable
+static String bye = 'Bye forever'; //static variable
+static int fun1() {   //static function
+   return 10;   
+ }
+ 
+  }
+ 
+ o/p
+ ====
+Hello, How are u?
+Bye forever
+10
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>14. constructor  -</h2>
+<pre>
+If we use constructor, it will be not called -
+
+void main() {
+   
+   print(Constantt.greet); 
+   print(Constantt.bye); 
+   print(Constantt.fun1()); 
+ }
+
+
+class Constantt {
+Constantt(){
+  print("constructor called");
+}
+static String greet = 'Hello, How are u?'; //static variable
+static String bye = 'Bye forever'; //static variable
+static int fun1() {   //static function
+   return 10;   
+ }
+ 
+  }
+  
+  
+o/p
+====
+Hello, How are u?
+Bye forever
+10
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>15. private variable -</h2>
+<pre>
+
+int _xyz = 25 ----> private variable.
+
+THis variable will be used only inside the file. It can not be used outside of the file.
+
+void main() {
+final cok = Cookie();
+print(cok.sal);
+print(cok._height);
+ }
+
+class Cookie {
+int sal = 200; //public variable
+int _height = 22; //private variable
+ }
+ 
+o/p
+===
+200
+22 ---->o/p came because the variable work inside the file but if we call it outside from anyother file, it won't work
+
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2><mark>Getter and Setter</mark></h2>
+
+<h2>1. Getters and Setters -</h2>
+<pre>
+-  A default getter/setter is associated with every class.
+-  A getter has no parameters and returns a value.
+-  setter has one parameter and does not return a value.
+-  Getter and Setter are basically used to return a value.
+
+Defining a getter -
+Return_type  get identifier  
+{  
+    // statements
+}  
+
+
+
+
+
+Defining a setter -
+set identifier  
+{  
+   // statements
+}
+
+
+Example -
+class Student {  
+   String name;  
+   int age;  
+      
+   String get stud_name {  
+      return name;  
+   }  
+      
+   void set stud_name(String name) {  
+      this.name = name;  
+   }  
+     
+   void set stud_age(int age) {  
+      if(age&lt;= 0) {  
+        print("Age should be greater than 5");  
+      }  else {  
+         this.age = age;  
+      }  
+   }  
+     
+   int get stud_age {  
+      return age;      
+   }  
+}   
+void main() {  
+   Student s1 = new Student();  
+   s1.stud_name = 'Nitin';  
+   s1.stud_age = 0;  
+   print(s1.stud_name);  
+   print(s1.stud_age);  
+}
+
+
+o/p
+=======
+Age should be greater than 5  
+Nitin
+Null 
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2><mark>Inheritance</mark></h2>
+<h2>1. Inheritance  -</h2>
+
+<pre>
+Someclass ---> Vehicle --> Car
+
+Vehicle --> car
+
+Vehicle --> Truck
+
+Inherits the property .
+- In dart multiple inheritance not possible . That is: Vehicle1 --> car, Vehicle2 --> car . It is not possible.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Inheritance  -</h2>
+<pre>
+ void main() {
+   
+//Inheritance
+   Car obj1 = Car();
+   
+   print(obj1.speed);
+   print(obj1.noofwheels);
+   obj1.fun2();
+   print("=====================");
+   Truck obj2 = Truck();
+   print(obj2.noofwheels);
+   print(obj2.speed);
+   print("=====================");
+   Vehicle obj3 = Car(); //object created of type superclass
+   print((obj3 as Car).noofwheels); //car property will not come. so give as.
+   print(obj3.speed);
+   }
+
+ //Superclass
+  class Vehicle { 
+    int speed = 10;
+    bool isEngineWorking = false;
+    bool isLighton = true;
+    
+    void accelerate() {
+      speed += 10;
+    }
+  } 
+
+//Subclass
+class Car extends Vehicle {
+  int noofwheels = 4;
+  void fun2() {
+    print("There is something");
+  }
+}
+
+class Truck extends Vehicle {
+  int noofwheels = 8;
+}
+
+
+
+o/p
+====
+10
+4
+There is something
+=====================
+8
+10
+=====================
+4
+10
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. override in inheritance-</h2>
+<pre>
+- override keyword is used to explicitly indicate that a method in a subclass is intended to override a method with the same signature in its superclass. 
+- This helps in preventing accidental method name conflicts and ensures that you are intentionally overriding a method from the superclass.
+
+
+
+void main() {
+   
+//Inheritance
+   Car obj1 = Car();
+   print(obj1.greet); //Car inherited the value from Someclass
+   print(obj1.speed);
+   obj1.accelerate();
+   print(obj1.speed);
+    }
+
+
+
+class Someclass { 
+  int speed = 15;
+  String greet = 'Hello Dear';
+  void accelerate() {
+      speed = 40;
+    }
+  } 
+
+class Vehicle extends Someclass {
+  int speed = 10;
+    
+  @override  //It is optional. As the name for method "accelerate" is same in Someclass and Vehicle class . The Vehicle method overrides the Someclass
+    void accelerate() {
+      speed = 20;
+    }
+}
+
+
+class Car extends Vehicle {
+  int noofwheels = 4;
+  void fun2() {
+    print("There is something");
+  }
+}
+
+
+
+o/p
+====
+Hello Dear
+10
+20
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Oops</mark></h2>
+<h2>1.Object oriented programmimg  -</h2>
+<pre>
+void main() {  
+final date = DateTime.now();
+   print(date);
+}
+
+o/p
+===
+2023-11-19 11:57:18.241
+
+Note-
+DateTime ---> It is a class
+now() -->It is a method of DateTime function.It is a static function.
+date --> It is an object
+
+There are 4 type object oriented programming concepts .
+1.Polymorphism
+2. Abstraction
+3. Inheritance
+4. Encapsulation
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Polymorphism -</h2>
+<pre>
+Polymorphism - It is the ability of object to take many form.
+             - This thing achieved using inheritance and method overriding.
+			 - I allows object of different class will be treated as object of common superclass.
+			 
+class Animal{
+  void sound(){
+    print("Animal making sound");
+  } 
+}
+  
+  
+class Cat extends Animal{
+  @override
+    void sound(){
+    print("Cat making sound");
+  }
+}
+
+class Dog extends Animal{
+  @override
+    void sound(){
+    print("Dog making sound");
+  }
+}
+
+void main() {
+  Animal obj1 = Cat();
+  obj1.sound();
+  
+  obj1 = Dog();
+  obj1.sound();
+  
+  Cat obj2 = Cat();
+  obj2.sound();
+  
+  Animal obj3 = Animal();
+  obj3.sound();
+  
+}
+
+o/p
+====
+Cat making sound
+Dog making sound
+Cat making sound
+Animal making sound
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Abstract class</mark></h2>
+<h2>3. Abstract class -</h2>
+<pre>
+Abstraction - It is hiding of internal details and complexity of object and only exposing the essential features and functionalities.
+
+abstract class Animal{
+  void sound();  ---------------------->Hiding internal details
+}
+  
+  
+class Cat extends Animal{
+  
+  @override
+    void sound(){
+    print("Cat making sound");
+  }
+}
+
+class Dog extends Animal{
+  
+  @override
+    void sound(){
+    print("Dog making sound");
+  }
+}
+
+void main() {
+  Animal obj1 = Cat();
+  obj1.sound();
+  
+  obj1 = Dog();
+  obj1.sound();
+  
+  Cat obj2 = Cat();
+  obj2.sound();
+  
+  Animal obj3 = Animal(); ----------->error . Abstract class can not be instantiated.
+  obj3.sound();
+  
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Mixins</mark></h2>
+
+<h2>1.  mixins -</h2>
+<pre>
+It is kind of a class but it does not have parent child relationship.
+- It is like having a bunch of code and want to be reused in a class. 
+
+mixin jump{
+    int x = 10;
+ }
+  
+
+
+  
+class Animal with jump {     --------->Here Animal class is not a superclass, it is just using the property of jump.
+  void fun1() {
+    print(x);
+  }
+}
+
+void main() {
+
+  
+  final obj1 = Animal();
+  obj1.fun1();
+}
+
+
+o/p
+=====
+10
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.  mixins -</h2>
+<pre>
+mixin jump{
+    int x = 10;
+ }
+  
+
+mixin scream{
+    String y = "kkk";
+ }
+
+
+  
+class Animal1 with jump, scream {  ---------->multiple mixin can be used.
+  void fun1() {
+    print(x);
+    print(y);
+  }
+}
+
+void main() {
+
+ 
+  final obj2 = Animal1();
+  obj2.fun1();
+}
+
+
+o/p
+=====
+10
+kkk
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Generic</mark></h2>
+
+<h2>1. Use of generic  -</h2>
+<pre>
+class Student &lt;String>{
+  final String name;
+  final String grade;
+  
+  Student(this.name, this.grade); //constructor
+}
+
+void main() {
+
+ 
+  final obj2 = Student('ram', 'A');
+  print(obj2.name);
+}
+
+
+
+&lt;String> --> generic
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Use of generic  -</h2>
+<pre>
+class Student &lt;T>{
+  final T name;
+  final T grade;
+  
+  Student(this.name, this.grade); //constructor
+}
+
+void main() {
+
+ 
+  final obj2 = Student('ram', 10);
+  print(obj2.name);
+  print(obj2.grade);
+}
+
+
+&lt;T> ---> generic --> if we give any name it will consider the type as per the value inserted.
+name considered as String type due to 'ram' in quotation.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2>3. List of type Student class  -</h2>
+<pre>
+class Student <T>{
+  final T name;
+  final T grade;
+  
+  Student(this.name, this.grade); //constructor
+}
+
+void main() {
+
+  List<Student> lst1 = [
+    Student('Raam', 12),
+    Student('Mira', 13)
+  ];
+  
+ 
+  print(lst1[0]);
+  print(lst1[0].name);
+  final obj3 = lst1[1];
+  print(obj3.grade);
+  
+}
+
+
+o/p
+====
+Instance of 'Student<dynamic>'
+Raam
+13
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Exception Handling</mark></h2>
+
+<h2>1. Example without Exception -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  print(10~/0);
+  print('Rama');
+}
+
+
+o/p
+====
+3.3333333333333335
+3
+Infinity
+Uncaught Error: Unsupported operation: Result of truncating division is Infinity: 10 ~/ 0
+
+
+Note-
+Here 1st, 2nd, 33rd print printed.
+4th print having error. So it stopped. and 5th print "Rama" even though it is correct it did not print .
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Example with Exception -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  try {
+   print(10~/0); 
+  }
+  catch(e) {
+    print("Some error");
+  }
+  
+  print('Rama');
+}
+
+
+o/p
+=====
+3.3333333333333335
+3
+Infinity
+Some error
+Rama  ----->printed because 4th print handled by exception.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3.print(e) in catch block  -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  try {
+   print(10~/0); 
+  }
+  catch(e) {
+    print(e);        ------------>print the same default value provided by dart.
+  }
+  
+  print('Rama');   ----> This will also print
+}
+
+
+o/p
+=====
+3.3333333333333335
+3
+Infinity
+Unsupported operation: Result of truncating division is Infinity: 10 ~/ 0
+Rama
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. finally  -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  try {
+   print(10~/0); 
+  }
+  catch(e) {
+    print("error");
+  }
+  finally {
+    print("I will always executed");
+  }
+  
+  print('Rama');
+}
+
+
+
+o/p
+====
+3.3333333333333335
+3
+Infinity
+error
+I will always executed
+Rama
+
+
+
+
+Note -
+whether try and catch block executed or not , finally block always b printed.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Future</mark></h2>
+<h2>1.  -</h2>
+<pre>
+- Future represents a value, or error, that will be available at some time in the future.
+- Dart uses futures to represent the result of an asynchronous operation.
+- It's a fundamental concept in asynchronous programming, allowing you to work with computations that may not complete immediately.
+- An asynchronous operation is one that doesn't block the execution of the program while waiting for the result. Instead, it allows the program to continue executing other tasks until the result is ready.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.1 Example of Future -</h2>
+<pre>
+import 'package:http/http.dart' as http;
+
+void main() {
+  var response = http.get(Uri.parse('https://coffee.alexflipnote.dev/w_cEVnCuTB8_coffee.jpg'));
+print(response);
+}
+
+o/p
+====
+Instance of 'Future&lt;Response&gt;'
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.2.   Example of Fututre   -</h2>
+<pre>
+
+import 'package:http/http.dart' as http;
+
+void main() {
+  var response = http.get(Uri.parse('https://coffee.alexflipnote.dev/w_cEVnCuTB8_coffee.jpg'));
+
+  //The below is future
+  response.then((value) {
+    print(value);
+	print("Things matter");
+  });
+
+  print(response);
+}
+
+
+o/p
+====
+Instance of 'Future&lt;Response&gt;'
+Instance of 'Response' ----> This output will show little late. 
+Things matter ------------>This output will show little late. 
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h1>Acadamy mind</h1>
+
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  -</h2>
+<pre>
+
+</pre>
+
+`
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

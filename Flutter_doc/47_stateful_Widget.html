@@ -1,0 +1,638 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Stateful Widget - </h1>
+
+
+<h2>1.main.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/Activity/home.dart';
+import 'package:mousam/Activity/loading.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    //home: Home(), -->not required as default route mentioned
+    routes: {
+      "/" : (context) => Loading(),// "/" -default route
+      "/home" : (context) => Home(), //context - means current page
+    },
+  ));
+}
+</pre>
+
+<h2>2.loading.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/home");
+                },
+                icon: Icon(
+                    Icons.add_to_home_screen), 
+                label: Text("Go to home")),
+          ],
+        ),
+      ),
+      
+    );
+  }
+}
+</pre>
+
+<h2>3.home.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  <mark>@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("This is a init state");
+  }</mark>
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       title: Text("Home Activity"),
+     ),
+    );
+  }
+}
+
+
+o/p
+whenever you press go home button, the print statement will execute "This is a init state".
+
+
+</pre>
+
+<h2>4.home.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  <mark>int counter = 1;</mark>
+  
+  <mark>@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("This is a init state");
+  }</mark>
+
+ <mark> @override
+  void setState(VoidCallback fn) { ---------------->It refresh the build method, but the whole widget not rebuild,so init method called once.
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }</mark>
+
+
+
+  @override
+  Widget build(BuildContext context) { -------> whenever button pressed, setstate function called and it rebuild/refresh the build method .
+    return Scaffold(
+     appBar: AppBar(
+       title: Text("Home Activity"),
+     ),
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: (){
+                setState(() {
+                  <mark>counter += 1;</mark>
+                });
+              },
+              <mark>child: Text("$counter"),</mark>
+          )
+                  ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>5.home.dart - dispose  -</h2>
+<pre>
+dispose method automatically called but here we overwrite the dispose method.
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  int counter = 1;
+  
+ <mark> @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("This is a init state");</mark>------->whenever we press go home button , this will print
+  }
+
+ <mark> @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");</mark>------------>whenever we press the elevate button, it will print.
+  }
+
+  <mark>@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");</mark>----------->whenever we click the back button, it will print.It will destroy the build method
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       title: Text("Home Activity"),
+     ),
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: (){
+                setState(() {
+                  counter += 1;
+                });
+              },
+              child: Text("$counter"),
+          )
+                  ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>6.home.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State&lt;Home> createState() => _HomeState();
+}
+
+class _HomeState extends State&lt;Home> {
+<mark>
+void timer(){
+  print("Alarm is ringing");
+}</mark>
+
+
+  int counter = 1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    <mark>timer();</mark>
+    print("This is a init state");
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       title: Text("Home Activity"),
+     ),
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: (){
+                setState(() {
+                  counter += 1;
+                });
+              },
+              child: Text("$counter"),
+          )
+                  ],
+      ),
+    );
+  }
+}
+
+
+o/p
+When you click the button, immediately result will show -
+Alarm is ringing
+This is a init state
+
+
+</pre>
+
+<h2>7.home.dart - Future delayed -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  <mark>void timer() {
+    Future.delayed(const Duration(seconds: 7), () {---------->It means other things will execute, does not wait for it to complete..
+      print("7 seconds have passed");
+      print("Alarm is ringing");
+    });
+    print("You can do other stuff");
+  }</mark>
+
+
+  int counter = 1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    <mark>timer();</mark>
+
+    print("This is a init state");
+
+  }
+
+
+
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       title: Text("Home Activity"),
+     ),
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: (){
+                setState(() {
+                  counter += 1;
+                });
+              },
+              child: Text("$counter"),
+          )
+                  ],
+      ),
+    );
+  }
+}
+
+
+
+o/p
+====
+When you press the go home button - 
+You can do other stuff
+This is a init state
+7 seconds have passed------------->After 7 second it will execute
+Alarm is ringing
+
+
+</pre>
+
+<h2>8.Asynchronous Function  -</h2>
+<pre>
+- It is used to perform heavy operations such as downloading images, getting data from the API or database etc.
+
+- An asynchronous function will await the execution of a promise, and an asynchronous function will always return a promise.
+
+- The promise returned by an asynchronous function will resolve with whatever value is returned by the function.
+
+Benefit -
+- we can perform heavy operations .
+- UI experience become smoother.
+- App will not crash or freeze during the execution of heavy operations.
+- Make code more usable and understandable.
+
+</pre>
+
+<h2>9.home.dart - without Async Function -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  var username;
+
+  <mark>void getData() {</mark>
+    Future.delayed( Duration(seconds: 7), () {
+      username = "Dhruv";------------->After 7 second, username is assigned
+      print("7 seconds have passed");
+      });
+}
+
+  <mark>void ShowData(){</mark>----------->showdata function is depend on getData function, Once username initialized,then it print here.
+    print("$username");
+  }
+
+
+  int counter = 1;
+  @override
+  void initState() {
+    super.initState();
+    <mark>getData();</mark>
+    <mark>ShowData();</mark>
+    print("This is a init state");
+
+  }
+
+
+
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Activity"),
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: (){
+              setState(() {
+                counter += 1;
+              });
+            },
+            child: Text("$counter"),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+o/p
+=====
+When you click the go home button - 
+my user is: null --------------------->came from showData()
+This is a init state
+7 seconds have passed
+
+
+Once you clicked the go home button, init function will execute, The initstate(), will try to execute first the getData(), but getData()
+uses future.delayed, so it will skip it for 7 second, and mean while it will go for the next execution - showData().
+In showData(), username value is not assigned yet because, it depends on showData(), so it will display null. - my user is: null.
+After that next execution will be run - print("This is a init state");. After  7 second passed, getData() will execute - assign value to 
+username variable and print - "7 seconds have passed".
+
+<mark>  Note    </mark>
+what happens -
+In Async - Functions start but return the value some delayed.
+In Future.delayed - Function execution start after some delayed.
+
+</pre>
+
+<h2>10.home.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  var username;
+
+  <mark>Future&lt;void> getData() async {
+     await Future.delayed( Duration(seconds: 7), () {</mark>
+      username = "Dhruv";
+      print("7 seconds have passed");
+      });
+
+  }
+
+  <mark>void ShowData() async{
+     await getData();</mark>----------------->This will wait till getdata execution complete
+    print("my user is: $username");
+  }
+
+
+  int counter = 1;
+  
+  @override
+  void initState() {
+    super.initState();
+    <mark>ShowData();</mark>--------->showdata function will execute but not return any value, because it uses async.
+    print("This is a init state");
+
+  }
+
+
+
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Activity"),
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: (){
+              setState(() {
+                counter += 1;
+              });
+            },
+            child: Text("$counter"),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+o/p
+When clicked on gotohome button, init state function executed.
+This is a init state
+7 seconds have passed
+my user is: Dhruv
+
+When clicked on gotohome button, init state function executed.
+1st : It will try to execute - ShowData(), but it contains async, so it will proceed for next executin "print("This is a init state"), 
+      meanwhile in background the ShowData() is executing but not return any value. 
+
+2nd: 
+
+
+
+
+</pre>
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

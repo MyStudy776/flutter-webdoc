@@ -1,0 +1,486 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Doc Expiry App -</h1>
+
+<h2>1. Logic</h2>
+<pre>......</pre>
+
+<h2>2. create flutter project</h2>
+<pre>
+Location - C:\PHILIP\APPDEV\development\flutter
+project name - docexpiry1
+</pre>
+
+
+<h2>4. Files needed for this project</h2>
+<pre>
+ 1. main.dart
+ 2. utils.dart
+ 3. model.dart
+ 4. dbhelper.dart
+ 5. docdetail.dart
+ 6. doclist.dart
+</pre>
+
+<h2>5. main.dart</h2>
+<pre>
+lib/main.dart -
+
+import 'package:flutter/material.dart';
+import './ui/doclist.dart';
+
+void main() => runApp(DocExpiryApp());
+
+class DocExpiryApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'DocExpire',
+    theme: new ThemeData(
+      primarySwatch: Colors.indigo,
+    ),
+    home: DocList(),
+  );
+ }
+}
+</pre>
+
+<h2>5.1. main.dart Explanation </h2>
+<pre>
+1. import 'package:flutter/material.dart'; --> imports the Material Design library
+                                        -->It is used to create our app’s widgets (UI components)
+2. import './ui/doclist.dart'; --> created one dart file manually and imported in main.dart.
+
+3. void main() {
+     runApp(DocExpiryApp()); ------> Put your class name inside runApp
+   }
+
+4. class DocExpiryApp extends StatelessWidget{....}
+             --->The new class inherits the features of statelesswidget class.
+			 --->statelesswidget -  A widget that does not require mutable state
+			 --->Here the DocExpiryApp class is overriding the Build method inherited from the StatelessWidget class, and return a Widget object to its caller, and thus building the UI element.
+			 --->The Build method creates a MaterialApp widget, the app’s main component.
+
+
+5. home: DocList() ---> The home property is assigned to the result that will be returned from the DocList method.
+                   ---> The DocList method is imported from doclist.dart 
+				   ---> The Doclist method will return the list of documents to be displayed.
+
+
+6. debugShowCheckedModeBanner: false --> It will remove the banner which shows at the top right corner  .
+
+7. title: 'DocExpire' --->Title of the App.
+</pre>
+
+<h2>6. utils.dart </h2>
+<pre style=" height: 400px; overflow: scroll;">
+lib/util/utils.dart -
+
+import 'package:intl/intl.dart';
+
+class Val {
+// Validations
+  static String ValidateTitle(String val) {
+    return (val != null && val != "") ? null : "Title cannot be empty";
+  }
+
+  static String GetExpiryStr(String expires) {
+    var e = DateUtils.convertToDate(expires);
+    var td = new DateTime.now();
+    Duration dif = e.difference(td);
+    int dd = dif.inDays + 1;
+    return (dd > 0) ? dd.toString() : "0";
+  }
+
+  static bool StrToBool(String str) {
+    return (int.parse(str) > 0) ? true : false;
+  }
+
+  static bool IntToBool(int val) {
+    return (val > 0) ? true : false;
+  }
+
+  static String BoolToStr(bool val) {
+    return (val == true) ? "1" : "0";
+  }
+
+  static int BoolToInt(bool val) {
+    return (val == true) ? 1 : 0;
+  }
+}
+
+class DateUtils {
+  static DateTime convertToDate(String input) {
+    try {
+      var d = new DateFormat("yyyy-MM-dd").parseStrict(input);
+      return d;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static String convertToDateFull(String input) {
+    try {
+      var d = new DateFormat("yyyy-MM-dd").parseStrict(input);
+      var formatter = new DateFormat('dd MMM yyyy');
+      return formatter.format(d);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static String convertToDateFullDt(DateTime input) {
+    try {
+      var formatter = new DateFormat('dd MMM yyyy');
+      return formatter.format(input);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static bool isDate(String dt) {
+    try {
+      var d = new DateFormat("yyyy-MM-dd").parseStrict(dt);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  static bool isValidDate(String dt) {
+    if (dt.isEmpty || !dt.contains("-") || dt.length < 10) return false;
+    List<String> dtItems = dt.split("-");
+    var d = DateTime(
+        int.parse(dtItems[0]), int.parse(dtItems[1]), int.parse(dtItems[2]));
+    return d != null && isDate(dt) && d.isAfter(new DateTime.now());
+  }
+
+// String functions
+  static String daysAheadAsStr(int daysAhead) {
+    var now = new DateTime.now();
+    DateTime ft = now.add(new Duration(days: daysAhead));
+    return ftDateAsStr(ft);
+  }
+
+  static String ftDateAsStr(DateTime ft) {
+    return ft.year.toString() +
+        "-" +
+        ft.month.toString().padLeft(2, "0") +
+        "-" +
+        ft.day.toString().padLeft(2, "0");
+  }
+
+  static String TrimDate(String dt) {
+    if (dt.contains(" ")) {
+      List<String> p = dt.split(" ");
+      return p[0];
+    } else
+      return dt;
+  }
+}
+
+</pre>
+
+<h2>6.1. utils.dart explanation - </h2>
+<pre>
+There are 2 classes.
+1. val
+2. DateUtils
+
+Methods -
+1.  static String ValidateTitle(String val) {
+    return (val != null && val != "") ? null : "Title cannot be empty";
+  }
+  
+  val -->The value of val parameter should not be empty/null.
+      -->It represents the name of the document.
+	  -->Its value should be in string
+
+
+2. GetExpiryStr --> first instruction converts the document’s expiry date,
+represented by the expires variable, into a DateTime object by invoking the convertToDate
+method from the DateUtils class.
+What follows is that the current DateTime is obtained by calling the now method. Then, the
+difference between the document’s expiry date and the current date is calculated by calling the
+difference method.
+If the result of difference is positive, then that value is converted to a String by calling the
+toString method, and then returned. If the value is negative or zero, then “0” is returned as a
+String object. 
+</pre>
+
+<h2>7. model.dart </h2>
+<pre style=" height: 400px; overflow: scroll;">
+lib/model.dart
+
+import '../util/utils.dart';
+
+class Doc {
+  int id;
+  String title;
+  String expiration;
+  int fqYear;
+  int fqHalfYear;
+  int fqQuarter;
+  int fqMonth;
+
+  Doc(this.title, this.expiration, this.fqYear, this.fqHalfYear, this.fqQuarter,
+      this.fqMonth);
+
+  Doc.withId(this.id, this.title, this.expiration, this.fqYear, this.fqHalfYear,
+      this.fqQuarter, this.fqMonth);
+
+  Map<String, dynamic> toMap() {
+    var map = Map<String, dynamic>();
+    map["title"] = this.title;
+    map["expiration"] = this.expiration;
+    map["fqYear"] = this.fqYear;
+    map["fqHalfYear"] = this.fqHalfYear;
+    map["fqQuarter"] = this.fqQuarter;
+    map["fqMonth"] = this.fqMonth;
+    if (id != null) {
+      map["id"] = id;
+    }
+    return map;
+  }
+
+  Doc.fromOject(dynamic o) {
+    this.id = o["id"];
+    this.title = o["title"];
+    this.expiration = DateUtils.TrimDate(o["expiration"]);
+    this.fqYear = o["fqYear"];
+    this.fqHalfYear = o["fqHalfYear"];
+    this.fqQuarter = o["fqQuarter"];
+    this.fqMonth = o["fqMonth"];
+  }
+}
+
+</pre>
+
+<h2>7.1. models.dart explanation </h2>
+<pre>
+model.dart -It will be used for storing and retrieving document data.
+
+Doc class --> represents the document that will be written and read to the SQLite embedded database we will be using.
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+<h2>5. </h2>
+<pre>
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Code -
+
+
+
+
+
+
+Sub folder under lib folder -
+1. model  folder ---> which stores the files related to the storing information on the SQLite database.
+2. ui folder     ---> which stores the files related to the logic related to the app’s UI and navigation.
+3. util folder   ---> which stores the files related to which contain utility, general purpose code, and database helper classes and methods.
+4. 
+
+7. 
+
+
+
+
+
+Code -2
+
+lib-->utils --> utils.dart
+ 
+import 'package:intl/intl.dart';
+
+class Val {
+  // Validations
+  static String ValidateTitle(String val) {
+    return (val != null && val != "") ? null : "Title cannot be empty";
+  }
+  
+  static String GetExpiryStr(String expires) {
+    var e = DateUtils.convertToDate(expires);
+    var td = new DateTime.now();
+    Duration dif = e.difference(td);
+    int dd = dif.inDays + 1;
+    return (dd > 0) ? dd.toString() : "0";
+   }
+   
+   static bool StrToBool(String str) {
+     return (int.parse(str) > 0) ? true : false;
+   }
+   
+   static bool IntToBool(int val) {
+   return (val > 0) ? true : false;
+   }
+   
+   static String BoolToStr(bool val) {
+   return (val == true) ? "1" : "0";
+   }
+   
+   static int BoolToInt(bool val) {
+   return (val == true) ? 1 : 0;
+   }
+  }
+  
+class DateUtils {
+  static DateTime convertToDate(String input) {
+    try
+     {
+      var d = new DateFormat("yyyy-MM-dd").parseStrict(input);
+      return d;
+     } catch (e) {
+       return null;
+     }
+   }
+   
+   static String convertToDateFull(String input) {
+     try
+      {
+       var d = new DateFormat("yyyy-MM-dd").parseStrict(input);
+       var formatter = new DateFormat('dd MMM yyyy');
+       return formatter.format(d);
+      } catch (e) {
+         return null;
+     }
+   }
+   
+   static String convertToDateFullDt(DateTime input) {
+     try
+       {
+        var formatter = new DateFormat('dd MMM yyyy');
+        return formatter.format(input);
+        } catch (e) {
+          return null;
+         }
+   }
+   
+   static bool isDate(String dt) {
+     try
+      {
+       var d = new DateFormat("yyyy-MM-dd").parseStrict(dt);
+       return true;
+      } catch (e) {
+        return false;
+      }
+    }
+	
+   static bool isValidDate(String dt) {
+     if (dt.isEmpty || !dt.contains("-") || dt.length < 10) return false;
+      List<String> dtItems = dt.split("-");
+      var d = DateTime(int.parse(dtItems[0]),
+      int.parse(dtItems[1]), int.parse(dtItems[2]));
+      return d != null && isDate(dt) &&
+      d.isAfter(new DateTime.now());
+      }
+    // String functions
+    static String daysAheadAsStr(int daysAhead) {
+    var now = new DateTime.now();
+    DateTime ft = now.add(new Duration(days: daysAhead));
+    return ftDateAsStr(ft);
+    }
+    static String ftDateAsStr(DateTime ft) {
+    return ft.year.toString() + "-" +
+    ft.month.toString().padLeft(2, "0") + "-" +
+    ft.day.toString().padLeft(2, "0");
+    }
+    static String TrimDate(String dt) {
+    if (dt.contains(" ")) {
+    List<String> p = dt.split(" ");
+    return p[0];
+    }
+    else
+    return dt;
+    }
+    }

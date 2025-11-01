@@ -1,0 +1,642 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Open AI App -</h1>
+
+
+<h2>1. main.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:friday_virtual_assistanr/screens/home_screen.dart';
+
+void main() {
+  <mark>WidgetsFlutterBinding.ensureInitialized();</mark>
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Open AI chatgpt Dalle',
+      theme: ThemeData(
+         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false,
+      <mark>home: HomeScreen(),</mark>
+    );
+  }
+}
+
+</pre>
+
+<h2>2. lib/screens/home_screen.dart- Decorate  Appbar</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State&lt;HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State&lt;HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      appBar: AppBar(
+        <mark>flexibleSpace: Container(</mark>---------------------->decorate Appbar
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.purpleAccent.shade100,
+                Colors.deepPurple,
+              ]
+            )
+          ),
+        ),
+       <mark> title: Image.asset("images/logo.png", width: 140,height: 200,),</mark>----------->Add a logo as title
+        titleSpacing: 20,
+        elevation: 0,
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>3. lib/screens/home_screen.dart - define body</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State&lt;HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State&lt;HomeScreen> {
+  <mark>TextEditingController UserInputTextEditingController = TextEditingController();</mark>
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.purpleAccent.shade100,
+                Colors.deepPurple,
+              ]
+            )
+          ),
+        ),
+        title: Image.asset("images/logo.png", width: 140,height: 200,),
+        titleSpacing: 20,
+        elevation: 0,
+      ),
+      <mark>body: SingleChildScrollView(</mark>
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Center(
+                <mark>child: InkWell(</mark>-------------->make the image clickable
+                  onTap: () {},
+                    child: Image.asset("images/assistant_icon.png", width: 300, height: 300,)),
+              ),
+              <mark>SizedBox(height: 20,),</mark>
+              <mark>Row(</mark>
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      <mark>child: TextField(</mark>
+                        <mark>controller: UserInputTextEditingController,</mark>
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          <mark>labelText: "How can I help you?"</mark>
+                    
+                        ),
+
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                 <mark> InkWell(</mark>
+                    onTap: (){
+                      print("Send user input");
+                    },
+                   <mark> child: AnimatedContainer(</mark>
+                      padding: const EdgeInsets.all(15),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      duration: const Duration(milliseconds: 1000),
+                      curve: Curves.bounceInOut,
+
+                      <mark>child: Icon(Icons.send,</mark>
+                      color: Colors.white,
+                      size: 30,),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>4. lib/screens/home_screen.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State&lt;HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State&lt;HomeScreen> {
+  TextEditingController UserInputTextEditingController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      <mark>floatingActionButton: FloatingActionButton(</mark>--->A button at the bottom right
+        backgroundColor: Colors.white,
+        onPressed: (){},
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          <mark>child: Image.asset("images/sound.png"),</mark>
+        ),
+      ),
+
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.purpleAccent.shade100,
+                Colors.deepPurple,
+              ]
+            )
+          ),
+        ),
+        title: Image.asset("images/logo.png", width: 140,height: 200,),
+        titleSpacing: 20,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Center(
+                child: InkWell(
+                  onTap: () {},
+                    child: Image.asset("images/assistant_icon.png", width: 300, height: 300,)),
+              ),
+              SizedBox(height: 20,),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      child: TextField(
+                        controller: UserInputTextEditingController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "How can I help you?"
+                    
+                        ),
+
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                  InkWell(
+                    onTap: (){
+                      print("Send user input");
+                    },
+                    child: AnimatedContainer(
+                      padding: const EdgeInsets.all(15),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      duration: const Duration(milliseconds: 1000),
+                      curve: Curves.bounceInOut,
+
+                      child: Icon(Icons.send,
+                      color: Colors.white,
+                      size: 30,),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>5. - Add action in the Appbar</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State&lt;HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State&lt;HomeScreen> {
+  TextEditingController UserInputTextEditingController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: (){},
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Image.asset("images/sound.png"),
+        ),
+      ),
+
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.purpleAccent.shade100,
+                Colors.deepPurple,
+              ]
+            )
+          ),
+        ),
+        title: Image.asset("images/logo.png", width: 140,height: 200,),
+        titleSpacing: 20,
+        elevation: 0,
+        <mark>actions: [</mark>
+          Padding(
+            padding: const EdgeInsets.only(right: 4, top: 4),
+            child: InkWell(
+              onTap: (){},
+              <mark>child: const Icon(Icons.chat, size: 40,color: Colors.white,),</mark>
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8, top: 4),
+            child: InkWell(
+              onTap: (){},
+              <mark>child: const Icon(Icons.image, size: 40,color: Colors.white,),</mark>
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Center(
+                child: InkWell(
+                  onTap: () {},
+                    child: Image.asset("images/assistant_icon.png", width: 300, height: 300,)),
+              ),
+              SizedBox(height: 20,),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      child: TextField(
+                        controller: UserInputTextEditingController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "How can I help you?"
+                    
+                        ),
+
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                  InkWell(
+                    onTap: (){
+                      print("Send user input");
+                    },
+                    child: AnimatedContainer(
+                      padding: const EdgeInsets.all(15),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      duration: const Duration(milliseconds: 1000),
+                      curve: Curves.bounceInOut,
+
+                      child: Icon(Icons.send,
+                      color: Colors.white,
+                      size: 30,),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>6. understand speech_to_text package -</h2>
+<pre>
+speech_to_text package in Flutter allows you to integrate speech recognition functionality into your applications.
+ This package provides an easy-to-use API for listening to user speech, converting it to text, and handling the recognition results.
+ 
+1st import the package :
+ - import 'package:speech_to_text/speech_to_text.dart';
+ - import 'package:speech_to_text/speech_recognition_result.dart';
+
+2nd - Initialize an instance of SpeechToText class to access speech recognition functionalities.
+    - final SpeechToText speech = SpeechToText();  [object creation]
+	- call it on initState() 
+
+3rd - Before starting to listen for speech input, it's important to check if speech recognition is available on the user's device. 
+    - You can use the initialize() method provided by SpeechToText for this purpose:
+	   void initializeSpeechToText() async {
+          bool available = await speech.initialize();
+          if (available) {
+            // Speech recognition is available, you can proceed
+          } else {
+            // Speech recognition is not available on this device
+          }
+        }
+
+
+4th - Once you've initialized the SpeechToText instance and verified availability, you can start listening for speech input. 
+    - void startListening() async {
+       await speech.listen(
+         onResult: (SpeechRecognitionResult result) {
+           if (result.finalResult) {
+             // Speech recognition is finalized, handle the recognized text
+             String recognizedText = result.recognizedWords;
+             print('Recognized Text: $recognizedText');
+           }
+         },
+       );
+     }
+
+- onResult - callback function  that gets called whenever there is a speech recognition result.
+  result   -  parameter contains information about the recognized words.
+
+5th - You can stop listening for speech input using the stop() method. 
+    - For example, you might stop listening when a certain condition is met in your app:
+	
+	void stopListening() {
+      speech.stop();
+      }
+
+
+
+6th.  override the dispose() method in your widget to release the SpeechToText instance:
+
+       @override
+        void dispose() {
+          super.dispose();
+          speech.stop();
+          speech.cancel();
+        }	 
+	 
+</pre>
+
+<h2>7. -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State&lt;HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State&lt;HomeScreen> {
+  <mark>TextEditingController userInputTextEditingController = TextEditingController();</mark>
+  <mark>final SpeechToText speechtotextInstance1 = SpeechToText();
+  String recordedAudioString = "";</mark>
+
+ <mark> void initializeSpeechtoText1() async{</mark>
+    await speechtotextInstance1.initialize();
+    setState(() {
+
+    });
+  }
+
+
+
+  <mark>void startListeningnow1() async {</mark>
+    
+    FocusScope.of(context).unfocus();
+    await speechtotextInstance1.listen(onResult: onSpeechToTextresult1);
+    setState(() {});
+
+
+  }
+
+ <mark> void onSpeechToTextResult1(SpeechRecognitionResult recognitionResult) {</mark>
+    recordedAudioString = recognitionResult.recognizedWords;
+    print("recorededAudioString");
+  }
+
+ <mark>void stopListening() async { </mark>
+    await speechtotextInstance1.stop();
+    setState(() {});
+  }
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    <mark>initializeSpeechtoText1();</mark>
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: (){},
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Image.asset("images/sound.png"),
+        ),
+      ),
+
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.purpleAccent.shade100,
+                Colors.deepPurple,
+              ]
+            )
+          ),
+        ),
+        title: Image.asset("images/logo.png", width: 140,height: 200,),
+        titleSpacing: 20,
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 4, top: 4),
+            child: InkWell(
+              onTap: (){},
+              child: const Icon(Icons.chat, size: 40,color: Colors.white,),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 4, top: 4),
+            child: InkWell(
+              onTap: (){},
+              child: const Icon(Icons.image, size: 40,color: Colors.white,),
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Center(
+                child: InkWell(
+                  onTap: () {},
+                    child: Image.asset("images/assistant_icon.png", width: 300, height: 300,)),
+              ),
+              SizedBox(height: 20,),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      child: TextField(
+                        controller: userInputTextEditingController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "How can I help you?"
+                    
+                        ),
+
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                  InkWell(
+                    onTap: (){
+                      print("Send user input");
+                    },
+                    child: AnimatedContainer(
+                      padding: const EdgeInsets.all(15),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      duration: const Duration(milliseconds: 1000),
+                      curve: Curves.bounceInOut,
+
+                      child: Icon(Icons.send,
+                      color: Colors.white,
+                      size: 30,),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>8. Give permission-</h2>
+<pre>
+read readme of the package -
+
+root>/android/app/src/main/AndroidManifest.xml
+
+Add -
+   <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+	
+&lt;queries>
+    &lt;intent>
+        &lt;action android:name="android.speech.RecognitionService" />
+    &lt;/intent>
+&lt;/queries>
+
+
+
+add app--build.gradle :
+minSdkVersion 21
+</pre>
+
+<h2>1. -</h2>
+<pre>
+
+</pre>
+
+
+<h2>1. -</h2>
+<pre>
+
+</pre>
+
+</body>
+
+</html>

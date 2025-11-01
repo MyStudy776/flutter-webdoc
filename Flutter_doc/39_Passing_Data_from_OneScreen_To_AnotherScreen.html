@@ -1,0 +1,267 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Passing data from one screen to another screen -</h1>
+
+
+<h2>1. main.dart  -</h2>
+<pre>
+import 'package:disk1/splash_screen.dart';
+import 'package:flutter/material.dart';
+
+import 'my_profile_screen.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+
+  <mark>var nameController = TextEditingController();</mark>
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Classico'),
+      ),
+      body: Center(
+        child: Container(
+          width: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Hello World',
+              style: TextStyle(fontSize: 25),),
+              SizedBox(height: 11,),
+              TextField(
+                <mark>controller: nameController,</mark>
+              ),
+			  
+			  SizedBox(height: 11,),
+
+              ElevatedButton(onPressed: () {
+                Navigator.push(
+                    context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileScreen(),),------->When we click the button the profilescreen page will display
+                );
+              }, child: Text('My profile'))
+            ],
+          ),
+        ),
+      ),
+      backgroundColor: Colors.yellow,
+    );
+  }
+
+}
+
+</pre>
+
+<h2>2. my_profile_screen.dart -  Inside lib folder create one dart file -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+      title: Text("My profile"),
+    ),
+    body: Container(
+      color: Colors.blueGrey.shade200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("welcome", style: TextStyle(fontSize: 34, color: Colors.green),),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);--->when button is pressed, it will navigate to the previous screen, from where it generated.
+              },
+              child: Text("back"),
+            ),
+          ],
+        ),
+      ),
+    ),);
+  }
+}
+
+
+
+Navigator.pop is used to remove the current route or screen from the navigation stack and return to the previous screen. This method is typically used when you want to navigate back to the previous screen in your app.
+</pre>
+
+<h1>Passing Data from one screen to another screen<h1>
+<h2>3. my_profile_screen.dart </h3>
+<pre>
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatelessWidget {
+  <mark>var nameFromHome ;</mark>
+
+  <mark>ProfileScreen(this.nameFromHome);</mark>--------->create one constructor, constructor always with the same name as class.
+  //const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+      title: Text("My profile"),
+    ),
+    body: Container(
+      color: Colors.blueGrey.shade200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            <mark>Text("welcome, $nameFromHome",</mark> style: TextStyle(fontSize: 34, color: Colors.green),),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("back"),
+            ),
+          ],
+        ),
+      ),
+    ),);
+  }
+}
+
+
+nameFromHome ---->argument will be passed when called the class
+</pre>
+
+<h2>4. main.dart </h3>
+<pre>
+import 'package:disk1/splash_screen.dart';
+import 'package:flutter/material.dart';
+
+import 'my_profile_screen.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  var nameController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Classico'),
+      ),
+      body: Center(
+        child: Container(
+          width: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Hello World',
+              style: TextStyle(fontSize: 25),),
+              SizedBox(height: 11,),
+              TextField(
+                controller: nameController,
+              ),
+              SizedBox(height: 11,),
+
+              ElevatedButton(onPressed: () {
+                Navigator.push(
+                    context,
+                  MaterialPageRoute(
+                      <mark>builder: (context) => ProfileScreen(nameController.text.toString()),),</mark>
+                );
+              }, child: Text('My profile'))
+            ],
+          ),
+        ),
+      ),
+      backgroundColor: Colors.yellow,
+    );
+  }
+
+}
+
+
+
+nameController---> when button will be pressed, whatever input we wil give in the text fileld, it will passed an argument for class ProfileScreen.
+And in the profilescreen page,  the value is stored in variable nameFromHome by the help of constructor the text will be displayed - welcome, $nameFromHome
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

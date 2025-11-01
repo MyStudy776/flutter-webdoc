@@ -1,0 +1,614 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Date and Time-</h1>
+
+
+<h2>1. Example show Current Date and time -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  <mark>var time = DateTime.now();</mark>
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+         <mark> body: Text('current time is $time'),</mark>
+    ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>2. Here the button is not functional -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var time = DateTime.now();
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Hello'),
+          ),
+          body: Center(
+            child: Container(
+              width: 400,
+              height: 400,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('current time is $time',style: TextStyle(fontSize: 22),),
+                  <mark>ElevatedButton(onPressed: (){}, child: Text('Current Time'))</mark>
+                ],
+              ),
+            ),
+          ),
+    ),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. Make the button functional -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+ <mark> var time = DateTime.now();</mark>
+  @override
+  Widget build(BuildContext context) {
+
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: Container(
+            width: 400,
+            height: 400,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('current time is $time',style: TextStyle(fontSize: 22),),
+                ElevatedButton(onPressed: (){
+                 <mark> setState(() {
+
+                  });</mark>
+                }, child: Text('Current Time'))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+Here if you press the button , nothing will happen because when button will be pressed, setstate function will be called. 
+Setstate function calls the build method(down fom override), the time value not changed. 
+
+</pre>
+
+<h2>4. -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+ 
+  @override
+  Widget build(BuildContext context) {
+  
+  <mark> var time = DateTime.now();</mark>
+
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: Container(
+            width: 400,
+            height: 400,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('current time is $time',style: TextStyle(fontSize: 22),),
+                ElevatedButton(onPressed: (){
+                 <mark> setState(() {
+
+                  });</mark>
+                }, child: Text('Current Time'))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+Here each time we pressed the button, the time will change and shows the current time.
+The variable time is placed after build method,
+when setstate called, the build method recreated. and the time variable contains the new value for current time.
+
+</pre>
+
+<h2>5. Display different type of value -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  Widget build(BuildContext context) {
+    var time = DateTime.now();
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: Container(
+            width: 400,
+            height: 400,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('current time is $time',style: TextStyle(fontSize: 22),),
+                Text('Current year is : ${time.year}', style: TextStyle(fontSize: 15),),
+                Text('weekday is : ${time.weekday}', style: TextStyle(fontSize: 15),),
+                Text('Current time is : ${time.hour}:${time.minute}', style: TextStyle(fontSize: 15),),
+                ElevatedButton(onPressed: (){
+                  setState(() {
+
+                  });
+                }, child: Text('Current Time'))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+check date_time.dart --->For other details
+  monday = 1;
+  tuesday = 2;
+  wednesday = 3;
+  thursday = 4;
+  friday = 5;
+  saturday = 6;
+  sunday = 7;
+  daysPerWeek = 7;
+  
+  january = 1;
+  february = 2;
+  march = 3;
+  april = 4;
+  may = 5;
+  june = 6;
+  july = 7;
+  august = 8;
+  september = 9;
+  october = 10;
+  november = 11;
+  december = 12;
+  monthsPerYear = 12;
+
+</pre>
+
+<h2>6. Using Intl package-</h2>
+<pre>
+Add intl package in pubspec.yaml file.
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  Widget build(BuildContext context) {
+    var time = DateTime.now();
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello'),
+        ),
+        body: Center(
+          child: Container(
+            width: 400,
+            height: 400,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Current time is : ${time.hour}:${time.minute}', style: TextStyle(fontSize: 15),),
+                <mark>Text('Current time is : ${DateFormat().format(time)}', style: TextStyle(fontSize: 15),),
+                Text('Current time is : ${DateFormat('jms').format(time)}', style: TextStyle(fontSize: 15),),
+                Text('Current time is : ${DateFormat('yMMMd').format(time)}', style: TextStyle(fontSize: 15),),</mark>
+                ElevatedButton(onPressed: (){
+                  setState(() {
+
+                  });
+                }, child: Text('Current Time'))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+The options can be found - date_format.dart
+
+ICU Name                   Skeleto
+--------                   -------
+DAY                          d
+ABBR_WEEKDAY                 E
+WEEKDAY                      EEEE
+ABBR_STANDALONE_MONTH        LLL
+STANDALONE_MONTH             LLLL
+NUM_MONTH                    M
+NUM_MONTH_DAY                Md
+NUM_MONTH_WEEKDAY_DAY        MEd
+ABBR_MONTH                   MMM
+ABBR_MONTH_DAY               MMMd
+ABBR_MONTH_WEEKDAY_DAY       MMMEd
+MONTH                        MMMM
+MONTH_DAY                    MMMMd
+MONTH_WEEKDAY_DAY            MMMME
+ABBR_QUARTER                 QQQ
+QUARTER                      QQQQ
+YEAR                         y
+YEAR_NUM_MONTH               yM
+YEAR_NUM_MONTH_DAY           yMd
+YEAR_NUM_MONTH_WEEKDAY_DAY   yMEd
+YEAR_ABBR_MONTH              yMMM
+YEAR_ABBR_MONTH_DAY          yMMMd
+YEAR_ABBR_MONTH_WEEKDAY_DAY  yMMME
+YEAR_MONTH                   yMMMM
+YEAR_MONTH_DAY               yMMMM
+YEAR_MONTH_WEEKDAY_DAY       yMMMM
+YEAR_ABBR_QUARTER            yQQQ
+YEAR_QUARTER                 yQQQQ
+HOUR24                       H
+HOUR24_MINUTE                Hm
+HOUR24_MINUTE_SECOND         Hms
+HOUR                         j
+HOUR_MINUTE                  jm
+HOUR_MINUTE_SECOND           jms ---> It will show AM /PM
+HOUR_MINUTE_GENERIC_TZ       jmv  
+HOUR_MINUTE_TZ               jmz  
+HOUR_GENERIC_TZ              jv   
+HOUR_TZ                      jz   
+MINUTE                       m
+MINUTE_SECOND                ms
+SECOND                       s
+
+
+</pre>
+
+<h2>7. Date picker concept -</h2>
+<pre>
+var datePicked = showDatePicker(
+       context: context, 
+	   initialDate: initialDate, ------->It will show current date to pick
+       firstDate: firstDate, --------->we can not go back to this date
+       lastDate: lastDate------------> we can not go beyond/future to  this date
+	   )
+	   
+	   
+	   
+=============
+
+var datePicked = showDatePicker() ---------->The type is not defined.
+
+DateTime datePicked = showDatePicker()------>The type is DateTime. but to display the value it will take time. 
+                                             so other program should not wait for this. so use await.
+
+
+DateTime datePicked = await showDatePicker()
+
+
+ElevatedButton(onPressed: () async {DateTime datePicked = await showDatePicker()};--->use async.
+
+ElevatedButton(onPressed: () async {DateTime ? datePicked = await showDatePicker()}; --->if you select outside of datepicket diaolg box, it will be null. so use ?.
+</pre>
+
+
+<h2>8.  Date picker-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+
+
+  final String title;
+
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text('Hello'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Select Date',
+              style: TextStyle(fontSize: 15),
+            ),
+            ElevatedButton(onPressed: () async {
+              DateTime? datePicked =  await showDatePicker(
+                context: context,
+                //initialDate: DateTime.now(),
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2021),
+                lastDate: DateTime.now(),
+              );
+              if(datePicked!=null){
+                print('Date selected: ${datePicked.day}-${datePicked.month}-${datePicked.year}');
+              }
+
+            }, child: Text('Show'))
+          ],
+        ),
+      ),
+
+    );
+  }
+}
+
+</pre>
+
+<h2>9. Time picker</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text('Hello'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Select Date',
+              style: TextStyle(fontSize: 15),
+            ),
+            ElevatedButton(onPressed: () async {
+              DateTime? datePicked =  await showDatePicker(
+                context: context,
+                //initialDate: DateTime.now(),
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2021),
+                lastDate: DateTime.now(),
+              );
+              if(datePicked!=null){
+                print('Date selected: ${datePicked.day}-${datePicked.month}-${datePicked.year}');
+              }
+
+            }, child: Text('Show')),
+            ElevatedButton(onPressed: () async {
+              TimeOfDay? pickedTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                 initialEntryMode: TimePickerEntryMode.input
+              );
+
+              if(pickedTime!=null){
+                print('Time selected: ${pickedTime.hour}-${pickedTime.minute}');
+              }
+
+            }, child: Text('Select Time'))
+          ],
+        ),
+      ),);
+  }
+}
+
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

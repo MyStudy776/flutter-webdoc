@@ -1,0 +1,449 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Row and Column widget</h1>
+<h2>1. column widget -</h2>
+<pre>
+return Scaffold(
+      appBar: AppBar(
+
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+        title: Text('Flutter Container'),
+      ),
+      body: Column(
+        children: [
+          Text('A', style: TextStyle(fontSize: 25),),
+          Text('B', style: TextStyle(fontSize: 25),),
+          Text('C', style: TextStyle(fontSize: 25),),
+          Text('D', style: TextStyle(fontSize: 25),),
+          Text('E', style: TextStyle(fontSize: 25),),
+        ],
+      )
+    );
+  }
+}
+
+</pre>
+<pre>
+children: [] --> It will accept all type .
+children &lt;Text&gt;: [] -->It will accept only Text widget.
+children &lt;Widget&gt;: []-->It will accept all type of widget.
+
+</pre>
+
+
+<pre>
+Row ---> horizontal - MainAxisAlignment, vertical - CrossAxisAlignment
+Column ---> Vertical - MainAxisAlignment, horizontal - CrossAxisAlignment
+</pre>
+
+
+<pre>
+Note -
+mainAxisAlignment: MainAxisAlignment.spaceEvenly ---> It will distribute space equally among all the rows or columns, including the space before start and after end row/column.
+                                                 
+or
+mainAxisAlignment: MainAxisAlignment.spaceAround ---> It will distribute space equally among all the rows or columns.
+                                                      But It will give half space to the start and half space to the end of the row/column.
+or
+mainAxisAlignment: MainAxisAlignment.spaceBetween---> There is no space at before start and after end row/column.
+or
+mainAxisAlignment: MainAxisAlignment.center----> All the rows/columns will be centered and no space in between.
+or
+mainAxisAlignment: MainAxisAlignment.start
+or
+mainAxisAlignment: MainAxisAlignment.end
+or
+mainAxisAlignment: MainAxisAlignment.stretch  --->The whole widget will be stretched as per the width of the container.
+
+</pre>
+<h2>2. Row widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Container(
+          color: Colors.red,
+          width: 200,
+          height: 200,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('A', style: TextStyle(fontSize: 25),),
+              Text('B', style: TextStyle(fontSize: 25),),
+              Text('C', style: TextStyle(fontSize: 25),),
+              Text('D', style: TextStyle(fontSize: 25),),
+              Text('E', style: TextStyle(fontSize: 25),),
+            ],
+
+            )
+
+          ),
+        )
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>3. mainAxisAlignment -</h2>
+<pre>
+return Scaffold(
+      appBar: AppBar(
+
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+        title: Text('Flutter Container'),
+      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('A', style: TextStyle(fontSize: 25),),
+          Text('B', style: TextStyle(fontSize: 25),),
+          Text('C', style: TextStyle(fontSize: 25),),
+          Text('D', style: TextStyle(fontSize: 25),),
+          Text('E', style: TextStyle(fontSize: 25),),
+          ElevatedButton(onPressed: (){}, child: Text('click'))
+        ],
+      )
+    );
+  }
+}
+
+
+Note -
+mainAxisAlignment: MainAxisAlignment.spaceEvenly
+or
+mainAxisAlignment: MainAxisAlignment.spaceAround
+or
+mainAxisAlignment: MainAxisAlignment.spaceBetween
+or
+mainAxisAlignment: MainAxisAlignment.center
+or
+mainAxisAlignment: MainAxisAlignment.start
+</pre>
+
+
+<h2>4. rows and columns -</h2>
+<pre>
+rows --->Main Axis, Cross Axis
+column --->Main Axis, Cross Axis
+</pre>
+
+<h2>5. rows and columns -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Column(
+          children: [
+            Text('A'),
+            Text('B'),
+            Text('C'),
+            Text('D'),
+            Text('E'),
+          ],
+        )
+      ),
+    );
+  }
+}
+</pre>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Container(
+          color: Colors.red,
+          width: 200,
+          height: 200,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('A', style: TextStyle(fontSize: 25),),
+              Text('B', style: TextStyle(fontSize: 25),),
+              Text('C', style: TextStyle(fontSize: 25),),
+              Text('D', style: TextStyle(fontSize: 25),),
+              Text('E', style: TextStyle(fontSize: 25),),
+            ],
+          ),
+        )
+      ),
+    );
+  }
+}
+</pre>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Container(
+          color: Colors.red,
+          width: 200,
+          height: 200,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('A', style: TextStyle(fontSize: 25),),
+              Text('B', style: TextStyle(fontSize: 25),),
+              Text('C', style: TextStyle(fontSize: 25),),
+              Text('D', style: TextStyle(fontSize: 25),),
+              Text('E', style: TextStyle(fontSize: 25),),
+              ElevatedButton(onPressed: (){}, child: Text('Click me'))
+            ],
+          ),
+        )
+      ),
+    );
+  }
+}
+</pre>
+
+<h2> 5. Multiple rows/columns inside a row/column</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('Multiple Text Example')),
+          body: Container(
+            color: Colors.red,
+            width: 300,
+            height: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('C1', style: TextStyle(fontSize: 25),),
+                        Text('C2', style: TextStyle(fontSize: 25),),
+                      ],),
+                    Text('R1', style: TextStyle(fontSize: 25),),
+                    Text('R2', style: TextStyle(fontSize: 25),),
+                    Text('R3', style: TextStyle(fontSize: 25),),
+                    Text('R4', style: TextStyle(fontSize: 25),),
+                    Text('R5', style: TextStyle(fontSize: 25),),
+                  ],
+                ),
+                Text('A', style: TextStyle(fontSize: 25),),
+                Text('B', style: TextStyle(fontSize: 25),),
+                Text('C', style: TextStyle(fontSize: 25),),
+                Text('D', style: TextStyle(fontSize: 25),),
+                Text('E', style: TextStyle(fontSize: 25),),
+                ElevatedButton(onPressed: (){}, child: Text('Click me'))
+              ],
+            ),
+          )
+      ),
+    );
+  }
+}
+</pre>
+
+
+<h2>6. Example</h2>
+<pre>
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          //brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    var w = MediaQuery.of(context).size.width;
+    var h = MediaQuery.of(context).size.height;
+    return Scaffold(
+
+          appBar: AppBar(title: Text('Rows and Columns')),
+          body: Container(
+              height: h,
+              width: w,
+              color: Colors.yellow,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(height: 60, width: 60, color: Colors.red),
+                    Container(height: 60, width: 60, color: Colors.blue),
+                    Container(height: 60, width: 60, color: Colors.green),
+                    Container(height: 60, width: 60, color: Colors.black),
+                    Container(height: 60, width: 60, color: Colors.purple),
+                  ])
+
+          ),
+        );
+  }
+}
+
+</pre>
+
+<pre>
+import 'package:flutter/material.dart';
+
+class RowsCols extends StatelessWidget {
+  const RowsCols({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var w = MediaQuery.of(context).size.width;
+    var h = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(title: Text('Rows and Columns')),
+      body: Container(
+          height: 200,
+          width: w,
+          color: Colors.yellow,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(height: 60, width: 60, color: Colors.red),
+                Container(height: 60, width: 60, color: Colors.blue),
+                Container(height: 60, width: 60, color: Colors.green),
+                Container(height: 60, width: 60, color: Colors.black),
+                Container(height: 60, width: 60, color: Colors.purple),
+              ])
+          //  Wrap(
+          //   direction: Axis.vertical,
+          //   alignment: WrapAlignment.start,
+          //   // mainAxisAlignment: MainAxisAlignment.start,
+          //   // crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          // Container(height: 60, width: 60, color: Colors.red),
+          // Container(height: 60, width: 60, color: Colors.blue),
+          // Container(height: 60, width: 60, color: Colors.green),
+          // Container(height: 60, width: 60, color: Colors.black),
+          // Container(height: 60, width: 60, color: Colors.purple),
+          //   ],
+          // ),
+          //     Row(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          //     Container(height: 60, width: 60, color: Colors.red),
+          //     Container(height: 60, width: 60, color: Colors.blue),
+          //     Container(height: 60, width: 60, color: Colors.green),
+          //     Container(height: 60, width: 60, color: Colors.black),
+          //     Container(height: 60, width: 60, color: Colors.purple),
+          //   ],
+          // )
+          ),
+    );
+  }
+}
+</pre>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

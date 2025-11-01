@@ -1,0 +1,115 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Icon Widget-</h1>
+
+
+<h2>1. Example Icon Widget  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body: Center(child: Icon(
+            Icons.access_alarms,
+            size: 100,
+          color: Colors.blue,))
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>2. Install font_awesome package  -</h2>
+<pre>
+Add in pubspec.yaml file - font_awesome_flutter: ^10.6.0
+You will get additional icons using this package.
+
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: Text('My home page')),
+          body: Wrap(
+            direction: Axis.vertical,
+            children: [
+               Icon(
+                Icons.access_alarms,
+                size: 100,
+                color: Colors.blue,),
+              SizedBox(
+                height: 30,
+              ),
+              FaIcon(FontAwesomeIcons.amazon,
+              color: Colors.red,
+              size:  100,),
+            ],
+
+          )
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

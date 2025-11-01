@@ -1,0 +1,759 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Custom Widget-</h1>
+
+
+<h2>1. Example  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+
+              Container(
+                height: 400,
+              color: Colors.blue,),
+              Container(
+                height: 400,
+              color: Colors.red,),
+              Container(
+                height: 400,
+                color: Colors.green,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+Here the container will go outside of screen size.
+</pre>
+
+
+<h2>2. Use Expanded  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+
+              Expanded(
+                child: Container(
+                  height: 400,
+                color: Colors.blue,),
+              ),
+              Expanded(
+                child: Container(
+                  height: 400,
+                color: Colors.red,),
+              ),
+              Expanded(
+                child: Container(
+                  height: 400,
+                  color: Colors.green,),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>3. Use Expanded  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.blue,
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  color: Colors.red,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.green,
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.yellow,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>4. Modify the 1st Expanded widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.blue,
+                  child: ListView.builder(itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 100,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                    ),
+                  ),
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  color: Colors.red,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.green,
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.yellow,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>5. Modify the 2nd Expanded widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.blue,
+                  child: ListView.builder(itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 100,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                    ),
+                  ),
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  color: Colors.red,
+                  child: ListView.builder(itemBuilder: (context,index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                      title: Text('Name'),
+                      subtitle: Text('Mob No'),
+                      trailing: Icon(Icons.delete),
+                    ),
+                  )),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.green,
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.yellow,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>6. Modify 3rd Expanded widget  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.blue,
+                  child: ListView.builder(itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 100,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                    ),
+                  ),
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  color: Colors.red,
+                  child: ListView.builder(itemBuilder: (context,index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                      title: Text('Name'),
+                      subtitle: Text('Mob No'),
+                      trailing: Icon(Icons.delete),
+                    ),
+                  )),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.green,
+                  child: ListView.builder(itemBuilder: (context, index)=>
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ), itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+
+                  ),
+                  ),
+                ),
+              
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.yellow,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>7. Modify 4th Expanded widget  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.blue,
+                  child: ListView.builder(itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 100,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                    ),
+                  ),
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  color: Colors.red,
+                  child: ListView.builder(itemBuilder: (context,index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                      ),
+                      title: Text('Name'),
+                      subtitle: Text('Mob No'),
+                      trailing: Icon(Icons.delete),
+                    ),
+                  )),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.green,
+                  child: ListView.builder(itemBuilder: (context, index)=>
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ), itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+
+                  ),
+                  ),
+                ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.blue,
+                  child: ListView.builder(itemBuilder: (context, index)=>
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(11),
+                            color: Colors.yellow,
+                          ),
+                        ),
+                      ), itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>8. Custom widget  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyHomePage();
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Custom Widget'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+             <mark> Expndone(),
+              Expndtwo(),
+              Expndthree(),
+              Expndfour(),</mark> 
+
+ ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Expndone extends StatelessWidget {
+  const Expndone({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: Container(
+        color: Colors.green,
+        child: ListView.builder(itemBuilder: (context, index)=>
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(11),
+                  color: Colors.blue,
+                ),
+              ),
+            ), itemCount: 10,
+          scrollDirection: Axis.horizontal,
+
+        ),
+      ),
+    );
+  }
+}
+
+class Expndtwo extends StatelessWidget {
+  const Expndtwo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 4,
+      child: Container(
+        color: Colors.red,
+        child: ListView.builder(itemBuilder: (context,index) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+
+            leading: CircleAvatar(
+              backgroundColor: Colors.purple,
+            ),
+            title: Text('Name'),
+            subtitle: Text('Mob No'),
+            trailing: Icon(Icons.delete),
+          ),
+        )),
+      ),
+    );
+  }
+}
+
+class Expndthree extends StatelessWidget {
+  const Expndthree({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 4,
+      child: Container(
+        color: Colors.red,
+        child: ListView.builder(itemBuilder: (context,index) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+
+            leading: CircleAvatar(
+              backgroundColor: Colors.purple,
+            ),
+            title: Text('Name'),
+            subtitle: Text('Mob No'),
+            trailing: Icon(Icons.delete),
+          ),
+        )),
+      ),
+    );
+  }
+}
+
+class Expndfour extends StatelessWidget {
+  const Expndfour({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: Container(
+        color: Colors.green,
+        child: ListView.builder(itemBuilder: (context, index)=>
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(11),
+                  color: Colors.blue,
+                ),
+              ),
+            ), itemCount: 10,
+          scrollDirection: Axis.horizontal,
+
+        ),
+      ),
+    );
+  }
+}
+
+
+
+We can create different classes for different widget , then call the classes anywhere.
+
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

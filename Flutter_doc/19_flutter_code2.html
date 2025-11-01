@@ -1,0 +1,5013 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h1>1st program in flutter -</h1>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>1. Just add a  container-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+  Container(color: Colors.red));
+}  
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Just a Text without materialApp -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+      text(Text("Hello")));
+} 
+
+o/p ===>will show error 
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Just a Text with MaterialApp -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+    home: Text("Hello "))
+ );
+}
+
+o/p
+====
+But this text output does not look good.
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. Just a Text with material widget- </h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+      const MaterialApp(
+         <mark> home: Material(</mark>
+            child: Text("Hello "),
+          ))
+  );
+}
+
+o/p
+====
+Hello displays with good interface.
+text widget having parent called - material widget.And material widget having parent as MaterialApp widget.
+When text wrap with Matrial, some interface has changed.
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. column -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+      const MaterialApp(
+          home: Material(
+            child: Column(
+                children: [
+                  Text("Hello "),
+                  Text("Welcome to our App "),
+                ],
+            ),
+          ))
+  );
+}
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>6. column , with stateless widget hot reload will work -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+       MaterialApp(
+          home: Material(
+            child: Column(
+                children: [
+                  Text("Hello "),
+                  Text("Welcome to our App "),
+                   MyApp(),
+                ],
+            ),
+          ))
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+   <mark> return Text("Anything returned here is a widget");</mark>
+  }
+}
+
+
+
+- Here return a text widget.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>7. return a Material widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    <mark>return MaterialApp(</mark>
+        home: Material(
+          child: Column(
+            children: [
+              Text("Hello "),
+              Text("Welcome to our App "),
+           ],
+          ),
+        ));
+
+  }
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. Use MainAxisAlignment in column -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Material(
+          child: Column(
+            <mark>mainAxisAlignment: MainAxisAlignment.end,</mark>
+            children: [
+              Text("Hello "),
+              Text("Welcome to our App "),
+           ],
+          ),
+        ));
+
+  }
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9. Button in a App - floatingActionButton -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+       <mark> home: Scaffold(</mark>
+          appBar: AppBar(),
+          <mark>floatingActionButton: FloatingActionButton(onPressed: (){},),</mark>
+          backgroundColor: Colors.red,
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("The price for it"),
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. drawer in the app  (3 horizontal line will come)-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.red,
+          <mark>drawer: Container(</mark>
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("The price for it"),
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>11. Colored box -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.blue[900],
+          drawer: Container(
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+         <mark> body: ColoredBox(</mark>
+            color: Colors.red,
+            child: Column(
+              children: [
+                Text("Hello and Hi"),
+                Text("The price for it"),
+              ],
+            ),
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>12. Text Field -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.blue[900],
+          drawer: Container(
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("The price for it"),
+              
+              <mark>TextField(),</mark>
+             <mark> TextField(),</mark>
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>13. Text Field and Text Button  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.blue[200],
+          drawer: Container(
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("Sign up Page"),
+
+              TextField(
+                <mark>decoration: InputDecoration(hintText: 'Username'),</mark>
+              ),
+              TextField(
+                <mark>decoration: InputDecoration(hintText: 'Password'),</mark>
+              ),
+              <mark>TextButton(onPressed: () {print('clicked');}, child: Text('Forgot Password'))</mark>
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>14. Elevated Button -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.blue[200],
+          drawer: Container(
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("Sign up Page"),
+
+              TextField(
+                decoration: InputDecoration(hintText: 'Username'),
+              ),
+              TextField(
+                decoration: InputDecoration(hintText: 'Password'),
+              ),
+              TextButton(onPressed: () {print('Forgot is clicked');}, child: Text('Forgot Password')),
+              <mark>ElevatedButton(onPressed: () {print('Login is clicked');}, child: Text('Login'))</mark>
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>15. Add an image to a button -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.blue[200],
+          drawer: Container(
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("Sign up Page"),
+
+              TextField(
+                decoration: InputDecoration(hintText: 'Username'),
+              ),
+              TextField(
+                decoration: InputDecoration(hintText: 'Password'),
+              ),
+              TextButton(onPressed: () {print('Forgot is clicked');}, child: Text('Forgot Password')),
+              ElevatedButton(onPressed: () {print('Login is clicked');}, child: Text('Login'),),
+              Text('Or Sign in with'),
+              ElevatedButton(onPressed: () {print('Google is clicked');},
+               <mark> child: Image.asset('assets/images/google.png',height: 22, width: 22,),),</mark>
+
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+
+
+Note - Add the asset details in pubsec.yaml file and pub.get. Reload the application
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>16. Text next to an image with row children -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(onPressed: (){},),
+          backgroundColor: Colors.blue[200],
+          drawer: Container(
+            width: 400,
+            height: 500,
+            color: Colors.green,
+          ),
+          body: Column(
+            children: [
+              Text("Hello and Hi"),
+              Text("Sign up Page"),
+
+              TextField(
+                decoration: InputDecoration(hintText: 'Username'),
+              ),
+              TextField(
+                decoration: InputDecoration(hintText: 'Password'),
+              ),
+              TextButton(onPressed: () {print('Forgot is clicked');}, child: Text('Forgot Password')),
+              ElevatedButton(onPressed: () {print('Login is clicked');}, child: Text('Login'),),
+              Text('Or Sign in with'),
+              ElevatedButton(onPressed: () {print('Google is clicked');},
+                child: Row(
+                  children: [
+                   <mark> Image.asset('assets/images/google.png',height: 22, width: 22,),</mark>
+                   <mark> Text('Login with Google'),</mark>
+                  ],
+                )),
+              ElevatedButton(onPressed: () {print('Google is clicked');},
+                  child: Row(
+                    children: [
+                      <mark>Image.asset('assets/images/facebook.png',height: 22, width: 22,),</mark>
+                      <mark>Text('Login with facebook'),</mark>
+                    ],
+                  )),
+            ],
+          ),
+        )
+  );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>17. Create another page: login_page and call in main.dart file -</h2>
+<pre>
+Login_page.dart
+----------------
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: (){},),
+        backgroundColor: Colors.blue[200],
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.green,
+        ),
+        body: Column(
+          children: [
+            Text("Hello and Hi"),
+            Text("Sign up Page"),
+
+            TextField(
+              decoration: InputDecoration(hintText: 'Username'),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: 'Password'),
+            ),
+            TextButton(onPressed: () {print('Forgot is clicked');}, child: Text('Forgot Password')),
+            ElevatedButton(onPressed: () {print('Login is clicked');}, child: Text('Login'),),
+            Text('Or Sign in with'),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/google.png',height: 22, width: 22,),
+                    Text('Login with Google'),
+                  ],
+                )),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+              child: Row(
+                children: [
+                  Image.asset('assets/images/facebook.png',height: 22, width: 22,),
+                  Text('Login with facebook'),
+                ],
+              ),
+            ),
+            Row(children: [
+              Text("Don't have an account?"),
+              TextButton(onPressed: () {}, child: Text('Signup'),)
+            ],)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+main.dart
+-----------
+import 'package:flutter/material.dart';
+import 'package:keyboard2/login_page.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: LoginPage(),
+  );
+
+  }
+}
+
+</pre><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>18.  Add text style and sized box-</h2>
+<pre>
+Login_page.dart
+---------------
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: (){},),
+        backgroundColor: Colors.blue[900],
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.green,
+        ),
+        body: Column(
+          children: [
+            Text("Hello and Hi",
+              <mark>style: TextStyle(</mark>
+                  color: Colors.white,
+                  fontSize: 22,
+              fontWeight: FontWeight.bold),),
+            <mark>SizedBox(</mark>
+              height: 20,
+              child: Text("=============="),
+            ),
+
+            Text("Sign up Page",
+              <mark>style: TextStyle(</mark>
+                  fontSize: 20,
+                  color: Colors.white),),
+
+            TextField(
+              decoration: InputDecoration(hintText: 'Username'),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: 'Password'),
+            ),
+            TextButton(onPressed: () {
+              print('Forgot is clicked');},
+                child: Text('Forgot Password')),
+            ElevatedButton(onPressed: () {
+              print('Login is clicked');},
+              child: Text('Login'),),
+            Text('Or Sign in with'),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/google.png',height: 22, width: 22,),
+                    Text('Login with Google'),
+                  ],
+                )),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+              child: Row(
+                children: [
+                  Image.asset('assets/images/facebook.png',height: 22, width: 22,),
+                  Text('Login with facebook'),
+                ],
+              ),
+            ),
+            Row(children: [
+              Text("Don't have an account?"),
+              TextButton(onPressed: () {}, child: Text('Signup'),)
+            ],)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>19. Add styling to textfield -</h2>
+<pre>
+Login_page.dart
+---------------
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: (){},),
+        backgroundColor: Colors.blue[900],
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.green,
+        ),
+        body: Column(
+          children: [
+            Text("Hello and Hi",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+              fontWeight: FontWeight.bold),),
+            SizedBox(
+              height: 20,
+              child: Text("=============="),
+            ),
+
+            Text("Sign up Page",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white),),
+
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12),),
+                ),
+               <mark> filled: true,</mark>-------------------->The text field will be filled with color.
+                <mark>fillColor: Colors.white.withOpacity(0.5),</mark>
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12),),
+                  ),
+                <mark>filled: true,</mark>
+               <mark> fillColor: Colors.white.withOpacity(0.5),</mark>
+              ),
+            ),
+            TextButton(onPressed: () {
+              print('Forgot is clicked');},
+                child: Text('Forgot Password')),
+            ElevatedButton(onPressed: () {
+              print('Login is clicked');},
+              child: Text('Login'),),
+            Text('Or Sign in with'),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/google.png',height: 22, width: 22,),
+                    Text('Login with Google'),
+                  ],
+                )),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+              child: Row(
+                children: [
+                  Image.asset('assets/images/facebook.png',height: 22, width: 22,),
+                  Text('Login with facebook'),
+                ],
+              ),
+            ),
+            Row(children: [
+              Text("Don't have an account?"),
+              TextButton(onPressed: () {}, child: Text('Signup'),)
+            ],)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>20. Add styling to the text button -</h2>
+<pre>
+Login_page.dart
+---------------
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: (){},),
+        backgroundColor: Colors.blue[900],
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.green,
+        ),
+        body: Column(
+          children: [
+            Text("Hello and Hi",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+              fontWeight: FontWeight.bold),),
+            SizedBox(
+              height: 20,
+              child: Text("=============="),
+            ),
+
+            Text("Sign up Page",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white),),
+
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12),),
+                ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12),),
+                  ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            TextButton(onPressed: () {
+              print('Forgot is clicked');},
+                child: Text('Forgot Password'),
+            <mark>style: TextButton.styleFrom(</mark>
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black,
+
+
+            ),),
+            ElevatedButton(onPressed: () {
+              print('Login is clicked');},
+              child: Text('Login'),),
+            Text('Or Sign in with'),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/google.png',height: 22, width: 22,),
+                    Text('Login with Google'),
+                  ],
+                )),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+              child: Row(
+                children: [
+                  Image.asset('assets/images/facebook.png',height: 22, width: 22,),
+                  Text('Login with facebook'),
+                ],
+              ),
+            ),
+            Row(children: [
+              Text("Don't have an account?"),
+              TextButton(onPressed: () {}, child: Text('Signup'),)
+            ],)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>21. Adding Alignment and Add styling to Elevated Button -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: (){},),
+        backgroundColor: Colors.blue[900],
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.green,
+        ),
+        body: Column(
+          children: [
+            Text("Hello and Hi",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+              fontWeight: FontWeight.bold),),
+            SizedBox(
+              height: 20,
+              child: Text("=============="),
+            ),
+
+            Text("Sign up Page",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white),),
+
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12),),
+                ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12),),
+                  ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            <mark>Align(</mark>
+              alignment: Alignment.centerRight,
+              child: TextButton(onPressed: () {
+                print('Forgot is clicked');},
+                  child: Text('Forgot Password'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                
+              
+              
+              ),),
+            ),
+            ElevatedButton(onPressed: () {
+              print('Login is clicked');},
+              child: Text('Login'),
+            <mark>style: ElevatedButton.styleFrom(</mark>
+             backgroundColor: Colors.amber,
+             foregroundColor: Colors.black,
+            ),),
+            Text('Or Sign in with'),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/google.png',height: 22, width: 22,),
+                    Text('Login with Google'),
+                  ],
+                )),
+            ElevatedButton(onPressed: () {print('Google is clicked');},
+              child: Row(
+                children: [
+                  Image.asset('assets/images/facebook.png',height: 22, width: 22,),
+                  Text('Login with facebook'),
+                ],
+              ),
+            ),
+            Row(children: [
+              Text("Don't have an account?"),
+              TextButton(onPressed: () {}, child: Text('Signup'),)
+            ],)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>22. Other Decoration  -</h2>
+<pre>
+import 'dart:html';
+
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: (){},),
+        backgroundColor: Colors.blue[900],
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.green,
+        ),
+        body: Column(
+          children: [
+            Text("Hello and Hi",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+              fontWeight: FontWeight.bold),),
+            SizedBox(
+              height: 20,
+              child: Text("=============="),
+            ),
+            Text("Sign up Page",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white),),
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12),),
+                ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12),),
+                  ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(onPressed: () {
+                print('Forgot is clicked');},
+                  child: Text('Forgot Password'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                
+              
+              
+              ),),
+            ),
+            <mark>SizedBox(</mark>
+              child: ElevatedButton(onPressed: () {
+                print('Login is clicked');},
+                child: Text('Login'),
+              style: ElevatedButton.styleFrom(
+               backgroundColor: Colors.amber,
+               foregroundColor: Colors.black,
+              ),),
+            ),
+            <mark>SizedBox(</mark>
+              height: 40,
+            ),
+            <mark>Text('Or Sign in with', style: TextStyle(color: Colors.white),),</mark>
+            <mark>SizedBox(
+              height: 40,</mark>
+            ),
+            ElevatedButton(onPressed: () {
+              print('Google is clicked');
+              },
+              <mark>style: ElevatedButton.styleFrom(</mark>
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                <mark>shape: RoundedRectangleBorder(</mark>
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(50))
+                ),
+              ),
+                <mark>child: Row(</mark>
+                  <mark>mainAxisAlignment: MainAxisAlignment.center,</mark>
+                  children: [
+                    Image.asset('assets/images/google.png',height: 22, width: 22,),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text('Login with Google'),
+                  ],
+                ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            ElevatedButton(
+             onPressed: () {
+               //print('Google is clicked');
+               },
+              <mark>style: ElevatedButton.styleFrom(</mark>
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),),
+              <mark>child: Row(</mark>
+                <mark>mainAxisAlignment: MainAxisAlignment.center,</mark>
+                children: [
+                  Image.asset(
+                    'assets/images/facebook.png',
+                    height: 22,
+                    width: 22,),
+                  SizedBox(
+                    width: 8,),
+                  Text('Login with facebook'),
+              ],
+              ),),
+
+            Row(children: [
+              Text("Don't have an account?",
+              style: TextStyle(
+                color: Colors.white,
+              ),),
+              TextButton(onPressed: () {},
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.amber,
+                ),
+                  child: Text('Signup',
+                   <mark> style: TextStyle(decoration: TextDecoration.underline),</mark>
+                  ),),
+            ],)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>23. Change Full App background color  - change theme color -</h2>
+<pre>
+main.dart 
+==========
+import 'package:flutter/material.dart';
+import 'package:keyboard2/login_page.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      <mark>theme: ThemeData(</mark>
+        <mark>scaffoldBackgroundColor: AppColors.background,  </mark>  --------> This is the variable declared in app_colors.dart
+      ),
+      home: LoginPage(),
+
+    );
+
+  }
+}
+
+Login_page.dart
+=================
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+          appBar: AppBar(),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+          ),
+
+
+
+          drawer: Container(
+            width: 400,
+            height: 200,
+            color: Colors.amber,
+ ),
+          body: Column(
+            children: [
+              Text(
+                "Hello and Hi",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+                child: Text("=============="),
+              ),
+              Text(
+                "Sign up Page",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Username',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.5),
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.5),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    print('Forgot is clicked');
+                  },
+                  child: Text('Forgot Password'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(
+                child: ElevatedButton(
+                  onPressed: () {
+                    print('Login is clicked');
+                  },
+                  child: Text('Login'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    foregroundColor: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Or Sign in with',
+                style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  print('Google is clicked');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/google.png',
+                      height: 22,
+                      width: 22,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text('Login with Google'),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  //print('Google is clicked');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/facebook.png',
+                      height: 22,
+                      width: 22,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text('Login with facebook'),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.amber,
+                    ),
+                    child: Text(
+                      'Signup',
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+    );
+  }
+}
+
+
+<mark>app_colors.dart</mark>
+=====================
+import 'package:flutter/material.dart';
+
+class AppColors {
+  static const primary = Color(0xffFBD0512);
+  static const font = Color(0xffD8D8D8);
+  static const font2 = Color(0xff373737);
+  static const disableFont = Color(0xffA7A7A7);
+  static const disableButton = Color(0xff303030);
+  //static const background = Color(0xff1A2947);
+  static const background = Color(0x000099);
+  static const black = Color(0xff000000);
+  static const white = Color(0xffffffff);
+
+}
+
+
+
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>24. Adding Padding to the whole content -</h2>
+<pre>
+login_page.dart
+================
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+           body: Padding(
+            <mark> padding: const EdgeInsets.all(24),</mark>
+             child: Column(
+              children: [
+                SizedBox(
+                  height: 68,
+                ),
+                Text(
+                  "Hello, welcome back!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Login to continue",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 68,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      print('Forgot is clicked');
+                    },
+                    child: Text('Forgot Password'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('Login is clicked');
+                    },
+                    child: Text('Login'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber,
+                      foregroundColor: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Or Sign in with',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print('Google is clicked');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/google.png',
+                        height: 22,
+                        width: 22,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text('Login with Google'),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    //print('Google is clicked');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/facebook.png',
+                        height: 22,
+                        width: 22,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text('Login with facebook'),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.amber,
+                      ),
+                      child: Text(
+                        'Signup',
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+                       ),
+           ),
+    );
+  }
+}
+
+
+
+
+o/p
+=====
+But output shows - Bottom overflowed by 75 pixel.
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>25. Add the widget : SingleChildScrollView , to overcome the Bottom overflow error  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+           <mark>body: SingleChildScrollView(</mark>
+             child: Padding(
+               padding: const EdgeInsets.all(24),
+               child: Column(
+                children: [
+                  SizedBox(
+                    height: 68,
+                  ),
+                  Text(
+                    "Hello, welcome back!",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    "Login to continue",
+                    style: TextStyle(
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 68,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Username',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        print('Forgot is clicked');
+                      },
+                      child: Text('Forgot Password'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print('Login is clicked');
+                      },
+                      child: Text('Login'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.amber,
+                        foregroundColor: Colors.black,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Or Sign in with',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      print('Google is clicked');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50))),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/google.png',
+                          height: 22,
+                          width: 22,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Login with Google'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      //print('Google is clicked');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/facebook.png',
+                          height: 22,
+                          width: 22,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Login with facebook'),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Don't have an account?",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.amber,
+                        ),
+                        child: Text(
+                          'Signup',
+                          style: TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+                         ),
+             ),
+           ),
+    );
+  }
+}
+
+
+
+
+
+Note - But it does not looks good if we make the login page as scrollable.
+So instead of sized box, we will use spacer inside row or column.
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>26. Use Spacer  -</h2>
+<pre>
+- It is a technique used to create space between other widgets.
+- It control the layout and spacing of elements .
+- The Spacer widget is used within Row and Column widgets to fill the available space along the main axis.
+- It can be used to distribute space among the children of a Row or Column.
+- The spacer is a flexible space that use to fill available space.
+- It automatically expand to fill any available space that is not occupied by other widget.
+
+
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+           body: Padding(
+             padding: const EdgeInsets.all(24),
+             child: Column(
+              children: [
+                <mark>Spacer(),</mark>
+                Text(
+                  "Hello, welcome back!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Login to continue",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              <mark> Spacer(),</mark>
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      print('Forgot is clicked');
+                    },
+                    child: Text('Forgot Password'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('Login is clicked');
+                    },
+                    child: Text('Login'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber,
+                      foregroundColor: Colors.black,
+                    ),
+                  ),
+                ),
+               <mark>Spacer(),</mark>
+                Text(
+                  'Or Sign in with',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print('Google is clicked');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/google.png',
+                        height: 22,
+                        width: 22,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text('Login with Google'),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                SizedBox(
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //print('Google is clicked');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/facebook.png',
+                          height: 22,
+                          width: 22,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Login with facebook'),
+                      ],
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.amber,
+                      ),
+                      child: Text(
+                        'Signup',
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
+                ),
+                <mark>Spacer(),</mark>
+              ],
+                       ),
+           ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>27. resizeToAvoidBottomInset -</h2>
+<pre>
+
+After using spacer, there is no overflow error. 
+But when we click on text filed, the input keyboard will come. Due to this again we see overflow error, because 
+the layout will little go up and no space left. so spacer will be gone. 
+- So to overcome this problem there is an widget in scaffold - resizeToAvoidBottomInset
+
+
+
+
+
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      <mark>resizeToAvoidBottomInset: false,</mark>
+           body: Padding(
+             padding: const EdgeInsets.all(24),
+             child: Column(
+              children: [
+                Spacer(),
+                Text(
+                  "Hello, welcome back!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Login to continue",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+               Spacer(),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      print('Forgot is clicked');
+                    },
+                    child: Text('Forgot Password'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('Login is clicked');
+                    },
+                    child: Text('Login'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber,
+                      foregroundColor: Colors.black,
+                    ),
+                  ),
+                ),
+               Spacer(),
+                Text(
+                  'Or Sign in with',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print('Google is clicked');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/google.png',
+                        height: 22,
+                        width: 22,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text('Login with Google'),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                SizedBox(
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //print('Google is clicked');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/facebook.png',
+                          height: 22,
+                          width: 22,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Login with facebook'),
+                      ],
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.amber,
+                      ),
+                      child: Text(
+                        'Signup',
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
+                ),
+                Spacer(),
+              ],
+                       ),
+           ),
+    );
+  }
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>28. Give height to the screen -</h2>
+<pre>
+When resizeToAvoidBottomInset added, the overflow problem solved but when the input keyboard displayed , other items are hided back to that keyboard.
+If there is any input terxt field at the bottom, while giving some input to the text fileld, the entries and the bottom text field is hidden behind  are hided.
+
+So remove resizeToAvoidBottomInset.
+
+2nd thing if we use both singlechildscroll view and and spacer it will be a conflict.
+Spacer does not have a size or height. singlechildscroll could not able to calculate the height. So we need to give a height.
+
+
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+         <mark>body: SingleChildScrollView(</mark>
+           <mark>child: SizedBox(</mark>
+            <mark> height: 700, </mark>    -----------------------------------------------> added a height
+             child: Padding(
+                 padding: const EdgeInsets.all(24),
+                 child: Column(
+                  children: [
+                    Spacer(),
+                    Text(
+                      "Hello, welcome back!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Login to continue",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                   Spacer(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          print('Forgot is clicked');
+                        },
+                        child: Text('Forgot Password'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          print('Login is clicked');
+                        },
+                        child: Text('Login'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          foregroundColor: Colors.black,
+                        ),
+                      ),
+                    ),
+                   Spacer(),
+                    Text(
+                      'Or Sign in with',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Google is clicked');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50))),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/google.png',
+                            height: 22,
+                            width: 22,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text('Login with Google'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //print('Google is clicked');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/facebook.png',
+                              height: 22,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('Login with facebook'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.amber,
+                          ),
+                          child: Text(
+                            'Signup',
+                            style: TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                  ],
+                           ),
+               ),
+           ),
+         ),
+    );
+  }
+}
+
+
+
+
+Note -
+After giving a height everything is fine but we don't know the height of our mobile screen.
+Different mobile having different height.So to overcome this instead of using height use Mediaquery
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>29. Use MediaQuery.of(context) -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+         body: SingleChildScrollView(
+           child: SizedBox(
+             <mark>height: MediaQuery.of(context).size.height,</mark> --------> added instead of height, It will use the height of the screen.
+             child: Padding(
+                 padding: const EdgeInsets.all(24),
+                 child: Column(
+                  children: [
+                    Spacer(),
+                    Text(
+                      "Hello, welcome back!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Login to continue",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                   Spacer(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          print('Forgot is clicked');
+                        },
+                        child: Text('Forgot Password'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          print('Login is clicked');
+                        },
+                        child: Text('Login'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          foregroundColor: Colors.black,
+                        ),
+                      ),
+                    ),
+                   Spacer(),
+                    Text(
+                      'Or Sign in with',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Google is clicked');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50))),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/google.png',
+                            height: 22,
+                            width: 22,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text('Login with Google'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //print('Google is clicked');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/facebook.png',
+                              height: 22,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('Login with facebook'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.amber,
+                          ),
+                          child: Text(
+                            'Signup',
+                            style: TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    
+                    Spacer(),
+                  ],
+                           ),
+               ),
+           ),
+         ),
+    );
+  }
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>30. Navigate a page  - Navigator.of(context).push</h2>
+<pre>
+Create another page - home_page, whenever we click login button, it will redirect to the HomePage.
+
+home_page.dart
+=================
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("Hello This is home page",
+      style: TextStyle(color: Colors.white,),)),
+    );
+  }
+}
+
+
+
+login_page.dart
+=================
+import 'package:flutter/material.dart';
+import 'package:keyboard2/pages/home_page.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+         body: SingleChildScrollView(
+           child: SizedBox(
+             height: MediaQuery.of(context).size.height,
+             child: Padding(
+                 padding: const EdgeInsets.all(24),
+                 child: Column(
+                  children: [
+                    Spacer(),
+                    Text(
+                      "Hello, welcome back!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Login to continue",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                   Spacer(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          print('Forgot is clicked');
+                        },
+                        child: Text('Forgot Password'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                         <mark> Navigator.of(context).push(MaterialPageRoute( 
+                              builder: (context){
+                                return HomePage();</mark> ------->after clicking the button it will go to home_page. And there is a back button.
+                              },
+                          ));
+                        },
+                        child: Text('Login'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          foregroundColor: Colors.black,
+                        ),
+                      ),
+                    ),
+                   Spacer(),
+                    Text(
+                      'Or Sign in with',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Google is clicked');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50))),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/google.png',
+                            height: 22,
+                            width: 22,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text('Login with Google'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //print('Google is clicked');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/facebook.png',
+                              height: 22,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('Login with facebook'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.amber,
+                          ),
+                          child: Text(
+                            'Signup',
+                            style: TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
+                    ),
+
+
+                    Spacer(),
+                  ],
+                           ),
+               ),
+           ),
+         ),
+    );
+  }
+}
+
+
+
+
+main.dart 
+==========
+import 'package:flutter/material.dart';
+import 'package:keyboard2/login_page.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,    --------> This is the variable declared in app_colors.dart
+      ),
+     <mark>  home: LoginPage(),</mark> 
+
+    );
+
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>31. Named Navigation - Navigator.of(context).pushNamed </h2>
+<pre>
+login_page.dart
+===================
+import 'package:flutter/material.dart';
+import 'package:keyboard2/pages/home_page.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+         body: SingleChildScrollView(
+           child: SizedBox(
+             height: MediaQuery.of(context).size.height,
+             child: Padding(
+                 padding: const EdgeInsets.all(24),
+                 child: Column(
+                  children: [
+                    Spacer(),
+                    Text(
+                      "Hello, welcome back!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Login to continue",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                   Spacer(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          print('Forgot is clicked');
+                        },
+                        child: Text('Forgot Password'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          <mark> Navigator.of(context).pushNamed('/home');</mark> -------> Added named navigator.It has back button.
+                        },
+                        child: Text('Login'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          foregroundColor: Colors.black,
+                        ),
+                      ),
+                    ),
+                   Spacer(),
+                    Text(
+                      'Or Sign in with',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Google is clicked');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50))),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/google.png',
+                            height: 22,
+                            width: 22,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text('Login with Google'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //print('Google is clicked');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/facebook.png',
+                              height: 22,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('Login with facebook'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.amber,
+                          ),
+                          child: Text(
+                            'Signup',
+                            style: TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
+                    ),
+
+
+                    Spacer(),
+                  ],
+                           ),
+               ),
+           ),
+         ),
+    );
+  }
+}
+
+
+
+main.dart
+=============
+import 'package:flutter/material.dart';
+import 'package:keyboard2/pages/home_page.dart';
+import 'package:keyboard2/pages/login_page.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,
+      ),
+      
+     <mark>  initialRoute: '/',  </mark> -------------------------> initial route added
+      <mark> routes: {
+        '/' :(context) => LoginPage(),</mark>----------------------------> Different pages we can add with names
+       <mark> '/home': (context) => HomePage(),</mark> 
+      },
+
+    );
+
+  }
+}
+
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>32. home page -</h2>
+<pre>
+home_page.dart
+===============
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     <mark>appBar: AppBar(</mark>
+     ),
+      body: Container(),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>33.  Add icon in Appbar -</h2>
+<pre>
+home_page.dart
+===============
+
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       title: Text('SimulateFlutter'),
+       <mark>actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),</mark>
+       ],
+     ),
+      body: Container(),
+    );
+  }
+}
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>34. Navigator.of(context).pushReplacementNamed -</h2>
+<pre>
+In HomePage , we can see one back button in AppBar to go to Login Page. 
+But in real life once we entered the login page, We no need to go back to login page again. So for that reason we do not need any back button in HomePage. 
+So to make this changes we will use - pushReplacementNamed  instead of - pushNamed  in navigator of Login page.
+
+It means push to /home and replaced with Login page.
+
+
+child: ElevatedButton(
+                        onPressed: () {
+                           <mark>Navigator.of(context).pushReplacementNamed('/home');</mark>
+                        },
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>35. centerTitle - Title will be cenetered., Add icon  -</h2>
+<pre>
+home_page.dart
+===============
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+       
+       title: Text('SimulateFlutter', style: TextStyle(color: Colors.white
+       ),),
+      <mark> centerTitle: false,</mark> ---->Title will not be centered anymore
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+      body: Container(),
+    );
+  }
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>36.  Adding a profile picture -</h2>
+<pre>Create another folder --> assets/temp, and add in pubspec.yaml file --> pub get, main.dart --> get dependencies.
+
+Then add one image - user1.png in the temp folder.
+
+
+home_page.dart
+===============
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+//import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/widgets/placeholder.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+
+       title: Text('SimulateFlutter', style: TextStyle(color: Colors.white
+       ),),
+       centerTitle: false,
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+      body: Column(
+        children: [
+          <mark>Image.asset('assets/temp/user1.png',
+          width: 40,
+          height: 40,)</mark>
+        ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>37.  -</h2>
+<pre>
+main.dart
+=============
+import 'package:flutter/material.dart';
+import 'package:keyboard2/pages/home_page.dart';
+import 'package:keyboard2/pages/login_page.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(color: Colors.white,
+          ),
+        ),
+      ),
+      //home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/' :(context) => LoginPage(),
+       '/home': (context) => HomePage(),
+      },
+
+    );
+
+  }
+}
+
+login_page.dart
+================
+import 'package:flutter/material.dart';
+import 'package:keyboard2/pages/home_page.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+         body: SingleChildScrollView(
+           child: SizedBox(
+             height: MediaQuery.of(context).size.height,
+             child: Padding(
+                 padding: const EdgeInsets.all(24),
+                 child: Column(
+                  children: [
+                    Spacer(),
+                    Text(
+                      "Hello, welcome back!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Login to continue",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                   Spacer(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          print('Forgot is clicked');
+                        },
+                        child: Text('Forgot Password'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                           Navigator.of(context).pushReplacementNamed('/home');
+                        },
+                        child: Text('Login'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          foregroundColor: Colors.black,
+                        ),
+                      ),
+                    ),
+                   Spacer(),
+                    Text(
+                      'Or Sign in with',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Google is clicked');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50))),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/google.png',
+                            height: 22,
+                            width: 22,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text('Login with Google'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //print('Google is clicked');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/facebook.png',
+                              height: 22,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('Login with facebook'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.amber,
+                          ),
+                          child: Text(
+                            'Signup',
+                            style: TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
+                    ),
+
+
+                    Spacer(),
+                  ],
+                           ),
+               ),
+           ),
+         ),
+    );
+  }
+}
+
+
+
+app_colors.daart
+================
+import 'package:flutter/material.dart';
+
+class AppColors {
+  static const primary = Color(0xffFBD0512);
+  static const font = Color(0xffD8D8D8);
+  static const font2 = Color(0xff373737);
+  static const disableFont = Color(0xffA7A7A7);
+  static const disableButton = Color(0xff303030);
+  //static const background = Color(0xff1A2947);
+  static const background = Color(0x000099);
+  static const black = Color(0xff000000);
+  static const white = Color(0xffffffff);
+
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>38. Use List of users </h2>
+<pre>
+home_page.dart
+==============
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+//import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/widgets/placeholder.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+
+       title: Text('SimulateFlutter', ),
+       centerTitle: false,
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+      body: Column(
+        children: [
+          <mark>Row(</mark>
+            children: [
+              Image.asset('assets/temp/user1.png',
+              width: 40,
+              height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali'),
+            ],
+          ),
+         <mark> Row(</mark>
+            children: [
+              Image.asset('assets/temp/user1.png',
+                width: 40,
+                height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali'),
+            ],
+          ),
+         <mark> Row(</mark>
+            children: [
+              Image.asset('assets/temp/user1.png',
+                width: 40,
+                height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali'),
+            ],
+          ),
+        <mark>  Row(</mark>
+            children: [
+              Image.asset('assets/temp/user1.png',
+                width: 40,
+                height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali'),
+            ],
+          ),
+         <mark> Row(</mark>
+            children: [
+              Image.asset('assets/temp/user1.png',
+                width: 40,
+                height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+ 
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>39. Instead of repeating the rows we can use function   -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+//import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/widgets/placeholder.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+
+       title: Text('SimulateFlutter', ),
+       centerTitle: false,
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+      body: Column(
+       <mark> children: [
+          _usrItem(),
+          _usrItem(),
+          _usrItem(),
+          _usrItem(),
+          _usrItem(),</mark>
+
+        ],
+      ),
+    );
+  }
+
+ <mark>Widget _usrItem() {
+    return Row(
+      children: [
+        Image.asset('assets/temp/user1.png',
+          width: 40,
+          height: 40,),
+        SizedBox(
+          width: 16,
+        ),
+        Text('Sarah Ali'),
+      ],
+    );
+ }</mark>
+
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>40. we can user for loop and List type to list out the users -</h2>
+<pre>
+If 1000 users are present then we have to call thousand times the _usrItem(), which is not looks good. 
+So instead of using function , we can use list.
+
+home_page.dart
+==================
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+
+       title: Text('SimulateFlutter', ),
+       centerTitle: false,
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+      body: Column(
+       <mark> children: mockUsersFromServer(),</mark>---> calling the list
+      ),
+    );
+  }
+
+ Widget _userItem() {
+    return Row(
+      children: [
+        Image.asset('assets/temp/user1.png',
+          width: 40,
+          height: 40,),
+        SizedBox(
+          width: 16,
+        ),
+        Text('Sarah Ali'),
+      ],
+    );
+ }
+
+
+ <mark>List&lt;Widget> mockUsersFromServer() {</mark>---->create a list with name: mockUsersFromServer
+    List&lt;Widget> users = [];
+    for (var i=0; i&lt;20; i++){
+      users.add(_userItem());
+    }
+    return users;
+ }
+
+}
+
+
+Note - The problem is here when more number of users in the list it will overflow from the page and shows 
+Bottom overflow by 240px as per my phone.
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>41. Use SinglechildscrollView to overcome the overflow error -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+
+       title: Text('SimulateFlutter', ),
+       centerTitle: false,
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+     <mark> body: SingleChildScrollView(</mark>
+        child: Column(
+          children: mockUsersFromServer(),
+        ),
+      ),
+    );
+  }
+
+ Widget _userItem() {
+    return Row(
+      children: [
+        Image.asset('assets/temp/user1.png',
+          width: 40,
+          height: 40,),
+        SizedBox(
+          width: 16,
+        ),
+        Text('Sarah Ali'),
+      ],
+    );
+ }
+
+
+ List&lt;Widget> mockUsersFromServer() {
+    List&lt;Widget> users = [];
+    for (var i=0; i&lt;1000; i++){
+      users.add(_userItem());
+    }
+    return users;
+ }
+
+}
+
+
+Note -
+The list of users now scrollable but the performance is very slow.
+Because the list and SinglechildScrollView render all the items at a time. 
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>42. Use of ListView -</h2>
+<pre>
+- ListView is used to list large number of items.
+- ListView is a Flutter widget designed specifically for displaying scrollable lists of widgets.
+- It does not care howmany items in the list. It cares only howmany items are displayed currently on page. So it has good performance.
+- It renders only the visible item at one time.
+ 
+ 
+ 
+home_page.dart
+=================
+import 'package:flutter/material.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     appBar: AppBar(
+       backgroundColor: AppColors.background,
+
+       title: Text('SimulateFlutter', ),
+       centerTitle: false,
+       actions: [
+         Icon(Icons.location_on_outlined),
+         Icon(Icons.usb_rounded),
+       ],
+     ),
+      <mark>body: ListView(</mark>
+        children: mockUsersFromServer(),
+      ),
+    );
+  }
+
+ Widget _userItem() {
+    return Row(
+      children: [
+        Image.asset('assets/temp/user1.png',
+          width: 40,
+          height: 40,),
+        SizedBox(
+          width: 16,
+        ),
+        Text('Sarah Ali'),
+      ],
+    );
+ }
+
+
+ List&lt;Widget> mockUsersFromServer() {
+    List&lt;Widget> users = [];
+    for (var i=0; i&lt;1000; i++){
+      users.add(_userItem());
+    }
+    return users;
+ }
+
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>43. BottomNavigationBar -</h2>
+<pre>
+main.dart
+==========
+import 'package:flutter/material.dart';
+import 'package:keyboard2/pages/home_page.dart';
+import 'package:keyboard2/pages/login_page.dart';
+import 'package:keyboard2/pages/main_page.dart';
+import 'package:keyboard2/styles/app_colors.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(color: Colors.white,
+          ),
+        ),
+      ),
+      //home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/' :(context) => LoginPage(),
+       '/home': (context) => HomePage(),
+      <mark>  '/main': (context) => MainPage(),</mark>
+      },
+
+    );
+
+  }
+}
+
+
+login_page.dart
+===================
+child: ElevatedButton(
+                        onPressed: () {
+                           Navigator.of(context).pushReplacementNamed('/main');
+                        },
+
+
+
+
+main_page.dart
+===============
+import 'package:flutter/material.dart';
+
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: AppBar(
+    title: Text('Bottom navigation Container'),
+    ),
+      body: Center(child: Text('Center Text')),
+      <mark>bottomNavigationBar: BottomNavigationBar(items: [</mark>
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
+        BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Post'),
+      ],
+      <mark>showSelectedLabels: false,</mark>-----------------------------------> The label written below the icon will not be displayed. Here home is selected icon
+      <mark>showUnselectedLabels: false,),</mark>----------------------------------> favorite and add post are unselected icon.
+      backgroundColor: Colors.amber,
+    );
+  }
+}
+
+
+Note:
+
+For BottomNavigationBarItem, item should be more than one. and label is compulsory. Othrewise error will come.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>44. Understand stateless widget and stateful widget  -</h2>
+<pre>
+Example -
+
+test_page.dart
+====================
+import 'package:flutter/material.dart';
+
+class TestPage extends StatelessWidget {
+  final int count = 1;
+  const TestPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text("This is Counter: $count",
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
+    );
+  }
+}
+
+Note - Here a blank button will show. Put an icon for the button.
+
+
+test_page.dart
+====================
+
+import 'package:flutter/material.dart';
+
+class TestPage extends <mark>StatelessWidget {</mark>
+  <mark>final int count = 1;</mark>
+  const TestPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        <mark>child: Text("This is Counter: $count",</mark>
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add), --------------------------> A '+' symbol will show in button.
+      ),
+    );
+  }
+}
+
+
+- In stateless widget , it is not possible if we click on the button the count will increase.
+- So use stateful widget.
+
+test_page.dart
+====================
+
+import 'package:flutter/material.dart';
+
+class TestPage extends <mark>StatefulWidget {</mark>
+
+  const TestPage({super.key});
+
+  @override
+  State&lt;TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+    <mark>int count = 1;</mark> ---------------------> final has been removed, otherwise count++ will not work.
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        <mark>child: Text("This is Counter: $count",</mark>
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          <mark>count++;</mark>
+          print(count);
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+- Here the output will increase the count when we press the button. But every time we need to do hot reload.To overcome this we need to  use 
+setState function.
+
+test_page.dart
+====================
+import 'package:flutter/material.dart';
+
+class TestPage extends StatefulWidget {
+
+  const TestPage({super.key});
+
+  @override
+  State&lt;TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State&lt;TestPage> {
+    int count = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text("This is Counter: $count",
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          <mark>setState(() {</mark> ---------------> Adding this , on the page it will increase the count if we press the button.
+            count++;
+          });
+
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+ 
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>44. Make the main_page file as stateful -</h2>
+<pre>
+import 'package:flutter/material.dart';
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State&lt;MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State&lt;MainPage> {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: AppBar(
+    title: Text('Bottom navigation Container'),
+    ),
+      body: Center(child: Text('Center Text')),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
+        BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Post'),
+      ],
+        <mark>onTap: (index){</mark>
+       <mark> print (index);</mark> ---------> when we click on home, the terminal output come as 0, when tap on Favorite, output will be 1, 
+        },                                       when tap on '+' output is 2. it means each time we tap, the index value is increased.
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+      ),
+      backgroundColor: Colors.amber,
+    );
+  }
+}
+
+
+</pre><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>45. we need to change the state of bottom navigation icons of main_page -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+<mark>class MainPage extends StatefulWidget {</mark>--->Make the class stateful.
+  const MainPage({super.key});
+
+  @override
+  State&lt;MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State&lt;MainPage> {
+
+  <mark>int currentIndex1 = 0;</mark>
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: AppBar(
+    title: Text('Bottom navigation Container'),
+    ),
+      body: Center(child: Text('Center Text')),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
+        BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Post'),
+      ],
+        <mark>onTap: (index){</mark>
+        <mark>setState(() {</mark> -----------------------------> Here we added ststate
+          <mark>currentIndex1 = index;</mark> --------------------> when we click on the bottons, home or favorite or '+' , mothing happens.
+        });                                           because when stateful widget rebuilds, bottomnavigation does not know what is currentIndex1 . 
+
+        },
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+      ),
+      backgroundColor: Colors.amber,
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>46. currentIndex property of bottom navigation Bar-</h2>
+<pre>
+import 'package:flutter/material.dart';
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State&lt,MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  <mark>int currentIndex1 = 0;</mark>
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: AppBar(
+    title: Text('Bottom navigation Container'),
+    ),
+      body: Center(child: Text('Center Text')),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
+        BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Post'),
+      ],
+        <mark>currentIndex: currentIndex1,</mark>----------->There is one property of bottomnavigation is CurrentIndex, which calculate the index.
+        onTap: (index){
+        setState(() {
+          <mark>currentIndex1 = index;</mark>
+          
+        });
+
+        },
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+      ),
+      backgroundColor: Colors.amber,
+    );
+  }
+}
+
+
+Now we can see, when we tap on the button : home or favorite or '+', it is highlighted with a different color  means selected.
+So state can be changed on the page by using stateful widget.
+
+Problem - if we have 3 icons, everything visible properly. If more than 3 icons it is not visible her in my case so I added below code.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>47. Add one svg image as icon -</h2>
+<pre>
+flutter_svg: ^2.0.9 -->package add in pubsec.yaml file
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State&lt;MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State&lt;MainPage> {
+  int currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bottom Navigation Container'),
+      ),
+      body: Center(child: Text('Center Text')),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          // BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: SvgPicture.asset('assets/svg/home-icon-silhouette.svg',width: 25,height: 25,), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'favorite'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add post'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add post'),
+        ],
+        currentIndex: currentIndex,
+        onTap:(index) {
+          setState(() {
+            currentIndex = index;
+
+          });
+        },
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        backgroundColor: Colors.amber,
+        <mark>selectedItemColor: Colors.red,</mark>
+        <mark>unselectedItemColor: Colors.green,</mark>
+      ),
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>48.  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'home_page.dart';
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State&lt;MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State&lt;MainPage> {
+  int currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bottom Navigation Container'),
+      ),
+      //body: HomePage(),
+      body: pages[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          //BottomNavigationBarItem(icon: SvgPicture.asset('assets/svg/home-icon-silhouette.svg',width: 25,height: 25,), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'favorite'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Add message'),
+          BottomNavigationBarItem(icon: Icon(Icons.verified_user), label: 'user'),
+
+        ],
+        currentIndex: currentIndex,
+        onTap:(index) {
+          setState(() {
+            currentIndex = index;
+
+
+          });
+        },
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        backgroundColor: Colors.amber,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.green,
+        type: BottomNavigationBarType.fixed,
+
+
+      ),
+    );
+  }
+
+
+  <mark>final pages = [
+    HomePage(),
+    Center(child: Text('Favorite'),),
+    Center(child: Text('message'),),
+    Center(child: Text('user'),),
+  ];</mark>
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>49.  -</h2>
+<pre>
+Add one more dart file - <mark>lib/styles/app_text.dart</mark>
+
+import 'package:flutter/material.dart';
+
+class AppText {
+  static const header1 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w900,
+  );
+  static const header2 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+  static const subtitle1 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  static const subtitle2 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+  static const subtitle3 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+  static const body1 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+  static const body2 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+  static const body3 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+
+===========================
+We can apply anywhere these styles.
+
+home_page.dart -
+
+import 'package:flutter/material.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+
+        title: Text('SimulateFlutter',),
+        centerTitle: false,
+        actions: [
+          Icon(Icons.location_on_outlined),
+          //Icon(Icons.usb_rounded),
+        ],
+      ),
+
+      body: ListView(
+        children: mockUsersFromServer(),
+      ),
+
+    );
+  }
+
+//**Function created
+  Widget _userItem() {
+    return Row(
+      children: [
+        Image.asset('assets/temp/user1.png',
+          width: 40,
+          height: 40,),
+        SizedBox(
+          width: 16,
+        ),
+       <mark> Text('Sarah Ali', style: AppText.subtitle3,),</mark>
+      ],
+    );
+  }
+
+
+  List&lt;Widget> mockUsersFromServer() {
+    List&lt;Widget> users = [];
+    for (var i = 0; i &lt; 1000; i++) {
+      users.add(_userItem());
+    }
+    return users;
+  }
+}
+
+
+============================================
+
+main.dart
+
+import 'package:flutter/material.dart';
+import 'package:keyboard3/pages/home_page.dart';
+import 'package:keyboard3/pages/login_page.dart';
+import 'package:keyboard3/pages/main_page.dart';
+import 'package:keyboard3/styles/app_colors.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.background,
+          <mark>brightness: Brightness.dark,</mark>
+        //scaffoldBackgroundColor: Colors.blue[900],
+          //scaffoldBackgroundColor: Color(0xFF204060),
+          textTheme: TextTheme(
+            bodyMedium: TextStyle(color: Colors.white,),
+
+          )
+      ),
+
+      //home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/home': (context) => HomePage(),
+        '/main': (context) => MainPage(),
+      },
+    );
+  }
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>50. Add Posts   -</h2>
+<pre>
+home_page.dart
+===============
+import 'package:flutter/material.dart';
+import 'package:keyboard3/components/post_items.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+
+        title: Text('SimulateFlutter',),
+        centerTitle: false,
+        actions: [
+          Icon(Icons.location_on_outlined),
+          //Icon(Icons.usb_rounded),
+        ],
+      ),
+
+      body: ListView(
+        children: mockUsersFromServer(),
+      ),
+
+    );
+  }
+
+
+  List&lt;Widget> mockUsersFromServer() {
+    <mark>List&lt;Widget> users = [];</mark>------------->define users variable at function level.
+    for (var i = 0; i &lt; 1000; i++) {
+      //users.add(_userItem());------->removed the function from the home_page file and create a new file post_item . 
+      <mark>users.add(PostItem());</mark>----->Add the new class postitem
+    }
+    return users;
+  }
+}
+
+
+
+lib/components/post_item.dart
+===============================
+import 'package:flutter/material.dart';
+import '../styles/app_text.dart';
+
+class PostItem extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset('assets/temp/user1.png',
+                width: 40,
+                height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali', style: AppText.subtitle3,),
+            ],
+          ),
+         SizedBox(height: 24,),
+         <mark>Image.asset('assets/temp/post1.jpg'),</mark>
+          SizedBox(height: 12,),
+          Text("Text content for the post ", style: AppText.subtitle3,)
+        ],
+      ),
+    );
+
+  }
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>51. Use of List view Builder -</h2>
+<pre>
+
+home_page.dart
+=================
+import 'package:flutter/material.dart';
+import 'package:keyboard3/components/post_items.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  <mark>List&lt;String> users = [];</mark>----->define the users in class .
+
+  @override
+  Widget build(BuildContext context) {
+    <mark>mockUsersFromServer();</mark> ----> called the function
+
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          title: Text('SimulateFlutter',),
+          centerTitle: false,
+          actions: [
+            Icon(Icons.location_on_outlined),
+            //Icon(Icons.usb_rounded),
+          ],
+        ),
+
+        //body: ListView(children: mockUsersFromServer(),),
+       <mark> body: ListView.separated(</mark>
+            itemBuilder: (context, index) {
+              <mark>return PostItem(user: users[index]);</mark>---->called to the postItem class. user is passed as an argument. which will be used by postitem constructor.
+            },
+            itemCount: users.length,
+           <mark> separatorBuilder:  (BuildContext context, int index) {</mark>
+              return Container(
+                height: 20,
+                width: 20,
+                color: Colors.red,
+              ) ;
+            }
+        )
+
+    );
+  }
+
+//**Function created
+  <mark>mockUsersFromServer() {</mark>
+    for (var i = 0; i &lt; 1000; i++) {
+      //users.add(PostItem());
+      <mark>users.add('user number $i');</mark>
+    }
+    <mark>return users;</mark>
+  }
+
+}
+
+
+post_item.dart
+================
+import 'package:flutter/material.dart';
+import '../styles/app_text.dart';
+
+class PostItem extends StatelessWidget {
+  <mark>final String user;</mark>----->declare one variable
+  <mark>const PostItem({super.key, required this.user});<mark>---->create one constructor. pass the variable as argument.
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset('assets/temp/user1.png',
+                width: 40,
+                height: 40,),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Sarah Ali', style: AppText.subtitle3,),
+            ],
+          ),
+         SizedBox(height: 24,),
+         Image.asset('assets/temp/post1.jpg'),
+          SizedBox(height: 12,),
+          Text("Text content for the post ", style: AppText.subtitle3,)
+        ],
+      ),
+    );
+
+  }
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>52. Edit the separator instead of a red line container , use sizedbox -</h2>
+<pre>
+home_page.dart
+===========
+
+import 'package:flutter/material.dart';
+import 'package:keyboard3/components/post_items.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  List<String> users = [];
+
+  @override
+  Widget build(BuildContext context) {
+    mockUsersFromServer();
+
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          title: Text('SimulateFlutter',),
+          centerTitle: false,
+          actions: [
+            Icon(Icons.location_on_outlined),
+            //Icon(Icons.usb_rounded),
+          ],
+        ),
+
+        //body: ListView(children: mockUsersFromServer(),),
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              return PostItem(user: users[index]);
+            },
+            itemCount: users.length,
+            separatorBuilder:  (BuildContext context, int index) {
+             <mark> return SizedBox(height: 24,) ;</mark> 
+            }
+        )
+
+    );
+  }
+
+//**Function created
+  mockUsersFromServer() {
+    for (var i = 0; i &lt; 1000; i++) {
+      //users.add(PostItem());
+      users.add('user number $i');
+    }
+    return users;
+  }
+
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>53. Create a profile page  -</h2>
+<pre>
+<mark>profile_page.dart</mark>
+===================
+import 'package:flutter/material.dart';
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          <mark>Image.asset('assets/temp/user1.png'),</mark>
+
+        ],
+      ),
+    );
+  }
+}
+
+
+main_page.dart
+==============
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:keyboard3/pages/profile_page.dart';
+
+import 'home_page.dart';
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State&lt;MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State&lt;MainPage> {
+  int currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bottom Navigation Container'),
+      ),
+      //body: HomePage(),
+      body: pages[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          //BottomNavigationBarItem(icon: SvgPicture.asset('assets/svg/home-icon-silhouette.svg',width: 25,height: 25,), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'favorite'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Add message'),
+          <mark>BottomNavigationBarItem(icon: Icon(Icons.person), label: 'user'),</mark>
+
+        ],
+        currentIndex: currentIndex,
+        onTap:(index) {
+          setState(() {
+            currentIndex = index;
+
+
+          });
+        },
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        backgroundColor: Colors.amber,
+        //selectedItemColor: Colors.red,
+        //unselectedItemColor: Colors.green,
+        type: BottomNavigationBarType.fixed,
+
+
+      ),
+    );
+  }
+
+
+  final pages = [
+    HomePage(),
+    Center(child: Text('Favorite'),),
+    Center(child: Text('message'),),
+    <mark>//Center(child: Text('user'),),</mark>----> remove this
+    <mark>ProfilePage(),</mark>----->Add this
+  ];
+}
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>54.  Edit Profile page-</h2>
+<pre>
+profile_page.dart
+====================
+import 'package:flutter/material.dart';
+import 'package:keyboard3/styles/app_text.dart';
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Image.asset('assets/temp/user1.png', width: 90, height: 90,),
+          SizedBox(height: 24,),
+          Text("Suman Sahoo", style: AppText.header2,),
+          SizedBox(height: 12,),
+          Text("CV Raman", style: AppText.subtitle3),
+          SizedBox(height: 24,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  Text("471", style: AppText.header2,),
+                  Text("followers"),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("119", style: AppText.header2,),
+                  Text("Posts"),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("300", style: AppText.header2,),
+                  Text("followings"),
+                ],
+              ),
+              ],
+          ),
+          Divider(thickness: 0.5, )
+
+        ],
+      ),
+    );
+  }
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>55. Create one AppBar class -</h2>
+<pre>
+create another class for AppBar
+
+lib --> components ----> toolbar.dart
+
+
+
+import 'package:flutter/material.dart';
+import '../styles/app_colors.dart';
+
+class Toolbar extends StatelessWidget {
+  <mark>final String title;</mark>
+  <mark>final List&lt;Widget> actions;</mark>
+  <mark>const Toolbar({super.key, required this.title, required this.actions});</mark>
+
+
+ @override
+  Widget build(BuildContext context) {
+    return  AppBar(
+      backgroundColor: AppColors.background,
+      //title: Text(Simulate),
+      <mark>title: Text(title),</mark>
+      centerTitle: false,
+      <mark>actions: actions,</mark>
+    );
+  }
+}
+
+
+home_page.dart
+=====================
+import 'package:flutter/material.dart';
+import 'package:keyboard3/components/post_items.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../components/toolbar.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  List&lt;String> users = [];
+
+  @override
+  Widget build(BuildContext context) {
+    mockUsersFromServer();
+
+    return Scaffold(
+	
+	     <mark>/*appBar: AppBar( </mark>-------------> remove the appbar and add in another class - ToolBar
+          backgroundColor: AppColors.background,
+          title: Text('SimulateFlutter',),
+          centerTitle: false,
+          actions: [
+            Icon(Icons.location_on_outlined),
+            //Icon(Icons.usb_rounded),
+          ],
+        ),/*
+        <mark>appBar: Toolbar(title: 'Simulateflutter'),</mark>---> Add this, but it is showing error.
+
+        
+          body: ListView.separated(
+            itemBuilder: (context, index) {
+              return PostItem(user: users[index]);
+            },
+            itemCount: users.length,
+            separatorBuilder:  (BuildContext context, int index) {
+            return SizedBox(height: 24,) ;
+            }
+        )
+ );
+  }
+
+//**Function created
+  mockUsersFromServer() {
+    for (var i = 0; i &lt; 1000; i++) {
+      //users.add(PostItem());
+      users.add('user number $i');
+    }
+    return users;
+  }
+
+}
+
+<mark>Error</mark>
+appBar: Toolbar(title: 'Simulateflutter'),----> The argument type toolbar can not assigned to the parameter type "preferredSizeWidget"
+
+
+
+==========
+
+The error you're encountering indicates that the Toolbar widget is not being recognized as a valid value for the appBar parameter of the Scaffold widget. This is because the AppBar expects a widget of type PreferredSizeWidget for its appBar parameter, and Toolbar is not a subclass of PreferredSizeWidget.
+
+To fix this issue, you need to ensure that your Toolbar widget conforms to the PreferredSizeWidget interface. This interface requires implementing the preferredSize property, which specifies the preferred size of the widget.
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>56. implements PreferredSizeWidget -</h2>
+<pre>
+toolbar.dart
+===============
+import 'package:flutter/material.dart';
+import '../styles/app_colors.dart';
+
+class Toolbar extends StatelessWidget <mark>implements PreferredSizeWidget </mark>{
+  <mark>final String title;</mark>------->variable declaration
+  <mark>final List&lt;Widget> actions;</mark>-------->variable declaration
+  <mark>const Toolbar({super.key, required this.title, required this.actions});</mark>----->Constructor for Toolbar class, passed variable as argument.
+
+  @override
+  Widget build(BuildContext context) {
+    return  AppBar(
+      backgroundColor: AppColors.background,
+      title: Text(title),
+      actions: actions,
+    );
+  }
+
+  @override
+  //Size get preferredSize => throw UnimplementedError();---->default syntax, when used implements preferredsizewidget.
+  <mark>Size get preferredSize => const Size.fromHeight(60);</mark>
+}
+
+
+
+
+home_page.dart
+===================
+import 'package:flutter/material.dart';
+import 'package:keyboard3/components/post_items.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../components/toolbar.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  List&lt;String> users = [];
+
+  @override
+  Widget build(BuildContext context) {
+    mockUsersFromServer();
+
+    return Scaffold(
+        <mark>appBar: Toolbar(</mark>-------->Called the Toolbar class
+		<mark>title: 'Simulateflutter', </mark>------------>The value passed for the argument in Toolbar constructor
+		<mark>actions: [</mark>
+          IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.location_on_outlined))
+          ],),
+
+        
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              return PostItem(user: users[index]);
+            },
+            itemCount: users.length,
+            separatorBuilder:  (BuildContext context, int index) {
+              return SizedBox(height: 24,) ;
+            }
+        )
+
+    );
+  }
+
+//**Function created
+  mockUsersFromServer() {
+    for (var i = 0; i &lt; 1000; i++) {
+      //users.add(PostItem());
+      users.add('user number $i');
+    }
+    return users;
+  }
+
+}
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>57.  -</h2>
+<pre>
+
+home_page.dart
+==============
+import 'package:flutter/material.dart';
+import 'package:keyboard3/components/post_items.dart';
+import 'package:keyboard3/styles/app_text.dart';
+import '../components/toolbar.dart';
+import '../styles/app_colors.dart';
+
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  List &lt;String> users = [];
+
+  @override
+  Widget build(BuildContext context) {
+    mockUsersFromServer();
+
+    return Scaffold(
+        appBar: Toolbar(title: 'Simulateflutter', actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.location_on_outlined))
+          ],),
+
+        //body: ListView(children: mockUsersFromServer(),),
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              return PostItem(user: users[index]);
+            },
+            itemCount: users.length,
+            separatorBuilder:  (BuildContext context, int index) {
+              return SizedBox(height: 24,) ;
+            }
+        )
+
+    );
+  }
+
+//**Function created
+  mockUsersFromServer() {
+    for (var i = 0; i &lt; 1000; i++) {
+      //users.add(PostItem());
+      users.add('user number $i');
+    }
+    return users;
+  }
+
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9.  -</h2>
+<pre>
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9.  -</h2>
+<pre>
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9.  -</h2>
+<pre>
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9.  -</h2>
+<pre>
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9.  -</h2>
+<pre>
+
+</pre>

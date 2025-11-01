@@ -1,0 +1,284 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Adding Decoration to a container -</h1>
+
+<h2>1. Example of container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Home Page"),
+        ),
+        body: Container(
+          color: Colors.blue.shade50,
+                 ),
+      ),
+    );
+  }
+}
+</pre>
+<h2>2. Example of container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Home Page"),
+        ),
+        body: Container(
+          color: Colors.blue.shade50,
+
+          child: Container(
+            width: 150,
+            height: 150,
+            color: Colors.blueGrey,
+          ),
+                 ),
+      ),
+    );
+  }
+}
+
+
+Note -
+Here once we given width and hight to child, then automatically parent consumes the width and hight of child.
+
+
+</pre>
+
+<h2>3. Example of container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Home Page"),
+        ),
+        body: Container(
+          color: Colors.blue.shade50,
+          width: double.infinity,
+          height: double.infinity,
+
+          child: Container(
+            width: 150,
+            height: 150,
+            color: Colors.blueGrey,
+          ),
+                 ),
+      ),
+    );
+  }
+}
+
+
+
+Note - Here we given full width and hight to the parent container. But it overlaps the child container. 
+So to overcome this we need to create another widget on top of parent container. 
+Here in the below example we created center widget on top of parent container. Then the child container created in top of center widget.
+
+</pre>
+
+<h2>4. Example of container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Home Page"),
+        ),
+        body: Container(
+          color: Colors.blue.shade50,
+          width: double.infinity,
+          height: double.infinity,
+
+          child: Center(
+            child: Container(
+              width: 150,
+              height: 150,
+              color: Colors.blueGrey,
+            ),
+          ),
+                 ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>5. Example of container using decoration -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Home Page"),
+        ),
+        body: Container(
+          color: Colors.blue.shade50,
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(21))),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>6. Example of container using decoration -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Home Page"),
+        ),
+        body: Container(
+          color: Colors.blue.shade50,
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(21)),
+                  border: Border.all(
+                width: 5,
+                color: Colors.black,
+              ),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 51,
+                    spreadRadius: 9,
+                    color: Colors.pink,
+                  )
+                ]
+              ),
+
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,158 @@
+phili@MSI MINGW64 ~
+$ pwd
+/c/Users/phili
+
+phili@MSI MINGW64 ~
+$ cd C:\PHILIP\APPDEV\MyWiki
+bash: cd: C:PHILIPAPPDEVMyWiki: No such file or directory
+
+phili@MSI MINGW64 ~
+$ cd C:
+
+phili@MSI MINGW64 /c
+$ cd PHILIP
+
+phili@MSI MINGW64 /c/PHILIP
+$ cd APPDEV
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV
+$ cd MyWiki
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki
+$ ls
+Flutter_Tab/  Flutter_doc/  flutter1.html  stylesheet.css
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki
+$
+
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki
+$ git init
+Initialized empty Git repository in C:/PHILIP/APPDEV/MyWiki/.git/
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (master)
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (master)
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (master)
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (master)
+$ git add flutter1.html
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (master)
+$ git commit -m "first commit"
+[master (root-commit) 7e90c2a] first commit
+ 1 file changed, 281 insertions(+)
+ create mode 100644 flutter1.html
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (master)
+$ git branch -M main
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git remote add origin https://github.com/MyStudy776/flutter-webdoc.git
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git push -u origin main
+remote: Repository not found.
+fatal: repository 'https://github.com/MyStudy776/flutter-webdoc.git/' not found
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git remote remove origin
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git remote add origin https://github.com/MyStudy776/flutter-webdoc.git
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git push -u origin main
+remote: Permission to MyStudy776/flutter-webdoc.git denied to AppieeBana.
+fatal: unable to access 'https://github.com/MyStudy776/flutter-webdoc.git/': The requested URL returned error: 403
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$
+^C
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$
+
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git config --global user.name
+AppieeBana
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git config --global user.email
+appieebana513@gmail.com
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git credential reject
+protocol=https
+host=github.com
+
+fatal: refusing to work with credential missing host field
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=openssl
+http.sslcainfo=C:/PHILIP/APPDEV/Install/Git/mingw64/etc/ssl/certs/ca-bundle.crt
+core.autocrlf=true
+core.fscache=true
+core.symlinks=true
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=master
+user.email=appieebana513@gmail.com
+user.name=AppieeBana
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+remote.origin.url=https://github.com/MyStudy776/flutter-webdoc.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ it config --global user.name "MyStudy776"
+bash: it: command not found
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git config --global user.name "MyStudy776"
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git config --global user.email "eventmgmnt06@gmail.com"
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$ git push -u origin main
+info: please complete authentication in your browser...
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 3.58 KiB | 3.58 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/MyStudy776/flutter-webdoc.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+phili@MSI MINGW64 /c/PHILIP/APPDEV/MyWiki (main)
+$

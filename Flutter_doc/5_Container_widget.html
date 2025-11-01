@@ -1,0 +1,164 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Container Widget</h1>
+<h2>1. Container -</h2>
+<pre>
+It is a widget that combines common positioning and sizing of the child widgets.
+It is a box of storing contents.
+
+</pre>
+<h2>2. Create a stateless widget -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp1());
+}
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. Create a Container, add a text, make the container as center -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp1());
+}
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "My Home page",
+            style:
+                TextStyle(color: Colors.pink[900], fontWeight: FontWeight.bold),
+          ),
+        ),
+        body: Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.amber,
+            child: Text('Hello Dobi!'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+<h2>4. keep center the  text inside the container -</h2>
+<pre>
+body: Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.amber,
+            child: Center(child: Text('Hello Dobi!', style: TextStyle(color: Colors.white),)),
+          ),
+        ),
+    );
+  }
+}
+</pre>
+<h2>5. Styling the text -</h2>
+<pre>
+body: Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.amber,
+            child: Center(child: Text('Hello Dobi!', style: TextStyle(
+                color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              backgroundColor: Colors.black
+            ),)),
+          ),
+        ),
+    );
+  }
+}
+</pre>
+
+<h2>6. Add margin to the container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Container(
+          color: Colors.blue,
+            margin: EdgeInsets.all(11),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Text("Hello World", style: TextStyle(fontSize: 25, color: Colors.white),),
+            )),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

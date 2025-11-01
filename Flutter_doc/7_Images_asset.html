@@ -1,0 +1,126 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Images</h1>
+<h2>1. Images-</h2>
+<pre>
+project--->new--->directory --->create a folder--> assets-->Inside this assets folder create another folder with name -->Images--->save images inside thiswith (.jpg or png format).
+pubsec.yaml--->assets: 
+                 - assets/images/ ---->click on pubget.
+</pre>
+
+<h2>2. -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Container(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'First Text Widget',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Second Text Widget',
+                style: TextStyle(fontSize: 18),
+              ),
+              Image.asset(
+                'assets/images/flutter.jpg', // Replace with your image asset path
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>3. -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Multiple Text Example')),
+        body: Center(
+          child: Container(
+            width: 100, 
+              height:100,
+            child: Image.asset('assets/images/flutter.jpg'),
+          ),
+          ),
+        ),
+      );
+
+  }
+}
+</pre>
+
+
+<h2>Cached_Network_Image package - If the image does not load it will use it</h2>
+<pre>
+// CachedNetworkImage(
+//           imageUrl:
+//               'https://variety.com/wp-content/uploads/2014/11/stand-by-me-doraemon.jpg?w=681&h=383&crop=1',
+//           placeholder: (context, url) =>
+//               Center(child: CircularProgressIndicator()),
+//           errorWidget: (context, url, error) => Icon(Icons.error),
+//         ),
+
+</pre>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

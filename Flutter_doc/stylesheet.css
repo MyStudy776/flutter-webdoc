@@ -1,0 +1,103 @@
+body {
+  background-color: #003333;
+  margin: 10px;
+}
+
+h1 {
+  color: white;
+ }
+
+h2 {
+  color: red;
+ }
+
+h3 {
+	color: white;
+}
+
+p {
+  font-family: verdana;
+  font-size: 16px;
+}
+
+a {
+
+font-size: 20px;
+color:green;
+text-decoration: none;
+
+
+}
+
+a:hover {
+  color: blue;
+}
+
+pre {
+
+background-color: #006666;
+color: #f2f2f2;
+padding: 20px;
+margin: 20px;
+font-size: 15px;
+width: 90%;
+
+}
+
+ul li {
+ color: white;
+}
+
+
+
+#######################################
+
+
+
+* {
+  box-sizing: border-box;
+  
+}
+
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+
+
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 27px;
+}
+
+
+
+ul.topnav li a:hover {background-color: red;}
+
+ul.topnav li a:active {background-color: yellow;}
+
+
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
+}
+

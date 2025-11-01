@@ -1,0 +1,459 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h1>1st program in flutter -</h1>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>1. write a simple Hello world-</h2>
+<pre>
+import 'package:flutter/material.dart';       
+
+void main() {
+  runApp(
+      Text('Hello, world!', textDirection: TextDirection.ltr,),);
+}
+
+Note: import 'package:flutter/material.dart' ----> material.dart file imported from flutter package.
+      Flutter package works if dependency: flutter (sdk: flutter) is present in pubsec.yaml file.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Make the text center-</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+ runApp(
+   Center(
+     child: Text("Hello...",textAlign: TextAlign.left, textDirection: TextDirection.ltr,),
+   )
+ );
+}
+</pre>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    const Center(
+      child: Text(
+        'Hello, world!',
+        textDirection: TextDirection.ltr,
+      ),
+    ),
+  );
+}
+</pre>
+
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+runApp() ---: It is mandatory. It will run your app.
+- Here runApp function will run the class - MyApp() class.
+- main() function call runApp().
+- runApp() uses class MyApp()
+
+</pre>
+
+<h2>***Type of Widget</h2>
+<pre>
+1. stateless widget
+2. stateful widget
+3.Inherited Widget
+</pre>
+
+<h2>***There are 2 type of design system</h2>
+<pre>
+1. Material design --> Developed by google   
+2. Cupertino design --> developed by Apple
+
+
+Ctrl + b --> shorcut to open a file
+</pre>
+
+
+
+<h2>3. Stateless Widget - -</h2>
+
+<pre>
+- no state change.No change needed at UI level.
+- Data can change externally.
+- Gets rendered when input data changes.
+- Inside the widget class, data will never change.
+- Basically we receives the data from outside and the widget will rebuild.
+- By default build() function will be called
+
+build()-->when build function called, the MaterialApp() will be created.
+home: --->Defines the first page.
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+		
+		
+		
+StatelessWidget -- It is an abstract class and need override function.
+</pre>
+
+<h2>4. Stateful Widget - -</h2>
+
+<pre>
+- State can changed.
+- when we want to changes at run time,without restarting your application
+- Data can change externally.
+- Gets rendered when input data or local state changes.
+- It is not a single class. It is a combination of two class. E.g: If my class name is : MyApp then other class is :  MyAppState
+      class MyApp extends StatefulWidget {  }
+	  class MyAppState extends State { }
+
+- MyApp - This class can be recreated when external data changes
+- MyAppState - This class never recreated.It is used for storing our state.
+             - It contains the build method.
+- State<>  - It is a generic class 
+- State<MyApp> -- It tells that State class belnogs to MyApp class.
+- State<StatefulWidget> - State class belongs to StatefulWidget class.
+- createState() - This method need to be overwritten. So overwrite used.
+- setState() - It updates the method by calling the build method.
+               Build method is called when u calling setState method.
+- extends --> It means inheritance. MyApp inherited the feature of statelesswidget class.			   
+
+
+
+class MyApp extends StatefulWidget {
+
+  @override
+  State&lt;StatefulWidget&gt; createState() {
+     return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+
+ setState(() {............});
+}
+
+
+
+========================
+
+StateFul Class -
+1. Setstate method --->Iyou want to change anything on the screen. It will rerun the build method.
+2. Init method--->When the widget is created, that time it is called.
+3. Dispose method--->When the widget ends, that time it is called.
+			   
+</pre>
+
+<h2>5. Widgets -</h2>
+
+<pre>
+Layout widget -
+- Container
+-row
+-Column
+
+
+row/column childeren widget -
+- Flexible 
+- Expanded
+
+Contenet Container Widget -
+- Stack
+- Card
+
+Repeating element - (scrollable) Widgets
+- List View
+- Grid View
+- List Tile
+
+Content Type Widgets -
+- text
+- Image
+- Icon
+
+User Input Widgets -
+- Text field
+- Elevated Button/ RaisedButton/ FlatButton
+- Inkwell
+
+</pre>
+
+<h2>6. -</h2>
+
+<pre>
+Material - androin
+Cupertino - IOS
+</pre>
+
+
+<h2>7. -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp1());
+}
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(),
+    );
+  }
+}
+
+</pre>
+
+
+
+<h2>8. Give AppBar and Title -</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp1());
+}
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+       appBar: AppBar(
+         title: Text("My Home page"),
+       ),
+
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>9.Change the text color. -</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp1());
+}
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+       appBar: AppBar(
+         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+         title: Text("My Home page", style: TextStyle(color: Colors.red),),
+
+       ),
+
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>10. Add padding -</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp1());
+}
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+       appBar: AppBar(
+
+         title: Text("My Home page", style: TextStyle(color: Colors.pink[900], fontWeight: FontWeight.bold),),),
+       body: Padding(
+         padding: const EdgeInsets.all(8.0),
+         child: Center(child: Text("Hello World")),
+         
+       ),
+
+       ),
+
+      );
+
+  }
+}
+
+</pre>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 11, left: 30),
+          child: Text('Hello World', style: TextStyle(fontSize: 25),),
+        )
+      ),
+    );
+  }
+}
+
+Note: -
+
+EdgeInsets.only(top: 11, left: 30) -->Padding given in top and left side
+EdgeInsets.all(11) --->Padding given in all side.
+</pre>
+
+
+
+
+<h1>Difference </h1>
+<h2>1. Write a text  -</h2>
+
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'Hello World', textDirection: TextDirection.rtl,
+    );
+  }
+}
+
+</pre>
+
+<h2>using material App</h2>
+<pre>
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Text('Hellow World'), ----->no need to put text direction, because material app has already text direction set
+      
+    );
+  }
+</pre>
+
+<h2>using Scaffold -</h2>
+<pre>
+Scaffold gives head, body, footer.
+
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Text("Hello World"),
+      ),
+
+    );
+  }
+</pre>
+
+<h2>BuildContext -</h2>
+<pre>
+BuildContext - It basically tells the location of the widget in the widget tree.
+
+
+Scaffold gives head, body, footer.
+
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Text("Hello World"),
+      ),
+
+    );
+  }
+</pre>
+
+<h2>how to get details about a widget -</h2>
+<pre>
+press ctrl , keep the cursor on the widget and click.
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

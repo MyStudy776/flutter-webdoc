@@ -1,0 +1,465 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Wallpaper API-</h1>
+
+
+<h2>1. Create Container -</h2>
+<pre>
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: Text("My place"),
+              width: 200,
+              height: 100,
+              color: Colors.cyan,
+            
+            ),
+          ),
+          Container(
+            child: Center(child: Text("Load more")),
+            width: double.infinity,
+            height: 60,
+            color: Colors.green,
+
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>2. Make the container Gridview -</h2>
+<pre>
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              <mark>child: GridView.builder(</mark>
+                  itemCount: 80, ------------------->Total 80 box willbe available
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 2,---->space between the boxes columnwise
+                      mainAxisSpacing: 2,---->space between the boxes rowwise
+                      crossAxisCount: 3,--------------->In one row total 3 boxes will show
+                    childAspectRatio: 2/4 ------------>Here width is smaller than height,(width/height)-->width is half of the height.
+                  ),
+                  itemBuilder: (context, index){
+                    return Container(color: Colors.white,);--->box colors are white, Every item retuned as a container format
+                  }),
+              width: double.infinity,
+              height: 100,
+              color: Colors.cyan,
+            
+            ),
+          ),
+          Container(
+            child: Center(child: Text("Load more")),
+            width: double.infinity,
+            height: 60,
+            color: Colors.green,
+
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>3. Add  API key -</h2>
+<pre>
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(const MyApp());
+}
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+class MyHomePage extends StatefulWidget {
+    @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+
+ <mark> @override
+  void initState() {
+    super.initState();
+    fetchapi();
+  }</mark>
+
+ <mark> fetchapi() async {</mark> ------>create a function
+    <mark>await http.get(Uri.parse('https://api.pexels.com/v1/curated?per_page=1'),</mark>--->copy from curated photos of pexel doc - https://www.pexels.com/api/documentation/#photos-curated
+     <mark> headers: {'Authorization': 'k48mWEqFRUptdGif1aYGLL0RVroIpIl59SPxLTylSkN8aN35RHnrQxmS'},).then((value) {</mark>--->use the API key
+     <mark> Map result = jsonDecode(value.body);</mark>--->The output will be in json format
+      <mark>print(result);</mark>
+  });
+        }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: GridView.builder(
+                  itemCount: 80,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 2,
+                      mainAxisSpacing: 2,
+                      crossAxisCount: 3,
+                    childAspectRatio: 2/4 //width/height
+                  ),
+                  itemBuilder: (context, index){
+                    return Container(color: Colors.white,);
+                  }),
+              width: double.infinity,
+              height: 100,
+              color: Colors.cyan,
+            
+            ),
+          ),
+          Container(
+            child: Center(child: Text("Load more")),
+            width: double.infinity,
+            height: 60,
+            color: Colors.green,
+
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>4. Display images -</h2>
+<pre>
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(const MyApp());
+}
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+class MyHomePage extends StatefulWidget {
+    @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  List images = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchapi();
+  }
+
+  fetchapi() async {
+    await http.get(Uri.parse('https://api.pexels.com/v1/curated?per_page=80'),
+      headers: {'Authorization': 'k48mWEqFRUptdGif1aYGLL0RVroIpIl59SPxLTylSkN8aN35RHnrQxmS'},).then((value) {
+      Map result = jsonDecode(value.body);
+      setState(() {
+        images = result['photos'];
+      });
+      print(images[0]);
+  });
+        }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: GridView.builder(
+                 <mark>  itemCount: images.length,</mark> 
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 2,
+                      mainAxisSpacing: 2,
+                      crossAxisCount: 3,
+                    childAspectRatio: 2/4 //width/height
+                  ),
+                  itemBuilder: (context, index){
+                    return Container(
+                      color: Colors.white,
+                   <mark> child: Image.network(images[index]['src']['tiny'],fit: BoxFit.cover,),</mark> 
+                    );
+                  }),
+              width: double.infinity,
+              height: 100,
+              color: Colors.cyan,
+            
+            ),
+          ),
+          Container(
+            child: Center(child: Text("Load more")),
+            width: double.infinity,
+            height: 60,
+            color: Colors.green,
+
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>5.  -</h2>
+<pre>
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(const MyApp());
+}
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          //primaryColor: Colors.cyan,
+  //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //useMaterial3: true,
+        ),
+        home: MyHomePage()
+    );
+  }
+}
+class MyHomePage extends StatefulWidget {
+    @override
+  State&lt;MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage> {
+  List images = [];
+  int page = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchapi();
+  }
+
+  fetchapi() async {
+    await http.get(Uri.parse('https://api.pexels.com/v1/curated?per_page=10'),
+      headers: {'Authorization': 'k48mWEqFRUptdGif1aYGLL0RVroIpIl59SPxLTylSkN8aN35RHnrQxmS'},).then((value) {
+      Map result = jsonDecode(value.body);
+      setState(() {
+        images = result['photos'];
+      });
+      print(images[0]);
+  });
+        }
+
+  loadmore() async {
+    setState(() {
+      page = page + 1;
+    });
+    String url =
+        'https://api.pexels.com/v1/curated?per_page=80&page=' + page.toString();
+    await http.get(Uri.parse(url), headers: {'Authorization': 'k48mWEqFRUptdGif1aYGLL0RVroIpIl59SPxLTylSkN8aN35RHnrQxmS'}).then(
+            (value) {
+          Map result = jsonDecode(value.body);
+          setState(() {
+            images.addAll(result['photos']);
+          });
+        });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: GridView.builder(
+                  itemCount: images.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 2,
+                      mainAxisSpacing: 2,
+                      crossAxisCount: 3,
+                    childAspectRatio: 2/4 //width/height
+                  ),
+                  itemBuilder: (context, index){
+                    return Container(
+                      color: Colors.white,
+                    child: Image.network(images[index]['src']['tiny'],fit: BoxFit.cover,),
+                    );
+                  }),
+              width: double.infinity,
+              height: 100,
+              color: Colors.cyan,
+            
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              loadmore();
+
+            },
+            child: Container(
+              child: Center(child: Text("Load more")),
+              width: double.infinity,
+              height: 60,
+              color: Colors.green,
+            
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>1. Create Container -</h2>
+<pre>
+
+</pre>
+
+<h2>1. Create Container -</h2>
+<pre>
+
+</pre>
+
+<h2>1. Create Container -</h2>
+<pre>
+
+</pre>
+
+</body>
+
+</html>

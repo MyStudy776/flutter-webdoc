@@ -1,0 +1,85 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>CSS like Styling -</h1>
+<h2>Chat gpt example</h2>
+<pre>
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        // Define common styles here
+        primaryColor: Colors.blue,
+        <mark>textTheme: TextTheme(
+          headline1: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+          bodyText1: TextStyle(fontSize: 16, color: Colors.grey),
+        ),</mark>
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter CSS Example'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Hello, World!',
+              <mark>style: Theme.of(context).textTheme.headline1,</mark> // Reusing text style
+            ),
+            SizedBox(height: 20),
+            FlatButton(
+              onPressed: () {},
+              child: Text(
+                'Click Me',
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Theme.of(context).primaryColor, // Reusing primary color
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<pre>
+In Flutter, you can achieve CSS-like styling by using themes and defining reusable styles. This helps in avoiding code repetition and ensures consistency across your app. Here's how you can do it:
+
+Theme Data: Flutter provides a ThemeData class that you can use to define a set of common styles for your app. You can specify colors, typography, and other visual properties in a ThemeData object.
+
+Text Styles: You can define TextStyle objects to specify text styling properties such as color, font size, font weight, etc. These text styles can be reused throughout your app.
+
+Button Themes: Flutter also provides ButtonTheme widgets that allow you to define common button styles for your app.
+
+Custom Widgets: You can create custom widgets that encapsulate specific styling and reuse them throughout your app.
+</pre>
+</body>
+</html>

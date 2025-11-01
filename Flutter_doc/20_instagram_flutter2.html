@@ -1,0 +1,791 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Instagram clone - Example - instagram_flutter2</h1>
+<h2>1. lib ---> utils ---> colors.dart </h2>
+<h3>Need customize color</h3>
+<pre>
+import 'package:flutter/material.dart';
+
+const mobileBackgroundColor = Color.fromRGBO(0, 0, 0, 1);
+const webBackgroundColor = Color.fromRGBO(18, 18, 18, 1);
+const mobileSearchColor = Color.fromRGBO(38, 38, 38, 1);
+const blueColor = Color.fromRGBO(0, 149, 246, 1);
+const primaryColor = Colors.white;
+const secondaryColor = Colors.grey;
+
+</pre>
+
+<h2>2. main.dart  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:instagram_flutter2/utils/colors.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Instagram clone',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: mobileBackgroundColor,
+      ),
+      home: Scaffold(body: Text('Lets build Instagram'),),
+    );
+  }
+}
+
+</pre>
+<h2>3. lib ---> utils ---> dimensions.dart -</h2>
+<h3>Need screen size which we can change anytime</h3>
+<pre>
+import 'package:flutter/material.dart';
+
+const webScreenSize = 600;
+
+</pre>
+<h2>4. lib ---> responsive -->  web_screen_layout -</h2>
+<h3>Make the screen responsive</h3>
+<pre>
+import 'package:flutter/material.dart';
+
+class WebScreenLayout extends StatelessWidget {
+  const WebScreenLayout ({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+          child: Text("This is web")),
+    );
+  }
+}
+
+
+</pre>
+<h2>5.   lib ---> responsive -->  mobile_screen_layout-</h2>
+<h3>Make the screen responsive</h3>
+<pre>
+import 'package:flutter/material.dart';
+
+class MobileScreenLayout extends StatelessWidget {
+  const MobileScreenLayout({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+          child: Text("This is mobile")),
+    );
+  }
+}
+</pre>
+<h2>6. lib --> responsive --> responsive_layout_screen -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:instagram_flutter2/utils/dimensions.dart';
+
+class ResponsiveLayout extends StatelessWidget {
+  final Widget webScreenLayout;
+  final Widget mobileScreenLayout;
+  const ResponsiveLayout({Key? key, required this.webScreenLayout, required this.mobileScreenLayout,}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (context, constraints){
+          if (constraints.maxWidth > webScreenSize){
+            return webScreenLayout;
+          }
+          return mobileScreenLayout;
+        });
+  }
+}
+
+</pre>
+<h2>7. main.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:instagram_flutter2/responsive/mobile_screen_layout.dart';
+import 'package:instagram_flutter2/responsive/responsive_layout_screen.dart';
+import 'package:instagram_flutter2/responsive/web_screen_layout.dart';
+import 'package:instagram_flutter2/utils/colors.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Instagram clone',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: mobileBackgroundColor,
+      ),
+      home: const ResponsiveLayout(
+          webScreenLayout: WebScreenLayout(), mobileScreenLayout: MobileScreenLayout())
+    );
+  }
+}
+</pre>
+<h2>8.  pubspec.yaml-</h2>
+<pre>
+
+dependencies:
+  firebase_core: ^2.24.2 --------------->allows connection with our flutter app.
+  firebase_storage: ^11.5.6-------------->Store images in our app
+  cloud_firestore: ^4.13.6---------------->allow to store data in  firestore database.
+  firebase_auth: ^4.15.3----------------->allow user signin
+  flutter:
+    sdk: flutter
+
+
+</pre>
+<h2>9. Firebase Setup -</h2>
+<pre>
+project name - instagram-clone20
+disable google analytics ---> create project --> continue
+Firebaser project ---> Authentication ---> get started --> email/password --->enable email/password-->enable --> save
+Firebaser project ---> cloud firestore --->Firestore database ---> create--->give a location: asia: southeest2 ---> start in test mode -->
+---->rules-->make changes: allow read, write; ----> publish
+
+
+**Android Studio --->android--->app--->build.gradle--->defaultconfig:--->
+  applicationId "com.example.instagram_flutter2"
+  
+project overview--->click on Android app ---> Add firebase to your Android app ---> 
+Android package name: com.example.instagram_flutter2
+App nickname: insta2 app
+Register App
+2. Download the google-services.json file and keep it in Android--> App folder
+3. Add Firebase SDK ---> coy the details.
+   Add in Android studio--->Andriod-->build.gradle -->
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.4.0'
+    }
+
+4. Add in Android Studio ---> Android--> app---> build.gradle --->
+   plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"   --------------> Add this line
+}
+
+
+defaultConfig {
+        minSdkVersion 19 ------------------------>Add this
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true------------------------>Add this
+
+    }
+
+
+
+</pre>
+<h2>10. Firebase commandline setup -</h2>
+<pre>
+ Go to the firebase ---->click on flutter button ---> Add firebase to the flutter app.--->read the instruction--->Install the firebase CLI
+---->next--->Install and run the flutterfire cli --> Initialize Firebase and add plugins 
+
+Down are the details - 
+
+1. Download and install latest version of node.js
+
+2. Install firebase tool -
+
+   C:\Users\phili>npm install -g firebase-tools
+   removed 32 packages, and changed 639 packages in 55s
+   65 packages are looking for funding
+     run `npm fund` for details
+   npm notice
+   npm notice New minor version of npm available! 10.1.0 -> 10.2.5
+   npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.2.5
+   npm notice Run npm install -g npm@10.2.5 to update!
+   npm notice
+   
+   C:\Users\phili>npm install -g npm@10.2.5
+   removed 44 packages, and changed 63 packages in 5s
+   28 packages are looking for funding
+     run `npm fund` for details
+   C:\Users\phili>
+
+3. Check firebase login -
+   C:\Users\phili>firebase login
+   Already logged in as siararasol@gmail.com
+   
+4. check the list of projects present -
+      C:\Users\phili>firebase projects:list
+   √ Preparing the list of your Firebase projects
+   ┌───────────────────────┬─────────────────────────┬────────────────┬──────────────────────┐
+   │ Project Display Name  │ Project ID              │ Project Number │ Resource Location ID │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ cook                  │ cook-b06fc              │ 1048756083951  │ [Not specified]      │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ dumy                  │ dumy-90c38              │ 153459058643   │ [Not specified]      │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ Firebase Connection   │ fir-connection-aa80d    │ 1020341929096  │ [Not specified]      │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ Firebase Fish         │ fir-fish-1ec8f          │ 140830167752   │ [Not specified]      │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ flttershare           │ flttershare-b93e7       │ 205784971070   │ us-central           │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ Instagram-clone       │ instagram-clone-cf7e7   │ 832802478043   │ asia-southeast2      │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ instagram-clone20     │ instagram-clone20-479e8 │ 492475542481   │ [Not specified]      │
+   ├───────────────────────┼─────────────────────────┼────────────────┼──────────────────────┤
+   │ instagramclone1       │ instagramclone1-def2e   │ 429368493134   │ [Not specified]      │
+   └───────────────────────┴─────────────────────────┴────────────────┴──────────────────────┘
+   
+   8 project(s) total.
+
+5. C:\Users\phili>dart pub global activate flutterfire_cli
+   Package flutterfire_cli is currently active at version 0.2.7.
+     cli_util 0.3.5 (0.4.1 available)
+     deep_pick 0.10.0 (1.0.0 available)
+     file 6.1.4 (7.0.0 available)
+     http 0.13.6 (1.1.2 available)
+     intl 0.18.1 (0.19.0 available)
+   > matcher 0.12.16+1 (was 0.12.16)
+   > path 1.9.0 (was 1.8.3)
+     process 4.2.4 (5.0.1 available)
+     pub_updater 0.2.4 (0.4.0 available)
+   > test_api 0.7.0 (was 0.6.1)
+   Building package executables... (9.3s)
+   Built flutterfire_cli:flutterfire.
+   Installed executable flutterfire.
+   Activated flutterfire_cli 0.2.7.
+   C:\Users\phili>
+   
+6. C:\PHILIP\APPDEV\development\flutter\instagram_flutter2>flutterfire configure --project=instagram-clone20-479e8
+   i Found 8 Firebase projects. Selecting project instagram-clone20-479e8.
+   ✔ Which platforms should your configuration support (use arrow keys & space to select)? · android, ios, macos, web
+   i Firebase android app com.example.instagram_flutter2 registered.
+   i Firebase ios app com.example.instagramFlutter2 is not registered on Firebase project instagram-clone20-479e8.
+   i Registered a new Firebase ios app on Firebase project instagram-clone20-479e8.
+   i Firebase macos app com.example.instagramFlutter2.RunnerTests is not registered on Firebase project instagram-clone20-479e8.
+   i Registered a new Firebase macos app on Firebase project instagram-clone20-479e8.
+   i Firebase web app instagram_flutter2 (web) is not registered on Firebase project instagram-clone20-479e8.
+   i Registered a new Firebase web app on Firebase project instagram-clone20-479e8.
+   
+   Firebase configuration file lib\firebase_options.dart generated successfully with the following Firebase apps:
+   
+   Platform  Firebase App Id
+   web       1:492475542481:web:a1c9d1ba32953897fc0ef0
+   android   1:492475542481:android:54363c9b82adddbbfc0ef0
+   ios       1:492475542481:ios:019a57b0f1ba170cfc0ef0
+   macos     1:492475542481:ios:0d06b0091f0dac18fc0ef0
+   
+   Learn more about using this file and next steps from the documentation:
+    > https://firebase.google.com/docs/flutter/setup
+   
+   C:\PHILIP\APPDEV\development\flutter\instagram_flutter2>
+
+
+7.  Add in the main.dart file -
+    import 'package:firebase_core/firebase_core.dart';
+    import 'firebase_options.dart';
+    // ...
+    await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+    ); 
+	
+8. Continue to the console.	
+</pre>
+<h2>11.  main.dart file-</h2>
+<pre>
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:instagram_flutter2/responsive/mobile_screen_layout.dart';
+import 'package:instagram_flutter2/responsive/responsive_layout_screen.dart';
+import 'package:instagram_flutter2/responsive/web_screen_layout.dart';
+import 'package:instagram_flutter2/utils/colors.dart';
+import 'firebase_options.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Instagram clone',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: mobileBackgroundColor,
+      ),
+      home: const ResponsiveLayout(
+          webScreenLayout: WebScreenLayout(), mobileScreenLayout: MobileScreenLayout())
+    );
+  }
+}
+
+
+
+App is running fine
+</pre>
+<h2>12. Add the firebase for web app -</h2>
+<pre>
+firebase ---> click on web app ---> Add firebase to your web app ---> 
+App nick name: insta_clone2 web app ---> register app 
+
+Add Firebase SDK ---> 
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCHLKqXazPSZ556VAb64YMd8jtnGPNcp1Y",
+  authDomain: "instagram-clone20-479e8.firebaseapp.com",
+  projectId: "instagram-clone20-479e8",
+  storageBucket: "instagram-clone20-479e8.appspot.com",
+  messagingSenderId: "492475542481",
+  appId: "1:492475542481:web:318f5a8ec9e33fddfc0ef0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+- Use the details in main.dart
+
+
+</pre>
+<h2>13.  main.dart file-</h2>
+<pre>
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:instagram_flutter2/responsive/mobile_screen_layout.dart';
+import 'package:instagram_flutter2/responsive/responsive_layout_screen.dart';
+import 'package:instagram_flutter2/responsive/web_screen_layout.dart';
+import 'package:instagram_flutter2/utils/colors.dart';
+import 'firebase_options.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    //options: DefaultFirebaseOptions.currentPlatform,
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCHLKqXazPSZ556VAb64YMd8jtnGPNcp1Y",
+      appId: "1:492475542481:web:318f5a8ec9e33fddfc0ef0",
+      messagingSenderId: "492475542481",
+      projectId: "instagram-clone20-479e8",
+      storageBucket: "instagram-clone20-479e8.appspot.com",),
+  );
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Instagram clone',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: mobileBackgroundColor,
+      ),
+      home: const ResponsiveLayout(
+          webScreenLayout: WebScreenLayout(), mobileScreenLayout: MobileScreenLayout())
+    );
+  }
+}
+
+</pre>
+<h2>14.  Create a Login Screeen using stateful widget-</h2>
+<pre>
+main.dart
+===========
+.....
+home: LoginScreen(),
+......
+
+
+lib--->screens --->login_screen.dart
+
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State&lt;LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State&lt;LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Text('From Login screen'),
+    );
+  }
+}
+
+</pre>
+<h2>15. Add one svg image  -</h2>
+<pre>
+Add the package: flutter_svg: ^2.0.9   in pubsec.yaml file ---> pub get
+
+Add an image : assets-->ic_instagram.svg, then update in pubsec.yaml file --> pub get
+
+lib--->screens --->login_screen.dart
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart'; -------------------->added this package
+import 'package:instagram_flutter2/utils/colors.dart';
+
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State&lt;LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State&lt;LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //svg image
+              SvgPicture.asset(
+                'assets/ic_instagram.svg', -----------------------> added this image
+                color: primaryColor,
+                height: 64,
+              ),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+</pre>
+<h2>16. signup screen -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_flutter2/resources/auth_methods.dart';
+import 'package:instagram_flutter2/utils/colors.dart';
+import 'package:instagram_flutter2/widgets/text_field_input.dart';
+
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _bioController.dispose();
+    _usernameController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: 700,
+            child: SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(child: Container(), flex: 2),
+                    Spacer(),
+                    //svg image
+                    SvgPicture.asset(
+                      'assets/ic_instagram.svg',
+                      color: primaryColor,
+                      height: 64,
+                    ),
+                    //const SizedBox(height: 30),
+                    Spacer(),
+                    //circular widget to accept and show our selected file
+                    Stack(
+                      children: [
+                        const CircleAvatar(
+                          radius: 64,
+                          backgroundImage: NetworkImage(
+                              'https://images.unsplash.com/photo-1682686578456-69ae00b0ecbd?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1887'),
+                        ),
+                        Positioned(
+                            bottom: -10,
+                            left: 80,
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.add_a_photo),
+                            ))
+                      ],
+                    ),
+                    //const SizedBox(
+                     // height: 24,
+                    //),
+                    Spacer(),
+                    //text field input for username
+                    TextFieldInput(
+                      hintText: 'Enter your username',
+                      textInputType: TextInputType.text,
+                      textEditingController: _usernameController,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    // text field input for email
+                    TextFieldInput(
+                      hintText: 'Enter your email',
+                      textInputType: TextInputType.emailAddress,
+                      textEditingController: _emailController,
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    //text field input for password
+
+                    TextFieldInput(
+                      hintText: 'Enter your password',
+                      textInputType: TextInputType.text,
+                      textEditingController: _passwordController,
+                      ispass: true,
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    //text field input for username
+
+                    TextFieldInput(
+                      hintText: 'Enter your bio',
+                      textInputType: TextInputType.text,
+                      textEditingController: _bioController,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    //button login
+                    InkWell(
+                      onTap: () async{
+                        String res = await AuthMethods().signUpUser(email: _emailController.text, password: _passwordController.text, username: _usernameController.text, bio: _bioController.text);
+                     print(res);
+                      },
+                      child: Container(
+                        child: const Text('Log in'),
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: const ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(4),
+                            ),
+                          ),
+                          color: blueColor,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 8,
+                    ),
+
+                    Flexible(
+                      child: Container(),
+                      flex: 2,
+                    ),
+                    Spacer(),
+                    //transition to signing up
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text("Don't have an account?"),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            print('Button tapped!');
+                          },
+                          child: Container(
+                            child: const Text(
+                              "Sign up",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
+  }
+}
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+<h2>1.  -</h2>
+<pre>
+
+
+</pre>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

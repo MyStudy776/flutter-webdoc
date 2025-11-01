@@ -1,0 +1,71 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>FlutterFlow -</h1>
+
+
+<h2>1. Call API Example-</h2>
+<pre>
+API call--->Add-->crete API call --->API call name: Fox API, 
+                                     method type: Get
+									 API url: https://randomfox.ca/floof/
+									 response test tab --> Test api call --->it will show the json value
+									 Add json path --> $.image, json name: FoxImage --->save
+
+Go to your UI page--->select button --->Action-->Add action---> search API call 
+-->select API call--->choose the API name: Fox API
+                      action output variable name: FoxApiData
+					  One condition flow diagram--->  False ---> + ---> Action :Show snackbar, value: Fox API failed---> close
+
+
+Go to your UI page--->select image --->path icon--->Action output--->Fox API data -->json body, predefined path,  json path name : FoxImage
+default variable value: Any image(e.g: https://randomfox.ca/images/110.jpg)
+
+</pre>
+
+<h2>2. Call API Example-</h2>
+<pre>
+UI page --> column-->listview --> container -->image, text,
+Flutterflow--->API call--> Add-->API call name: Product API
+                                 Method Type: Get
+								 API Url: https://dummyjson.com/products
+								 response test tab --> Test api call --->it will show the json value
+								 Add json path -->$.products,
+								 json name: ProductData
+								 
+Go to your UI page--->Listview --->backend query--> add-->query type: API calls
+                                                          API call name: Product API
+								   Generate dynamic children--->variable name--> EachProducts (give anyname),
+								                                value: Product API response -->API response option -->JSON body
+																                               Available option ---> JSON path
+																							   JSON Path name--> ProductData
+																							   
+	                  Select image --->path-->icon click-->Type: String
+					                                       variable: EachProducts
+														   Available option: Json path
+														   json path: $.thumnail
+														   
+	                  Select Text --->path-->icon click-->Type: String
+					                                       variable: EachProducts
+														   Available option: Json path
+														   json path: $.price														   
+</pre>
+
+<h2>3. Pass parameter-</h2>
+<pre>
+Page2 -->Page parameter --->define parameter --->variable: name, type: string, required ---> confirm
+Page1--->Textfield, button. button--->action-->add action--->navigate to page2, parameter -- pass, click on name, value---widget state-- name
+</pre>
+
+</body>
+
+</html>

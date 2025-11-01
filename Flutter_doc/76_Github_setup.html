@@ -1,0 +1,303 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+<h1>Github Setup-</h1>
+
+<h2>1. Download git for window.</h2>
+
+<h2>2. Verify Git has been installed.</h2>
+<pre>
+   cmd prompt --> git --version
+                  git version 2.40.1.windows.1 
+</pre>
+
+<h2>3.Create an account on Github</h2>
+
+<h2>4.Create a new repository --> public repository ---> AppieeDoc</h2>
+
+<h2>5. Open git bash -</h2>
+<pre>
+cd  /c/AppIEE/Git/gitHtml
+</pre>
+
+<h2>6. $git init</h2>
+<pre>
+$git init
+   Initialized empty Git repository in C:/APPIEE/Git/gitHtml/.git/
+
+   phili@MSI MINGW64 /c/AppIEE/Git/gitHtml (master)
+   $ ls -lart
+   total 108
+   -rw-r--r-- 1 phili 197609  1138 Nov  8  2023 stylesheet.css
+   -rw-r--r-- 1 phili 197609 91572 Nov 24 23:43 74_node_JS.html
+   drwxr-xr-x 1 phili 197609     0 Jan 28 13:12 ../
+   -rw-r--r-- 1 phili 197609   592 Jan 28 16:03 1_index.html
+   drwxr-xr-x 1 phili 197609     0 Jan 28 16:12 ./
+   drwxr-xr-x 1 phili 197609     0 Jan 28 16:12 .git/
+</pre>
+
+
+
+<h2>7. $git add 1_index.html</h2>
+
+
+<h2>8. $git commit -m "first commit"</h2>
+<pre>
+   phili@MSI MINGW64 /c/AppIEE/Git/gitHtml (master)
+   $ git commit -m "first commit"
+   [master (root-commit) 7d98510] first commit
+    1 file changed, 38 insertions(+)
+    create mode 100644 1_index.html
+</pre>
+
+<h2>9. $git branch -M main</h2>
+
+
+<h2>10. $git remote add origin https://github.com/AppieeBana/AppieeDoc.git</h2>
+
+
+<h2>11. git push -u origin main</h2>
+<pre>
+    phili@MSI MINGW64 /c/AppIEE/Git/gitHtml (main)
+    $ git push -u origin main
+    remote: Permission to AppieeBana/AppieeDoc.git denied to rasolirasoli.
+    fatal: unable to access 'https://github.com/AppieeBana/AppieeDoc.git/': The requested URL returned error: 403
+    
+    The error because it is trying to access the github of appieeBana account from rasolirasoli account.
+    
+    To fix this go to start-->credential manager -->
+    Find and remove any entries like https://github.com or associated with rasolirasoli.
+
+</pre>
+
+<h2>12. $ git config --list</h2>
+<pre>
+    phili@MSI MINGW64 /c/AppIEE/Git/gitHtml (main)
+    $ git config --list
+    diff.astextplain.textconv=astextplain
+    filter.lfs.clean=git-lfs clean -- %f
+    filter.lfs.smudge=git-lfs smudge -- %f
+    filter.lfs.process=git-lfs filter-process
+    filter.lfs.required=true
+    http.sslbackend=openssl
+    http.sslcainfo=C:/PHILIP/APPDEV/Install/Git/mingw64/etc/ssl/certs/ca-bundle.crt
+    core.autocrlf=true
+    core.fscache=true
+    core.symlinks=true
+    pull.rebase=false
+    credential.helper=manager
+    credential.https://dev.azure.com.usehttppath=true
+    init.defaultbranch=master
+    user.email=siararasol@gmail.com
+    core.repositoryformatversion=0
+    core.filemode=false
+    core.bare=false
+    core.logallrefupdates=true
+    core.ignorecase=true
+    remote.origin.url=https://github.com/AppieeBana/AppieeDoc.git
+    remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+
+</pre>
+
+<h2>13.Update your global or project-specific Git configuration to use the AppieeBana account.</h2>
+<pre>
+
+     git config --global user.name "AppieeBana"
+     git config --global user.email "appieebana513@gmail.com"
+	 
+	     $ git config --list
+    diff.astextplain.textconv=astextplain
+    filter.lfs.clean=git-lfs clean -- %f
+    filter.lfs.smudge=git-lfs smudge -- %f
+    filter.lfs.process=git-lfs filter-process
+    filter.lfs.required=true
+    http.sslbackend=openssl
+    http.sslcainfo=C:/PHILIP/APPDEV/Install/Git/mingw64/etc/ssl/certs/ca-bundle.crt
+    core.autocrlf=true
+    core.fscache=true
+    core.symlinks=true
+    pull.rebase=false
+    credential.helper=manager
+    credential.https://dev.azure.com.usehttppath=true
+    init.defaultbranch=master
+    user.email=appieebana513@gmail.com
+    user.name=AppieeBana
+    core.repositoryformatversion=0
+    core.filemode=false
+    core.bare=false
+    core.logallrefupdates=true
+    core.ignorecase=true
+    remote.origin.url=https://github.com/AppieeBana/AppieeDoc.git
+    remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+</pre>
+
+<h2>14. $git push -u origin main</h2>
+<pre>
+   It will open an pop up to login github account. Give your github credentials .Once successful close the pop up tab.	 
+
+   phili@MSI MINGW64 /c/AppIEE/Git/gitHtml (main)
+   $ git push -u origin main
+     Enumerating objects: 3, done.
+     Counting objects: 100% (3/3), done.
+     Delta compression using up to 16 threads
+     Compressing objects: 100% (2/2), done.
+     Writing objects: 100% (3/3), 494 bytes | 494.00 KiB/s, done.
+     Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+     To https://github.com/AppieeBana/AppieeDoc.git
+      * [new branch]      main -> main
+     branch 'main' set up to track 'origin/main'.
+</pre>
+
+<h2>15. Now go to the github repository and check file has been uploaded or not. </h2>
+
+
+<h2> For 2nd file</h2>
+<pre>
+git add stylesheet.css
+git commit -m "second commit"
+git push -u origin main
+</pre>
+
+<h2> 16. Then signup to vercel<h2>
+<pre>
+https://vercel.com/ 
+
+Step 4: Connect the Repository to Vercel
+Go to Vercel's dashboard.
+
+Click "New Project".
+
+Select "Import Git Repository".
+
+Log in to GitHub (if prompted) and authorize Vercel.
+
+Find your repository (e.g., my-website) and click "Import".
+
+Configure the settings:
+
+For static sites, leave the build command empty (Vercel will assume it's a static site).
+Set the output directory to / (the default).
+Click "Deploy".
+</pre>
+
+
+<h2>Example</h2>
+<pre>
+$ cd gitHtml3/
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3
+$ git init
+Initialized empty Git repository in C:/APPIEE/Git/gitHtml3/.git/
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3 (master)
+$ git add .
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3 (master)
+$ git commit -m "first commit"
+[master (root-commit) f5ef4aa] first commit
+ 1 file changed, 11 insertions(+)
+ create mode 100644 1_index.html
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3 (master)
+$ git remote add origin https://github.com/AppieeBana/AppieeDocuments.git
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3 (master)
+$ git push -u origin master
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 403 bytes | 403.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/AppieeBana/AppieeDocuments.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3 (master)
+$ ls
+1_index.html
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml3 (master)
+$
+
+
+
+========================
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml2 (master)
+$ git add .
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml2 (master)
+$ git commit -m "3rd commit"
+[master db824e7] 3rd commit
+ 2 files changed, 106 insertions(+)
+ create mode 100644 stylesheet.css
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml2 (master)
+$ git push -u origin master
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 781 bytes | 781.00 KiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/AppieeBana/repository2.git
+   bff04d5..db824e7  master -> master
+branch 'master' set up to track 'origin/master'.
+
+phili@MSI MINGW64 /c/AppIEE/Git/gitHtml2 (master)
+
+
+
+git add . && git commit -m "second commit" && git push -u origin master
+
+</pre>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
+
+
+	 
+
+
+
+
+
+ 
+

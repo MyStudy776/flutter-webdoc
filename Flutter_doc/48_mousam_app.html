@@ -1,0 +1,2453 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Mousam App-</h1>
+
+
+
+<h2>1. -</h2>
+<a href="47_stateful_Widget.html" target="_blank">Follow this page</a>
+
+<h2>2.loading.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/home");---> when button is pressed , it will show the home page.
+                },
+                icon: Icon(
+                    Icons.add_to_home_screen), 
+                label: Text("Go to home")),
+          ],
+        ),
+      ),
+      
+    );
+  }
+}
+
+
+</pre>
+
+<h2>3.locatin.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+class Location extends StatefulWidget {
+  const Location({super.key});
+
+  @override
+  State<Location> createState() => _LocationState();
+}
+
+class _LocationState extends State<Location> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Text("Location"),
+    );
+  }
+}
+</pre>
+
+<h2>4.main.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/Activity/home.dart';
+import 'package:mousam/Activity/loading.dart';
+import 'package:mousam/Activity/location.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    //home: Home(), -->not required as default route mentioned
+    routes: {
+      "/" : (context) => Loading(),// "/" -default route  --------------> 1st loading page will come
+      "/home" : (context) => Home(), //context - means current page
+    },
+  ));
+}
+
+</pre>
+
+<h2>***************</h2>
+
+<h2>5.home.dart -</h2>
+<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+<mark>import 'package:http/http.dart'as http;</mark>---->Add package http in pubsec.yaml file
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  var username;
+
+  
+ <mark>void getData() async{</mark> ------------->Create a function
+
+
+    <mark>http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Delhi,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));</mark>---------->By using the url, we get the json file
+    <mark>Map data = jsonDecode(resp1.body);</mark>--->the body of the json file assigned to data variable of type Map
+    <mark>Map temp_data = data['main'];</mark>--->Fetch the key "main" key from data map, and assign to temp_data
+    <mark>double temp = temp_data['temp'];</mark>--->Fetch the temp key value from main map 
+    <mark>print("temperature is $temp");</mark>
+    <mark>List weather_data = data['weather'];</mark>------->weather key contain the value as List in data map
+    <mark>Map weather_main_data = weather_data[0];</mark>-->Fetch the 1st element from the list
+    <mark>print("weather data $weather_data");</mark>
+    <mark>print(weather_main_data['main']);</mark>
+ }</mark>
+
+  int counter = 1;
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+    getData();
+
+  }
+
+
+
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Activity"),
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: (){
+              setState(() {
+                counter += 1;
+              });
+            },
+            child: Text("$counter"),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+<mark>o/p</mark>
+===
+This is a init state
+temperature is 280.2
+weather data [{id: 741, main: Fog, description: fog, icon: 50n}]
+Fog
+
+<mark>Note</mark>
+1st go to https://openweathermap.org/
+Then Sign in with your mail id
+Go to pricing -->choose the free subscription 
+Then go to my profile-->Get API key ---> you will see your API key. It will be activated after couple of hours of your signup. 
+THen use this key to fetch the json file of current weather.
+Go to API-->you can find the different API .
+Use chrome extension --> json viewer --> to read properly the json file.
+
+
+<mark>Example -</mark>
+https://api.openweathermap.org/data/3.0/onecall/day_summary?lat={lat}&lon={lon}&date={date}&tz={tz}&appid={API key}
+https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=79b3580ca659ec3db5187e2b4cf2b280
+https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=79b3580ca659ec3db5187e2b4cf2b280
+
+
+Note -2
+=======
+the get function from the http package expects a Uri object, but you're passing a String directly. 
+convert your URL string into a Uri object using the Uri.parse() method.
+ http.Response resp1 = await http.get(Uri.parse("url"));
+
+
+</pre>
+
+<h2>6.Modify loading.dart and create one more dart file  - worker/worker.dart -</h2>
+<h2>worker.dart</h2>
+<pre>
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class worker {
+
+  String location ;
+
+  //Constructor -------------->create one constructor
+  worker({this.location = ''})---->we have given null value, because we get error: The parameter 'location' can't have a value of 'null' because of its type 'String'.
+  {
+    location = this.location;
+  }
+
+
+  String temp = "";
+  String humidity = "";
+  String air_speed = "";
+  String description = "";
+  String main = "";
+
+  //method
+  <mark>Future<void> getData() async</mark>--->Future used---> as it will run in background, while other operations are happening.
+  {
+    //http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Delhi,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));
+    http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=$location,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));
+    Map data = jsonDecode(resp1.body);
+
+
+    //Getting Temp,Humidity
+    Map temp_data = data['main'];
+    String getHumidity = temp_data['humididty'].toString();
+    double getTemp = temp_data['temp'];
+
+    //air speed
+    Map wind = data['wind'];
+    double getAir_speed = wind["speed"];
+
+    //Getting Description
+    List weather_data = data['weather'];
+    Map weather_main_data = weather_data[0];
+    String getMain_des = weather_main_data['main'];
+    String getDesc = weather_main_data["description"];
+
+    temp = getTemp.toString();
+    humidity = getHumidity;
+    air_speed = getAir_speed.toString();
+    description = getDesc;
+    main = getMain_des;
+  }
+}
+
+
+
+
+</pre>
+
+<h2>loading.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:mousam/worker/worker.dart';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+
+
+
+  <mark>void startApp() async{</mark>
+    <mark>worker obj1 =  worker(location: "Mumbai");</mark>----> create instance/object created for the worker constructor .
+    <mark>await obj1.getData();</mark>---->await -->startApp function will not give the result and it will wait till the getdata execution complete.And also Future is used in getData definition.
+    print("The air speed is ${obj1.air_speed}");
+    print("The weather is ${obj1.description}");
+
+  }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+   <mark> startApp();</mark>
+    super.initState();
+  }
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/home");
+                },
+                icon: Icon(
+                    Icons.add_to_home_screen), 
+                label: Text("Go to home")),
+          ],
+        ),
+      ),
+      
+    );
+  }
+}
+
+
+</pre>
+
+<pre>
+o/p
+The air speed is 5.14
+The weather is smoke
+</pre>
+
+
+<h2>7.loading.dart - o/p will show on screen -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:mousam/worker/worker.dart';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+ <mark> String Temperature="Loading";</mark>----> assign a value to the variable
+
+
+  void startApp() async{
+    worker obj1 =  worker(location: "Mumbai");
+    await obj1.getData();
+    print("The air speed is ${obj1.air_speed}");
+    print("The weather is ${obj1.description}");
+    <mark>setState(() {
+      Temperature = obj1.temp;-------------->The value will be change to the actual value on the screen
+    });</mark>
+
+  }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    startApp();
+    super.initState();
+
+  }
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/home");
+                },
+                icon: Icon(
+                    Icons.add_to_home_screen), 
+                <mark>label: Text(Temperature)),</mark>
+          ],
+        ),
+      ),
+      
+    );
+  }
+}
+
+
+</pre>
+
+<h2>8.loading.dart  - Error handing using try catch : -</h2>
+<pre>
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:mousam/worker/worker.dart';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  String Temperature="Loading";
+
+
+  void startApp() async{
+    <mark>worker obj1 =  worker(location: "fghsder");</mark>----give some invalid location
+    await obj1.getData();
+    print("The air speed is ${obj1.air_speed}");
+    print("The weather is ${obj1.description}");
+    setState(() {
+      Temperature = obj1.temp;
+    });
+
+  }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    startApp();
+    super.initState();
+
+  }
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/home");
+                },
+                icon: Icon(
+                    Icons.add_to_home_screen), 
+                label: Text(Temperature)),
+          ],
+        ),
+      ),
+      
+    );
+  }
+}
+
+
+</pre>
+
+<pre>
+workers.dart -
+
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class worker {
+
+  String location ;
+
+  //Constructor
+  worker({this.location = ''})
+  {
+    location = this.location;
+  }
+
+
+  String temp = "";
+  String humidity = "";
+  String air_speed = "";
+  String description = "";
+  String main = "";
+
+  //method
+  Future<void> getData() async
+  {
+
+    <mark>try{</mark>
+      //http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Delhi,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));
+      http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=$location,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));
+      Map data = jsonDecode(resp1.body);
+
+
+      //Getting Temp,Humidity
+      Map temp_data = data['main'];
+      String getHumidity = temp_data['humididty'].toString();
+      double getTemp = temp_data['temp'];
+
+      //air speed
+      Map wind = data['wind'];
+      double getAir_speed = wind["speed"];
+
+      //Getting Description
+      List weather_data = data['weather'];
+      Map weather_main_data = weather_data[0];
+      String getMain_des = weather_main_data['main'];
+      String getDesc = weather_main_data["description"];
+
+      temp = getTemp.toString();
+      humidity = getHumidity;
+      air_speed = getAir_speed.toString();
+      description = getDesc;
+      main = getMain_des;
+
+   <mark> }catch(e){</mark>
+      temp = "Invalid temperature";
+      humidity = "Invalid humidity value";
+      air_speed = "Invalid Air speed value";
+      description = "Invalid description";
+      main = "Invalid main";
+
+    }
+
+  }
+}
+
+</pre>
+
+<pre>
+o/p--> Invalid temperature</pre>
+
+
+
+
+<h2>9.Pass data between two routes - Note: Named route are not recommended anymore.</h2>
+<h2>loading.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:mousam/worker/worker.dart';
+
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State&lt;Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State&lt;Loading> {
+
+<mark>
+String temp = "";
+String hum = "";
+String air_speed = "";
+String des ="";
+String main ="";</mark>------------->created some variable
+
+  void startApp() async{
+    worker obj1 =  worker(location: "Delhi");
+    await obj1.getData();
+
+    <mark>temp = obj1.temp;
+    hum = obj1.humidity;
+    air_speed = obj1.air_speed;
+    des = obj1.description;
+    main = obj1.main;</mark>------------>assign the variables , the value from getData --> present in workers.dart
+
+   <mark> Navigator.pushReplacementNamed(context, '/home',
+        arguments: {
+          "temp_value" : temp,
+          "hum_value" : hum,
+          "air_speed_value" : air_speed,
+          "des_value" : des,
+          "main_value" : main<mark>--->the variables are pushed to home.dart using a map with the help of navigator
+
+        });
+ }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    startApp();
+    super.initState();
+}
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body: SafeArea(
+        child: Text("Loading")
+      ),
+
+        );
+ }
+}
+
+</pre>
+
+<h2>home.dart</h2>
+<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart'as http;
+import 'package:mousam/Activity/loading.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+      }
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    <mark>Map&lt;String, dynamic>? info = ModalRoute.of(context)!.settings.arguments as Map&lt;String, dynamic>?;</mark>--->extract the arguments from loading.dart
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Activity"),
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: (){},
+            child: Text(info?["temp_value"] ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>10.decorate loading.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:mousam/worker/worker.dart';
+
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+
+
+String temp = "";
+String hum = "";
+String air_speed = "";
+String des ="";
+String main ="";
+  void startApp() async{
+    worker obj1 =  worker(location: "Delhi");
+    await obj1.getData();
+
+    temp = obj1.temp;
+    hum = obj1.humidity;
+    air_speed = obj1.air_speed;
+    des = obj1.description;
+    main = obj1.main;
+
+   Future.delayed(Duration(seconds: 2), () {
+     Navigator.pushReplacementNamed(context, '/home',
+         arguments: {
+           "temp_value" : temp,
+           "hum_value" : hum,
+           "air_speed_value" : air_speed,
+           "des_value" : des,
+           "main_value" : main
+
+         });
+   });
+
+ }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    //startApp();
+    super.initState();
+    
+
+}
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body:Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/weather_02.png',height: 150,width: 150
+              ,),
+            SizedBox(height: 15,),
+            Text("Mausam App", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),),
+            Text("Made By Deep", style: TextStyle(fontSize:18, fontWeight: FontWeight.w200, color: Colors.white),),
+           SizedBox(height: 15,),
+           SpinKitWave(
+          color: Colors.white,
+          size: 50.0,
+        ),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.blue[300],
+
+        );
+ }
+}
+
+
+</pre>
+
+<h2>11.Decorate home.dart -</h2>
+<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart'as http;
+import 'package:mousam/Activity/loading.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+      }
+
+  @override
+  void setState( fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      body: SafeArea(
+       child: Container(
+           child: Column(
+             children: [
+               Container(
+
+                 padding: EdgeInsets.symmetric(horizontal: 8),
+                 margin: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+                 decoration: BoxDecoration(
+                   color: Colors.black12,
+                   borderRadius: BorderRadius.circular(20)
+                 ),
+
+                 child: Row(
+                   children: [
+                     GestureDetector(
+                       onTap: () {},
+                       child: Container(
+                         child: Icon(Icons.search,color: Colors.blue,),margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                       ),
+                     ),
+
+                     Expanded(
+                         child: TextField(
+                           decoration: InputDecoration(
+                             border: InputBorder.none,
+                             hintText: "Search any cityname"
+                           ),
+                         ))
+                   ],
+                 ),
+               ),
+
+             ],
+           )),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>12.home.dart - Make search bar -</h2>
+<pre>
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart'as http;
+import 'package:mousam/Activity/loading.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+      }
+
+  @override
+  void setState( fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+   <mark> var city_name = ["Mumbai", "chennai","bhubaneswar","delhi","Hyderabad"];</mark>
+   <mark> final _random = new Random();</mark>
+    <mark>var city = city_name[_random.nextInt(city_name.length)];</mark>
+    return Scaffold(
+      body: SafeArea(
+       child: Container(
+           child: Column(
+             children: [
+               Container(
+
+                 padding: EdgeInsets.symmetric(horizontal: 8),
+                 margin: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+                 decoration: BoxDecoration(
+                   color: Colors.black12,
+                   borderRadius: BorderRadius.circular(20)
+                 ),
+
+                 child: Row(
+                   children: [
+                     GestureDetector(
+                       onTap: () {},
+                       child: Container(
+                         child: Icon(Icons.search,color: Colors.blue,),margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                       ),
+                     ),
+
+                     Expanded(
+                         child: TextField(
+                           decoration: InputDecoration(
+                             border: InputBorder.none,
+                             <mark>hintText: "Search any $city"</mark>
+                           ),
+                         ))
+                   ],
+                 ),
+               ),
+
+             ],
+           )),
+      ),
+    );
+  }
+}
+
+<mark>output<mark>
+Refresh or reload and see the city name are changing.
+
+</pre>
+
+
+<h2>13.home.dart - Decorate using gradient-</h2>
+<pre>
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart'as http;
+import 'package:mousam/Activity/loading.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+      }
+
+  @override
+  void setState( fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai","bhubaneswar","delhi","Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    return Scaffold(
+      body: SafeArea(
+       child: Container(
+         <mark>decoration: BoxDecoration(
+           gradient: LinearGradient(
+             begin: Alignment.topRight,
+             end: Alignment.bottomLeft,
+             colors: [
+               Colors.blue,
+               Colors.pinkAccent,
+
+             ]
+           )
+         ),</mark>
+           child: Column(
+             children: [
+               Container(
+
+                 padding: EdgeInsets.symmetric(horizontal: 8),
+                 margin: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+                 decoration: BoxDecoration(
+                   color: Colors.black12,
+                   borderRadius: BorderRadius.circular(20)
+                 ),
+
+                 child: Row(
+                   children: [
+                     GestureDetector(
+                       onTap: () {},
+                       child: Container(
+                         child: Icon(Icons.search,color: Colors.blue,),margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                       ),
+                     ),
+
+                     Expanded(
+                         child: TextField(
+                           decoration: InputDecoration(
+                             border: InputBorder.none,
+                             hintText: "Search any $city"
+                           ),
+                         ))
+                   ],
+                 ),
+               ),
+
+             ],
+           )),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<pre>
+decoration: BoxDecoration(
+           gradient: LinearGradient(
+             begin: Alignment.topRight,
+             end: Alignment.bottomLeft,
+             <mark>stops: [
+               0.1,----->10% of the screen shows blue
+               0.8,---->80% of the screen shows pink
+              ],</mark>
+             colors: [
+               Colors.blue,
+               Colors.pinkAccent,
+
+             ]
+           )
+         ),
+		 
+</pre>		 
+
+<h2>14.home.dart -</h2>
+<pre>
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart'as http;
+import 'package:mousam/Activity/loading.dart';
+
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+      }
+
+  @override
+  void setState( fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai","bhubaneswar","delhi","Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    return Scaffold(
+      body: SafeArea(
+       child: Container(
+         decoration: BoxDecoration(
+           gradient: LinearGradient(
+             begin: Alignment.topRight,
+             end: Alignment.bottomLeft,
+
+             colors: [
+               <mark>Colors.blue.shade800,
+               Colors.blue.shade300,</mark>
+
+             ]
+           )
+         ),
+           child: Column(
+             children: [
+               Container(
+
+                 padding: EdgeInsets.symmetric(horizontal: 8),
+                 margin: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+                 decoration: BoxDecoration(
+                   <mark>color: Colors.white,</mark>
+                   borderRadius: BorderRadius.circular(20)
+                 ),
+
+                 child: Row(
+                   children: [
+                     GestureDetector(
+                       onTap: () {},
+                       child: Container(
+                         child: Icon(Icons.search,color: Colors.blue,),margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                       ),
+                     ),
+
+                     Expanded(
+                         child: TextField(
+                           decoration: InputDecoration(
+                             border: InputBorder.none,
+                             hintText: "Search any $city"
+                           ),
+                         ))
+                   ],
+                 ),
+               ),
+
+             ],
+           )),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>15.home.dart -</h2>
+<pre>
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart' as http;
+import 'package:mousam/Activity/loading.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+  }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai", "bhubaneswar", "delhi", "Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                    Colors.blue.shade800,
+                    Colors.blue.shade300,
+                  ])),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.blue,
+                            ),
+                            margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                          ),
+                        ),
+                        Expanded(
+                            child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Search any $city"),
+                        ))
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+          
+                      Expanded(
+                        child: Container(
+          
+                            decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text1"),
+                          //height: 100,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          //height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(10, 0, 20, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text1"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Made By Deep"),
+                        Text("Data provided by Openweather.org"),
+                      ],
+                    ),
+                  ),
+          
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>16.home.dart - Use gradient for AppBar -</h2>
+<pre>
+flutter_gradient_app_bar: ^0.3.1 ---->Install Package.
+
+
+
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart' as http;
+import 'package:mousam/Activity/loading.dart';
+import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+  }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai", "bhubaneswar", "delhi", "Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    return Scaffold(
+      <mark>appBar: GradientAppBar(
+        title: Text('Flutter'),
+        gradient: LinearGradient(
+          colors: [Colors.blue, Colors.white],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomRight,
+        ),
+      ),</mark>
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                    Colors.blue.shade800,
+                    Colors.blue.shade300,
+                  ])),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.blue,
+                            ),
+                            margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                          ),
+                        ),
+                        Expanded(
+                            child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Search any $city"),
+                        ))
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+          
+                      Expanded(
+                        child: Container(
+          
+                            decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text1"),
+                          //height: 100,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          //height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(10, 0, 20, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text1"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Made By Deep"),
+                        Text("Data provided by Openweather.org"),
+                      ],
+                    ),
+                  ),
+          
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>17.home.dart - Change Status bar color</h2>
+<pre>
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart' as http;
+import 'package:mousam/Activity/loading.dart';
+import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+  }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai", "bhubaneswar", "delhi", "Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    return Scaffold(
+   //   appBar: GradientAppBar(
+   //     title: Text('Flutter'),
+   //     gradient: LinearGradient(
+   //       colors: [Colors.blue, Colors.white],
+   //       begin: Alignment.topCenter,
+   //       end: Alignment.bottomRight,
+   //     ),
+   //   ),
+      <mark>appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: Colors.red,
+        ),
+      ),</mark>
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                    Colors.blue.shade800,
+                    Colors.blue.shade300,
+                  ])),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.blue,
+                            ),
+                            margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                          ),
+                        ),
+                        Expanded(
+                            child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Search any $city"),
+                        ))
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+          
+                      Expanded(
+                        child: Container(
+          
+                            decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text1"),
+                          //height: 100,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          //height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(10, 0, 20, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Text("Text1"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Made By Deep"),
+                        Text("Data provided by Openweather.org"),
+                      ],
+                    ),
+                  ),
+          
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+<h2>18.home.dart -</h2>
+<pre>
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart' as http;
+import 'package:mousam/Activity/loading.dart';
+import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
+import 'package:weather_icons/weather_icons.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+  }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai", "bhubaneswar", "delhi", "Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: GradientAppBar(
+        title: Text('Flutter'),
+        gradient: LinearGradient(
+          colors: [Colors.blue, Colors.white],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                    Colors.blue.shade800,
+                    Colors.blue.shade300,
+                  ])),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.blue,
+                            ),
+                            margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                          ),
+                        ),
+                        Expanded(
+                            child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Search any $city"),
+                        ))
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding: EdgeInsets.all(26),
+                          child: Column(
+                            children: [
+                              Text("Scattered Cloud", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                              Text("In Bhubaneswar", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), ),
+                                                          ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 10),
+                          padding: EdgeInsets.all(50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("41", style: TextStyle(fontSize: 50),),
+                              Icon(WeatherIcons.celsius,size: 30,),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(WeatherIcons.day_sunny),
+                                ],
+                              ),
+                              SizedBox(height: 20,),
+                              Text("20.9",style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
+                              Text("km/hr")
+                            ],
+                          ),
+                          //height: 100,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(WeatherIcons.humidity),
+                                ],
+                              ),
+                              SizedBox(height: 20,),
+                              Text("60",style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
+                              Text("percentage")
+                            ],
+                          ),
+                          //height: 100,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Made By Deep"),
+                        Text("Data provided by Openweather.org"),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>19.Dart -</h2>
+<pre>
+
+https://openweathermap.org/weather-conditions ---->  https://openweathermap.org/img/wn/10d@2x.png
+
+
+home.dart
+=========
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:mousam/main.dart';
+import 'package:http/http.dart' as http;
+import 'package:mousam/Activity/loading.dart';
+import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
+import 'package:weather_icons/weather_icons.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State {
+  @override
+  void initState() {
+    super.initState();
+    print("This is a init state");
+  }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    print("Set state called");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("Widget destroyed");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var city_name = ["Mumbai", "chennai", "bhubaneswar", "delhi", "Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+    Map<String, dynamic>? info = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    String temp =  ((info ? ['temp_value']).toString()).substring(0,4);
+    String icon = info? ['icon_value'];
+    print(icon);
+    String getcity = info ? ['city_value'];
+    String hum = info? ['hum_value'];
+    String air = ((info? ['air_speed_value']).toString()).substring(0,4);
+    String des = info ? ['des_value'];
+
+
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: GradientAppBar(
+        title: Text('Flutter'),
+        gradient: LinearGradient(
+          colors: [Colors.blue, Colors.white],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                    Colors.blue.shade800,
+                    Colors.blue.shade300,
+                  ])),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.blue,
+                            ),
+                            margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                          ),
+                        ),
+                        Expanded(
+                            child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Search any $city"),
+                        ))
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding: EdgeInsets.all(26),
+                          child: Row(
+                            children: [
+                              Image.network("https://openweathermap.org/img/wn/$icon@2x.png"),
+                              SizedBox(width: 20,),
+                              Column(
+                                children: [
+                                  Text("$des", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                                  Text("In $getcity", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), ),
+                                                              ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 10),
+                          padding: EdgeInsets.all(50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("$temp", style: TextStyle(fontSize: 50),),
+                              Icon(WeatherIcons.celsius,size: 30,),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(WeatherIcons.day_sunny),
+                                ],
+                              ),
+                              SizedBox(height: 20,),
+                              Text("$air",style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
+                              Text("km/hr")
+                            ],
+                          ),
+                          //height: 100,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                          padding: EdgeInsets.all(50),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(WeatherIcons.humidity),
+                                ],
+                              ),
+                              SizedBox(height: 20,),
+                              Text("$hum",style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
+                              Text("percentage")
+                            ],
+                          ),
+                          //height: 100,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Made By Deep"),
+                        Text("Data provided by Openweather.org"),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+worker.dart
+===========
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class worker {
+
+  String location ;
+
+  //Constructor
+  worker({this.location = ''})
+  {
+    location = this.location;
+  }
+
+
+  String temp = "";
+  String humidity = "";
+  String air_speed = "";
+  String description = "";
+  String main = "";
+  String icon = "";
+
+  //method
+  Future<void> getData() async
+  {
+
+    try{
+      //http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Delhi,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));
+      http.Response resp1 = await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=$location,india&APPID=79b3580ca659ec3db5187e2b4cf2b280"));
+      Map data = jsonDecode(resp1.body);
+
+      print(data);
+      //Getting Temp,Humidity
+      Map temp_data = data['main'];
+      String getHumidity = temp_data['humididty'].toString();
+      double getTemp = temp_data['temp'] - 273.15;
+
+      //air speed
+      Map wind = data['wind'];
+      double getAir_speed = wind["speed"];
+
+      //Getting Description
+      List weather_data = data['weather'];
+      Map weather_main_data = weather_data[0];
+      String getMain_des = weather_main_data['main'];
+      String getDesc = weather_main_data["description"];
+      //String icon = weather_main_data["icon"].toString();
+
+      temp = getTemp.toString();
+      humidity = getHumidity;
+      air_speed = getAir_speed.toString();
+      description = getDesc;
+      main = getMain_des;
+      icon = weather_main_data["icon"].toString();
+
+    }catch(e){
+      temp = "Invalid temperature";
+      humidity = "Invalid humidity value";
+      air_speed = "Invalid Air speed value";
+      description = "Invalid description";
+      main = "Invalid main";
+      icon = "03n";
+
+    }
+
+  }
+}
+
+
+
+loading.dart
+=============
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:mousam/worker/worker.dart';
+
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+
+
+String temp = "";
+String hum = "";
+String air_speed = "";
+String des ="";
+String main ="";
+String icon = "" ;
+String city = "Bhubaneswar";
+  void startApp() async{
+    worker obj1 =  worker(location: city);
+    await obj1.getData();
+
+    temp = obj1.temp;
+    hum = obj1.humidity;
+    air_speed = obj1.air_speed;
+    des = obj1.description;
+    main = obj1.main;
+    icon = obj1.icon;
+
+   Future.delayed(Duration(seconds: 2), () {
+     Navigator.pushReplacementNamed(context, '/home',
+         arguments: {
+           "temp_value" : temp,
+           "hum_value" : hum,
+           "air_speed_value" : air_speed,
+           "des_value" : des,
+           "main_value" : main,
+           "icon_value" : icon,
+           "city_value" : city,
+
+         });
+   });
+
+ }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    startApp();
+    super.initState();
+
+
+}
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        //body: SafeArea(child: Text("Loading")),
+      body:Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/weather_02.png',height: 150,width: 150
+              ,),
+            SizedBox(height: 15,),
+            Text("Mausam App", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),),
+            Text("Made By Deep", style: TextStyle(fontSize:18, fontWeight: FontWeight.w200, color: Colors.white),),
+           SizedBox(height: 15,),
+           SpinKitWave(
+          color: Colors.white,
+          size: 50.0,
+        ),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.blue[300],
+
+        );
+ }
+}
+
+
+
+
+</pre>
+
+<h2>20.loading.dart -</h2>
+<pre>
+
+</pre>
+
+<h2>12.loading.dart -</h2>
+<pre>
+
+</pre>
+
+<h2>12.loading.dart -</h2>
+<pre>
+
+</pre>
+
+<h2>12.loading.dart -</h2>
+<pre>
+
+</pre>
+
+<h2>12.loading.dart -</h2>
+<pre>
+
+</pre>
+
+<h2>12.loading.dart -</h2>
+<pre>
+1. main.dart --->
+     "/" : (context) => Loading()----> 1st page will show
+     "/home" : (context) => Home()
+
+2. Loading.dart --->
+     Navigator.pushNamed(context, "/home")----> 2nd home page will show
+
+
+3. home.dart ----> instance called from workers.dart
+
+4. workers.dart ---->
+
+      getData()   ---->
+	  
+	resp1 = https://api.openweathermap.org/data/2.5/weather?q=Delhi,india&APPID=79b3580ca659ec3db5187e2b4cf2b280
+    Map data = jsonDecode(resp1.body); --->
+	           "weather": [{"id": 741,"main": "Fog","description": "fog","icon": "50d"}],
+               "base": "stations",
+               "main": {"temp": 289.88,"feels_like": 289.62,"temp_min": 289.88,"temp_max": 290.2,"pressure": 1017,"humidity": 77},
+               "visibility": 800,
+               "wind": {"speed": 1.54,"deg": 330},
+               "clouds": {"all": 40},
+			   
+			   
+    Map temp_data = data['main'];
+	              = {"temp": 289.88,"feels_like": 289.62,"temp_min": 289.88,"temp_max": 290.2,"pressure": 1017,"humidity": 77},
+				  
+	
+	String getHumidity = temp_data['humididty'].toString();
+	                   = "humidity": 77
+					   
+	double getTemp = temp_data['temp'] - 273.15;
+                   = "temp": 289.88 - 273.15
+				  
+    Map wind = data['wind'];
+	         = {"speed": 1.54,"deg": 330},
+			 
+	double getAir_speed = wind["speed"];
+	                    = "speed": 1.54
+                
+    
+	List weather_data = data['weather'];
+	                  = [{"id": 741,"main": "Fog","description": "fog","icon": "50d"}],
+	
+    Map weather_main_data = weather_data[0];
+	                      = "id": 741
+	
+	
+    String getMain_des = weather_main_data['main'];
+	                   = "main": "Fog"
+	
+    String getDesc = weather_main_data["description"];
+	               = "description": "fog"
+	
+	
+    String icon = weather_main_data["icon"];
+	            = "icon": "50d"
+	
+	
+    temp = getTemp.toString();-------> 289.88 - 273.15
+    humidity = getHumidity;---------->77
+    air_speed = getAir_speed.toString();---->1.54
+    description = getDesc;----------->fog
+    main = getMain_des;----------->fog
+    
+    
+
+5. loading .dart --->
+    String temp = "";
+    String hum = "";
+    String air_speed = "";
+    String des ="";
+    String main ="";
+    String icon = "" ;
+	
+	
+	startApp() --->
+	worker obj1 =  worker(location: "Bhubaneswar");
+    await obj1.getData(); ---------------------------> instance defined for the class worker
+
+    temp = obj1.temp;--------->289.88 - 273.15
+    hum = obj1.humidity;----->77
+    air_speed = obj1.air_speed;------->1.54
+    des = obj1.description;----------->fog
+    main = obj1.main;---------------->fog
+    icon = obj1.icon;-------------->
+	
+	   Future.delayed(Duration(seconds: 2), () {
+     Navigator.pushReplacementNamed(context, '/home',-------------------->the argument of startapp are passed to home.dart
+         arguments: {
+           "temp_value" : temp,--------->289.88 - 273.15
+           "hum_value" : hum,-------------->77
+           "air_speed_value" : air_speed,------->1.54
+           "des_value" : des,----------->fog
+           "main_value" : main,---------------->fog
+           "icon_value" : icon,
+
+
+6. home.dart ---> 
+    var city_name = ["Mumbai", "chennai", "bhubaneswar", "delhi", "Hyderabad"];
+    final _random = new Random();
+    var city = city_name[_random.nextInt(city_name.length)];
+	
+    Map<String, dynamic>? info = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;------------->the argument of startapp are assigned to info
+    String temp =  ((info ? ['temp_value']).toString()).substring(0,4);------->cal
+	
+	Text("$temp" ---->display
+	
+	
+	
+7. Location.dart
+
+
+1st main.dart---->2nd Loading.dart ----> startapp function use the info from getdata function of workers.dart----->the argument of startapp are passed to home.dart--> home.dart will display
+
+
+
+
+</pre>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

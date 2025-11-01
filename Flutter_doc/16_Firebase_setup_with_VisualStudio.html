@@ -1,0 +1,313 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+
+<h1>Firebase with Visual Studio code editor - </h1>
+
+<h2>1. -</h2>
+
+<pre>
+
+1. Collect Information from VS- code ---> 
+
+A. vscode editor --> view --> command palette --> flutter: new project ---> Tode1
+
+B. vscode editor ---> tode1 ---> 
+
+  main.dart -
+  ------------
+  import 'package:flutter/material.dart';
+
+  void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+    runApp(const MyApp());
+  }
+  
+  class MyApp extends StatelessWidget {
+    const MyApp({super.key});
+  
+   
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner:false ,
+        home: HomeScreen(),
+      );
+    }
+  }
+  
+  
+  home_screen.dart
+  --------------------
+  import 'package:flutter/material.dart';
+
+  class HomeScreen extends StatefulWidget {
+    const HomeScreen({super.key});
+  
+    @override
+    State<HomeScreen> createState() => _HomeScreenState();
+  }
+  
+  class _HomeScreenState extends State<HomeScreen> {
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold();
+    }
+  }
+  
+  
+C. vscode editor ---> tode1 ---> Android --> app --> build.gradle ---> 
+  
+   applicationId "com.example.tode1" ------> copy
+  
+
+
+</pre>
+
+<h2>2. -</h2>
+<pre>
+2. firebase.google.com  --> console --->
+ Add project --> Enter project name --> Firebase Series, project id - fir-series-3131d (This is a unique id given by Firebase, We can change it)
+ continue --> Enable google analytics --> continue --> (For now google analytics is not required. Hence disabling it)
+ Select an account : Default account for firebase ---> create project--> Firebase console page will come.
+</pre>
+
+<pre> 
+
+
+<h2>3. -</h2>
+3. Firebase --> Add firebase to your android app -->
+   register app --> 
+   Android package name: com.example.tode1
+   App nick name: Firebase Series Android
+</pre> 
+ 
+<pre> 
+
+
+
+
+<h2>4. -</h2>
+4. Firebase --> next step ---> Download google-services.json and keep in ---> C:\PHILIP\APPDEV\development\flutter\vstode1\tode1\android\app folder
+</pre>
+
+
+
+<h2>5. -</h2>
+<pre>
+5. firebase -->next step --->
+   project --> android folder
+   app -----> app folder
+
+   project level --> plugins --> id("com.google.gms.google-services") version "4.3.15" apply false ---->copy  
+   App level ---> id("com.android.application")
+                  id("com.google.gms.google-services")
+                  implementation(platform("com.google.firebase:firebase-bom:32.3.1"))				  
+
+</pre>
+
+
+<h2>6. -</h2>
+
+<pre>
+6. vscode --> tode1 ---> Android --> build.gradle --->add in dependencies ---> classpath 'com.google.gms.google-services:4.3.15'
+</pre>
+
+
+
+<h2>7. -</h2>
+<pre>
+7. vscode --> tode1 ---> Android --> app --> build.gradle ---> apply plugin: 'com.android.application
+</pre>                                                               apply plugin: 'com.google.gms.google-services'
+
+
+
+
+
+<h2>8. -</h2>
+<pre>
+8. vscode --> view -->terminal --> 
+PS C:\PHILIP\APPDEV\development\flutter\vstode1\tode1> flutter pub add firebase_core    ----> so it will be added to pubsec.yaml file
+</pre>
+
+
+
+<h2>9. -</h2>
+
+<pre>
+9. vscode -->tode1 --> main.dart --> 
+  
+  void main() async {
+  WidgetsFlutterBinding.ensureInitialized();------>This line must present, it means flutter related app must be initialized before anything will be initialized
+  await Firebase.initializeApp();-----------------------------------> add this line
+  
+  
+  
+  
++++++++++++++++++++++++++++++
+</pre>
+
+
+<h2>10. -</h2>
+
+<pre>
+10. New process -
+
+A. Firebase series --> add app --> click on flutter icon ---> Add firebase to your flutter app -->
+click on  install Firebase CLI --> select window -->
+For npm , need to install node.js---> once node.js will be installed, automatically npm will be installed.
+
+B. open command prompt ---> C:\Users\phili>npm install -g firebase-tools -----------------> install the firebase cli
+
+C. C:\Users\phili>firebase ------------------> shows all the help and command option.
+
+d. C:\Users\phili>firebase login ------------------> 1st time it will ask to your google account to sign in.
+   C:\Users\phili>firebase login ---------------> 2nd time
+   Already logged in as siararasol@gmail.com
+   
+e. Firebase --> next --> Install and run the flutter fire cli ----> copy the command : dart pub global activate flutterfire_cli
+                                                                    copy the command : flutterfire configure --project=fir-series-3131d
+
+f. vscode --> view --> terminal --> PS C:\PHILIP\APPDEV\development\flutter\vstode1\tode1> dart pub global activate flutterfire_cli
+  o/p
+  Warning: Pub installs executables into C:\Users\phili\AppData\Local\Pub\Cache\bin, which is not on your path.
+  You can fix that by adding that directory to your system's "Path" environment variable.
+  
+g. Add the above location to system path , then only flutterfire command will work.-
+   start --> search --> environment variable ---> user variable --> path --> edit ---> new --> C:\Users\phili\AppData\Local\Pub\Cache\bin --> ok
+                                             ---> system variable --> path --> edit ---> new --> C:\Users\phili\AppData\Local\Pub\Cache\bin --> ok
+
+h. close vscode and reopen
+
+i. vscode --> view --> terminal --> 
+   PS C:\PHILIP\APPDEV\development\flutter\vstode1\tode1> dart pub global activate flutterfire_cli --------> no more warning will come
+   PS C:\PHILIP\APPDEV\development\flutter\vstode1\tode1> flutterfire configure --project=fir-series-3131 ---> successfully will execute
+   ✔ Which platforms should your configuration support (use arrow keys & space to select)? · ios, web, androi --> with space bar you can select or unselect the option.
+   Here I selected android,web and ios.
+   Firebase configuration file lib\firebase_options.dart generated successfully with the following Firebase apps: 
+
+   Platform  Firebase App Id
+   web       1:1094986379375:web:3ee78f73a199ae2186dd9a
+   android   1:1094986379375:android:4ae618b41903f0dd86dd9a
+   ios       1:1094986379375:ios:1124b9f28ef0f60e86dd9a
+   
+   Learn more about using this file and next steps from the documentation:
+    > https://firebase.google.com/docs/flutter/setup
+	
+j. Firebase --> next --> Initialize Firebase and add plugins -----> 
+
+   import 'package:firebase_core/firebase_core.dart';
+   import 'firebase_options.dart';
+
+   // ...
+   
+   await Firebase.initializeApp(
+       options: DefaultFirebaseOptions.currentPlatform,----------> copy the lines 
+   );
+   
+</pre>
+
+
+
+<h2>11. -</h2>
+<pre>   
+14. vscode --> tode1 --> go to main.dart ---> 
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:tode1/firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, -------------------> add this line
+  );
+  
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+ 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner:false ,
+      home: HomeScreen(),
+    );
+  }
+}
+</pre>
+
+
+
+<h2>12. -</h2>
+<pre>
+15. Firebase ---> next continue to console 
+</pre>
+
+
+
+<pre>
+=====================================================================================
+
+<h2>. -</h2>
+<pre>
+Authentication --->
+1. Go to Firebase project overview ---> Go to Authentication --> get started --> Sign -in method -->
+   Native providers --> Email/password ---> click enable --> save
+   
+   Note: This Email/password section --> all emails and passwords will be saved.
+   
+   Note: Authentication --> users --> this section contains all the users added information.
+
+
+ 
+
+2. Go to Firebase project overview ---> Go to Authentication --> get started --> Sign -in method -->
+   public facing name for project : flttershare
+   Support email for project : siararasol@gmail.com  --> save
+
+ Now google status will show --> enabled 
+
+3. Go to Firebase project overview ---> cloud firestore  ---> create database -->
+   select start in test mode --> next --> 
+   cloud firestore location --> nam5 (United States) ---> Enable
+
+Start collection --> collection Id: users
+                     Document id: click on Auto id: zWm1fXprh5ExEPP2oabu --> save . U can delete for now.
+
+A collection is a set of documents that contain data
+
+
+4.  Go to Firebase project overview ---> Storage -->get started --> 
+Start in test mode --> cloud storage location: nam5 (United States) --> done 
+
+5. Visual studio code editor -->view --> extension --> install flutter
+                                                   --> install awesome flutter snippet (for automated command for stateless and stateful widget)
+	
+   file --> preferences --> setting --> search: auto import dart --> Dart auto import completion --> enabled
+
+6. Visual studio code editor --> bottom right corner --> no device --> select the device---> search box will appear --> select the emulator --> enter --> emulator will launch
+
+7. vs code editor --> view ---> command palette --> debug: start debugging --> After that  we can see hot reload tab in vs code . 
+
+
+8. A.  vscode editor --> view --> command palette --> flutter: new project ---> Tode1
+   B. 
+   
+   
+   
+</pre>
