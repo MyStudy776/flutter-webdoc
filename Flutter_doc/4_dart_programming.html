@@ -13,6 +13,199 @@
 <body>
 
 <h1>Dart Programming</h1>
+
+<!-- ############################################################################### -->
+
+<h2><mark>Terms In Dart</mark></h2>
+
+<h2>1.  -</h2>
+<pre>
+1.comments (//, /* */)
+2.Variables
+3.Data Types  -
+     var
+	 dynamic
+	 Object
+	 final and const
+	 Numbers - int, double
+	 Strings
+	 Booleans
+	 Enum
+
+4.assert keyword (debug-time checks)	 
+5.Type inference
+6.Operators
+   - Arithmetic, relational, logical, and assignment operators
+   - ??, ??=, and null-aware access (?.)
+   - Spread operator (... and ...?)
+
+7.Control Flow
+   - if, else, switch, case
+
+8.Loops: for, while, do-while,break, continue
+
+9. String? name (nullable string and null safety)
+
+10.parsing, rounding
+
+11.Collections
+    - Lists
+    - Sets
+    - Maps
+
+12.Functions
+   Positional and named parameters
+   Anonymous functions (lambdas)
+   Lexical scope and closures
+   Multiple returns (using records or Maps)
+   Typedefs
+   callbacks
+
+13. Generators - Synchronous, Asynchronous
+
+14. Classes & Objects
+    this keyword
+	Constructors
+    Generative constructor
+    Named constructor
+    Constant constructor
+    Factory constructor
+    Constructor inheritance
+	
+15. Getters and setters
+
+16. @override annotation, Method overriding
+
+17. Inheritance & Polymorphism
+
+18. Abstract methods and classes
+
+19. Mixins & Interfaces
+
+
+Object and dynamic — differences
+
+Never and void
+
+
+
+Iterable — looping and generator functions
+
+
+
+
+
+
+
+The 
+
+
+
+Methods
+
+Instance and static methods
+
+
+
+
+
+Callable objects (call() method)
+
+
+
+extends keyword
+
+
+
+
+
+
+
+Using with for mixins
+
+Implicit interfaces
+
+Implementing multiple interfaces
+
+Enumerated Types (Enums)
+
+Defining enums
+
+Adding methods and properties to enums
+
+Class Modifiers
+
+abstract, sealed, base, final, interface
+
+Class modifiers for API maintainers
+
+🟣 Level 5: Asynchronous Programming
+
+Handle tasks like network requests, timers, and file I/O.
+
+Async Programming Basics
+
+Future, async, await
+
+Using .then(), .catchError()
+
+The event loop concept
+
+Error Handling
+
+try, catch, finally
+
+Handling specific exceptions
+
+Custom exceptions
+
+Streams
+
+Difference between Future and Stream
+
+Listening to data events
+
+🟤 Level 6: Advanced Concepts
+
+Go beyond basics — build scalable and powerful Dart programs.
+
+Generics
+
+Generic functions and classes
+
+Why generics improve type safety
+
+Patterns
+
+Pattern matching in switch/if
+
+Destructuring records and objects
+
+Built-in Annotations
+
+@override, @deprecated, @required, etc.
+
+Libraries and Imports
+
+Importing packages, files, and libraries
+
+show, hide, and as prefixes
+
+Creating your own library files
+
+JSON and Serialization
+
+Encoding and decoding JSON (dart:convert)
+
+Converting Dart objects to JSON and vice versa
+
+
+
+
+</pre>
+
+
+
 <!-- ############################################################################### -->
 
 <h2><mark>A. Comments</mark></h2>
@@ -52,7 +245,8 @@ type variable1_name, variable2_name, variable3_name, ....variableN_name;
 7. num - can accept both integer and double value.
 8. var
 9. final
-10. const
+10.const
+11.enum
 </pre>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -179,6 +373,11 @@ or
 final  name1 = "aaa";
 or
 const name1 = "aaa";
+
+
+
+final String pet = 'cat';   // set once when the program runs
+const int daysInWeek = 7;   // fixed forever (compile-time constant)
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <h2>12. const must be initialized -</h2>
@@ -198,6 +397,26 @@ void main()
  final DateTime.now(); --->The value will be changed at runtime, which will be accepted .
  const DateTime.now(); ----> It will show error,because it willnot accept the changed value at runtime.
 }
+
+</pre>
+
+<pre>
+void main() {
+  
+final name1 = [10, 20,30,40];
+name1.add(50);
+print(name1);---->no error, it will add the value at run time
+}
+  
+  
+void main() {   
+const name2 = [10, 20,30,40];
+name2.add(50);
+print(name2);---->show error. const value once assigned will not change.
+
+
+}
+
 
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -348,7 +567,7 @@ o/p
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-<h2>6. nullable variable or optional variable -</h2>
+<h2>6. nullable variable or optional variable   "?"-</h2>
 <pre>
 - Nullable variable having 2 values.
 - It can have one value(int/string/bool) and null value.
@@ -385,11 +604,65 @@ o/p
 null
 10
 
+
+===================
+void main() {
+  String? x;                  //It can be null or string
+  print(x?.toUpperCase());    // ?. means if x has some value, it is not null, then calls toUpperCase 
+
+  String name = x ?? 'No name'; // if x is null, use 'No name'
+  print(name); // prints No name
+
+  List<int>? someList;
+  someList ??= [1, 2, 3]; // if someList is null, set it to [1,2,3]
+  print(someList);
+}
+?. — only runs method when not null.
+
+?? — choose the left value unless it is null, then choose right.
+
+??= — set only if the left is null.
+
 </pre>
+
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-<h2>7. ? operator -</h2>
+<h2>7. null safety operator "?." -</h2>
+<pre>
+void main() {
+  String? x;   //Here x has null value.
+  print(x.toUpperCase());  // ❌ Error
+}
+
+
+o/p
+====
+Error because here x is null. and toUpperCase() method can not be called on a null value.
+To fix the issue we need to use "?.". -using this we can call toUpperCase() method on a null value. And the result will be null.
+
+"If the value before ?. is not null, then do the operation.
+But if it is null, don’t do anything — just return null safely."
+
+
+void main() {
+  String? x;  //Here x has null value.
+  print(x?.toUpperCase());
+}
+
+o/p
+====
+The result is null .
+
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2>8. ? operator -</h2>
 <pre>
  void main() {
   String x = "Hi";
@@ -401,6 +674,9 @@ o/p
 ========
 It is
 It is not
+
+
+? - uses the if condition. If true print 1st statement, else 2nd statement.
 
 </pre>
 
@@ -574,7 +850,7 @@ Product = 3.34
 
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<h2><mark>E. Data type</mark></h2>
+<h2><mark>E. Data type - runtimeType</mark></h2>
 
 <h2>1. Check the data type of a variable -</h2>
 <pre>
@@ -956,6 +1232,30 @@ o/p
  goa
  false
 </pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. Spread operator -</h2>
+<pre>
+void main() {
+  List&lt;int&gt; numbers = [1, 2, 3];       // a list of numbers
+  print(numbers[0]); // prints 1 (first item)
+
+  List&lt;int&gt;  more = [0, ...numbers, 4]; // spread operator ... copies values from numbers
+  print(more); // prints [0, 1, 2, 3, 4]
+
+  List&lt;int&gt; ? maybeNumbers;
+  List&lt;int&gt;  safe = [9, ...(maybeNumbers ?? [])]; // avoid null with ?? []
+  print(safe);
+}
+
+
+o/p
+====
+1
+[0, 1, 2, 3, 4]
+[9]
+
+</pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <h2><mark>G. Map</mark></h2>
 
@@ -1186,10 +1486,10 @@ Output is: {gamo, gigi}
 <pre>
 void main()
 {
- var x = <String>{'Rama',  "Asha"}; // Declaring set in First Way
+ var x = &lt;String>{'Rama',  "Asha"}; // Declaring set in First Way
  print("Output is: $x");
 
- Set<String> y = {'gamo','gigi','gigi'};// Declaring set in Second Way
+ Set&lt;String> y = {'gamo','gigi','gigi'};// Declaring set in Second Way
  print("Output is: $y");
 
  print(y.length);
@@ -1227,7 +1527,7 @@ false
 <pre>
 void main()
 {
- var x = <String>{'Rama',  "Asha"};
+ var x = &lt;String>{'Rama',  "Asha"};
  x.add('kiti');
  print("Output is: $x");
 }
@@ -1243,8 +1543,8 @@ Output is: {Rama, Asha, kiti}
 <pre>
 void main()
 {
- var x = <String>{'Rama',  "Asha"};
- var y = <String>{'aa',  "bb"};
+ var x = &lt;String>{'Rama',  "Asha"};
+ var y = &lt;String>{'aa',  "bb"};
  print("Output is: $x");
  print("Output is: $y");
  y.addAll(x);
@@ -1351,7 +1651,7 @@ import 'dart:collection';
 void main()
 {
  
-  Queue<String> abc = new Queue<String>(); 
+  Queue&lt;String> abc = new Queue&lt;String>(); 
   print(abc);
   abc.add("Geeks");
   abc.add("For");
@@ -1857,7 +2157,6 @@ String name ='Manoj';
 fun1(name);
 print(name);
 
-
 }
 
  void fun1(String name) {
@@ -1895,8 +2194,52 @@ o/p
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
+<h2>8.Function - named parameter and positional parameter -</h2>
+<pre>
+Positional parameter
+=============
+void main() {
+  describe('Raju', 8);
+}
 
-<h2>8. Function  -</h2>
+void describe(String name, int age) {
+  print('My name is $name and I am $age years old.');
+}
+
+
+named parameter
+================
+void main() {
+  introduce(name: 'Rani', age: 7);
+}
+
+void introduce({required String name, required int age}) {
+  print('Hello! My name is $name and I am $age years old.');
+}
+ 
+required means you must give that value.
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h1>Object Oriented Programming  -</h1>
+<h2>What is OOPS ? </h2>
+<pre>
+- class
+- Object
+- Abstraction
+- Encapsulation
+- Inheritance
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>9. Function  -</h2>
 <pre>
  void main() {
    
@@ -1922,7 +2265,7 @@ void fun1(String name, int age, bool rrr) --->It will check the positional argum
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-<h2>9. using <mark>required </mark>, change positional argument to named argument  in Function-</h2>
+<h2>10. using <mark>required </mark>, change positional argument to named argument  in Function-</h2>
 <pre>
  void main() {
    
@@ -1942,7 +2285,7 @@ Manoj
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-<h2>10. Function  -</h2>
+<h2>11. Function  -</h2>
 <pre>
 void main() {
    
@@ -1967,7 +2310,7 @@ int? age ----> if we don't pass any value , then its value will be null. no need
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 
-<h2>11. both positional and named arguments in Fuction -</h2>
+<h2>12. both positional and named arguments in Fuction -</h2>
 <pre>
  void main() {
    
@@ -1996,9 +2339,26 @@ void fun1(int age, {required String name,  required bool rrr})---> age is positi
 
 </pre>
 
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-<h2>12. Function  -</h2>
+<h2>13. Anonymous function  -</h2>
+<pre>
+void main() {
+  var animals = ['Cat', 'Dog', 'Cow'];
+
+  animals.forEach((animal) {
+    print('I love $animal');
+  });
+}
+
+
+(animal) { print('I love $animal'); } → a function without a name!
+forEach runs this function for each animal in the list.
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>14. Function  -</h2>
 <pre>
 void main() {
    
@@ -2036,7 +2396,7 @@ Radha
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-<h2>13. return a function under a function -</h2>
+<h2>15. return a function under a function -</h2>
 <pre>
 void main() {
    
@@ -2056,6 +2416,110 @@ o/p
 ====
 Yoooo
 null
+
+</pre>
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>16. Multiple returns using records -</h2>
+<pre>
+void main() {
+  var (sum, product) = calculate(4, 5);
+  print('Sum: $sum, Product: $product');
+}
+
+(int, int) calculate(int a, int b) {
+  return (a + b, a * b);
+}
+ 
+o/p
+====
+Sum: 9, Product: 20
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>17. Typedef — giving a nickname to a function type -</h2>
+<pre>
+A function that takes 2 integers and returns an integer:
+
+int Function(int, int)
+
+
+This is long and ugly.
+
+So we give it a nickname:
+
+typedef AddFunc = int Function(int, int);
+
+
+Now we can write:
+
+AddFunc addNumbers;
+
+
+Much easier!
+
+
+Where do we use typedef?
+
+You use typedef when:
+
+1. Function signatures are long or confusing
+2. You want to pass functions as parameters
+3. You want cleaner code
+4. You use callbacks
+5. You work with Flutter UI widgets like buttons, streams, futures
+
+</pre>
+
+<pre>
+typedef MathOperation = int Function(int a, int b);
+
+int add(int a, int b) => a + b;
+int multiply(int a, int b) => a * b;
+
+void main() {
+  MathOperation op = add; // op can be any function that matches type
+  print(op(4, 3));
+
+  op = multiply;
+  print(op(4, 3));
+}
+
+
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>18. Lexical scope -</h2>
+<pre>
+void main() {
+  int x = 10;
+
+  void showX() {
+    print(x); // can see x because it’s inside main
+  }
+
+  showX();
+  // print(y); // ❌ can’t see y (defined inside showY)
+}
+
+void showY() {
+  int y = 5;
+  print(y);
+}
+
+
+Inner functions can see outer variables.
+But outer functions cannot see inside variables.
 
 </pre>
 
@@ -2120,6 +2584,96 @@ Future&lt;void> fetchData() async {
 
 </pre>
 
+
+<h2>2.  A simple future example-</h2>
+
+<pre>
+void main() {
+  print('I order a pizza!');
+  
+  Future.delayed(Duration(seconds: 3), () {
+    print('Pizza is ready!');
+  });
+  
+  print('I play on my phone while waiting...');
+}
+
+
+
+output
+========
+I order a pizza!
+I play on my phone while waiting...
+Pizza is ready!
+
+
+
+You go to a restaurant 🍽️ and order a pizza 🍕.
+The waiter says: “Okay! It will take 5 minutes.”
+
+Now, do you just stand there waiting? ❌
+No — you play on your phone or talk to your friend while the pizza is being made.
+
+When the pizza is ready, the waiter brings it to you. ✅
+
+That’s what Future means in Dart!
+It means:
+
+“This thing will finish later, not now.”
+
+See? The program didn’t wait 3 seconds — it kept doing other things.
+That’s called asynchronous programming
+
+</pre>
+
+
+<pre>
+
+When you use await, you can pause the program until the Future is done.
+
+void main() async{
+  print('I order a pizza!');
+  
+  await Future.delayed(Duration(seconds: 3), () {
+    print('Pizza is ready!');
+  });
+  
+  print('I play on my phone while waiting...');
+}
+
+
+o/p
+====
+I order a pizza!
+Pizza is ready!    ---------- after 3 sec output will come.
+I play on my phone while waiting...
+
+
+Now the program waited until the pizza was ready before printing the next lines.
+
+</pre>
+
+<pre>
+Future<String> makePizza() async {
+  await Future.delayed(Duration(seconds: 2));
+  return 'Your Pizza 🍕';
+}
+
+void main() async {
+  print('Ordering...');
+  String pizza = await makePizza(); // waits for the pizza
+  print(pizza);
+}
+🧠 Explanation:
+
+Future<String> → means this function will later give a String.
+
+await makePizza() → waits until the function finishes.
+
+After 2 seconds, we get 'Your Pizza 🍕'.
+
+</pre>
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 
@@ -2160,6 +2714,101 @@ Data fetched! --------------->The output will come after 2sec
 </pre>
 
 
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2><mark>Generator</mark></h2>
+
+<h2>1. Create a class and call using class object -</h2>
+<pre>
+Normal function (gives all values at once)
+
+List<int> countTo5() {
+  return [1, 2, 3, 4, 5];
+}
+
+void main() {
+  print(countTo5());
+}
+
+o/p
+======
+[1, 2, 3, 4, 5]
+
+
+
+Generator (gives values one by one)
+
+Iterable&lt;int&gt; countTo5() sync* {
+  for (int i = 1; i &lt;= 5; i++) {
+    yield i; // give one number at a time
+  }
+}
+
+void main() {
+  for (var num in countTo5()) {
+    print(num);
+  }
+}
+
+o/p
+===
+1
+2
+3
+4
+5
+
+
+sync* → means “I will generate values step by step.”
+
+yield → gives a single value each time.
+</pre>
+
+<pre>
+Stream<int> countUp(int n) async* {
+  for (int i = 1; i &lt;= n; i++) {
+    await Future.delayed(Duration(seconds: 1)); // wait 1 second
+    yield i; // give next number
+  }
+}
+
+void main() async {
+  await for (var number in countUp(3)) {
+    print(number);
+  }
+}
+
+o/p
+====
+1
+2
+3
+
+🧠 What happens:
+Function countUp says: “I’ll send numbers one by one.”
+
+It waits 1 second between each number using await Future.delayed(...).
+
+In main, we say await for — it waits for each number to come before printing
+
+</pre>
+
+
+<pre>
+Future	A value that will come later
+async	Function that can wait
+await	Pause until something finishes
+yield	Give one value in a generator
+sync*	Synchronous generator (immediate values)
+async*	Asynchronous generator (values come later)
+</pre>
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 
@@ -2189,6 +2838,27 @@ Note: void printName() ---> void is used in function printName, means it can acc
       int printName() ----> int is used means it will return only integer type data type.
 </pre>
 
+<h2>OR</h2>
+<pre>
+void main () {
+
+  <mark>MyClass</mark> myC = MyClass();
+  myC.printName();
+
+}
+
+class MyClass {
+  void printName() {
+    print("hello world");
+  }
+}
+
+
+o/p
+====
+hello world
+</pre>
+
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
@@ -2208,6 +2878,47 @@ class myClass {
     print(name1);
   }
 }
+
+
+o/p
+====
+Raman
+Seili
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. 3rd example -</h2>
+<pre>
+class Car {
+  // Properties (variables)
+  String brand = '';
+  int year = 0;
+
+  // Method (function inside class)
+  void start() {
+    print('$brand car from $year is starting...');
+  }
+}
+
+void main() {
+  // Create (make) an object
+  var myCar = Car();
+
+  // Set values
+  myCar.brand = 'Tesla';
+  myCar.year = 2023;
+
+  // Call method
+  myCar.start();
+}
+
+
+o/p
+=====
+Tesla car from 2023 is starting...
 </pre>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -2254,6 +2965,19 @@ class myClass {
 </pre>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>constructor-</h2>
+<pre>
+- Constructor always having same name as class Name.
+- Whenever a class is called , bydefault constructor will be called.
+- By default constructor is present inside the class.
+- A constructor does not return anything.
+
+
+Type of constructor
+- 1. Default constructor
+- 2. Parameterised constructor
+- 3. copy constructor
+</pre>
 
 <h2>5. Create a constructor using class-</h2>
 <pre>
@@ -2282,6 +3006,218 @@ o/p
 myClass Object created
 11
 </pre>
+
+<pre>
+class Addition{
+  
+  void fun1(){
+    print("I am bad");
+  }
+  
+  void fun2(){
+    print("I am not ok");
+  }
+  
+  Addition(){
+    int a = 3;
+    int b = 7;
+    print("The sum is ${a+b}");
+  }
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition();
+  
+  obj1.fun1();
+  obj1.fun2();
+  
+}
+
+
+output
+=======
+The sum is 10 ---- constructor called first
+I am bad
+I am not ok
+
+</pre>
+
+
+
+<h2>parameter constructor</h2>
+<pre>
+named parameter constructor
+
+
+class Addition{
+  
+  void fun1(){
+    print("I am bad");
+  }
+  
+  void fun2(){
+    print("I am not ok");
+  }
+  
+  Addition({required int a, required int b} ){
+   
+    print("The sum is ${a+b}");
+  }
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition(a: 30, b: 40);
+  
+  obj1.fun1();
+  obj1.fun2();
+  
+}
+
+output
+=========
+The sum is 70
+I am bad
+I am not ok
+
+</pre>
+
+
+<pre>
+positional  parameter constructor
+
+
+class Addition{
+  
+  void fun1(){
+    print("I am bad");
+  }
+  
+  void fun2(){
+    print("I am not ok");
+  }
+  
+  Addition(int a,  int b ){
+   
+    print("The sum is ${a+b}");
+  }
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition(30, 40);
+  
+  obj1.fun1();
+  obj1.fun2();
+  
+}
+
+</pre>
+
+
+<h2>Using of this keyword</h2>
+<pre>
+class Addition{
+  
+  int a = 100;
+  int b = 200;
+  
+  void fun1(int a, int b){
+    print("I am using local value");
+    print("x = $a, Y= $b");
+  }
+  
+ void fun2(int a, int b){
+    print("I am using global value");
+    print("x = ${this.a}, Y= ${this.b}");
+  }
+ 
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition();
+  
+  obj1.fun1(30,40);
+  obj1.fun2(30,40);
+  
+}
+
+
+output
+=======
+I am using local value
+x = 30, Y= 40
+I am using global value
+x = 100, Y= 200
+
+
+</pre>
+
+
+<h2>Use of static keyword</h2>
+<pre>
+Static ---> will be used , so that the function can be used anywhere . Means the function becomes a global function.
+class Addition{
+  
+  static void add(){
+    int a = 20;
+    int b = 30 ;
+    print(a+b);
+  }
+  
+   void mul(){
+    int c = 20;
+    int d = 30 ;
+    print(c*d);
+  }
+  
+  
+
+}
+
+
+
+class Test{
+  
+  note(){
+  
+    Addition.add(); 
+    Addition.mul(); ----->Error, Instance member mul can not be accessed using static access.
+    
+  }
+  
+}
+
+
+void main(){
+  
+  Test obj1 = Test();
+  obj1.note();
+  
+}
+
+
+}
+
+
+
+o/p
+====
+50 
+
+
+
+
+</pre>
+
+
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 <h2>6. Class -</h2>
@@ -2679,6 +3615,58 @@ o/p
 -  setter has one parameter and does not return a value.
 -  Getter and Setter are basically used to return a value.
 
+
+Getter : - Are special functions that provides read write access to the object proeprties.
+
+
+get - mean get the value
+set - means set the value
+
+class A {
+  int? x; 
+}
+
+void main() {
+  A obj1 = A();
+  obj1.x = 40; // setter
+  print(obj1.x); // getter.
+}
+
+
+o/p
+===
+40
+
+</pre>
+
+<pre>
+class A {
+  var name;
+  
+  void set  fun1(String name){
+   this.name= name;
+   }
+  
+  String get fun1{
+    return name;
+  }
+}
+
+void main() {
+  A obj1 = A();
+  obj1.fun1 = "Rahul"; // setter
+  print(obj1.fun1); // getter.
+}
+
+
+o/p
+====
+Rahul
+
+</pre>
+<pre>
+
+
 Defining a getter -
 Return_type  get identifier  
 {  
@@ -2752,6 +3740,120 @@ Vehicle --> Truck
 
 Inherits the property .
 - In dart multiple inheritance not possible . That is: Vehicle1 --> car, Vehicle2 --> car . It is not possible.
+
+
+Type of Inheritance
+========
+1. Single level inheritance
+2. Multilevel Inheritance
+3. Heridetary Inheritance
+
+</pre>
+
+<h2> Single level Inheritance</h2>
+<pre>
+class A{
+  a(){
+    print("A is called");
+  }
+}
+
+
+class B extends A{
+  b(){
+    print("B is called");
+  }
+}
+
+
+void main() {
+  
+  B obj1 = B();
+  obj1.a();
+  obj1.b();
+}
+
+
+
+output
+=========
+A is called
+B is called
+</pre>
+
+
+
+<h2>multi level Inheritance</h2>
+<pre>
+class A{
+  a(){
+    print("A is called");
+  }
+}
+
+
+class B extends A{
+  b(){
+    print("B is called");
+  }
+}
+
+
+class C extends B{
+  c(){
+    print("C is called");
+  }
+}
+
+
+
+void main() {
+  
+  C obj1 = C();
+  obj1.a();
+  obj1.b();
+  obj1.c();
+}
+
+
+
+output
+=======
+A is called
+B is called
+C is called
+
+</pre>
+
+<h2>Super constructor</h2>
+<pre>
+Super Keyword - it is used to insert parent class property into child class.
+
+
+class A{
+  A(){
+    print("A constructor is called");
+  }
+}
+
+class B extends A{
+  B(){
+    print("B constructor is called");
+  }
+}
+
+void main() {
+  print("Calling all the constructors");
+  B obj1 = B();
+}
+
+
+
+output
+=========
+Calling all the constructors
+A constructor is called
+B constructor is called
 
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -2917,9 +4019,19 @@ There are 4 type object oriented programming concepts .
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <h2>2. Polymorphism -</h2>
 <pre>
+Poly = many
+Morph = forms
+So it means “many forms.”
+
+Polymorphism allows one method or object to behave differently based on which class is using it.
+You can call the same method name on different objects,and each one can do something different!
+
+
 Polymorphism - It is the ability of object to take many form.
              - This thing achieved using inheritance and method overriding.
 			 - I allows object of different class will be treated as object of common superclass.
+
+
 			 
 class Animal{
   void sound(){
@@ -2964,6 +4076,58 @@ Dog making sound
 Cat making sound
 Animal making sound
 
+</pre>
+
+<h2>Another example of polymorphism -</h2>
+<pre>
+class Shape {
+  void draw() {
+    print('🟦 Drawing a shape...');
+  }
+}
+
+class Circle extends Shape {
+  @override
+  void draw() {
+    print('⚪ Drawing a Circle');
+  }
+}
+
+class Square extends Shape {
+  @override
+  void draw() {
+    print('⬛ Drawing a Square');
+  }
+}
+
+void main() {
+  List<Shape> shapes = [Circle(), Square(), Circle()];
+
+  for (var shape in shapes) {
+    shape.draw(); // same method name → different behavior
+  }
+}
+
+
+
+o/p
+-----
+⚪ Drawing a Circle
+⬛ Drawing a Square
+⚪ Drawing a Circle
+
+
+Imagine a drawing app like MS Paint 🎨
+You click "Draw", and it can draw:
+
+Circle
+
+Square
+
+Rectangle
+without writing different code for each one!
+
+That’s the power of polymorphism — same code, different behavior.
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <h2><mark>Abstract class</mark></h2>
@@ -3098,7 +4262,7 @@ void main() {
 
 
 
-&lt;String> --> generic
+&lt;String> --> generic --->means here the class wil accept only string variable.
 </pre>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <h2>2. Use of generic  -</h2>
@@ -3162,6 +4326,14 @@ Raam
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <h2><mark>Exception Handling</mark></h2>
+
+<pre>
+Types of exception
+1. Format exception
+2. Integer division by zero exception
+3. IO exception
+
+</pre>
 
 <h2>1. Example without Exception -</h2>
 <pre>

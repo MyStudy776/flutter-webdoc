@@ -1,0 +1,391 @@
+
+
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Dart Programming (page 2)</h1>
+
+<!-- ############################################################################### -->
+
+<h2><mark>1. assert</mark></h2>
+<pre>
+assert — a check that helps you while coding
+
+assert checks something is true. If it is false, the program stops (only in debug mode).
+
+void main() {
+  int apples = 3;
+  assert(apples >= 0); // makes sure apples is not negative
+  print('Apples: $apples');
+}
+
+
+assert(apples >= 0); — If apples is negative, you will see an error while testing.
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2.a. Without constructor (problem) in a class</mark></h2>
+<pre>
+class BankAccount {
+  String accountNumber = '';
+  double balance = 0;
+}
+
+void main() {
+  var acc = BankAccount(); // object created
+  // Forgot to set account number 😱
+  print('Account: ${acc.accountNumber}, Balance: ${acc.balance}');
+}
+
+
+
+o/p
+=====
+Account: , Balance: 0.0
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2.b. With constructor (fixed!)</mark></h2>
+<pre>
+class BankAccount {
+  String accountNumber;
+  double balance;
+
+  <mark>BankAccount(this.accountNumber, this.balance);</mark>
+}
+
+void main() {
+  var acc = BankAccount('ACC123', 500.0);
+  print('Account: ${acc.accountNumber}, Balance: ${acc.balance}');
+}
+
+o/p
+====
+Account: ACC123, Balance: 500.0
+
+Now every time a BankAccount is created, it must have an account number and balance.
+
+
+If you give like this : var acc = BankAccount();-->It will not allow and show error. you must have to give value.
+
+Constructor : Special method to set initial values when creating an object
+
+this keyword: Refers to the variable inside the class
+
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>3. this keyword</mark></h2>
+<pre>
+Let’s say your class and your constructor both use same variable names (like name, color).
+Dart might get confused which one is which.
+
+So, we use this to say:
+👉 “Hey Dart, I mean the variable inside the class, not the one outside.”
+
+class Robot {
+  String name;
+  String color;
+
+  Robot(String name, String color) {
+    this.name = name;   // 👈 tells Dart to assign constructor value to class property
+    this.color = color;
+  }
+}
+
+void main() {
+  var r1 = Robot('Robo', 'Silver');
+  print('Robot name: ${r1.name}, color: ${r1.color}');
+}
+
+
+this.name means “the class’s name variable”.
+name (on right side) is the one you passed in the constructor.
+So this.name = name; → copies the value from the constructor parameter to the class property.
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>4. Getter and setter</mark></h2>
+<pre>
+Imagine you have a treasure box (class).
+Inside it, you keep your gold (data) — and you don’t want everyone to touch it directly. 💰
+
+So, you hire:
+
+🧍‍♂️ Getter → The guard who shows what’s inside (read only).
+
+🧍‍♀️ Setter → The gatekeeper who controls who can change it (write only).
+
+
+
+
+
+🧩 Example 1 — Without Getter or Setter
+==============================
+class BankAccount {
+  double balance = 0;
+}
+
+void main() {
+  var account = BankAccount();
+  account.balance = -500; // 😱 Someone sets negative balance!
+  print('Balance: ${account.balance}');
+}
+
+
+🧾 Output:
+Balance: -500.0
+
+
+😱 Oops! That’s a problem — no bank allows negative balances.
+
+We need a way to control how data is changed.
+That’s where setters and getters come in!
+
+
+
+
+🧩 Example 2 — With Getter and Setter
+===============================
+class BankAccount {
+  double _balance = 0; // private variable (starts with _)
+
+  // Setter → controls how balance is updated
+  set balance(double amount) {
+    if (amount >= 0) {
+      _balance = amount;
+    } else {
+      print('Balance cannot be negative!');
+    }
+  }
+
+  // Getter → allows safe reading
+  double get balance {
+    return _balance;
+  }
+}
+
+void main() {
+  var acc = BankAccount();
+  acc.balance = 1000; // calls setter
+  print('Balance: ${acc.balance}'); // calls getter
+
+  acc.balance = -500; // setter blocks it
+}
+
+
+🧾 Output:
+-------
+Balance: 1000.0
+Balance cannot be negative!
+
+🧩 Line-by-Line Explanation
+
+double _balance = 0;
+→ _balance is private, so no one outside the class can change it directly.
+
+set balance(double amount) { ... }
+→ The setter is used when you try to assign a value → acc.balance = 1000.
+
+Inside the setter:
+→ You can check conditions before changing the value.
+
+double get balance { ... }
+→ The getter is used when you read the value → print(acc.balance).
+
+🧠 Why use Getters and Setters?
+Without Getter/Setter	With Getter/Setter
+Anyone can change data freely (unsafe).	You control how and when data is changed.
+Mistakes (like negative balance) can happen.	You can add rules to protect data.
+Hard to debug if values go wrong.	Easy to check or block wrong input.
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+🧶 num - can contain both integer and double value.
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>2. Comments</mark></h2>
+<pre>
+
+</pre>
+
+<!-- ############################################################################### -->
+
+
+
+</body>
+
+</html>
