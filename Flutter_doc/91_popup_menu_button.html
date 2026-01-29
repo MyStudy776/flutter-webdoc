@@ -1,0 +1,114 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Popup menu Button</h1>
+<h2>1.Example of popup menu button</h2>
+<pre> 
+/////1st examle
+/*
+import 'package:flutter/material.dart';
+
+class PopupMenufile extends StatefulWidget {
+  const PopupMenufile({super.key});
+
+  @override
+  State<PopupMenufile> createState() => _PopupMenufileState();
+}
+
+class _PopupMenufileState extends State&lt;PopupMenufile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("popup menu"),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context){
+              return [
+                PopupMenuItem(
+                  onTap: (){
+                    print("Menu Item clicked");
+                  },
+                  child: Text("Item 1")
+                  ),
+                PopupMenuItem(child: Text("Item 2")),
+                PopupMenuItem(child: Text("Item 3")),
+
+              ];
+            })
+        ],
+      ),
+    );
+  }
+}
+*/
+
+
+
+//2nd example
+import 'package:flutter/material.dart';
+
+class PopupMenufile extends StatefulWidget {
+  const PopupMenufile({super.key});
+
+  @override
+  State&lt;PopupMenufile> createState() => _PopupMenufileState();
+}
+
+class _PopupMenufileState extends State&lt;PopupMenufile> {
+
+  String selected = '';
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("popup menu"),
+        actions: [
+          PopupMenuButton(
+            onSelected: (value) {
+              print('value is $value');
+            },
+            itemBuilder: (context){
+              return [
+                //PopupMenuItem(value : 'item1', child: Text("Item 1")),
+                //PopupMenuItem(value : 'item2',child: Text("Item 2")),
+                //PopupMenuItem(value : 'item3',child: Text("Item 3")),
+
+                for (int i=0;i&lt;4;i++)
+                  PopupMenuItem(value : i, child: Text("Item is $i")),
+                  
+
+              ];
+            })
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2></h2>
+<pre>
+</pre>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

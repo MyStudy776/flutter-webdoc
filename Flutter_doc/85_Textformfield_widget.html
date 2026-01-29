@@ -1,0 +1,125 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Textformfield-</h1>
+<h2>1. Example of using Textformfield </h2>
+<pre>
+Textformfield supports form,validation etc.
+
+
+import 'package:flutter/material.dart';
+
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("SignUp"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: 'Enter your Username',
+                labelText: 'Username',
+                border: OutlineInputBorder(),
+              ),
+            ),
+        
+        
+            SizedBox(height: 20),
+        
+           <mark> TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: 'Enter your Password',
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+            ), </mark> 
+        
+        
+            SizedBox(height: 20),
+        
+            ElevatedButton(
+              
+              onPressed: (){
+                print("Login button pressed");
+              }, 
+              child: Text('Login'),
+        
+             
+             
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(double.infinity, 50), // Make button full width
+              )
+               
+           ),
+              
+          ],
+        ),
+      ),
+    );
+  }
+}
+						
+</pre>
+
+<h2>2. TextFormField example (with validation)</h2>
+<pre>
+TextFormField(
+  decoration: const InputDecoration(
+    labelText: 'Email',
+  ),
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+    return null;
+  },
+)
+</pre>
+
+<h2>3. TextFormField Using form</h2>
+<pre>
+final _formKey = GlobalKey&lt;FormState>();
+
+Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      TextFormField(...),
+      ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            print('Form is valid');
+          }
+        },
+        child: const Text('Submit'),
+      ),
+    ],
+  ),
+);
+</pre>
+
+
+</body>
+
+</html>
+
+
+

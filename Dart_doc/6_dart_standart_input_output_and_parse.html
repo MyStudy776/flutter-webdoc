@@ -1,0 +1,122 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Dart Input and Output</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. Dart – Standard Input - stdin</h2>
+<pre>
+import 'dart:io';
+
+void main()
+{
+  print("Enter your name?");
+  String? name = stdin.readLineSync();  -------------->means name variable can be a string or a null
+  print("Hello, $name! \nWelcome to App world");
+}
+
+o/p
+===
+Enter your name?
+rama
+
+Hello, rama! 
+Welcome to App world
+
+==========
+Note: If you will give no value and enter then o/p will be -
+
+Hello, ! 
+Welcome to App world
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>2. Dart – Standard Output - stdout.write</h2>
+<pre>
+import 'dart:io';
+ 
+void main()
+{
+    print("Hello World");
+    stdout.write("Good morning");
+}
+
+
+o/p
+====
+Hello World
+Good morning
+
+Note -
+The print() statement brings the cursor to next line while stdout.write() don’t bring the cursor to the next line,
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3.  Use of parse in variable -</h2>
+<pre>
+import 'dart:io';
+
+void main()
+{
+  print("Enter your favourite number:");
+  int? n = int.parse(stdin.readLineSync()!);
+  print("Your favourite number is $n");
+}
+
+o/p
+===
+Enter your favourite number:
+12
+Your favourite number is 12
+
+Note -
+parse method - it is a method used to convert a String into a specific data type.
+               It's often used with classes like int, double, DateTime, etc., to convert a string representation of a value into an actual instance of that data type.
+			   
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4.  parse() -</h2>
+<pre>
+The parse() function is used parsing a string containing numeric literal and convert to the number.
+
+void main()
+{
+    
+  var a1 = num.parse("1");  
+  var b1 = num.parse("2.34");  
+  
+  var c1 = a1+b1;   
+  print("Product = ${c1}");  
+}  
+
+
+o/p
+====
+Product = 3.34
+
+</pre>
+
+
+</body>
+
+</html>

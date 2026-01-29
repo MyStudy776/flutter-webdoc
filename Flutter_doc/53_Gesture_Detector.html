@@ -58,6 +58,38 @@ InkWell: It expands to fill its parent by default, so it implicitly imposes size
 
 </pre>
 
+
+<h2>3. When should YOU use what?</h2>
+<pre> 
+✅ Use GestureDetector when:
+- You want custom gestures
+- You need drag / swipe
+- You don’t want ripple
+- You’re building games / animations 🎮
+- more powerful than Inkwell
+
+✅ Use InkWell when:
+- You want button-like behavior
+- You want visual feedback
+- You follow Material Design
+- List items, cards, tiles 📋
+
+</pre>
+
+<pre>
+GestureDetector
+- Like a silent guard 👮‍♂️
+- Notices your finger
+- Does the action
+- No visual reaction
+- 💧 InkWell
+
+Like a button on water 💦
+- Notices your finger
+- Does the action
+- Shows “plashhh” ripple effect ✨
+</pre>
+
 <h2>2. GestureDetector</h2>
 <pre>
 import 'package:flutter/material.dart';
@@ -90,6 +122,58 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>4. Example</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Clickable extends StatefulWidget {
+  const Clickable({super.key});
+
+  @override
+  State&lt;Clickable> createState() => _ClickableState();
+}
+
+class _ClickableState extends State&lt;Clickable> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Column(
+        children: [
+          GestureDetector(
+            onTap: (){
+              print('clicked');
+            },
+            onLongPress: (){
+              print("Long press happened");
+            },
+            
+            child: Text("Hello world")),
+
+          InkWell(
+
+            onTap: (){
+              print("Inkwel tapped ==========");
+            },
+            
+            child: Container(
+              color: Colors.orange,
+              height: 20,
+              width: 100,
+            ),
+          )
+        ],
       ),
     );
   }

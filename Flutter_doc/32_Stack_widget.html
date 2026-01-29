@@ -207,6 +207,110 @@ class StackWidget extends StatelessWidget {
 }
 </pre>
 
+<h2>Another Example</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Stackfile extends StatefulWidget {
+  const Stackfile({super.key});
+
+  @override
+  State&lt;Stackfile> createState() => _StackfileState();
+}
+
+class _StackfileState extends State&lt;Stackfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Stack(
+        children: [
+          Container(
+            color: Colors.red,
+            height: 200,
+
+          ),
+
+          Container(
+            color: Colors.amber,
+            height: 100,
+            width: 100,
+          ),
+
+          Container(
+            color: Colors.amber,
+            height: 50,
+            width: 50,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>Another Example</h2>
+<pre>
+
+import 'package:flutter/material.dart';
+
+class Stackfile extends StatefulWidget {
+  const Stackfile({super.key});
+
+  @override
+  State&lt;Stackfile> createState() => _StackfileState();
+}
+
+class _StackfileState extends State&lt;Stackfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            right: 10,
+            child: Container(
+              color: Colors.red,
+              height: 200,
+            
+            ),
+          ),
+
+          Positioned(
+            top: -50,
+            right: -50,
+            child: Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.green.withAlpha(120)
+              ),
+              
+            ),
+          )
+
+         
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>Another Example</h2>
+<pre>
+</pre>
+
 
 
 

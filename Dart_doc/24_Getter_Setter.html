@@ -1,0 +1,146 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Getter and Setter</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>1. Getters and Setters -</h2>
+<pre>
+-  A default getter/setter is associated with every class.
+-  A getter has no parameters and returns a value.
+-  setter has one parameter and does not return a value.
+-  Getter and Setter are basically used to return a value.
+
+
+Getter : - Are special functions that provides read write access to the object proeprties.
+
+
+get - mean get the value
+set - means set the value
+
+class A {
+  int? x; 
+}
+
+void main() {
+  A obj1 = A();
+  obj1.x = 40; // setter
+  print(obj1.x); // getter.
+}
+
+
+o/p
+===
+40
+
+</pre>
+
+<pre>
+class A {
+  var name;
+  
+  void set  fun1(String name){
+   this.name= name;
+   }
+  
+  String get fun1{
+    return name;
+  }
+}
+
+void main() {
+  A obj1 = A();
+  obj1.fun1 = "Rahul"; // setter
+  print(obj1.fun1); // getter.
+}
+
+
+o/p
+====
+Rahul
+
+</pre>
+<pre>
+
+
+Defining a getter -
+Return_type  get identifier  
+{  
+    // statements
+}  
+
+
+
+
+
+Defining a setter -
+set identifier  
+{  
+   // statements
+}
+
+
+Example -
+class Student {  
+   String name;  
+   int age;  
+      
+   String get stud_name {  
+      return name;  
+   }  
+      
+   void set stud_name(String name) {  
+      this.name = name;  
+   }  
+     
+   void set stud_age(int age) {  
+      if(age&lt;= 0) {  
+        print("Age should be greater than 5");  
+      }  else {  
+         this.age = age;  
+      }  
+   }  
+     
+   int get stud_age {  
+      return age;      
+   }  
+}   
+void main() {  
+   Student s1 = new Student();  
+   s1.stud_name = 'Nitin';  
+   s1.stud_age = 0;  
+   print(s1.stud_name);  
+   print(s1.stud_age);  
+}
+
+
+o/p
+=======
+Age should be greater than 5  
+Nitin
+Null 
+
+</pre>
+
+
+
+
+
+
+</body>
+
+</html>

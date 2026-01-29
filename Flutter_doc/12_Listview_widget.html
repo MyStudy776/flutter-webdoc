@@ -12,26 +12,100 @@
 
 <body>
 <h1>ListView widget -</h1>
-
-<h2>1. List view -</h2>
+<h2>1.  What is List View </h2>
 <pre>
-It will automaticall scroll horizontally and vertically when content is beyond the screen.
-
-Difference -
-
-SingleChildScrollView expects a single child, which is typically a column, row, or another widget.
-ListView can have multiple children, and it's designed to handle long lists efficiently.
-Efficiency for Large Data Sets:
-
-SingleChildScrollView renders all its children at once, which can be inefficient for a large number of items.
-ListView only renders the items that are currently visible on the screen, making it much more efficient for long lists.
-Usage Scenario:
-
-Use SingleChildScrollView when you have a single child that needs to be scrollable (e.g., a form with various input fields).
-Use ListView when you have a list of items (e.g., messages in a chat app, articles in a news app) and you want to efficiently scroll through them.
+- ListView is a widget that shows items in a vertical scrollable list
+- It will automaticall scroll horizontally and vertically when content is beyond the screen.
 </pre>
 
-<h2>2 . Listview Example 1-</h2>
+<h2>2. example 1 : Listview</h2>
+<pre>
+Simple Listview
+-----------------
+ListView(
+  children: [
+    ListTile(title: Text("Apple")),
+    ListTile(title: Text("Banana")),
+    ListTile(title: Text("Orange")),
+  ],
+)
+
+
+- Here You already know There are 3 items in advance.
+- All items are created at once
+- Easy to write
+- Good for small lists
+- but If list is very big → memory waste
+
+</pre>
+
+
+<h2>3.  example 2 : Listview with Listview builder</h2>
+<pre>
+ Listview
+-----------------
+ListView.builder(
+  itemCount: 5,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text("Item $index"),
+    );
+  },
+)
+
+- You don’t know how many items, or list is big, in this case builder will be used.
+- Items are created only when needed
+- Better performance
+- Best for dynamic data
+
+</pre>
+
+<h2>4. Difference betwen List view and SingleChildScrollView -</h2>
+<pre>
+
+SingleChildScrollView
+------------------------
+SingleChildScrollView(
+  child: Column(
+    children: [
+      Text("Item 1"),
+      Text("Item 2"),
+      Text("Item 3"),
+      Text("Item 4"),
+      Text("Item 5"),
+    ],
+  ),
+)
+
+
+- It makes ONE child scrollable.That child can be: Column,Row or Container .
+- It expects a single child, which is typically a column, row, or another widget
+- All widgets are built at once
+- Good for forms or static UI
+- If items are many: High memory usage, slow down the app.
+- It uses when you have a single child that needs to be scrollable (e.g., a form with various input fields).
+- Use SingleChildScrollView when:
+
+✔ Login / Register page
+✔ Form page
+✔ Profile page
+✔ Static content
+
+
+
+ListView
+-----------
+- It is a scrollable list made for many items.
+- It can have multiple children, and it's designed to handle long lists efficiently.
+- It only renders/loads the items that are currently visible on the screen, making it much more efficient for long lists.
+- Use it when you have a list of items (e.g., messages in a chat app, articles in a news app) and you want to efficiently scroll through them.
+
+
+</pre>
+
+
+
+<h2>5 . Listview Example 1-</h2>
 <pre>
 import 'package:flutter/material.dart';
 
@@ -68,7 +142,7 @@ class MyApp extends StatelessWidget {
 Note : Here we did not use row or column. 
 </pre>
 
-<h2>3. Listview Example 2 -</h2>
+<h2>6. Listview Example 2 -</h2>
 <pre>
 import 'package:flutter/material.dart';
 
@@ -129,7 +203,7 @@ reverse=true ------->List will strat from opposite diection.
 
 </pre>
 
-<h2>4. Listview Builder -</h2>
+<h2>7. Listview Builder -</h2>
 <pre>
 - It will manage when large amount of data will be inserted.
 - It will build the list view.
@@ -139,7 +213,7 @@ or we can use context - ListView.builder(itemBuilder: (context, index)
 itemcount---> Specifies howmany item need to build.
 </pre>
 
-<h2>5. Listview Builder Example 1 -</h2>
+<h2>8. Listview Builder Example 1 -</h2>
 <pre>
 import 'package:flutter/material.dart';
 
@@ -159,7 +233,7 @@ class MyApp extends StatelessWidget {
           body: ListView.builder(itemBuilder: (context, index){
             return Text('one', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),);
            },
-          itemCount: 5,
+          itemCount: 5, //It will create 5 items in the list
       ),
     ),
     );
@@ -168,7 +242,7 @@ class MyApp extends StatelessWidget {
 
 </pre>
 
-<h2>6.  Listview Builder Example 2 -</h2>
+<h2>9.  Listview Builder Example 2 -</h2>
 <pre>
 import 'package:flutter/material.dart';
 
@@ -201,7 +275,7 @@ Note: Here we used array of items.
 
 </pre>
 
-<h2>7. Listview Builder Example 3-</h2>
+<h2>10. Listview Builder Example 3-</h2>
 <pre>
 import 'package:flutter/material.dart';
 
@@ -240,7 +314,7 @@ scrollDirection: Axis.horizontal, --->items are in horizontal direction
 when scrolling the listview builder item, it will destroy the the item from memory, which are not visible on the screen. So always the memory is recycled.
 </pre>
 
-<h2>8. Listview Separator Example 1</h2>
+<h2>11. Listview Separator Example 1</h2>
 <pre>
 
 import 'package:flutter/material.dart';
@@ -283,7 +357,7 @@ return Divider(height: 100, thickness: 2,); --->The items are separated by a div
 
 </pre>
 
-<h2>9. Listview Separator Example 2</h2>
+<h2>12. Listview Separator Example 2</h2>
 <pre>
 import 'package:flutter/material.dart';
 
@@ -323,7 +397,7 @@ class MyApp extends StatelessWidget {
 
 
 
-<h2>10. Listview Example</h2>
+<h2>13. Listview Example</h2>
 <pre>
 import 'dart:async';
 
@@ -477,7 +551,7 @@ card given nice look compare to container.
 
 
 
-<h2>11. Listview Builder Example</h2>
+<h2>14. Listview Builder Example</h2>
 <pre>
 import 'package:flutter/material.dart';
 void main() {
@@ -549,6 +623,129 @@ class _MyHomePageState extends State&lt;MyHomePage> {
   }
 }
 </pre>
+
+
+<h2>15. Listview example using for loop</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Listview1 extends StatefulWidget {
+  const Listview1({super.key});
+
+  @override
+  State&lt;Listview1> createState() => _Listview1State();
+}
+
+class _Listview1State extends State<Listview1> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+           backgroundColor: Colors.yellow,
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(10),
+       children: [
+        for (int i=0; i&lt;=10; i++)
+           Container(
+             color: Colors.blue,
+             height: 100,
+             margin: EdgeInsets.symmetric(vertical: 10),
+             alignment: Alignment.center,
+             //child: Text('number is $i'),
+             child: Text(i.toString(),style: TextStyle(color: Colors.amber),),
+          )
+       ],
+      ),
+      );
+  }
+}
+</pre>
+
+<h2>16.  Listview example  using list</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Listview1 extends StatefulWidget {
+  const Listview1({super.key});
+
+  @override
+  State&lt;Listview1> createState() => _Listview1State();
+}
+
+class _Listview1State extends State<Listview1> {
+
+List&lt;int> numbers = [45,67,39,17];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+           backgroundColor: Colors.yellow,
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(10),
+       children: [
+        for (int i in numbers)
+           Container(
+             color: Colors.blue,
+             height: 100,
+             margin: EdgeInsets.symmetric(vertical: 10),
+             alignment: Alignment.center,
+             //child: Text('number is $i'),
+             child: Text(i.toString(),style: TextStyle(color: Colors.white),),
+          )
+       ],
+      ),
+      );
+  }
+}
+
+</pre>
+
+<h2>17.  Listview example  3rd Example using Map</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Listview1 extends StatefulWidget {
+  const Listview1({super.key});
+
+  @override
+  State&lt;Listview1> createState() => _Listview1State();
+}
+
+class _Listview1State extends State&lt;Listview1> {
+  List&lt;int> numbers = [45, 67, 39, 17];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: numbers.map((item) {
+          return Container(
+            color: Colors.blue,
+            height: 100,
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            alignment: Alignment.center,
+
+            
+            child: Text(
+              item.toString(),
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          );
+        }).toList(), 
+      ),
+    );
+  }
+}
+
+</pre>
+
 
 
 

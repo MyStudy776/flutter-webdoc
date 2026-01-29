@@ -1,0 +1,142 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>copywith method</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. copywith method-</h2>
+<pre>
+copyWith = make a copy, change only what I ask.
+
+Imagine you have a toy car 🚗
+
+It has:
+ - color = red
+ - wheels = 4
+ - speed = 10
+
+Now you want:
+👉 the same car
+👉 but only change the color to blue
+
+You don’t want to build a new car from scratch.
+
+So you say:
+“Give me the same car, but change ONLY the color.” -- That is copyWith.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Example for copywith method-</h2>
+<pre>
+class ToyCar {
+  final String color;
+  final int wheels;
+  final int speed;
+
+  ToyCar({
+    required this.color,
+    required this.wheels,
+    required this.speed,
+  });
+
+  ToyCar copyWith({
+    String? color,
+    int? wheels,
+    int? speed,
+  }) {
+    return ToyCar(
+      color: color ?? this.color,
+      wheels: wheels ?? this.wheels,
+      speed: speed ?? this.speed,
+    );
+  }
+}
+
+void main() {
+  ToyCar car1 = ToyCar(
+    color: 'Red',
+    wheels: 4,
+    speed: 10,
+  );
+
+  ToyCar car2 = car1.copyWith(color: 'Blue');
+
+  print(car1.color); // Red
+  print(car2.color); // Blue
+}
+
+
+
+What happened?
+=================
+car1 → Red car
+car2 → Same car
+Only color changed
+Wheels & speed stayed same
+
+✨ MAGIC without rewriting everything
+
+
+
+Why not just create new object?
+===================
+❌ BAD way:
+
+ToyCar(
+  color: 'Blue',
+  wheels: 4,
+  speed: 10,
+);
+
+👉 You must remember everything again 😵
+
+
+GOOD way:
+car1.copyWith(color: 'Blue');
+</pre>
+
+
+<h2>2. Flutter example</h2>
+<pre>
+class User {
+  final String name;
+  final int age;
+
+  User({required this.name, required this.age});
+
+  User copyWith({String? name, int? age}) {
+    return User(
+      name: name ?? this.name,
+      age: age ?? this.age,
+    );
+  }
+}
+
+
+Update only age
+===============
+User u1 = User(name: "Tom", age: 6);
+User u2 = u1.copyWith(age: 7);
+👦 Tom grew older, name stays same!
+
+
+</pre>
+
+</body>
+
+</html>

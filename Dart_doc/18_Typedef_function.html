@@ -1,0 +1,77 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Typedef in Function</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. Typedef — giving a nickname to a function type -</h2>
+<pre>
+A function that takes 2 integers and returns an integer:
+
+int Function(int, int)
+
+
+This is long and ugly.
+
+So we give it a nickname:
+
+typedef AddFunc = int Function(int, int);
+
+
+Now we can write:
+
+AddFunc addNumbers;
+
+
+Much easier!
+
+
+Where do we use typedef?
+
+You use typedef when:
+
+1. Function signatures are long or confusing
+2. You want to pass functions as parameters
+3. You want cleaner code
+4. You use callbacks
+5. You work with Flutter UI widgets like buttons, streams, futures
+
+</pre>
+
+<pre>
+typedef MathOperation = int Function(int a, int b);
+
+int add(int a, int b) => a + b;
+int multiply(int a, int b) => a * b;
+
+void main() {
+  MathOperation op = add; // op can be any function that matches type
+  print(op(4, 3));
+
+  op = multiply;
+  print(op(4, 3));
+}
+
+
+
+</pre>
+
+
+</body>
+
+</html>

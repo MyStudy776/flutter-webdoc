@@ -237,6 +237,155 @@ And in the profilescreen page,  the value is stored in variable nameFromHome by 
 </pre>
 
 
+<h2>5. Another example : when need to pass parameter from one page to another </h3>
+<pre>
+main.dart
+=============
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shikar/navigation_file.dart';
+import 'package:shikar/screens/profiles/pass_argument_file.dart';
+import 'package:shikar/screens/profiles/profile_screen2.dart';
+import 'package:shikar/screens/splash/splash_screen.dart';
+import 'package:shikar/screens/settings/setting_screen.dart';
+
+
+void main() {
+  runApp(MyApp() );
+}
+
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key}); //constructor
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Apps title",
+      debugShowCheckedModeBanner: false,
+
+  
+   onGenerateRoute: (RouteSettings settings) {
+
+        switch(settings.name){
+          case '/profile2': {
+            String name = settings.arguments as String;
+            return MaterialPageRoute(builder: (context){
+              return ProfileScreen2(name: name);
+            });
+          }
+
+
+          /////2nd case
+          case '/settings': {
+            Map&lt;String, dynamic> data = settings.arguments as Map&lt;String, dynamic> ;
+            return MaterialPageRoute(builder: (context){
+              return settingScreen(
+                name: data['name'],
+                email: data['email'],
+              );
+            });
+          }
+
+
+        }
+
+
+      } ,
+
+    );
+  }
+}
+</pre>
+
+<pre>
+shikar/screens/settings/setting_screen.dart
+============================================
+import 'package:flutter/material.dart';
+
+class settingScreen extends StatelessWidget {
+  const settingScreen({super.key, required this.name, required this.email});
+
+
+  final String name,email;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text("Setting"),
+        backgroundColor: Colors.deepOrange,
+
+      ),
+
+
+      body: Column(
+        spacing:  10,
+        children: [
+          ListTile(
+
+            title: Text('Name: '),
+            subtitle: Text(name),
+            
+          ),
+
+
+          ListTile(
+
+            title: Text('Email: '),
+            subtitle: Text(email),
+            
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+<pre>
+shikar/screens/profiles/profile_screen2.dart
+==========================================
+import 'package:flutter/material.dart';
+
+class ProfileScreen2 extends StatelessWidget {
+  const ProfileScreen2({super.key, required this.name});
+
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("I am the second page"),
+        backgroundColor: Colors.yellow,
+      ),
+      body: Column(
+        children: [
+          Text("i am the second profile page"),
+          Text("Welcome to our page Mr $name")
+
+
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>5. Another example </h3>
+<pre>
+</pre>
+
+<h2>5. Another example </h3>
+<pre>
+</pre>
+
+
 
 
 </body>

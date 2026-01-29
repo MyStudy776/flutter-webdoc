@@ -1,0 +1,194 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Exception Handling</h1>
+
+
+
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Exception Handling</mark></h2>
+
+<pre>
+Types of exception
+1. Format exception
+2. Integer division by zero exception
+3. IO exception
+
+</pre>
+
+<h2>1. Example without Exception -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  print(10~/0);
+  print('Rama');
+}
+
+
+o/p
+====
+3.3333333333333335
+3
+Infinity
+Uncaught Error: Unsupported operation: Result of truncating division is Infinity: 10 ~/ 0
+
+
+Note-
+Here 1st, 2nd, 33rd print printed.
+4th print having error. So it stopped. and 5th print "Rama" even though it is correct it did not print .
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Example with Exception -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  try {
+   print(10~/0); 
+  }
+  catch(e) {
+    print("Some error");
+  }
+  
+  print('Rama');
+}
+
+
+o/p
+=====
+3.3333333333333335
+3
+Infinity
+Some error
+Rama  ----->printed because 4th print handled by exception.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3.print(e) in catch block  -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  try {
+   print(10~/0); 
+  }
+  catch(e) {
+    print(e);        ------------>print the same default value provided by dart.
+  }
+  
+  print('Rama');   ----> This will also print
+}
+
+
+o/p
+=====
+3.3333333333333335
+3
+Infinity
+Unsupported operation: Result of truncating division is Infinity: 10 ~/ 0
+Rama
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. finally  -</h2>
+<pre>
+void main() {
+  print(10/3);
+  print(10~/3);
+  print(10/0);
+  try {
+   print(10~/0); 
+  }
+  catch(e) {
+    print("error");
+  }
+  finally {
+    print("I will always executed");
+  }
+  
+  print('Rama');
+}
+
+
+
+o/p
+====
+3.3333333333333335
+3
+Infinity
+error
+I will always executed
+Rama
+
+
+
+
+Note -
+whether try and catch block executed or not , finally block always b printed.
+
+</pre>
+
+
+<h2>try,catch, on </h2>
+<pre>
+void main() {
+  
+  
+  try{
+    List&lt;int> x = [23, 35,46];
+    print(x[5]);
+  }
+
+  on RangeError{
+    print("happy");
+  }
+
+  catch(e) {
+    print(e);
+  }
+
+  finally{
+    print("The final printed");
+  }
+
+
+}
+
+
+
+try - contain the statement.
+If try blocks contains any error,then handle the error with -
+on errorType - for particular error type,you handle the print statement.
+catch - handle the error on your own print statement
+finally - always executed
+
+
+</pre>
+
+
+</body>
+
+</html>

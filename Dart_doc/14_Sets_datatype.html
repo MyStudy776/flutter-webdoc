@@ -1,0 +1,200 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>String datatype</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. Sets-</h2>
+<pre>
+- It is a special case in List.
+- It does not contain duplicate value.
+- It is unordered array.
+
+void main()
+{
+ var x = <String>{'Rama',  "Asha"};
+ print("Output is: $x");
+
+ Set<String> y = {'gamo','gigi','gigi'};
+ print("Output is: $y");
+
+}
+
+o/p
+===
+Output is: {Rama, Asha}
+Output is: {gamo, gigi}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Set commands-</h2>
+<pre>
+void main()
+{
+ var x = &lt;String>{'Rama',  "Asha"}; // Declaring set in First Way
+ print("Output is: $x");
+
+ Set&lt;String> y = {'gamo','gigi','gigi'};// Declaring set in Second Way
+ print("Output is: $y");
+
+ print(y.length);
+ print(y.elementAt(1));
+ print(y.contains('gamo'));
+ print(y.contains('pupa'));
+
+ y.remove('gamo');
+ print(y.length);
+
+}
+
+
+o/p
+===
+Output is: {Rama, Asha}
+Output is: {gamo, gigi}
+2
+gigi
+true
+false
+1
+
+
+1.	variable_name.elementAt(index);	It returns the element at the corresponding index. The type of output depends on the type of set defined.
+2.	variable_name.length;	It returns the length of the set. The output is of integer type.
+3.	variable_name.contains(element_name);	It returns boolean value true if the element_name is present in the set else return false.
+4.	variable_name.remove(element_name);	It deletes the element whose name is present inside it.
+5.	variable_name.forEach(…);	It runs the command defined inside forEach() function for all the elements inside the set.
+6.	variable_name.clear();	It deletes all the element inside the set.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Adding value to a set-</h2>
+<pre>
+void main()
+{
+ var x = &lt;String>{'Rama',  "Asha"};
+ x.add('kiti');
+ print("Output is: $x");
+}
+
+o/p
+===
+Output is: {Rama, Asha, kiti}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. addAll in sets -</h2>
+<pre>
+void main()
+{
+ var x = &lt;String>{'Rama',  "Asha"};
+ var y = &lt;String>{'aa',  "bb"};
+ print("Output is: $x");
+ print("Output is: $y");
+ y.addAll(x);
+ print("Output is: $y");
+}
+
+o/p
+===
+Output is: {Rama, Asha}
+Output is: {aa, bb}
+Output is: {aa, bb, Rama, Asha}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Function : add two numbers in set : print-</h2>
+<pre>
+addNumbers(num1, num2) {
+   print(num1 + num2) ;
+}
+
+void main() {
+  addNumbers(4, 5);
+  
+}
+
+
+o/p
+====
+9
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>6. Function : add two numbers in set : return -</h2>
+<pre>
+addNumbers(num1, num2) {
+  return num1 + num2 ;
+}
+
+void main() {
+  print(addNumbers(4, 5));
+  
+}
+
+
+o/p
+====
+9
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>7. Function : add two numbers in set : void -</h2>
+<pre>
+void addNumbers(num1, num2) {
+  return num1 + num2 ;
+}
+
+void main() {
+  print(addNumbers(4, 5));
+  
+}
+
+o/p
+====
+error
+
+void addNumbers(num1, num2) --->function type is void ---> It should not return anything.
+return num1 + num2 ; ---> but return is used. so error.type mismatch.
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. Function : add two numbers in set : int -</h2>
+
+<pre>
+int addNumbers(num1, num2) {
+  return num1 + num2 ;
+}
+
+void main() {
+  print(addNumbers(4, 5));
+  
+}
+
+o/p
+====
+9
+
+</pre>
+
+
+
+</body>
+
+</html>

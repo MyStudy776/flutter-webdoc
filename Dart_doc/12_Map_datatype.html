@@ -1,0 +1,225 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Map datatype</h1>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. Map  -</h2>
+<pre>
+
+- Maps are dictionary type data type.
+- It exists in key- value form. Lock -key concept.
+- There is no restriction on the type of data that goes in Map data type. Any kind of data(like string, list, bool, int etc) can be stored inside Map.
+- It does not have any order.
+- Key should be unique.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Map. -</h2>
+<pre>
+- Key pair value
+
+void main() {
+  Map x = {};
+  x["a1"] = 'aa';
+  x["b1"] = 12;
+  x["c1"] = true;
+  print(x);
+}
+
+o/p
+===
+{a1: aa, b1: 12, c1: true}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Map -</h2>
+<pre>
+
+
+void main () {
+    var map_name1 = {
+       'a': 100,
+        'b': 200,
+        'c': true,
+        'd': "mama"
+    };
+
+print(map_name1);
+print(map_name1['b']);
+print(map_name1['e']);
+print(map_name1['B']);
+map_name1['b'] = "ggg";
+print(map_name1);
+print(map_name1.length);
+print(map_name1.isEmpty);
+print(map_name1.containsKey('a'));
+}
+
+o/p
+====
+{a: 100, b: 200, c: true, d: mama}
+200
+null
+null
+{a: 100, b: ggg, c: true, d: mama}
+4
+false
+true
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. Map -</h2>
+<pre>
+void main () {
+       var map_name1 = {
+       'k1': [20,30,40],
+       'k2': ['rr','kk',12]
+     };
+  
+  print(map_name1['k2']);
+  print(map_name1['k2'][1]);
+  
+}
+
+
+o/p
+====
+Error compiling to JavaScript:
+lib/main.dart:9:24:
+Error: Operator '[]' cannot be called on 'List&lt;Object&gt?' because it is potentially null.
+ - 'List' is from 'dart:core'.
+ - 'Object' is from 'dart:core'.
+  print(map_name1['k2'][1]);
+                       ^
+Error: Compilation failed.
+
+
+
+
+The error message you are encountering is due to null-safety rules in Dart.
+Starting from Dart 2.12, Dart introduced null safety, which means that variables can't hold null values unless explicitly specified. In your case, the error is due to the possibility that the key 'k2' might not exist in the map or that the value associated with 'k2' might be null.
+
+
+
+correct statement -
+void main () {
+       var map_name1 = {
+       'k1': [20,30,40],
+       'k2': ['rr','kk',12]
+     };
+  
+  print(map_name1['k2']);
+  print(map_name1['k2']?[1]);
+  
+}
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<pre>
+
+key is string and value also string here.
+
+
+void main() {
+
+Map&lt;String, String> x= {
+  'a': "Akash",
+  'b': "Naina",
+  'k': "Delhi"
+};
+
+
+
+print(x['b']);
+}
+
+
+o/p
+====
+Naina
+</pre>
+
+
+
+
+<pre>
+key is string and value is dynamic here.
+
+
+void main() {
+
+Map&lt;String, dynamic> x= {
+  'a': "Akash",
+  'b': "Naina",
+  'k': 18
+};
+
+
+
+print(x['k']);
+}
+
+o/p
+====
+18
+</pre>
+
+<h2>5. Map -</h2>
+<pre>
+void main () {
+     Map&lt;String, dynamic&gt; map_name1 = {     
+       'k1': [20,30,40],
+       'k2': ['rr','kk',12]
+     };
+  
+  print(map_name1['k2']);
+  print(map_name1['k2'][1]);
+  
+}
+
+
+o/p
+====
+[rr, kk, 12]
+kk
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Another way of representing Map -</h2>
+<pre>
+void main () {
+     var mp1 = Map();
+  
+  mp1['k1']= [20,80,40];
+  mp1['k2']= [50,30,20];
+ 
+  
+  print(mp1['k2']);
+  print(mp1['k2'][1]);
+  
+}
+
+
+o/p
+====
+[20, 80, 40]
+30
+
+</pre>
+
+
+</body>
+
+</html>

@@ -48,7 +48,7 @@ class MyHomePage extends StatefulWidget {
   State&lt;MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State&lt;MyHomePage> {
 
 
 
@@ -106,6 +106,201 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 </pre>
+
+<h2>2. Example TabBar widget -</h2>
+<pre>
+
+/*
+import 'package:flutter/material.dart';
+import 'package:shikar/screens/chats/calls_for_tabbar_file.dart';
+import 'package:shikar/screens/chats/chats_for_tabbar_file.dart';
+import 'package:shikar/screens/chats/status_for_tabbarfile.dart';
+
+class Tabbarfile extends StatefulWidget {
+  const Tabbarfile({super.key});
+
+  @override
+  State&lt;Tabbarfile> createState() => _TabbarfileState();
+}
+
+class _TabbarfileState extends State&lt;Tabbarfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      
+      appBar: AppBar(
+        title: Text("Tab bar"),
+      ),
+
+
+      body: DefaultTabController(
+        length: 3, 
+        child: Column(
+          children: [
+            TabBar(
+              tabs: [
+                Tab(text: "CHAT",),
+                Tab(text: "STATUS",),
+                Tab(text: "CALL",),
+              ]),
+
+
+
+              Flexible(
+                child: TabBarView(
+                  children: [
+                
+                    //Center(child: Text("This is chat view")),
+                    //Center(child: Text("This is status view")),
+                    //Center(child: Text("This is call view")),
+                
+                    ChatScreen(),
+                    StatusScreen(),
+                    CallScreen()
+                    
+                  ]),
+              )
+
+
+                
+          ],
+        ),
+
+          
+          ),
+      
+      
+      
+      
+      
+      );
+  }
+}
+
+
+*/
+
+import 'package:flutter/material.dart';
+import 'package:shikar/screens/chats/calls_for_tabbar_file.dart';
+import 'package:shikar/screens/chats/chats_for_tabbar_file.dart';
+import 'package:shikar/screens/chats/status_for_tabbarfile.dart';
+
+class Tabbarfile extends StatefulWidget {
+  const Tabbarfile({super.key});
+
+  @override
+  State&lt;Tabbarfile> createState() => _TabbarfileState();
+}
+
+class _TabbarfileState extends State&lt;Tabbarfile> {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 3, 
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Tab bar page", style: TextStyle(color: Colors.white),),
+          backgroundColor: Colors.green,
+          bottom: TabBar(
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.grey,
+            indicatorColor: Colors.white,
+            tabs: [
+                Tab(text: "CHAT",icon: Icon(Icons.chat),),
+                Tab(text: "STATUS",icon: Icon(Icons.message),),
+                Tab(text: "CALL",icon: Icon(Icons.call),),
+
+            ]),
+
+          
+        ),
+
+        body: TabBarView(
+          children: [
+                    ChatScreen(),
+                    StatusScreen(),
+                    CallScreen()
+
+          ]),
+      )
+      );
+  }
+}
+
+
+
+
+</pre>
+
+<pre>
+shikar/screens/chats/calls_for_tabbar_file.dart
+==============
+import 'package:flutter/material.dart';
+
+class CallScreen extends StatelessWidget {
+  const CallScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.lightGreenAccent,
+      height: 200,
+      width: 200,
+      child: Center(
+        child: Text("This is call screen"),
+      ),
+    );;
+  }
+}
+
+</pre>
+
+<pre>
+shikar/screens/chats/chats_for_tabbar_file.dart
+======================
+import 'package:flutter/material.dart';
+
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.amber,
+      height: 200,
+      width: 200,
+      child: Center(
+        child: Text("This is chat screen"),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<pre>
+shikar/screens/chats/status_for_tabbarfile.dart
+===========================
+import 'package:flutter/material.dart';
+
+class StatusScreen extends StatelessWidget {
+  const StatusScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.pinkAccent,
+      height: 200,
+      width: 200,
+      child: Center(
+        child: Text("This is status screen"),
+      ),
+    );;
+  }
+}
+
+</pre>
+
 
 </body>
 

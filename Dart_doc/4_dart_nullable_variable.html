@@ -1,0 +1,79 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>nullable variable</h1>
+
+<!-- ############################################################################### -->
+
+<h2>1. nullable variable or optional variable   "?"-</h2>
+<pre>
+- Nullable variable having 2 values.
+- It can have one value(int/string/bool) and null value.
+
+void main()
+{
+
+  int x = null; ----> error, integer data type can not accept null vaue.
+  
+}
+
+
+=====
+void main()
+{
+
+  int? x  null;--->no error, It will accept integer value or null value.
+  int? y;
+  print(y)----->o/p will be null.
+  
+}
+
+===========
+void main() {
+   
+   String? x = null;
+   print(x);
+   print(x??10);
+   
+ }
+ 
+o/p
+====
+null
+10
+
+
+===================
+void main() {
+  String? x;                  //It can be null or string
+  print(x?.toUpperCase());    // ?. means if x has some value, it is not null, then calls toUpperCase 
+
+  String name = x ?? 'No name'; // if x is null, use 'No name'
+  print(name); // prints No name
+
+  List<int>? someList;
+  someList ??= [1, 2, 3]; // if someList is null, set it to [1,2,3]
+  print(someList);
+}
+?. — only runs method when not null.
+
+?? — choose the left value unless it is null, then choose right.
+
+??= — set only if the left is null.
+
+</pre>
+
+</body>
+
+</html>

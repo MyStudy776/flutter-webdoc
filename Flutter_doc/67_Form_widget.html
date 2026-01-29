@@ -368,6 +368,137 @@ If we submit the button, it will show error as fields should not be empty.
 Fill all the field and submit ansd see the output in terminal
 </pre>
 
+<h2>4.Example</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Myform extends StatefulWidget {
+  const Myform({super.key});
+
+  @override
+  State&lt;Myform> createState() => _MyformState();
+}
+
+
+
+///#changes will be done
+
+class _MyformState extends State<Myform> {
+
+TextEditingController email = TextEditingController();
+TextEditingController password = TextEditingController();
+TextEditingController phone = TextEditingController();
+TextEditingController name = TextEditingController();
+final formkey = GlobalKey&lt;FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        title: Text("Login Form"),
+      ),
+      body: Form(
+        key: formkey,
+        child: Column(
+          spacing: 10,
+          children: [
+            SizedBox(height: 10,),
+            TextFormField(
+              controller: email,
+              decoration: InputDecoration(
+        
+                hint: Text("Enter email address")
+              ),
+
+               validator: (value) {
+                if (value == null || value.isEmpty){
+                  return "enter your email";
+                }
+
+                if (!value.contains('@')){
+                  return "enter a valid email";
+                }
+
+              },
+              
+            ),
+        
+            //###################3
+            TextFormField(
+              controller: password ,
+              decoration: InputDecoration(
+        
+                hint: Text("Enter password")
+              ),
+              
+              validator: (value) {
+                if (value == null || value.isEmpty){
+                  return "enter your password";
+                }
+              },
+            ),
+        
+            //#######################
+        
+            TextFormField(
+              controller: phone,
+              decoration: InputDecoration(
+        
+                hint: Text("Enter phone number")
+              ),
+
+              validator: (value) {
+                if (value == null || value.isEmpty){
+                  return "enter your phone number";
+                }
+                 if (value.length != 11){
+                  return "length must be 11";
+                }
+
+
+              },
+              
+            ),
+
+             //#######################
+        
+            TextFormField(
+              controller: name,
+              decoration: InputDecoration(
+        
+                hint: Text("Enter name")
+              ),
+
+              validator: (value) {
+                if (value == null || value.isEmpty){
+                  return "name can not be empty";
+                }
+              },
+              
+            ),
+
+            //#######################
+
+            ElevatedButton(onPressed: (){
+
+              if (formkey.currentState!.validate()){
+                print('Email: ${email.text}');
+                print('Phone: ${phone.text}');
+                print('password: ${password.text}');
+                print('name: ${name.text}');
+              }
+
+            }, child: Text("Register"))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
 
 
 

@@ -44,28 +44,261 @@ class MyApp extends StatelessWidget{
 }
 </pre>
 
-<h2>2. Example -  without a theme -</h2>
+
+<h2>2. Example Theme -</h2>
 <pre>
+
+import 'package:bottle1/uihelper/util.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      <mark>theme: ThemeData(
+        primarySwatch: Colors.lightGreen,
+        textTheme: TextTheme(
+          displayLarge: TextStyle(fontSize: 55, color: Colors.red),
+          bodyMedium: TextStyle(fontSize: 15, color: Colors.green)
+        )
+      ),</mark>
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dashboard"),
+        ),
+        body: Column(
+          children: [
+            Text("Hellow 1", style: Theme.of(context).textTheme.displayLarge),
+            Text("Hellow 2", style: Theme.of(context).textTheme.displayLarge!.copyWith(color: Colors.yellow)),
+            Text("Hellow 3", style: TextStyle(fontSize: 20, color: Colors.green),),
+            Text("Hellow 4", style: TextStyle(fontSize: 20, color: Colors.blue),),
+            Text("Hellow 5", style: Theme.of(context).textTheme.bodyMedium),
+            Text("Hellow 6", style: aaa()),
+            Text("Hellow 7", style: bbb(textcolor1: Colors.pink)),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+
 
 </pre>
 
-<h2>1. Example -  without a theme -</h2>
+<h2>3. Example -   -</h2>
 <pre>
+import 'package:flutter/material.dart';
+import 'package:myapp/home_page.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+
+        //color for Appbar
+        appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+          ),
+
+        //background color for body
+        scaffoldBackgroundColor: Colors.blueGrey,
+         
+        //foreground color for body
+		textTheme: const TextTheme(
+            bodyMedium: TextStyle(
+            color: Colors.white,
+          ),
+      
+
+      
+    ),
+  ),
+            
+         home: HomePage(),
+        );
+      
+   
+  }
+}
+
+
 
 </pre>
 
-<h2>1. Example -  without a theme -</h2>
+<h2>4. Example Dark Theme-</h2>
 <pre>
+return MaterialApp(
+      home: HomePage(),
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+    );
+</pre>
+
+<h2>5. Example -  light theme -</h2>
+<pre>
+ return MaterialApp(
+         
+      home: HomePage(),
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple
+      ),
+      
+    );
 
 </pre>
 
-<h2>1. Example -  without a theme -</h2>
+<h2>6. Example -  Use theme in a separate file -</h2>
 <pre>
+lib/utils/mytheme.dart
+======================
+import 'package:flutter/material.dart';
+
+class Mytheme {
+ <mark> static ThemeData lightTheme(BuildContext context) => ThemeData( </mark>
+        primarySwatch: Colors.deepPurple,
+        fontFamily: 'Roboto',
+        appBarTheme:  AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.black),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+      ),
+     
+      );
+
+
+   <mark>   static ThemeData darkTheme(BuildContext context) => ThemeData( </mark>
+        brightness: Brightness.dark,
+        primarySwatch: Colors.deepPurple,
+        fontFamily: 'Roboto',
+        appBarTheme:  AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.white),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+      ),
+     
+      );
+}
 
 </pre>
 
-<h2>1. Example -  without a theme -</h2>
 <pre>
+import 'package:flutter/material.dart';
+import 'package:mama1/drawer_page.dart';
+import 'package:mama1/signup_page.dart';
+import 'package:mama1/start_page.dart';
+import 'package:mama1/test_page.dart';
+<mark>import 'package:mama1/utils/mytheme.dart'; </mark>
+import 'package:mama1/utils/routes.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+
+     <mark> theme: Mytheme.lightTheme(context),</mark>
+      <mark>darkTheme: Mytheme.darkTheme(context),</mark>
+     
+      initialRoute: Myroute.startPage,
+      routes: {
+        //'/': (context) => const StartPage(),
+        //'/signup': (context) => const SignupPage(),
+        Myroute.startPage:(context)=>const StartPage(),
+        Myroute.signupPage:(context)=>const SignupPage(),
+        Myroute.testPage:(context)=>const Testpage(),
+        Myroute.drawerpage:(context)=>const Drawerpage(),
+      },
+
+
+
+    );
+  }
+}
+</pre>
+
+
+
+<h2>7. Example  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Themefile extends StatefulWidget {
+  const Themefile({super.key});
+
+  @override
+  State&lt;Themefile> createState() => _ThemefileState();
+}
+
+class _ThemefileState extends State&lt;Themefile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+
+
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 15,
+        children: [
+          ElevatedButton(
+            onPressed: (){},
+            child: Text("Button"),
+            ),
+
+            ElevatedButton(
+            onPressed: (){},
+            child: Text("Button"),
+            ),
+
+            Text(
+              'Hello world',
+              //style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.displayLarge,
+            )
+        ],
+      ), 
+    );
+  }
+}
 
 </pre>
 

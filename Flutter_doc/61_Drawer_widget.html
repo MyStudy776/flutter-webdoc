@@ -163,6 +163,320 @@ class _MyHomePageState extends State&lt;MyHomePage> {
 
 </pre>
 
+<h2>3rd Example: Drawer</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Drawerpage extends StatelessWidget {
+  const Drawerpage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Drawer Page"),
+      ),
+      body: const Center(
+        child: Text("This is the Drawer Page"),
+      ),
+
+      drawer: Drawerpagedetail(),
+    );
+  }
+}
+
+
+class Drawerpagedetail extends StatelessWidget {
+  const Drawerpagedetail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    String src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&w=1000&q=80";
+    <mark>return Drawer(</mark>
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          <mark>DrawerHeader(</mark>
+            padding: EdgeInsets.zero,
+            margin: EdgeInsets.zero,
+            
+            <mark>child: UserAccountsDrawerHeader(
+              margin: EdgeInsets.zero,
+              accountName: Text("Sobhit Nagar"), 
+              accountEmail: Text("abcd@gmail.com"),
+              //currentAccountPicture: Image.network(src),))
+              currentAccountPicture: CircleAvatar(backgroundImage: NetworkImage(src),),
+              decoration: BoxDecoration( color: Colors.green,),</mark>
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>4th Example</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Drawerpage extends StatelessWidget {
+  const Drawerpage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Drawer Page"),
+      ),
+      body: const Center(
+        child: Text("This is the Drawer Page"),
+      ),
+
+      drawer: Drawerpagedetail(),
+    );
+  }
+}
+
+
+class Drawerpagedetail extends StatelessWidget {
+  const Drawerpagedetail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    String src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&w=1000&q=80";
+    return Drawer(
+      child: Container(
+        color: Colors.blueGrey,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              
+              child: UserAccountsDrawerHeader(
+                margin: EdgeInsets.zero,
+                accountName: Text("Sobhit Nagar"), 
+                accountEmail: Text("abcd@gmail.com"),
+                //currentAccountPicture: Image.network(src),))
+                currentAccountPicture: CircleAvatar(backgroundImage: NetworkImage(src),),
+                decoration: BoxDecoration( color: Colors.green,),
+              ),
+            ),
+
+            ListTile(
+              leading: Icon(Icons.home, color: Colors.white,),
+              title: Text("Home", style: TextStyle(color: Colors.white),),
+            ),
+            ListTile(
+              leading: Icon(Icons.person, color: Colors.white,),
+              title: Text("Profile", style: TextStyle(color: Colors.white),),
+            ),
+            ListTile(
+              leading: Icon(Icons.email, color: Colors.white,),
+              title: Text("Email me", style: TextStyle(color: Colors.white),),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>5th Example</h2>
+<pre>
+/Drawer is a property of scaffold.
+//In drawer, automatically one icon will come in app bar, by clicking it drawer will open.
+
+
+
+import 'package:flutter/material.dart';
+
+class Drawerfile extends StatefulWidget {
+  const Drawerfile({super.key});
+
+  @override
+  State&lt;Drawerfile> createState() => _DrawerfileState();
+}
+
+class _DrawerfileState extends State&lt;Drawerfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellowAccent,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            FlutterLogo(size: 100,),
+            const SizedBox(height: 15,),
+            Text("App Title", textAlign: TextAlign.center,style: TextStyle(fontSize: 30,),),
+            const SizedBox(height: 30,),
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+            ),
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+            ),
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Settings"),
+              leading: Icon(Icons.settings),
+            ),
+
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("About us"),
+              leading: Icon(Icons.help),
+            ),
+
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Log out"),
+              leading: Icon(Icons.logout),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>6th Example</h2>
+<pre>
+//With a GlobalKey, you can find a widget from anywhere in your code.
+//It gives you a direct connection to a widget so you can:
+//   Call methods on it
+//   Read its values
+//   Change its state
+
+
+
+import 'package:flutter/material.dart';
+
+class Drawerfile extends StatefulWidget {
+  const Drawerfile({super.key});
+
+  @override
+  State&lt;Drawerfile> createState() => _DrawerfileState();
+}
+
+class _DrawerfileState extends State&lt;Drawerfile> {
+
+  //final globalKey = GlobalKey&lt;ScaffoldState>();
+   GlobalKey&lt;ScaffoldState> globalKey = GlobalKey&lt;ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: globalKey,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: IconButton(
+          onPressed: (){
+
+          
+           globalKey.currentState?.openDrawer();
+
+          },
+          color: Colors.white,
+          icon: Icon(Icons.menu),
+          ), 
+        ),
+
+      
+
+
+      //endDrawer: Drawer(  //The drawer will open from right side.
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            FlutterLogo(size: 100,),
+            const SizedBox(height: 15,),
+            Text("App Title", textAlign: TextAlign.center,style: TextStyle(fontSize: 30,),),
+            const SizedBox(height: 30,),
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+            ),
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+            ),
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Settings"),
+              leading: Icon(Icons.settings),
+            ),
+
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("About us"),
+              leading: Icon(Icons.help),
+            ),
+
+
+            ListTile(
+              onTap: (){
+                print("clicked");
+              },
+              title: Text("Log out"),
+              leading: Icon(Icons.logout),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>4th Example</h2>
+<pre>
+</pre>
+
+<h2>4th Example</h2>
+<pre>
+</pre>
+
 
 
 

@@ -1,0 +1,124 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Static variable and Static function</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>1. Static variable and Static function -</h2>
+
+<pre>
+Creating object is an memory consumption.
+If we do not want to create any object so we can use static variable and static function.
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<pre>
+void main() {
+    
+//create instance
+   final con = Constantt(); 
+   
+   print(con.greet); //object creation , consuming memory
+   print(con.bye);
+
+ }
+
+
+class Constantt {
+  
+String greet = 'Hello, How are u?';
+String bye = 'Bye forever';
+  
+ }
+ 
+o/p
+===
+Hello, How are u?
+Bye forever
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. By using Static - -</h2>
+<pre>
+But using Static -
+
+void main() {
+ 
+   print(Constantt.greet); 
+   print(Constantt.bye); 
+   print(Constantt.fun1()); 
+ }
+
+
+class Constantt {
+static String greet = 'Hello, How are u?'; //static variable
+static String bye = 'Bye forever'; //static variable
+static int fun1() {   //static function
+   return 10;   
+ }
+ 
+  }
+ 
+ o/p
+ ====
+Hello, How are u?
+Bye forever
+10
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. constructor  -</h2>
+<pre>
+If we use constructor, it will be not called -
+
+void main() {
+   
+   print(Constantt.greet); 
+   print(Constantt.bye); 
+   print(Constantt.fun1()); 
+ }
+
+
+class Constantt {
+Constantt(){
+  print("constructor called");
+}
+static String greet = 'Hello, How are u?'; //static variable
+static String bye = 'Bye forever'; //static variable
+static int fun1() {   //static function
+   return 10;   
+ }
+ 
+  }
+  
+  
+o/p
+====
+Hello, How are u?
+Bye forever
+10
+
+</pre>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

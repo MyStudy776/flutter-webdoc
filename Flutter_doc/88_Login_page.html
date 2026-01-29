@@ -1,0 +1,415 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Login Page</h1>
+
+<h2>1. Login page using column</h2>
+<pre>
+///### Using column
+//////pixel overflow issue
+
+import 'package:flutter/material.dart';
+
+class Loginscreen extends StatefulWidget {
+  const Loginscreen({super.key});
+
+  @override
+  State&lt;Loginscreen> createState() => _LoginscreenState();
+}
+
+class _LoginscreenState extends State&lt;Loginscreen> {
+
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  GlobalKey formkey = GlobalKey&lt;FormState>();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      /*
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+      */
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          key: formkey,
+          child: Column(
+            spacing: 15,
+            children: [
+              SizedBox(height: 100,),
+              FlutterLogo(
+                size: 100,
+              ),
+              Text("Login here"),
+              Text("Welcome to sajaoooo", style: TextStyle(fontWeight: FontWeight.w300),),
+              TextField(
+                controller: email,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+          
+              TextField(
+                controller: password,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+
+             SizedBox(
+              width: double.infinity,
+               child: ElevatedButton(
+                onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.all(10)
+                ),
+                child: Text("Login"),
+               ),
+             ), 
+
+
+             TextButton(
+              onPressed: (){
+
+              },
+              child: Text("Forgot password ?")
+              
+              ), 
+              Spacer(),
+
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: (){},
+                  child: Text("Do not have account , Register here"),
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.all(10),
+                    
+                  ),
+                  
+                  ),
+              ), 
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>2. Login page using Listview</h2>
+<pre>
+
+import 'package:flutter/material.dart';
+
+class Loginscreen extends StatefulWidget {
+  const Loginscreen({super.key});
+
+  @override
+  State&lt;Loginscreen> createState() => _LoginscreenState();
+}
+
+class _LoginscreenState extends State&lt;Loginscreen> {
+
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  //GlobalKey formkey = GlobalKey&lt;FormState>();
+  final formkey = GlobalKey&lt;FormState>();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      /*
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+      */
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          key: formkey,
+          child: ListView(
+            
+            children: [
+              SizedBox(height: 50,),
+              FlutterLogo(
+                size: 100,
+              ),
+              SizedBox(height: 10,),
+              Text("Login here", textAlign: TextAlign.center,),
+              SizedBox(height: 10,),
+              Text("Welcome to sajaoooo", style: TextStyle(fontWeight: FontWeight.w300),),
+              TextFormField(
+                controller: email,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if(value==null || value.isEmpty){
+                    return "Please enter a valid email";
+                  }
+                },
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                controller: password,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+
+                validator: (value) {
+                  if(value==null || value.isEmpty){
+                    return "Please enter a valid password";
+                  }
+                  return null;
+                },
+
+              ),
+              SizedBox(height: 10,),
+              //There is no width present in Elevated button, so sizedbox is used.
+             SizedBox(
+              width: double.infinity,
+               child: ElevatedButton(
+                onPressed: (){
+                  if(formkey.currentState!.validate()){
+
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.all(10)
+                ),
+                child: Text("Login"),
+               ),
+             ), 
+
+
+             Row(
+
+              mainAxisAlignment: MainAxisAlignment.end,
+               children: [
+                
+                 TextButton(
+                  onPressed: (){
+                 
+                  },
+                  child: Text("Forgot password ?")
+                  
+                  ),
+               ],
+             ), 
+              Spacer(),
+
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: (){},
+                  child: Text("Do not have account , Register here"),
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.all(10),
+                    
+                  ),
+                  
+                  ),
+              ), 
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>3. Wrap with Stack</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Loginscreen extends StatefulWidget {
+  const Loginscreen({super.key});
+
+  @override
+  State&lt;Loginscreen> createState() => _LoginscreenState();
+}
+
+class _LoginscreenState extends State&lt;Loginscreen> {
+
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  //GlobalKey formkey = GlobalKey&lt;FormState>();
+  final formkey = GlobalKey&lt;FormState>();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      /*
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+      */
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          key: formkey,
+          child: Stack(
+            children: [
+              ListView(
+            
+            children: [
+              SizedBox(height: 50,),
+              FlutterLogo(
+                size: 100,
+              ),
+              SizedBox(height: 10,),
+              Text("Login here", textAlign: TextAlign.center,),
+              SizedBox(height: 10,),
+              Text("Welcome to sajaoooo", style: TextStyle(fontWeight: FontWeight.w300),),
+              TextFormField(
+                controller: email,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if(value==null || value.isEmpty){
+                    return "Please enter a valid email";
+                  }
+                },
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                controller: password,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+
+                validator: (value) {
+                  if(value==null || value.isEmpty){
+                    return "Please enter a valid password";
+                  }
+                  return null;
+                },
+
+              ),
+              SizedBox(height: 10,),
+              //There is no width present in Elevated button, so sizedbox is used.
+             SizedBox(
+              width: double.infinity,
+               child: ElevatedButton(
+                onPressed: (){
+                  if(formkey.currentState!.validate()){
+
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.all(10)
+                ),
+                child: Text("Login"),
+               ),
+             ), 
+
+
+             Row(
+
+              mainAxisAlignment: MainAxisAlignment.end,
+               children: [
+                
+                 TextButton(
+                  onPressed: (){
+                 
+                  },
+                  child: Text("Forgot password ?")
+                  
+                  ),
+               ],
+             ), 
+              Spacer(),
+
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: (){},
+                  child: Text("Do not have account , Register here"),
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.all(10),
+                    
+                  ),
+                  
+                  ),
+              ), 
+            ],
+          ),
+
+          ///################
+          Positioned(
+            top: -100,
+            right: -100,
+            child: Container(
+              height: 300,
+              width: 300,
+              decoration: BoxDecoration(
+                  color: Colors.indigo.withAlpha(200),
+                  shape: BoxShape.circle
+              ),
+            )
+          ),
+
+           Positioned(
+            top: -50,
+            right: -50,
+            child: Container(
+              height: 300,
+              width: 300,
+              decoration: BoxDecoration(
+                  color: Colors.blue.withAlpha(200),
+                  shape: BoxShape.circle
+              ),
+            )
+          )
+            ],
+          )
+        ),
+      ),
+    );
+  }
+}
+
+
+</pre>
+
+
+
+
+
+
+</body>
+
+</html>

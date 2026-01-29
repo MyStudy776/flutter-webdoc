@@ -1,0 +1,417 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Lexical Scope</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1.  await async in Dart-</h2>
+<pre>
+In Dart, async and await are keywords used in asynchronous programming to work with Futures.
+
+Async :
+==========
+- When an async function is called, a Future is immediately returned.and the body of the function is executed later.
+- - Asynchronous programming is crucial for handling operations that may take some time to complete, 
+   .such as network requests or file I/O, without blocking the execution of the program
+- The async keyword is used to mark a function as asynchronous. This means that the function can perform asynchronous operations, and it may return a Future.
+  The presence of async in a function's signature allows the use of the await keyword inside that function.
+
+
+
+e.g:
+void hello() async { 
+  print('something exciting is going to happen here...'); 
+}
+
+e.g:
+Future&lt;void> fetchData() async {
+  // Asynchronous operations can be performed here
+}
+
+
+Await
+=======
+- Await expressions makes you write the asynchronous code almost as if it were synchronous.
+- Typically, it is an asynchronous computation and is expected to evaluate to a Future.
+- The await expressions evaluate the main function, and then 
+  suspends the currently running function until the result is ready–that is, until the Future has completed. 
+- The result of the await expression is the completion of the Future.
+- Here we use the async modifier on the main method because we are going to run the hello() function asynchronously.
+- Secondly, we place the await modifier directly in front of our asynchronous function. Hence, 
+  this is frequently referred to as the async/await pattern.
+- Just remember, if you are going to use await, make sure that both the caller function 
+  and any functions you call within that function all use the async modifier.
+  
+- The await keyword is used to pause the execution of a function until the awaited operation completes. It can only be used inside a function marked as async.
+- When you await a Future, the surrounding function is paused until the Future completes, and the result is then used.
+e.g:
+void main() async { 
+  await hello(); 
+  print('all done'); 
+}
+
+e.g:
+Future&lt;void> fetchData() async {
+  // Asynchronous operation that returns a Future
+  var result = await someAsyncFunction();
+
+  // Code here will only execute after someAsyncFunction completes
+}
+
+</pre>
+
+
+<h2>2.  A simple future example-</h2>
+
+<pre>
+void main() {
+  print('I order a pizza!');
+  
+  Future.delayed(Duration(seconds: 3), () {
+    print('Pizza is ready!');
+  });
+  
+  print('I play on my phone while waiting...');
+}
+
+
+
+output
+========
+I order a pizza!
+I play on my phone while waiting...
+Pizza is ready!
+
+
+
+You go to a restaurant 🍽️ and order a pizza 🍕.
+The waiter says: “Okay! It will take 5 minutes.”
+
+Now, do you just stand there waiting? ❌
+No — you play on your phone or talk to your friend while the pizza is being made.
+
+When the pizza is ready, the waiter brings it to you. ✅
+
+That’s what Future means in Dart!
+It means:
+
+“This thing will finish later, not now.”
+
+See? The program didn’t wait 3 seconds — it kept doing other things.
+That’s called asynchronous programming
+
+</pre>
+
+
+<pre>
+
+When you use await, you can pause the program until the Future is done.
+
+void main() async{
+  print('I order a pizza!');
+  
+  await Future.delayed(Duration(seconds: 3), () {
+    print('Pizza is ready!');
+  });
+  
+  print('I play on my phone while waiting...');
+}
+
+
+o/p
+====
+I order a pizza!
+Pizza is ready!    ---------- after 3 sec output will come.
+I play on my phone while waiting...
+
+
+Now the program waited until the pizza was ready before printing the next lines.
+
+</pre>
+
+<pre>
+Future&lt;String> makePizza() async {
+  await Future.delayed(Duration(seconds: 2));
+  return 'Your Pizza 🍕';
+}
+
+void main() async {
+  print('Ordering...');
+  String pizza = await makePizza(); // waits for the pizza
+  print(pizza);
+}
+🧠 Explanation:
+
+Future&lt;String> → means this function will later give a String.
+
+await makePizza() → waits until the function finishes.
+
+After 2 seconds, we get 'Your Pizza 🍕'.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>2. Example await  and async -</h2>
+<pre>
+Future&lt;void> fetchData() async {
+  print("Start fetching data...");
+
+  // Simulating an asynchronous operation that takes 2 seconds
+  await Future.delayed(Duration(seconds: 2));
+
+  print("Data fetched!");
+}
+
+void main() {
+  print("Before fetchData()");
+
+  fetchData();
+
+  print("After fetchData()");
+}
+
+
+
+o/p
+======
+Before fetchData()
+Start fetching data...
+After fetchData()
+Data fetched! --------------->The output will come after 2sec
+
+
+
+- In this example, fetchData() is an asynchronous function.that simulates a delay of 2 seconds using Future.delayed.
+- The await keyword is used to wait for this delay.
+- The output will demonstrate that the program doesn't block at the await statement, 
+  allowing other operations to proceed while waiting for the asynchronous operation to complete.
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2><mark>Generator</mark></h2>
+
+<h2>1. Create a class and call using class object -</h2>
+<pre>
+Normal function (gives all values at once)
+
+List&lt;int> countTo5() {
+  return [1, 2, 3, 4, 5];
+}
+
+void main() {
+  print(countTo5());
+}
+
+o/p
+======
+[1, 2, 3, 4, 5]
+
+
+
+Generator (gives values one by one)
+
+Iterable&lt;int&gt; countTo5() sync* {
+  for (int i = 1; i &lt;= 5; i++) {
+    yield i; // give one number at a time
+  }
+}
+
+void main() {
+  for (var num in countTo5()) {
+    print(num);
+  }
+}
+
+o/p
+===
+1
+2
+3
+4
+5
+
+
+sync* → means “I will generate values step by step.”
+
+yield → gives a single value each time.
+</pre>
+
+<pre>
+Stream<int> countUp(int n) async* {
+  for (int i = 1; i &lt;= n; i++) {
+    await Future.delayed(Duration(seconds: 1)); // wait 1 second
+    yield i; // give next number
+  }
+}
+
+void main() async {
+  await for (var number in countUp(3)) {
+    print(number);
+  }
+}
+
+o/p
+====
+1
+2
+3
+
+🧠 What happens:
+Function countUp says: “I’ll send numbers one by one.”
+
+It waits 1 second between each number using await Future.delayed(...).
+
+In main, we say await for — it waits for each number to come before printing
+
+</pre>
+
+
+<pre>
+Future	A value that will come later
+async	Function that can wait
+await	Pause until something finishes
+yield	Give one value in a generator
+sync*	Synchronous generator (immediate values)
+async*	Asynchronous generator (values come later)
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Future</mark></h2>
+<h2>1.  -</h2>
+<pre>
+- Future represents a value, or error, that will be available at some time in the future.
+- Dart uses futures to represent the result of an asynchronous operation.
+- It's a fundamental concept in asynchronous programming, allowing you to work with computations that may not complete immediately.
+- An asynchronous operation is one that doesn't block the execution of the program while waiting for the result. Instead, it allows the program to continue executing other tasks until the result is ready.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.1 Example of Future -</h2>
+<pre>
+import 'package:http/http.dart' as http;
+
+void main() {
+  var response = http.get(Uri.parse('https://coffee.alexflipnote.dev/w_cEVnCuTB8_coffee.jpg'));
+print(response);
+}
+
+o/p
+====
+Instance of 'Future&lt;Response&gt;'
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.2.   Example of Fututre   -</h2>
+<pre>
+
+import 'package:http/http.dart' as http;
+
+void main() {
+  var response = http.get(Uri.parse('https://coffee.alexflipnote.dev/w_cEVnCuTB8_coffee.jpg'));
+
+  //The below is future
+  response.then((value) {
+    print(value);
+	print("Things matter");
+  });
+
+  print(response);
+}
+
+
+o/p
+====
+Instance of 'Future&lt;Response&gt;'
+Instance of 'Response' ----> This output will show little late. 
+Things matter ------------>This output will show little late. 
+
+
+</pre>
+
+<h2>2.3. </h2>
+<pre>
+await is always used inside async function.
+Future is use to make some delay.Here we want the execution of program should wait for 10 second.
+
+Example 1
+==============
+void main() {
+
+  fetchdata();
+
+}
+
+void fetchdata() async{
+
+  print("I am the first statement");
+  await Future.delayed(Duration(seconds: 10));
+  print("I am the second statement");
+}
+
+
+
+o/p
+====
+I am the first statement
+----Then it will wait for 10 second.
+I am the second statement
+
+
+
+
+Example -2
+==============
+void main() {
+
+  fetchdata();
+
+}
+
+void fetchdata() async{
+
+  print("I am the first statement");
+ Future.delayed(Duration(seconds: 10)).then((value)  {
+
+  print("after 10 sec , i am third stmnt");
+ });
+  print("I am the second statement");
+}
+
+
+o/p
+=====
+I am the first statement
+---It will not wait 10 second, and run the
+I am the second statement
+---after 10 sec , then run the 
+after 10 sec , i am third stmnt
+</pre>
+
+
+
+
+</body>
+
+</html>

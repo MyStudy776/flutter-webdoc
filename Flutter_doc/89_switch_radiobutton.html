@@ -1,0 +1,330 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Switch, Radiobutton</h1>
+<h2>1.Example of Switch </h2>
+<pre> 
+import 'package:flutter/material.dart';
+
+class Checkboxfile extends StatefulWidget {
+  const Checkboxfile({super.key});
+
+  @override
+  State&lt;Checkboxfile> createState() => _CheckboxfileState();
+}
+
+class _CheckboxfileState extends State&lt;Checkboxfile> {
+
+  bool isconnected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Switch(
+        value: isconnected,
+        activeThumbColor: Colors.blue,
+        inactiveThumbColor: Colors.pinkAccent,
+        onChanged: (value){
+          setState(() {
+            isconnected = value;
+          });
+        }
+        ),
+  
+    );
+  }
+}
+
+</pre>
+
+<h2>2.Example of Checkbox </h2>
+<pre> 
+import 'package:flutter/material.dart';
+
+class Checkboxfile extends StatefulWidget {
+  const Checkboxfile({super.key});
+
+  @override
+  State&lt;Checkboxfile> createState() => _CheckboxfileState();
+}
+
+class _CheckboxfileState extends State&lt;Checkboxfile> {
+
+  bool isconnected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Checkbox(
+        value: isconnected,
+       
+        onChanged: (value){
+          setState(() {
+            isconnected = value!;
+          });
+        }
+        ),
+  
+    );
+  }
+}
+
+</pre>
+
+<h2>3.Example of Switch List Tile </h2>
+<pre> 
+import 'package:flutter/material.dart';
+
+class Checkboxfile extends StatefulWidget {
+  const Checkboxfile({super.key});
+
+  @override
+  State&lt;Checkboxfile> createState() => _CheckboxfileState();
+}
+
+class _CheckboxfileState extends State&lt;Checkboxfile> {
+
+  bool isconnected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          SwitchListTile(
+            value: isconnected,
+           
+            onChanged: (value){
+              setState(() {
+                isconnected = value!;
+              });
+            },
+          
+            title: Text("The first program"),
+            subtitle: Text("Testing the code"),
+            ),
+
+           SwitchListTile(
+            value: isconnected,
+           
+            onChanged: (value){
+              setState(() {
+                isconnected = value!;
+              });
+            },
+          
+            title: Text("The second program"),
+            subtitle: Text("Testing the fish"),
+            ),
+        ],
+      ),
+  
+    );
+  }
+}
+</pre>
+
+<h2>4.Example of auto generated list tile </h2>
+<pre> 
+import 'package:flutter/material.dart';
+
+class Checkboxfile extends StatefulWidget {
+  const Checkboxfile({super.key});
+
+  @override
+  State&lt;Checkboxfile> createState() => _CheckboxfileState();
+}
+
+class _CheckboxfileState extends State&lt;Checkboxfile> {
+
+  // A list for switch states
+  List&lt;bool> switchValues = List.generate(10, (index) => false);
+  // You can change 10 → any number
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: switchValues.length,
+        itemBuilder: (context, index) {
+          return SwitchListTile(
+            value: switchValues[index],
+            onChanged: (value) {
+              setState(() {
+                switchValues[index] = value; // change only this switch
+              });
+            },
+            title: Text("Program ${index + 1}"),
+            subtitle: Text("Testing item number ${index + 1}"),
+          );
+        },
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>5.Example of Listview builder </h2>
+<pre> 
+import 'package:flutter/material.dart';
+
+class Checkboxfile extends StatefulWidget {
+  const Checkboxfile({super.key});
+
+  @override
+  State&lt;Checkboxfile> createState() => _CheckboxfileState();
+}
+
+class _CheckboxfileState extends State<Checkboxfile> {
+
+  // Your title + subtitle list
+  List&lt;Map&lt;String, String>> items = [
+    {"title": "First Program", "subtitle": "Testing the code"},
+    {"title": "Second Program", "subtitle": "Testing the fish"},
+    {"title": "Third Program", "subtitle": "Working on UI"},
+    {"title": "Fourth Program", "subtitle": "Switch Testing"},
+    {"title": "Fifth Program", "subtitle": "Final Output"},
+  ];
+
+  // List&lt;bool> will handle toggle states
+  late List&lt;bool> switchValues;
+
+  @override
+  void initState() {
+    super.initState();
+    switchValues = List.filled(items.length, false); // auto-size based on items
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return SwitchListTile(
+            value: switchValues[index],
+            onChanged: (value) {
+              setState(() {
+                switchValues[index] = value;
+              });
+            },
+            title: Text(items[index]["title"]!),
+            subtitle: Text(items[index]["subtitle"]!),
+          );
+        },
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>6.Example of radiobutton </h2>
+<pre> 
+
+import 'package:flutter/material.dart';
+
+class Checkboxfile extends StatefulWidget {
+  const Checkboxfile({super.key});
+
+  @override
+  State&lt;Checkboxfile> createState() => _CheckboxfileState();
+}
+
+class _CheckboxfileState extends State&lt;Checkboxfile> {
+
+  
+  String? defaultvalue = 'One'; 
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          RadioMenuButton(
+            value: 'One', 
+            groupValue: defaultvalue, 
+            onChanged: (value){
+              setState(() {
+                defaultvalue = value;
+              });
+            }, 
+            child: Text('One')),
+
+
+            RadioMenuButton(
+            value: 'Two', 
+            groupValue: defaultvalue, 
+            onChanged: (value){
+              setState(() {
+                defaultvalue = value;
+              });
+            }, 
+            child: Text('Two')),
+
+
+            RadioMenuButton(
+            value: 'Three', 
+            groupValue: defaultvalue, 
+            onChanged: (value){
+              setState(() {
+                defaultvalue = value;
+              });
+            }, 
+            child: Text('Three')),
+
+            RadioMenuButton(
+            value: 'Four', 
+            groupValue: defaultvalue, 
+            onChanged: (value){
+              setState(() {
+                defaultvalue = value;
+              });
+            }, 
+            child: Text('Four')),
+
+            
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>7.Example of  </h2>
+<pre> 
+///Switch
+///switchlistTile
+///checkbox
+///checkboxlistTile
+///radiobutton
+///radiobuttonListTile
+///wrap 
+//circular progress indicator
+//Linear progress Indicator
+</pre>
+
+<h2>1.Example of Switch </h2>
+<pre> 
+</pre>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,217 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>Custom widget</h1>
+<h2>1. Create the file to create custom widget-</h2>
+<pre>
+<mark>flutapp1/base/widgets/app_double_text.dart</mark>
+======================================
+import 'package:flutapp1/base/res/styles/app_styles.dart';
+import 'package:flutter/material.dart';
+
+class <mark>AppDoubleText</mark> extends StatelessWidget {
+  const AppDoubleText({super.key, required this.bigtext, required this.smalltext, });
+  final String bigtext ;
+  final String smalltext ;
+
+  
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        //Text(bigtext, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+        Text(bigtext, style: AppStyles.headLineStyle2),
+        
+        InkWell(
+          onTap: (){
+            print("You are tapped");
+          },
+          //child: Text(smalltext, style: AppStyles.textStyle),
+          child: Text(smalltext, style: AppStyles.textStyle.copyWith(color: AppStyles.primaryColor)),
+		  //If we want to overwrite the feature , then we need to use copywith.
+        )
+        
+      ],
+    );
+  }
+}
+
+</pre>
+
+<h2>2. color file</h2>
+<pre>
+flutapp1/base/res/styles/app_styles.dart
+====================================
+import 'package:flutter/material.dart';
+
+Color primary = const Color(0xFF687daf);
+
+class AppStyles {
+
+  static Color  primaryColor = primary;
+  static Color  textColor = const Color(0xFF3b3b3b);
+  static Color  bgColor = const Color(0xFFeeedf2);
+  static TextStyle textStyle =TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: textColor);
+  static TextStyle headLineStyle1 =TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: textColor);
+  static TextStyle headLineStyle2 =TextStyle(fontSize: 21, fontWeight: FontWeight.bold, color: textColor);
+  static TextStyle headLineStyle3 =const TextStyle(fontSize: 17, fontWeight: FontWeight.w500, );
+
+
+}
+
+</pre>
+
+<h2>3.Use the custom widget in home_screen.dart file</h2>
+<pre>
+import 'package:fluentui_icons/fluentui_icons.dart';
+import 'package:flutapp1/base/res/media.dart';
+import 'package:flutapp1/base/res/styles/app_styles.dart';
+import 'package:flutapp1/base/widgets/app_double_text.dart';
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+backgroundColor: AppStyles.bgColor ,
+
+      body: ListView(
+        
+        children: [
+          const SizedBox(height: 40),
+          Container(
+            color: Colors.amber,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //Text("Good Morning", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
+                        Text("Good Morning", style: AppStyles.headLineStyle3),
+                        SizedBox(height: 5),
+                        //Text("Book tickets",style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500, color: Color(0xFF3b3b)),),
+                        Text("Book tickets",style: AppStyles.headLineStyle1),
+                      ],
+                    ),
+                    Container(
+                      
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red,
+                        image: const DecorationImage(
+                          fit: BoxFit.cover,
+                          //image: AssetImage('assets/images/chatbot1.jpg')
+                          image: AssetImage(Appmedia.logo),
+                          
+                        )
+                      ),
+                    )
+                  ],
+                ),
+
+                const SizedBox(height: 25),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xFFF4F6FD),
+                  ),
+                  child: const Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(FluentSystemIcons.ic_fluent_search_regular, color: Color(0xFFBFC205),),
+                    Text("search"),
+                  ],
+                  
+                  
+                                ,
+                )],
+
+              
+            ),
+          ),
+          const SizedBox(height: 40),
+          <mark>AppDoubleText(bigtext: "Upcoming Flights", smalltext: "View all"),</mark> //whatever present in the app_double_text.dart widget, samething will reflect here.
+        ],
+      )
+    );
+  }
+}
+
+</pre>
+
+<h2>4.main.dart</h2>
+<pre>
+import 'package:flutapp1/bottom_nav_bar.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  var myList = [
+    "Flutter", "Laravel", "PHP" ];
+
+    //print("${myList.toString()}");
+    print(myList);
+  runApp(const MyApp());
+}
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BottomNavBarfile()
+    );
+  }
+}
+
+</pre>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

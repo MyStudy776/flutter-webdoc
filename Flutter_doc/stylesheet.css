@@ -23,7 +23,7 @@ p {
 a {
 
 font-size: 20px;
-color:green;
+color:#77ff33;
 text-decoration: none;
 
 
@@ -48,6 +48,14 @@ ul li {
  color: white;
 }
 
+
+ol li {
+ color:  #ffad99;
+}
+
+ol  {
+ color: gr;
+}
 
 
 #######################################

@@ -1,0 +1,255 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Dart Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Dart Variable</h1>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>1. Type of dart variable -</h2>
+<pre>
+1. Integer
+2. Double
+3. String
+4. Booleans - true,false
+5. Lists - []
+6. Maps - key, value pair
+7. num - can accept both integer and double value.
+8. var
+9. final
+10.const
+11.enum
+12.set
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Variable name rule-</h2>
+<pre>
+Variable name or identifiers can’t be the keyword.
+Variable name or identifiers can contain alphabets and numbers.
+Variable name or identifiers can’t contain spaces and special characters, except the underscore(_) and the dollar($) sign.
+Variable name or identifiers can’t begin with number. 
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Assign value to variable-</h2>
+<pre>
+void main()
+{
+    int x = 10;
+    double y = 0.2; 
+    bool z = false; 
+    String x1 = "0", x2 = "Geeks for Geeks";
+ 
+    print(x); 
+    print(y); 
+    print(z); 
+    print(x1); 
+    print(x2); 
+}
+
+o/p
+=======
+10
+0.2
+false
+0
+Geeks for Geeks
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. Static variable -</h2>
+<pre>
+void main()
+{
+int x = 10;
+  print(x); --------> 10
+  x = 20;
+  print(x); --------> 20
+  x = "aa";
+  print(x); --------> error,A value of type 'String' can't be assigned to a variable of type 'int'.
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. dynamic variable -</h2>
+<pre>
+void main()
+{
+dynamic x = 10;
+  print(x); ----------> 10
+  x = "aa";
+  print(x); --------> aa
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>6. var keyword with initialization during declaration-</h2>
+<pre>
+void main()
+{
+var x = 10;
+  print(x); --------> 10
+  x = 20;
+  print(x); --------> 20
+  x = "aa";
+  print(x); --------> error,A value of type 'String' can't be assigned to a variable of type 'int'.
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>7. var keyword without initialization during declaration-</h2>
+<pre>
+void main()
+{
+  var x ;
+  x = 10;
+  print(x); --------> 10
+  x = 20;
+  print(x); --------> 20
+  x = "aa";
+  print(x); --------> aa
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. final -</h2>
+<pre>
+void main()
+{
+  final x ; 
+  x = 30;
+  print(x); ----------> 30
+  x = 20;
+  print(x); ----------> error, Final variable 'x' might already be assigned at this point.
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9. const  -</h2>
+<pre>
+void main()
+{
+  const x ; 
+  x = 30;
+  print(x); ----------> error, The const variable 'x' must be initialized.
+}
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2> 10. final or const-</h2>
+<pre>
+final : - once value is assigned, then it can not be changed. We can add or overwrite values.
+const : - we must assign value to const variable during declaration.it will accept only if it has a value at compile  time.
+        - It prevents if any value of the variable change accidentally.
+
+
+variable initialization -
+
+final string name1 = "aaa";
+or
+final  name1 = "aaa";
+or
+const name1 = "aaa";
+
+
+
+final String pet = 'cat';   // set once when the program runs
+const int daysInWeek = 7;   // fixed forever (compile-time constant)
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>11. const must be initialized -</h2>
+<pre>
+void main()
+{
+  const x = 40; 
+  print(x); ----------> 40
+  x = 20;
+  print(x);----------> error,Can't assign to the const variable 'x'. 
+}
+</pre>
+
+<pre>
+void main()
+{
+ final DateTime.now(); --->The value will be changed at runtime, which will be accepted .
+ const DateTime.now(); ----> It will show error,because it willnot accept the changed value at runtime.
+}
+
+</pre>
+
+<pre>
+void main() {
+  
+final name1 = [10, 20,30,40];
+name1.add(50);
+print(name1);---->no error, it will add the value at run time
+}
+  
+  
+void main() {   
+const name2 = [10, 20,30,40];
+name2.add(50);
+print(name2);---->show error. const value once assigned will not change.
+
+
+}
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>12. static vs dynamic vs var  -</h2>
+<pre>
+var a = 10;--> The moment you assign the data to variable with var keyword it is replaced with the appropriate data type.
+           ---> It is static variable
+		   
+var a;     --->Dynamic variable, any data type it will accept.
+
+dynamic c; --->dynamic variable. any data type it will accept.
+
+int a; --> static variable. It will accept only integer
+int a = 10; --> static variable. It will accept only integer
+
+final x; ---> must not initalize. Its value won't change
+final int x;
+
+const x = 30; --->must initalize. Its value won't change
+const int x = 30; 
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>13. Using $ to concanate different type of variable -</h2>
+<pre>
+
+void main(){
+  
+  int x = 30;
+  String name = "Rohan";
+  print("$name has $x rupees.");
+}
+
+
+output
+============
+Rohan has 30 rupees. 
+
+</pre>
+
+</pre>
+
+
+
+</body>
+
+</html>

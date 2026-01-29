@@ -1,0 +1,209 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Dart Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Abstract Class</h1>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>1. Concept of abstract class</h2>
+<pre>
+First, imagine this story
+
+You have a remote control design, Every TV remote must have:
+- Power button
+- Volume up
+- Volume down
+
+But how these buttons work can be different for:
+- Sony TV
+- Samsung TV
+- LG TV
+
+So the design is common, but implementation is different.
+This design is called an abstract class.
+</pre>
+
+<h2>2. What is an abstract class? (Simple definition)</h2>
+<pre>
+- An abstract class is a class that cannot be used directly.
+- It is only a blueprint for other classes.
+- You cannot create object of an abstract class.
+- abstract method with (no body).
+- we can extend abstract class.
+
+❌ What you CANNOT do
+----------------------
+abstract class Animal {
+
+}
+
+void main() {
+  Animal a = Animal(); // ❌ ERROR,You cannot create object of an abstract class.
+}
+
+</pre>
+
+<h2>3. example of abstract class</h2>
+<pre>
+
+abstract class Animal {
+  void sound(); // abstract method (no body) //This says:👉 “Every animal must make a sound”
+}
+
+//Now create a real class
+class Dog extends Animal {
+  @override
+  void sound() {
+    print("Bark");
+  }
+}
+
+class Cat extends Animal {
+  @override
+  void sound() {
+    print("Meow");
+  }
+}
+
+void main() {
+  Animal dog = Dog();
+  dog.sound(); // Bark
+
+  Animal cat = Cat();
+  cat.sound(); // Meow
+}
+
+
+Important rules (remember these)
+==============================
+✅ Abstract class can have:
+-------------
+✔ Abstract methods (without body)
+✔ Normal methods (with body)
+✔ Variables
+
+
+❌ Abstract class:
+--------------
+❌ Cannot create object
+❌ Must be extended
+
+</pre>
+
+<h2>4. Why do we use abstract class?</h2>
+<pre>
+Force rules
+👉 Every child class must implement methods.
+
+Code consistency
+👉 Same method names everywhere.
+
+Used in Flutter a LOT
+Example:
+State<T>
+StatelessWidget
+StatefulWidget
+</pre>
+
+<h2>5. Real Flutter example (simple)</h2>
+<pre>
+abstract class Repository {
+  Future getData();
+}
+dart
+Copy code
+class FirebaseRepo extends Repository {
+  @override
+  Future getData() {
+    return Future.value("From Firebase");
+  }
+}
+dart
+Copy code
+class ApiRepo extends Repository {
+  @override
+  Future getData() {
+    return Future.value("From API");
+  }
+}
+</pre>
+
+<h2>Normal class vs Abstract class</h2>
+<pre>
+Normal class
+-----------
+ class Vehicle {
+  int wheel = 10;
+  void wheelNum() {}
+}
+
+void main(){
+  var  vehicle = Vehicle();
+}
+
+
+Abstract class
+---------------
+ abstract class Vehicle {
+  int wheel = 10;
+  void wheelNum() {}
+}
+
+void main(){
+  var  vehicle = Vehicle(); //❌ Error, abstract class can not be instaniated.
+}
+</pre>
+<pre>
+abstract class Vehicle {
+  int wheel = 10;
+  void wheelNum() {}
+}
+
+class Car extends Vehicle{
+  
+  void carType(){
+    
+    print("This is a car object");
+    
+  }
+  
+  @override
+  void wheelNum() {
+    print("The car's wheel number is $wheel");
+  }
+  
+}
+
+void main(){
+  
+  //var  vehicle = Vehicle(); //❌ Error,
+  var  car = Car();
+  car.carType();
+  car.wheelNum();
+}
+
+
+output
+---------
+This is a car object
+The car's wheel number is 10
+</pre>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Lexical Scope</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. Lexical scope -</h2>
+<pre>
+void main() {
+  int x = 10;
+
+  void showX() {
+    print(x); // can see x because it’s inside main
+  }
+
+  showX();
+  // print(y); // ❌ can’t see y (defined inside showY)
+}
+
+void showY() {
+  int y = 5;
+  print(y);
+}
+
+
+Inner functions can see outer variables.
+But outer functions cannot see inside variables.
+
+</pre>
+
+
+</body>
+
+</html>

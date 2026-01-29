@@ -1,0 +1,93 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>onChanged value, in textfield-</h1>
+
+
+<h2>1. When we give input to the textfield, The same value will be reflected on Appbar title  -</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Testpage extends StatefulWidget {
+  const Testpage({super.key});
+
+  @override
+  State&lt;Testpage> createState() => _TestpageState();
+}
+
+
+//2ndpart
+
+class _TestpageState extends State&lt;Testpage> {
+
+  <mark>String name="";</mark>
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+       <mark> title: Text("Test Page ${name}"),</mark>
+      ),
+      body: Column(
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: 'Enter something',
+              labelText: 'Test Input',
+              border: OutlineInputBorder(),
+            ),
+           <mark> onChanged: (value) => {
+              name=value,
+              setState(() {}) //rebuild the ui
+            },
+          ),</mark>
+
+          ElevatedButton(
+            onPressed: (){} ,
+            child: Text('Submit')),
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,251 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>List datatype</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. Dynamic List  -</h2>
+<pre>
+void main() {
+List x = [10, 20, 30, 'Hi'];
+x[0] = 50;
+print(x);
+}
+
+o/p
+===
+[50, 20, 30, 'Hi']
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2.  Static List  -</h2>
+
+<pre>
+void main() {
+List &lt;int&gt; x = [10, 20, 30];  ---->Like this you can not add other type of value except int.
+x[0] = 50;
+print(x);
+}
+
+o/p
+===
+[50, 20, 30]
+
+
+&lt;int&gt; ---->This is called generic.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. Adding item in list -</h2>
+<pre>
+void main () {
+
+  var listNames = [10,20,30,40];
+  listNames.add(50);
+
+  var name2 = [];
+  name2.add("Mira");
+  print("$name2");
+  name2.addAll(listNames);
+  print("$name2");
+  print("$listNames");
+}
+
+o/p
+=====
+[Mira]
+[Mira, 10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. add items to the list -</h2>
+<pre>
+void main () {
+
+  var listNames = [10,20,30,40];
+  listNames.add(50);
+
+  print("$listNames");
+}
+
+o/p
+====
+[10, 20, 30, 40, 50]
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>5. insert in particular index using - insert, insertAll to the list-</h2>
+<pre>
+
+void main () {
+  var listNames = [10, 20, 30, 40];
+  var name1 = [10, 20, "goa"];
+
+   name1.insert(1,300);
+   print("$name1");
+  name1.insertAll(3,listNames);
+   print("$name1");
+}
+
+o/p
+====
+[10, 300, 20, goa]
+[10, 300, 20, 10, 20, 30, 40, goa]
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Replace item in a particular index using - replaceRange to the list -</h2>
+<pre>
+void main () {
+  var listNames = [10, 20, 30, 40];
+  var name1 = [10, 20, "goa"];
+
+   name1.insert(1,300);
+   print("$name1");
+  name1.insertAll(3,listNames);
+   print("$name1");
+
+   name1.replaceRange(2, 4, ["kk","mm"]);
+  print("$name1");
+}
+
+o/p
+===
+[10, 300, 20, goa]
+[10, 300, 20, 10, 20, 30, 40, goa]
+[10, 300, kk, mm, 20, 30, 40, goa]
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. Remove item from the list -</h2>
+<pre>
+void main () {
+    var name1 = [10, 20, "goa", 300, 200, 700];
+    name1.removeLast();
+    print("$name1");
+    name1.remove(20);
+    print("$name1");
+    name1.removeAt(2);
+    print("$name1");
+    name1.insert(1,[99,77,66,55,88]);
+    print("$name1");
+    name1.removeRange(0,4);
+    print("$name1");
+}
+
+
+o/p
+====
+[10, 20, goa, 300, 200]
+[10, goa, 300, 200]
+[10, goa, 200]
+[10, [99, 77, 66, 55, 88], goa, 200]
+[]
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. removeRange in the list-</h2>
+<pre>
+void main () {
+    var name1 = [10, 20, "goa", 300, 200, 700];
+    var name2 = ["bb", "cc", "goa", 66, 55, 99];
+    name1.removeLast();
+    print("$name1");
+    name1.remove(20);
+    print("$name1");
+    name1.removeAt(2);
+    print("$name1");
+    name1.addAll(name2);
+    print("$name1");
+    name1.removeRange(0,4);
+    print("$name1");
+}
+
+o/p
+===
+[10, 20, goa, 300, 200]
+[10, goa, 300, 200]
+[10, goa, 200]
+[10, goa, 200, bb, cc, goa, 66, 55, 99]
+[cc, goa, 66, 55, 99]
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9. Other items Example in the list -</h2>
+<pre>
+void main () {
+    var name1 = [10, 20, "goa", 300, 200, 700];
+    print("${name1.length}");
+    print("${name1.reversed}");
+    print(" ${name1.first}");
+    print(" ${name1.last}");
+    print(" ${name1.isEmpty}");
+    print(" ${name1.isNotEmpty}");
+    print(" ${name1.elementAt(2)}");
+	print(name1.isEmpty);
+    
+}
+
+o/p
+====
+6
+(700, 200, 300, goa, 20, 10)
+ 10
+ 700
+ false
+ true
+ goa
+ false
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. Spread operator -</h2>
+<pre>
+void main() {
+  List&lt;int&gt; numbers = [1, 2, 3];       // a list of numbers
+  print(numbers[0]); // prints 1 (first item)
+
+  List&lt;int&gt;  more = [0, ...numbers, 4]; // spread operator ... copies values from numbers
+  print(more); // prints [0, 1, 2, 3, 4]
+
+  List&lt;int&gt; ? maybeNumbers;
+  List&lt;int&gt;  safe = [9, ...(maybeNumbers ?? [])]; // avoid null with ?? []
+  print(safe);
+}
+
+
+o/p
+====
+1
+[0, 1, 2, 3, 4]
+[9]
+
+</pre>
+
+
+</body>
+
+</html>

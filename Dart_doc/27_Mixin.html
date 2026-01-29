@@ -1,0 +1,162 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Mixin</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Mixins</mark></h2>
+
+<h2>1.  mixins -</h2>
+<pre>
+It is kind of a class but it does not have parent child relationship.
+- It is like having a bunch of code and want to be reused in a class. 
+
+mixin jump{
+    int x = 10;
+ }
+  
+
+
+  
+class Animal with jump {     --------->Here Animal class is not a superclass, it is just using the property of jump.
+  void fun1() {
+    print(x);
+  }
+}
+
+void main() {
+
+  
+  final obj1 = Animal();
+  obj1.fun1();
+}
+
+
+o/p
+=====
+10
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.  mixins -</h2>
+<pre>
+mixin jump{
+    int x = 10;
+ }
+  
+
+mixin scream{
+    String y = "kkk";
+ }
+
+
+  
+class Animal1 with jump, scream {  ---------->multiple mixin can be used.
+  void fun1() {
+    print(x);
+    print(y);
+  }
+}
+
+void main() {
+
+ 
+  final obj2 = Animal1();
+  obj2.fun1();
+}
+
+
+o/p
+=====
+10
+kkk
+</pre>
+
+
+
+<h2>47. mixin -</h2>
+<pre>
+What is a mixin?
+
+A mixin is like copy-paste power for a class.
+
+You can take methods from another class and add them into your class without inheritance.
+
+👉 A mixin is used to share reusable methods with many classes.
+
+🎯 Why do we use mixins?
+
+Because sometimes:
+
+You don’t want to extend a class
+
+You don’t want to implement a class
+
+You only want to reuse some methods
+
+Mixins solve this.
+
+🍕 Simple Example
+
+Imagine you have special abilities:
+
+mixin Runner {
+  void run() {
+    print("Running fast!");
+  }
+}
+
+mixin Swimmer {
+  void swim() {
+    print("Swimming in water!");
+  }
+}
+
+
+Now any class can use these abilities:
+
+class Human with Runner, Swimmer {}
+
+void main() {
+  Human h = Human();
+  h.run();
+  h.swim();
+}
+
+👉 Meaning:
+
+Human is NOT a Runner
+Human is NOT a Swimmer
+But Human can run and can swim because we mixed-in those abilities.
+
+💡 Mixins look like this:
+mixin MixinName {
+  // methods here
+}
+
+
+And used like this:
+
+class MyClass with MixinName {}
+</pre>
+
+
+
+
+
+</body>
+
+</html>

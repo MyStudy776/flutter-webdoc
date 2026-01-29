@@ -1,0 +1,365 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Constructor</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>1. constructor Definition-</h2>
+<pre>
+- Constructor always having same name as class Name.
+- Whenever a class is called , bydefault constructor will be called.
+- By default constructor is present inside the class.
+- A constructor does not return anything.
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Type of constructor-</h2>
+<pre>
+- 1. Default constructor
+- 2. Parameterised constructor
+- 3. copy constructor
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>3. Create a constructor using class-</h2>
+<pre>
+class myClass {
+
+  //constructor
+  myClass(){
+    print("myClass Object created");
+  }
+
+  //A function inside the class
+  int Add(int n1, int n2) {
+
+    int sum = n1+n2;
+    return sum;
+  }
+}
+
+void main () {
+
+  var myC = myClass(); //automaticall call the constructor
+  print(myC.Add(5,6)); //calling the function
+}
+
+
+o/p
+====
+myClass Object created
+11
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. Another Example of constructor-</h2>
+<pre>
+class Addition{
+  
+  void fun1(){
+    print("I am bad");
+  }
+  
+  void fun2(){
+    print("I am not ok");
+  }
+  
+  Addition(){
+    int a = 3;
+    int b = 7;
+    print("The sum is ${a+b}");
+  }
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition(); //Automatically constructor called, when object created/defined
+  
+  obj1.fun1();
+  obj1.fun2();
+  
+}
+
+
+output
+=======
+The sum is 10 ---- constructor called first
+I am bad
+I am not ok
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. named parameter constructor  - using required keyword </h2>
+<pre>
+class Addition{
+  
+  void fun1(){
+    print("I am bad");
+  }
+  
+  void fun2(){
+    print("I am not ok");
+  }
+  
+  Addition({required int a, required int b} ){
+   
+    print("The sum is ${a+b}");
+  }
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition(a: 30, b: 40);
+  
+  obj1.fun1();
+  obj1.fun2();
+  
+}
+
+output
+=========
+The sum is 70
+I am bad
+I am not ok
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. positional  parameter constructor</h2>
+<pre>
+
+class Addition{
+  
+  void fun1(){
+    print("I am bad");
+  }
+  
+  void fun2(){
+    print("I am not ok");
+  }
+  
+  Addition(int a,  int b ){
+   
+    print("The sum is ${a+b}");
+  }
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition(30, 40);
+  
+  obj1.fun1();
+  obj1.fun2();
+  
+}
+
+</pre>
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>7. Without constructor, what is the problem?</h2>
+<pre>
+class Vehicle {
+  int wheel; //❌ Error, Non nullable instance field 'wheel' must be initialized.
+  }
+  
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. With constructor, no error</h2>
+<pre>
+  class Vehicle {
+  int wheel;
+  Vehicle(this.wheel){} //constructor, need to  pass argument using this keyword
+  }
+  
+Note:
+------
+- we must initialize a variable , if we do not use constructor.
+- But if we use constructor, we can declare variable, without initializing. 
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>9. If there is a child class, without constructor</h2>
+<pre>
+class Vehicle {
+  int wheel;
+  Vehicle(this.wheel){}
+  }
+
+class Car extends Vehicle{
+  
+} //❌ Error,The super class vehicle does not have a zero argument constructor.
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. If there is a child class, with constructor with super keyword</h2>
+<pre>
+  class Vehicle {
+  int wheel;
+  Vehicle(this.wheel){}
+  }
+
+class Car extends Vehicle{
+  Car(super.wheel); //constructor, need to  pass argument using super keyword
+}
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>11. If there is a child class, with constructor with super keyword</h2>
+<pre>
+class Vehicle {
+  int wheel;
+  Vehicle(this.wheel){}
+  }
+
+class Car extends Vehicle{
+  Car(super.wheel);
+}
+  
+
+
+void main(){
+var  car = Car();//❌ Error, 1 positional argument expected.
+var  car = Car(5); //No error
+}
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>12. Abstract class with constructor</h2>
+<pre>
+abstract class Vehicle {
+  int wheel;
+  Vehicle(this.wheel){} //constructor  of parent class
+  void wheelnum(
+  
+  ); //abstract class method without body
+  }
+
+class Car extends Vehicle{
+  Car(super.wheel); //constructor of child class
+  void cartype(){
+    print('I am great');
+  }
+  
+  //The below method must use, because, it is present in abstract parent class
+  @override
+  void wheelnum(){
+    print('The value of wheel is $wheel');
+  }
+  
+}
+  
+
+
+void main(){
+  
+  var  car = Car(30);//must pass an argument
+  car.cartype();
+  car.wheelnum();
+
+}
+
+o/p
+======
+I am great
+The value of wheel is 30
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>13. Using of this keyword</h2>
+<pre>
+class Addition{
+  
+  int a = 100;
+  int b = 200;
+  
+  void fun1(int a, int b){
+    print("I am using local value");
+    print("x = $a, Y= $b");
+  }
+  
+ void fun2(int a, int b){
+    print("I am using global value");
+    print("x = ${this.a}, Y= ${this.b}");
+  }
+ 
+}
+
+
+void main(){
+  
+  Addition obj1 = Addition();
+  
+  obj1.fun1(30,40);
+  obj1.fun2(30,40);
+  
+}
+
+
+output
+=======
+I am using local value
+x = 30, Y= 40
+I am using global value
+x = 100, Y= 200
+
+
+</pre>
+
+
+<h2>Stateful widget in Flutter</h2>
+<pre>
+class MyWidget extends StatefulWidget {
+  <mark>const MyWidget({super.key}); </mark>//child class constructor, using super keyword
+
+  @override
+  State&lt;MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State&lt;MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
+
+super.key passes the widget’s key to its parent so Flutter 
+can correctly identify and manage the widget in the widget tree.
+</pre>
+
+</body>
+
+</html>
+
+
+

@@ -45,10 +45,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State&lt;MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State&lt;MyHomePage> {
   String selectedvalue = 'Orange';
 
   @override
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   .of(context)
                   .size
                   .width,
-              child: DropdownButton<String>(
+              child: DropdownButton&lt;String>(
                 dropdownColor: Colors.grey.shade200,
                 isExpanded: true,
                 value: selectedvalue,
@@ -77,9 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     selectedvalue = newvalue!;
                   });
                 },
-                items: <String>['Orange', 'Apple', 'Banana', 'Mango', 'Grapes']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
+                items: &lt;String>['Orange', 'Apple', 'Banana', 'Mango', 'Grapes']
+                    .map&lt;DropdownMenuItem&lt;String>>((String value) {
+                  return DropdownMenuItem&lt;String>(
                       value: value, child: Text(value));
                 }).toList(),
               ))
@@ -90,6 +90,64 @@ class _MyHomePageState extends State<MyHomePage> {
 
 }
 
+
+</pre>
+
+
+<h2>2. Dropdown widget  -</h2>
+
+
+<pre>
+
+import 'package:flutter/material.dart';
+
+class DropdownMenuFile extends StatefulWidget {
+  const DropdownMenuFile({super.key});
+
+  @override
+  State&lt;DropdownMenuFile> createState() => _DropdownMenuFileState();
+}
+
+class _DropdownMenuFileState extends State&lt;DropdownMenuFile> {
+
+  int selected = 1; 
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      
+
+appBar: AppBar(
+  title: Text("Dropdown File"),
+
+),
+
+body: Center(
+  child: DropdownButton<int>(
+  
+    value: selected,
+     
+    onChanged: (value){
+      setState(() {
+        selected=value!;
+      });
+    },
+    items: [
+      //DropdownMenuItem(value: 'item1',child: Text('item1')),
+      //DropdownMenuItem(value: 'item2',child: Text('item2')),
+      //DropdownMenuItem(value: 'item3',child: Text('item3')),
+  
+      for(int i=1; i&lt;=10; i++)
+        DropdownMenuItem&lt;int>(value: i,child: Text('item is $i')),
+       
+  
+    ],
+    ),
+)
+
+    );
+  }
+}
 
 </pre>
 

@@ -1,0 +1,276 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+<h1>Flutter Theme-</h1>
+
+<h2>1. lib/utils/routes.dart -</h2>
+<pre>
+class Myroute{
+  static String startPage="/startpage";
+  static String signupPage="/signupPage";
+  static String testPage="/testpage";
+  static String drawerpage="/drawerpage";
+  <mark>static String catalogPage="/catalogpage"; </mark>
+  
+}
+
+</pre>
+
+<h2>2. main.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mama1/drawer_page.dart';
+import 'package:mama1/listviewbuilder_page.dart';
+import 'package:mama1/signup_page.dart';
+import 'package:mama1/start_page.dart';
+import 'package:mama1/test_page.dart';
+import 'package:mama1/utils/mytheme.dart';
+import 'package:mama1/utils/routes.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+
+      theme: Mytheme.lightTheme(context),
+      darkTheme: Mytheme.darkTheme(context),
+     
+      initialRoute: Myroute.startPage,
+      routes: {
+        //'/': (context) => const StartPage(),
+        //'/signup': (context) => const SignupPage(),
+        Myroute.startPage:(context)=>const StartPage(),
+        Myroute.signupPage:(context)=>const SignupPage(),
+        Myroute.testPage:(context)=>const Testpage(),
+        Myroute.drawerpage:(context)=>const Drawerpage(),
+       <mark> Myroute.catalogPage: (context) => const ListviewbuilderPage(),</mark>
+      },
+
+
+
+    );
+  }
+}
+
+</pre>
+
+<h2>3. lib/models/catalog.dart -</h2>
+<pre>
+class Item {
+  final int id;
+  final String name;
+  final String desc;
+  final num price;
+  final String color;
+  
+
+
+ //constructor
+  Item({
+    required this.id,
+    required this.name,
+    required this.desc,
+    required this.price,
+    required this.color,
+    
+  });
+}
+
+
+class CatalogModel {
+  static final items = [
+  
+   //creating object of type Item class
+    Item(
+        id: 1,
+        name: "Laptop",
+        desc: "A high performance laptop",
+        price: 999.99,
+        color: "Silver"),
+    Item(
+        id: 2,
+        name: "Smartphone",
+        desc: "A latest model smartphone",
+        price: 699.99,
+        color: "Black"),
+    Item(
+        id: 3,
+        name: "Headphones",
+        desc: "Noise cancelling headphones",
+        price: 199.99,
+        color: "White"),
+  ];
+}
+
+
+
+</pre>
+
+<h2>4. lib/listviewbuilder_page.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mama1/models/catalog.dart';
+import 'package:mama1/widget/items_widget.dart';
+
+class ListviewbuilderPage extends StatelessWidget {
+  const ListviewbuilderPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Catalog App"),
+      ),
+
+      body: ListView.builder(
+        itemCount: CatalogModel.items.length,
+        itemBuilder: (context, index) {
+		//iterate each item from CatalogModel and Pass it to Itemwidget
+         <mark> return Itemwidget(item: CatalogModel.items[index],);</mark>
+
+
+        },
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>5. lib/items_widget.dart -</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mama1/models/catalog.dart';
+
+class Itemwidget extends StatelessWidget {
+
+  final Item item;
+  const Itemwidget({super.key, required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+ <mark>   return Card(
+      //elevation: 0,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.deepPurple,
+          child: Text(item.id.toString(),style: const TextStyle(color: Colors.white),),
+        ),
+        title: Text(item.name),
+        subtitle: Text(item.desc),
+        trailing: Text("\$${item.price}"),
+      ),</mark>
+    );
+
+  }
+}
+</pre>
+
+<h2>lib/start_page.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:mama1/utils/routes.dart';
+
+class StartPage extends StatelessWidget {
+  const StartPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Start Page'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+               // Navigator.pushNamed(context, '/signup');
+                Navigator.pushNamed(context, Myroute.signupPage);
+              },
+              child: const Text('Go to SignUp '),
+            ),
+          ),
+
+          ElevatedButton(
+            onPressed: () {
+             // Navigator.pushNamed(context, '/testpage');
+              Navigator.pushNamed(context, Myroute.testPage);
+            },
+            child: const Text('Go to Test Page '),
+          ),
+
+          ElevatedButton(
+            onPressed: () {
+             
+              Navigator.pushNamed(context, Myroute.drawerpage);
+            },
+            child: const Text('Go to drwaer wala Page '),
+          ),
+
+          ElevatedButton(
+            onPressed: () {
+             
+             <mark> Navigator.pushNamed(context, Myroute.catalogPage); </mark>
+            },
+            child: const Text('Go to catalog Page '),
+          ),
+        ],
+      )
+    );
+  }
+}
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

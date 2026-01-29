@@ -1,0 +1,240 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Provider</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>Provider</h2>
+<pre>
+
+Provider = a box that stores data
+Any screen can read or change that data
+
+PROVIDER HAS ONLY 3 IMPORTANT PARTS
+-----------
+- Model (Data + Logic)
+- Provider (Wrap your app)
+- Consumer (Use the data)
+
+Step1: Add provider(pubspec.yaml)
+----------------
+dependencies:
+  provider: ^6.0.5
+  
+  
+STEP 2: Create a Provider class(counter_provider.dart)
+------------------------------
+import 'package:flutter/material.dart';
+
+class CounterProvider extends ChangeNotifier {
+  int count = 0;
+
+  void increment() {
+    count++;
+    notifyListeners(); 
+  }
+}
+
+//ChangeNotifier - something changed, rebuild yourself
+//notifyListeners(); -- 🔔 Hey UI, data changed, rebuild!, refresh UI
+
+
+STEP 3: Wrap your app with Provider
+----------------------------------
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'counter_provider.dart';
+import 'home.dart';
+
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CounterProvider(),
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}
+
+
+
+CounterProvider is available everywhere in the app
+//ChangeNotifierProvider() - calls the provider to your app
+//create: (_) => CounterProvider()
+
+STEP 4: Use Provider in UI
+------------------------------
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'counter_provider.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final counter = Provider.of&lt;CounterProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Provider Easy")),
+      body: Center(
+        child: Text(
+          counter.count.toString(),
+          style: TextStyle(fontSize: 40),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          counter.increment();
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+
+
+
+
+//Provider.of&lt;CounterProvider>(context) --- Get shared data
+//counter - variable got the provider data
+//counter.count	Read data, The value is 0
+//counter.increment()	--- Change data
+//notifyListeners()	--- UI rebuilds
+//WITHOUT Consumer Even if you call notifyListeners(); UI will NOT update
+//ChangeNotifier sends signal
+   Consumer receives signal
+   setState is NOT needed
+   
+   
+   Consumer&lt;CounterProvider>(
+  builder: (context, value, child) {
+    return Text(
+      value.count.toString(),
+      style: TextStyle(fontSize: 30),
+    );
+  },
+),
+
+</pre>
+<h2>full code with consumer</h2>
+<pre>
+main.dart
+-------------
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(
+<mark>    ChangeNotifierProvider( </mark> 
+ <mark>      create: (context) => CounterProvider(), </mark> 
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
+    );
+  }
+}
+
+
+
+2.counter_provider.dart (Provider class)
+--------------------------
+import 'package:flutter/material.dart';
+
+ <mark> class CounterProvider extends ChangeNotifier { </mark> 
+  int count = 0;
+
+  void increment() {
+    count++;
+    <mark>  notifyListeners();  </mark> // 🔔 notify UI
+  }
+}
+
+
+3.home_screen.dart (Consumer usage)
+--------------------------------
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'counter_provider.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Provider + Consumer"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            /// 🔴 Consumer LISTENS here
+            <mark>  Consumer&lt;CounterProvider>(
+              builder: (context, counter, child) { </mark> 
+                return Text(
+                  counter.count.toString(),
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                <mark>  context.read&lt;CounterProvider>().increment(); </mark> 
+              },
+              child: const Text("Increment"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>

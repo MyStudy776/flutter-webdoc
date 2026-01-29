@@ -1,0 +1,177 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>How to define colors</h1>
+<h2>1. create a file to define colors -</h2>
+<pre>
+create a folder
+flutapp1/base/res/styles/app_styles.dart {Any location we can choose}
+---------------
+import 'package:flutter/material.dart';
+
+Color primary = const Color(0xFF687daf);
+
+class AppStyles {
+
+  static Color  primaryColor = primary;
+  static Color  textColor = const Color(0xFF3b3b3b);
+  static Color  bgColor = const Color(0xFFeeedf2);
+  static TextStyle textStyle1 =TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: primaryColor);
+  static TextStyle headLineStyle1 =TextStyle(fontSize: 26, fontWeight: FontWeight.w500, color: textColor);
+  //static TextStyle headLineStyle2 =TextStyle(fontSize: 21, fontWeight: FontWeight.w500, color: textColor);
+  static TextStyle headLineStyle3 =const TextStyle(fontSize: 17, fontWeight: FontWeight.w500, );
+
+
+}
+</pre>
+
+<h2>2. home_screen , where we have used the colors -</h2>
+<pre>
+import 'package:fluentui_icons/fluentui_icons.dart';
+import 'package:flutapp1/base/res/media.dart';
+<mark>import 'package:flutapp1/base/res/styles/app_styles.dart';</mark>
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    <mark>backgroundColor: AppStyles.bgColor ,</mark>
+
+      body: ListView(
+        
+        children: [
+          const SizedBox(height: 40),
+          Container(
+            color: Colors.amber,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //Text("Good Morning", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
+                        <mark>Text("Good Morning", style: AppStyles.headLineStyle3),</mark>
+                        SizedBox(height: 5),
+                        //Text("Book tickets",style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500, color: Color(0xFF3b3b)),),
+                       <mark> Text("Book tickets",style: AppStyles.headLineStyle1),</mark>
+                      ],
+                    ),
+                    Container(
+                      
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red,
+                        image: const DecorationImage(
+                          fit: BoxFit.cover,
+                          //image: AssetImage('assets/images/chatbot1.jpg')
+                          image: AssetImage(Appmedia.logo),
+                          
+                        )
+                      ),
+                    )
+                  ],
+                ),
+
+                const SizedBox(height: 25),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xFFF4F6FD),
+                  ),
+                  child: const Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(FluentSystemIcons.ic_fluent_search_regular, color: Color(0xFFBFC205),),
+                    Text("search"),
+                  ],
+                  
+                  
+                                ,
+                )],
+
+              
+            ),
+          )
+          
+        ],
+      )
+    );
+  }
+}
+
+</pre>
+
+
+<h2>main.dart</h2>
+<pre>
+import 'package:flutapp1/bottom_nav_bar.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  var myList = [
+    "Flutter", "Laravel", "PHP" ];
+
+    //print("${myList.toString()}");
+    print(myList);
+  runApp(const MyApp());
+}
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: BottomNavBarfile()
+    );
+  }
+}
+</pre>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Queue</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+
+<h2>1. Queue -</h2>
+<pre>
+- A queue is a FIFO (First In First Out) data structure where the element that is added first will be deleted first. 
+- It takes the data from one end and removes it from the other end. 
+- It must be noted that to use a queue in a dart program you have to import ‘dart:collection’ module.
+
+
+import 'dart:collection';
+ 
+void main()
+{
+ 
+  Queue&lt;String> abc = new Queue&lt;String>(); 
+  print(abc);
+  abc.add("Geeks");
+  abc.add("For");
+  abc.add("Geeks");
+  print(abc);
+}
+
+
+o/p
+=====
+{}
+{Geeks, For, Geeks}
+
+</pre>
+
+
+
+
+
+</body>
+
+</html>

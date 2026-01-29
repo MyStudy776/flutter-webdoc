@@ -1,0 +1,496 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Function</h1>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1.  Function : print-</h2>
+<pre>
+ 
+void main() {
+    fun1();
+}
+
+
+void fun1() {
+   print("Hello Dear");
+ }
+ 
+
+o/p
+====
+Hello Dear
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Function : return -</h2>
+<pre>
+void main() {
+fun1();
+}
+
+String fun1() {
+   return 'Radha'; ----> return does not mean that it will print anything.
+ }
+ 
+ 
+o/p
+====
+no output
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3.  Function-</h2>
+<pre>
+void main() {
+   
+print(fun1());
+}
+
+ String fun1() {
+   return 'Radha';
+ }
+ 
+o/p
+====
+Radha
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>4. Assign multiple datatype to a function -</h2>
+<pre>
+void main() {
+   
+var n1 = fun1();
+print(n1);
+print(n1.$2);
+print(n1.$2.runtimeType);
+}
+
+ (int, String) fun1() {
+   return (12,'Radha');
+ }
+ 
+ o/p
+ =====
+(12, Radha)
+Radha
+String
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Function   -</h2>
+<pre>
+void main() {
+   
+var (name, age) = fun1();
+print(name);
+print(age);
+
+}
+
+ (int, String) fun1() {
+   return (12,'Radha');
+ }
+ 
+ 
+o/p
+====
+12
+Radha 
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>6. Function  -</h2>
+<pre>
+void main() {
+   
+String name ='Manoj';
+fun1(name);
+print(name);
+
+}
+
+ void fun1(String name) {
+   print ('Radha');
+ }
+ 
+ 
+ o/p
+ ===
+ Radha
+ Manoj
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7.Function  -</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(name, 12);
+ }
+
+void fun1(String name, int age) {
+   print (name);
+   print (age);
+ }
+ 
+ 
+o/p
+====
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8.Function - named parameter and positional parameter -</h2>
+<pre>
+Positional parameter
+=============
+void main() {
+  describe('Raju', 8);
+}
+
+void describe(String name, int age) {
+  print('My name is $name and I am $age years old.');
+}
+
+
+named parameter
+================
+void main() {
+  introduce(name: 'Rani', age: 7);
+}
+
+void introduce({required String name, required int age}) {
+  print('Hello! My name is $name and I am $age years old.');
+}
+ 
+required means you must give that value.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>9. Function  -</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(name, 12, false);
+ }
+
+ void fun1(String name, int age, bool rrr) {
+   print (name);
+   print (age);
+ }
+ 
+ 
+o/p
+=====
+Manoj
+12
+
+-Note: But the above program is not the way to represent. 
+void fun1(String name, int age, bool rrr) --->It will check the positional argument.
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10. using <mark>required </mark>, change positional argument to named argument  in Function-</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(age:12, rrr: false, name: name);
+ }
+
+ void fun1({required String name, required int age, required bool rrr}) {
+   print (name);
+   print (age);
+ }
+ 
+o/p
+====
+Manoj
+12
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>11. Function  -</h2>
+<pre>
+void main() {
+   
+String name ='Manoj';
+fun1(rrr: false, name: name);
+ }
+
+ void fun1({required String name,  int? age, required bool rrr}) {
+   print (name);
+   print (age);
+ }
+ 
+o/p
+====
+Manoj
+null
+
+
+int? age ----> if we don't pass any value , then its value will be null. no need to put required keyword.
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>12. both positional and named arguments in Fuction -</h2>
+<pre>
+ void main() {
+   
+String name ='Manoj';
+fun1(12, rrr: false, name: name);
+ }
+
+ void fun1(int age, {required String name,  required bool rrr}) {
+   print (name);
+   print (age);
+ }
+ 
+ 
+ o/p
+ ====
+Manoj
+12
+
+
+note:
+void fun1(int age, {required String name,  required bool rrr})---> age is positional argument and name and rrr are named argument
+                                                              ---> age is at first position means the value will passed at first position: fun1(12, rrr: false, name: name)
+
+
+
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>13. Anonymous function  -</h2>
+<pre>
+void main() {
+  var animals = ['Cat', 'Dog', 'Cow'];
+
+  animals.forEach((animal) {
+    print('I love $animal');
+  });
+}
+
+
+(animal) { print('I love $animal'); } → a function without a name!
+forEach runs this function for each animal in the list.
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>14. Function  -</h2>
+<pre>
+void main() {
+   
+final(age,name) = fun1();
+   print(age);
+   print(name);
+ }
+
+ (int, String) fun1() {
+   return(12, 'Radha');
+ }
+ 
+ o/p
+ ===
+ 12
+Radha
+
+****************************************
+void main() {
+   
+final x = fun1();
+   print(x.name);
+   print(x.age);
+ }
+
+ ({int age, String name}) fun1() {
+   return(age:12, name: 'Radha');
+ }
+
+
+ o/p
+ ===
+Radha
+ 12
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>15. return a function under a function -</h2>
+<pre>
+void main() {
+   
+final x = fun1();
+   print(x());
+   
+ }
+
+ Function fun1() {
+   return() {
+     print('Yoooo');
+   };
+ }
+ 
+ 
+o/p
+====
+Yoooo
+null
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>16. Multiple returns using records -</h2>
+<pre>
+void main() {
+  var (sum, product) = calculate(4, 5);
+  print('Sum: $sum, Product: $product');
+}
+
+(int, int) calculate(int a, int b) {
+  return (a + b, a * b);
+}
+ 
+o/p
+====
+Sum: 9, Product: 20
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>17. -</h2>
+<pre>
+void main(){
+  
+  int x = 30;
+  fun1('Mira',x);
+}
+
+
+void fun1(String name,int x){
+  print('$name has $x rupees');
+}
+
+o/p
+====
+Mira has 30 rupees
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>18. -</h2>
+<pre>
+void main(){
+  
+  
+  fun1(10,20);
+}
+
+
+void fun1(int x,int y){
+    var z = x + y;
+    print('The value if z is :$z');
+}
+
+
+o/p
+====
+The value if z is :30
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>19. -</h2>
+<pre>
+void main(){
+  
+  
+  fun1(10,20);
+}
+
+
+void fun1(int x,int y){
+    var z = x + y;
+    print('The value if z is :$z');
+}
+
+
+o/p
+====
+The value if z is :30
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>20. -</h2>
+<pre>
+void main(){
+  
+  
+  int result = fun1(10,20);
+  print('The value if z is :$result');
+}
+
+
+int fun1(int x,int y){
+    var z = x + y;
+    return z;
+    
+}
+
+o/p
+====
+The value if z is :30
+
+</pre>
+
+
+</body>
+
+</html>

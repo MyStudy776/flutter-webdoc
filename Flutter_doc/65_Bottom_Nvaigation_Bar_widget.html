@@ -96,6 +96,257 @@ class _BottomNavState extends State<BottomNav> {
 
 </pre>
 
+<h2>2. Second Example : - Bottom Navigation Bar  -</h2>
+
+
+<pre>
+import 'package:fluentui_icons/fluentui_icons.dart';
+import 'package:flutter/material.dart';
+
+class BottomNavBarfile extends StatefulWidget {
+  const BottomNavBarfile({super.key});
+
+  @override
+  State&lt;BottomNavBarfile> createState() => _BottomNavBarfileState();
+}
+
+class _BottomNavBarfileState extends State<BottomNavBarfile> {
+
+
+//below is the list of widget, Text is a widget
+  final appScreens = [
+    Center(child: const Text('Home')),
+    Center(child: const Text('Search')),
+    Center(child: const Text('Ticket')),
+    Center(child: const Text('Profile')),
+  ];
+
+int _selectedIndex = 0;
+
+  void _onItemTapped(int index){
+
+    setState(() {
+      _selectedIndex = index;
+      print("Index is $_selectedIndex");
+    });
+
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Tickets'),
+      ),
+
+      //body: "Home" -->it will not accept a string, it will accept only a widget
+      //body: appScreens[0],
+      body: appScreens[_selectedIndex],
+
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.blueGrey,
+        unselectedItemColor: const Color(0xFF526400),
+        showSelectedLabels: false,
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+        items: [        
+
+          //BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          //BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          //BottomNavigationBarItem(icon: Icon(Icons.airplane_ticket), label: 'Ticket'),
+          //BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+
+          BottomNavigationBarItem(
+            
+            icon: Icon(FluentSystemIcons.ic_fluent_home_add_regular),
+            label: 'Home',
+            activeIcon: Icon(FluentSystemIcons.ic_fluent_home_add_filled),
+            ),
+
+             BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_search_regular),
+            label: 'Search',
+            activeIcon: Icon(FluentSystemIcons.ic_fluent_search_filled),
+            ),
+
+             BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_airplane_regular),
+            label: 'ticket',
+            activeIcon: Icon(FluentSystemIcons.ic_fluent_airplane_filled),
+            ),
+
+             BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_person_accounts_regular),
+            label: 'Profile',
+            activeIcon: Icon(FluentSystemIcons.ic_fluent_person_accounts_filled),
+            ),
+        ]
+    ),
+      
+    
+
+      
+
+
+    );
+  }
+}
+
+</pre>
+
+<h2>3. example for bottom navigation bar</h2>
+<pre>
+
+
+import 'package:flutter/material.dart';
+
+class BottomeNavigationfile extends StatefulWidget {
+  const BottomeNavigationfile({super.key});
+
+  @override
+  State&lt;BottomeNavigationfile> createState() => _BottomeNavigationfileState();
+}
+
+class _BottomeNavigationfileState extends State&lt;BottomeNavigationfile> {
+
+  int index = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed, 
+        backgroundColor: Colors.blue, 
+        selectedItemColor: Colors.yellow,
+        elevation: 10,
+        onTap: (value){
+              print(value);
+              setState(() {
+                index = value;
+              });
+
+        },
+
+        //currentIndex: 0,
+        currentIndex: index,
+        items: [
+
+          BottomNavigationBarItem(
+            label: 'Home',
+            icon: Icon(Icons.home)
+            ),
+
+          BottomNavigationBarItem(
+            label: 'Settings',
+            icon: Icon(Icons.settings)
+            ),
+
+          BottomNavigationBarItem(
+            label: 'Logout',
+            icon: Icon(Icons.logout)
+            ),
+
+          BottomNavigationBarItem(
+            label: 'back',
+            icon: Icon(Icons.back_hand)
+            ),
+
+        ]),
+
+        body: Center(child: Text('Index: $index', style: TextStyle(fontSize: 30),)),
+
+        
+    );
+  }
+}
+
+</pre>
+
+<h2>3. example for bottom navigation bar</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class BottomeNavigationfile extends StatefulWidget {
+  const BottomeNavigationfile({super.key});
+
+  @override
+  State&lt;BottomeNavigationfile> createState() => _BottomeNavigationfileState();
+}
+
+class _BottomeNavigationfileState extends State&lt;BottomeNavigationfile> {
+
+  int index = 0;
+  List&lt;String> items = ['home','Settings','Logout','back'];
+  List&lt;Widget> widgetss = [
+    Text('This is home widget'),
+    Text('This is setting widget'),
+    Text('THis is back widget'),
+    Text('Tis is a very nice widget'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(items[index],style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed, 
+        backgroundColor: Colors.blue, 
+        selectedItemColor: Colors.yellow,
+        elevation: 10,
+        onTap: (value){
+              print(value);
+              setState(() {
+                index = value;
+              });
+
+        },
+
+        //currentIndex: 0,
+        currentIndex: index,
+        items: [
+
+          BottomNavigationBarItem(
+            label: 'Home',
+            icon: Icon(Icons.home)
+            ),
+
+          BottomNavigationBarItem(
+            label: 'Settings',
+            icon: Icon(Icons.settings)
+            ),
+
+          BottomNavigationBarItem(
+            label: 'Logout',
+            icon: Icon(Icons.logout)
+            ),
+
+          BottomNavigationBarItem(
+            label: 'back',
+            icon: Icon(Icons.back_hand)
+            ),
+
+        ]),
+
+        //body: Center(child: Text(items[index], style: TextStyle(fontSize: 30),)),
+
+        body: Center(child: widgetss[index]),
+
+        
+    );
+  }
+}
+
+</pre>
+
 
 
 

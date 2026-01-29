@@ -429,6 +429,88 @@ press ctrl , keep the cursor on the widget and click.
 
 
 
+<h2>Folder structure details -</h2>
+<pre>
+android - Flutter project contain .Android platform specific setting,resources and code.
+build - contains the output generated when you build or run the flutter project.
+      - You will find all the release related files/folder like apks and app bundles here.
+	  
+ios - ios platform specific setting resources and codes.
+lib - library folder. all pages will  be create here.
+test - any testing related code, you write. If you want to write any test cases, like app need this much memory, disk space, performance.
+
+.gitignore - unnecessary files will be ignored, not to push in git.
+.metadata - flutter related metadata
+.packages -
+            pre installed packages
+			User defined packages
+			
+pubspec.yaml - contain flutter app specific metadata configuration.
+             - You can configure dependencies such as external packages , images assets, font files, app versions etc with the help of this file. 
+			 
+pubspec.lock - it is a helper file created next to pubspec.yaml file . It lists the specific versions of each dependencies that packages use in your app and ensure the version stays consistent across different developer machine. no need to make any changes here.
+</pre>
+
+
+
+<h2>Extra notes</h2>
+<pre>
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Unoo App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Homepage(),
+    );
+  }
+}
+
+
+
+=
+
+context - contains the information , which is present where.
+let say Homepage() -- contains where the page contains.
+
+
+
+
+</pre>
+
+<h2>Text widget -</h2>
+<pre>
+Text(
+              "Hello world ",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                //fontStyle: FontStyle.italic,
+                color: Colors.amber,
+                letterSpacing: 2.5,
+                //overflow: TextOverflow.ellipsis,
+                //decoration: TextDecoration.underline,
+                //decorationColor: Colors.red,
+                //decorationThickness: 5,
+                fontFamily: 'CustomFont',
+                shadows: [
+                  Shadow(
+                    color: Colors.blue,
+                    blurRadius: 2,
+                    //offset: Offset(-5, 0)
+                  ),
+                ],
+              ),
+            ),
+</pre>
+
+
+
 
 
 </body>

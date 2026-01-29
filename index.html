@@ -53,7 +53,28 @@
 <li><a href="Flutter_doc/24_Circle_Avatar.html" target="_blank">Circle Avatar widget, also shadow/elevation</a></li>
 <li><a href="Flutter_doc/25_Flutter_Theme.html" target="_blank">Flutter Theme</a></li>
 <li><a href="Flutter_doc/26_Card_widget.html" target="_blank">Card Widget - Elevation</a></li>
+
 <li><a href="Flutter_doc/27_TextField.html" target="_blank">TextField Widget - Userinput</a></li>
+<li><a href="Flutter_doc/85_Textformfield_widget.html" target="_blank">TextFormField Widget - Userinput</a></li>
+<li><a href="Flutter_doc/86_Onchanged_Value_Textfield.html" target="_blank">onchanged value TextField Widget </a></li>
+
+
+<li><a href="Flutter_doc/87_Use_json_data.html" target="_blank">Use Json data</a></li>
+<li><a href="Flutter_doc/88_Login_page.html" target="_blank">Login Page</a></li>
+<li><a href="Flutter_doc/89_switch_radiobutton.html" target="_blank">Switch, Radiobutton</a></li>
+<li><a href="Flutter_doc/90_Ecommerce_App_ui.html" target="_blank">Ecommerce App UI</a></li>
+<li><a href="Flutter_doc/91_popup_menu_button.html" target="_blank">Popup menu button</a></li>
+<li><a href="Flutter_doc/92_drawer_with_bottomNavbar.html" target="_blank">drawe with bottom navbar</a></li>
+
+
+
+
+
+
+
+
+
+
 <li><a href="Flutter_doc/28_Date_time.html" target="_blank">Date and Time Widget, intl package, DatePicker </a></li>
 <li><a href="Flutter_doc/29_Gridview.html" target="_blank">Grid View and Gridview Builder </a></li>
 <li><a href="Flutter_doc/30_Callback_function.html" target="_blank">Callback Function </a></li>
@@ -85,7 +106,24 @@
 <li><a href="Flutter_doc/67_Form_widget.html" target="_blank">Form widget</a></li>
 <li><a href="Flutter_doc/69_TabBar_widget.html" target="_blank">Tabbar widget</a></li>
 <li><a href="Flutter_doc/73_cached_network_image.html" target="_blank">Cached network Image</a></li>
+<li><a href="Flutter_doc/77_Provider.html" target="_blank">Provider</a></li>
+<li><a href="Flutter_doc/78_Bloc.html" target="_blank">Bloc</a></li>
+<li><a href="Flutter_doc/79_Cubit.html" target="_blank">Cubit</a></li>
+<li><a href="Flutter_doc/80_Getx.html" target="_blank">Getx</a></li>
+<li><a href="Flutter_doc/81_Firebase.html" target="_blank">Firebase</a></li>
+<li><a href="Flutter_doc/82_Define_colors.html" target="_blank">Dine colors in a separate file</a></li>
+<li><a href="Flutter_doc/83_custom_widget.html" target="_blank">custom widget</a></li>
+<li><a href="Flutter_doc/84_Layout_builder.html" target="_blank">Layout Builder</a></li>
+<li><a href="Flutter_doc/15_Firebase_setup_for_Android.html" target="_blank">Firebase setup for Android</a></li>
+<li><a href="Flutter_doc/16_Firebase_setup_with_VisualStudio.html" target="_blank">Firebase setup with Visual studio</li>
 </ol>
+
+
+
+
+
+
+
 
 
 
@@ -105,6 +143,8 @@
 <li><a href="Flutter_doc/52_Food_recepie_App.html" target="_blank">Food Recepie App </a></li>
 <li><a href="Flutter_doc/20_instagram_flutter2.html" target="_blank">Instagram Clone Example  </a></li>
 <li><a href="Flutter_doc/19_flutter_code2.html" target="_blank">Flutter code 2  </a></li>
+<li><a href="Flutter_doc/18_Expense_App.html" target="_blank">Expense App </a></li>
+<li><a href="Flutter_doc/14_docexpiry_app.html" target="_blank">docExpiry App  </a></li>
 
 
 <li><a href="Flutter_doc/54_Acade_mind.html" target="_blank">Acade Mind </a></li>
@@ -131,17 +171,6 @@
 </ol>
 
 
-
-
-
-
-
-
-<ul>
-<li>How to set Theme</li>
-<li>How to set responsive screen</li>
-</ul>
-
 </body>
 
 
@@ -156,52 +185,6 @@ SDK -->Tools to compile your code to native machine code.
 
 
 
-<h2>Theme -</h2>
-<pre>
-
-import 'package:bottle1/uihelper/util.dart';
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
-        textTheme: TextTheme(
-          displayLarge: TextStyle(fontSize: 55, color: Colors.red),
-          bodyMedium: TextStyle(fontSize: 15, color: Colors.green)
-        )
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Dashboard"),
-        ),
-        body: Column(
-          children: [
-            Text("Hellow 1", style: Theme.of(context).textTheme.displayLarge),
-            Text("Hellow 2", style: Theme.of(context).textTheme.displayLarge!.copyWith(color: Colors.yellow)),
-            Text("Hellow 3", style: TextStyle(fontSize: 20, color: Colors.green),),
-            Text("Hellow 4", style: TextStyle(fontSize: 20, color: Colors.blue),),
-            Text("Hellow 5", style: Theme.of(context).textTheme.bodyMedium),
-            Text("Hellow 6", style: aaa()),
-            Text("Hellow 7", style: bbb(textcolor1: Colors.pink)),
-          ],
-        )
-      ),
-    );
-  }
-}
-
-
-
-
-</pre>
 <pre>
 A file with name - util.dart inside a folder - lib/uihelper/util
 
@@ -242,41 +225,9 @@ Flutter SDK path --> C:\PHILIP\APPDEV\Install\Flutter\flutter
 Flutter--->settings ---> Plugins --->Flutter--->Install, datr--> install
 </pre>
 
-<h1>*************Firebase*********************</h1
-<h2>1. Create a project -</h2>
+
 <pre>
-1. firebase.google.com  --> console --->
- Add project --> Enter project name --> 
- continue --> Enable google analytics --> continue -->
- Select an account : Default account for firebase ---> create project--> Firebase console page will come.
-
-2. Go to Firebase project overview ---> Go to Authentication --> Sign -in method -->
-   public facing name for project : flttershare
-   Support email for project : siararasol@gmail.com  --> save
-
- Now google status will show --> enabled 
-
-3. Go to Firebase project overview ---> cloud firestore  ---> create database -->
-   select start in test mode --> next --> 
-   cloud firestore location --> nam5 (United States) ---> Enable
-
-Start collection --> collection Id: users
-                     Document id: click on Auto id: zWm1fXprh5ExEPP2oabu --> save . U can delete for now.
-
-A collection is a set of documents that contain data
-
-
-4.  Go to Firebase project overview ---> Storage -->get started --> 
-Start in test mode --> cloud storage location: nam5 (United States) --> done 
-
-5. Visual studio code editor -->view --> extension --> install flutter
-                                                   --> install awesome flutter snippet (for automated command for stateless and stateful widget)
-	
-   file --> preferences --> setting --> search: auto import dart --> Dart auto import completion --> enabled
-
-6. Visual studio code editor --> bottom right corner --> no device --> select the device---> search box will appear --> select the emulator --> enter --> emulator will launch
-
-7. vs code editor --> view ---> command palette --> debug: start debugging --> After that  we can see hot reload tab in vs code .   
 </pre>
+
 
 

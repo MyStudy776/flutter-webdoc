@@ -1,0 +1,270 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Inheritance</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>1. Inheritance  -</h2>
+
+<pre>
+Someclass ---> Vehicle --> Car
+
+Vehicle --> car
+
+Vehicle --> Truck
+
+Inherits the property .
+- In dart multiple inheritance not possible . That is: Vehicle1 --> car, Vehicle2 --> car . It is not possible.
+
+
+Type of Inheritance
+========
+1. Single level inheritance
+2. Multilevel Inheritance
+3. Heridetary Inheritance
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2> 2. Single level Inheritance</h2>
+<pre>
+class A{
+  a(){
+    print("A is called");
+  }
+}
+
+
+class B extends A{
+  b(){
+    print("B is called");
+  }
+}
+
+
+void main() {
+  
+  B obj1 = B();
+  obj1.a();
+  obj1.b();
+}
+
+
+
+output
+=========
+A is called
+B is called
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. multi level Inheritance</h2>
+<pre>
+class A{
+  a(){
+    print("A is called");
+  }
+}
+
+
+class B extends A{
+  b(){
+    print("B is called");
+  }
+}
+
+
+class C extends B{
+  c(){
+    print("C is called");
+  }
+}
+
+
+
+void main() {
+  
+  C obj1 = C();
+  obj1.a();
+  obj1.b();
+  obj1.c();
+}
+
+
+
+output
+=======
+A is called
+B is called
+C is called
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. Super constructor</h2>
+<pre>
+Super Keyword - it is used to insert parent class property into child class.
+
+
+class A{
+  A(){
+    print("A constructor is called");
+  }
+}
+
+class B extends A{
+  B(){
+    print("B constructor is called");
+  }
+}
+
+void main() {
+  print("Calling all the constructors");
+  B obj1 = B();
+}
+
+
+
+output
+=========
+Calling all the constructors
+A constructor is called
+B constructor is called
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. Inheritance  Example-</h2>
+<pre>
+ void main() {
+   
+//Inheritance
+   Car obj1 = Car();
+   
+   print(obj1.speed);
+   print(obj1.noofwheels);
+   obj1.fun2();
+   print("=====================");
+   Truck obj2 = Truck();
+   print(obj2.noofwheels);
+   print(obj2.speed);
+   print("=====================");
+   Vehicle obj3 = Car(); //object created of type superclass
+   print((obj3 as Car).noofwheels); //car property will not come. so give as.
+   print(obj3.speed);
+   }
+
+ //Superclass
+  class Vehicle { 
+    int speed = 10;
+    bool isEngineWorking = false;
+    bool isLighton = true;
+    
+    void accelerate() {
+      speed += 10;
+    }
+  } 
+
+//Subclass
+class Car extends Vehicle {
+  int noofwheels = 4;
+  void fun2() {
+    print("There is something");
+  }
+}
+
+class Truck extends Vehicle {
+  int noofwheels = 8;
+}
+
+
+
+o/p
+====
+10
+4
+There is something
+=====================
+8
+10
+=====================
+4
+10
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. override in inheritance-</h2>
+<pre>
+- override keyword is used to explicitly indicate that a method in a subclass is intended to override a method with the same signature in its superclass. 
+- This helps in preventing accidental method name conflicts and ensures that you are intentionally overriding a method from the superclass.
+
+
+
+void main() {
+   
+//Inheritance
+   Car obj1 = Car();
+   print(obj1.greet); //Car inherited the value from Someclass
+   print(obj1.speed);
+   obj1.accelerate();
+   print(obj1.speed);
+    }
+
+
+
+class Someclass { 
+  int speed = 15;
+  String greet = 'Hello Dear';
+  void accelerate() {
+      speed = 40;
+    }
+  } 
+
+class Vehicle extends Someclass {
+  int speed = 10;
+    
+  @override  //It is optional. As the name for method "accelerate" is same in Someclass and Vehicle class . The Vehicle method overrides the Someclass
+    void accelerate() {
+      speed = 20;
+    }
+}
+
+
+class Car extends Vehicle {
+  int noofwheels = 4;
+  void fun2() {
+    print("There is something");
+  }
+}
+
+
+
+o/p
+====
+Hello Dear
+10
+20
+</pre>
+
+
+
+</body>
+
+</html>

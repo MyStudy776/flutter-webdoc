@@ -276,6 +276,63 @@ class MyApp extends StatelessWidget {
 }
 </pre>
 
+<h2>Elevated button-</h2>
+<pre>
+ ElevatedButton(
+              onPressed: () {
+                print("button clicked");
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                elevation: 6,
+                fixedSize: Size(200, 50),
+              ),
+              child: Text("MyButton"),
+            ),
+</pre>
+
+<h2>Elevated button-</h2>
+<pre>
+  ElevatedButton.icon(
+              onPressed: () {
+                print("icon button clicked");
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+                iconAlignment: IconAlignment.end,
+              ),
+              icon: Icon(Icons.home, size: 30, color: Colors.yellow),
+              label: Text("MyButton"),
+            ),
+</pre>
+
+<h2>Text button-</h2>
+<pre>
+  TextButton(
+              onPressed: () {},
+              onLongPress: () {},
+              child: Text("Text buttomn"),
+            ),
+</pre>
+
+<h2>OutlinedButton-</h2>
+<pre>
+   OutlinedButton(onPressed: (){},
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.red,
+              side: BorderSide(color: Colors.red, width: 10)
+
+            ),
+            child: Text("button outline"),
+        ),
+
+</pre>
+
 </body>
 
 </html>

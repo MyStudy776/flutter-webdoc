@@ -1,0 +1,203 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Dart Operator</h1>
+
+<!-- ############################################################################### -->
+
+<h2>1. Type of operators-</h2>
+<pre>
+Arithmetic Operators ----> +, -, *, /, %,
+Relational Operators ----> >, >=, ==, &lt;, &lt;=,!=
+Type Test Operators -----> is, is!
+Bitwise Operators -------> &   (Bitwise AND)
+                  -------> |   (Bitwise OR)
+				  -------> ^   (Bitwise XOR)
+				  -------> ~   (Bitwise NOT)
+				  -------> &lt;&lt; (Left Shift)
+				  -------> &gt;&gt; (right Shift)
+Assignment Operators-----> =   (equal to)
+                    -----> ??= (Assign the value only if it is null.)
+Logical Operators--------> &&  (and)
+                 --------> ||  (or)
+                 --------> !   (not)
+Conditional Operator ----------> condition ? expersion1 :
+Cascade Notation Operator
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2.Arithmetic operator use -</h2>
+<pre>
+void main()
+{
+	int a = 10;
+	int b = 3;
+    int c = a + b;
+    print(a + b );
+    print("a + b = $c" );
+    print("The value of " + "a + b = " + c.toString());
+    print("$c is the sum of a + b" );
+    String r = "Hello \n worldddd";
+    print(r)
+}
+
+
+o/p
+===
+13
+a + b = 13
+The value of a + b = 13
+13 is the sum of a + b
+Hello 
+ worldddd
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. Type Test Operators-</h2>
+<pre>
+void main()
+{
+    String a = 'aa';
+    double b = 3.3;
+ 
+    print(a is String);
+    print(b is !int);
+}
+
+o/p
+=====
+true
+true
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>4. Assignment operator-</h2>
+<pre>
+void main()
+{
+    int a = 5;
+    int b = 7;
+    var c = a * b;
+    print(c);
+    var d;
+    d ??= a + b; // Value is assign as it is null
+    print(d);
+    // Again trying to assign value to d
+    d ??= a - b; // Value is not assign as it is not null
+    print(d);
+}
+
+o/p
+=====
+35
+12
+12
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. ?? operator -</h2>
+<pre>
+- In Dart, the ?? operator is known as the null-aware assignment operator. 
+- It is used to assign a value to a variable only if that variable is currently null.
+
+void main()
+{
+    int a = 10;
+    int b = 20;      
+    var d = 20;
+    var h;
+    d ??= a + b; // d is not null, so it will not assign a new value.
+    h ??= a + b; // h is null, so it will assign a new value.
+    print(d);
+    print(h);
+
+}
+
+o/p
+=====
+20
+30
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Logical operator -</h2>
+<pre>
+void main()
+{
+    int a = 5;
+    int b = 7;
+ 
+    // Using And Operator
+    bool c = a &gt; 10 && b &lt; 10;
+    print(c);
+ 
+    // Using Or Operator
+    bool d = a &gt;  10 || b &lt; 10;
+    print(d);
+ 
+    // Using Not Operator
+    bool e = !(a &gt;  10);
+    print(e);
+}
+
+
+o/p
+====
+false
+true
+true
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7.Conditional operator. -</h2>
+<pre>
+void main()
+{
+	int a = 5;
+	int b = 7;
+	var c = (a &lt; 10) ? "a is less than 10";
+	print(c);--------------------------------------------> false
+	
+	
+    int? n1; ------------------->variable n1 can hold an integer value or a null value.
+	int? n2 = 10; ------------------->variable n2  hold an integer value 10.
+	var d = n1 ?? "n has Null value";
+	var e = n2 ?? "n has Null value";
+	print(d);---------------o/p: n has Null value 
+	print(e);---------------o/p: 10
+
+}
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10. Cascade notation operator -</h2>
+<pre>
+
+</pre>
+
+
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Loop</h1>
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2><mark>Loop</mark></h2>
+
+<h2>1. if-else condition -</h2>
+<pre>
+void main () {
+
+var a = 100;
+var b = 50;
+
+if (a &lt;200) {
+  print("a is less than 200");
+  }
+else if (a>b) {
+  print("a is greater");
+}
+else {
+  print("Good day");
+}
+}
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2.  shorcut in if condition -</h2>
+<pre>
+void main() {
+var x = 100;
+ String msg = 
+   (x >= 100) ? "x is bigger" : "x is normal";
+  print(msg);
+}
+
+o/p
+====
+x is bigger
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. for loop -</h2>
+<pre>
+void main () {
+
+var a = 10;
+
+for (int a=1; a&lt;=10; a++)
+  print("value is $a");
+
+}
+
+o/p
+====
+value is 1
+value is 2
+value is 3
+value is 4
+value is 5
+value is 6
+value is 7
+value is 8
+value is 9
+value is 10
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>4. for loop -</h2>
+<pre>
+void main () {
+var a = [10, 20, 30, 40 ,50];
+for (int i in a)
+  print(i);
+}
+
+o/p
+====
+10
+20
+30
+40
+50
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>5. for each</h2>
+<pre>
+void main () {
+var a = [10, 20, 30, 40 ,50];
+a.forEach((var num) => print(num));
+}
+
+o/p
+====
+10
+20
+30
+40
+50
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. for each</h2>
+<pre>
+void main() 
+{ 
+  var list = ["Shubham","Nick","Adil","Puthal"]; 
+  print("GeeksforGeeks - Anonymous function in Dart"); 
+  list.forEach((item) { 
+    print('${list.indexOf(item)} : $item'); 
+  }); 
+}
+
+GeeksforGeeks - Anonymous function in Dart
+0 : Shubham
+1 : Nick
+2 : Adil
+3 : Puthal
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. while loop -</h2>
+<pre>
+void main () {
+  var a = 2;
+
+  while (a &lt; 10) {
+    print("a = $a");
+    a++;
+  }
+}
+
+o/p
+====
+a = 2
+a = 3
+a = 4
+a = 5
+a = 6
+a = 7
+a = 8
+a = 9
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>8. Switch case loop -</h2>
+<pre>
+void main() {
+  String fruit = 'apple';
+
+  switch (fruit) {
+    case 'apple':
+      print('Selected fruit is an apple');
+      break;
+    case 'banana':
+      print('Selected fruit is a banana');
+      break;
+    case 'orange':
+      print('Selected fruit is an orange');
+      break;
+    default:
+      print('Selected fruit is not in the list');
+  }
+}
+
+o/p: apple
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. if condition -</h2>
+<pre>
+void main() {
+   
+  int x = 10;
+  
+   if (x &lt; 10) {
+     print ('x is small');
+   }
+   else if(x==10) {
+     print("x is normal");
+   }
+   else {
+     print("x is big");
+   }
+  
+ }
+
+o/p
+=====
+x is normal
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>10. switch case -</h2>
+<pre>
+vvoid main() {
+   
+  int x = 10;
+  
+   switch(x) {
+     case 8:
+     print ('$x is small');
+     case 10:
+     print("$x is normal");
+     case 112:
+     print("$x is big");
+     default:
+     print("Good");
+   }
+ }
+
+o/p
+=====
+10 is normal
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>11. do while loop -</h2>
+<pre>
+void main()
+{
+    var GeeksForGeeks = 4;
+    int i = 1;
+    do {
+        print('Hello Geek');
+        i++;
+    } while (i &lt;= GeeksForGeeks);
+}
+
+
+o/p
+====
+Hello Geek
+Hello Geek
+Hello Geek
+Hello Geek
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>12. break in loop -</h2>
+<pre>
+void main() 
+{ 
+    int count = 1; 
+  
+    while (count &lt;= 10) { 
+        print("Geek, you are inside loop $count"); 
+        count++; 
+  
+        if (count == 4) { 
+            break; 
+        } 
+    } 
+    print("Geek, you are out of while loop"); 
+} 
+
+
+o/p
+========
+Geek, you are inside loop 1
+Geek, you are inside loop 2
+Geek, you are inside loop 3
+Geek, you are out of while loop
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>13. break in do-while loop -</h2>
+<pre>
+void main() 
+{ 
+    int count = 1; 
+  
+    do { 
+        print("Geek, you are inside loop $count"); 
+        count++; 
+  
+        if (count == 5) { 
+            break; 
+        } 
+    } while (count &lt;= 10); 
+    print("Geek, you are out of do..while loop"); 
+} 
+
+
+o/p
+======
+Geek, you are inside loop 1
+Geek, you are inside loop 2
+Geek, you are inside loop 3
+Geek, you are inside loop 4
+Geek, you are out of do..while loop
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>14. break in for loop -</h2>
+<pre>
+void main() 
+{ 
+    for (int i = 1; i &lt;= 10; ++i) { 
+        if (i == 2) 
+            break; 
+  
+        print("Geek, you are inside loop $i"); 
+    } 
+  
+    print("Geek, you are out of loop"); 
+}
+
+o/p
+===
+Geek, you are inside loop 1
+Geek, you are out of loop 
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>15. continue inside while loop -</h2>
+<pre>
+While the break is used to end the flow of control, continue on the other hand is used to continue the flow of control. 
+When a continue statement is encountered in a loop it doesn’t terminate the loop but rather jump the flow to next iteration.
+
+void main() 
+{ 
+    int count = 0; 
+  
+    while (count &lt;= 10) { 
+        count++; 
+  
+        if (count == 4) { 
+            print("Number 4 is skipped"); 
+            continue; 
+        } 
+  
+        print("Geek, you are inside loop $count"); 
+    } 
+  
+    print("Geek, you are out of while loop"); 
+} 
+
+
+
+o/p
+====
+Geek, you are inside loop 1
+Geek, you are inside loop 2
+Geek, you are inside loop 3
+Number 4 is skipped
+Geek, you are inside loop 5
+Geek, you are inside loop 6
+Geek, you are inside loop 7
+Geek, you are inside loop 8
+Geek, you are inside loop 9
+Geek, you are inside loop 10
+Geek, you are inside loop 11
+Geek, you are out of while loop
+
+</pre>
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,74 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>null safety operator</h1>
+
+<!-- ############################################################################### -->
+
+
+<h2>1. null safety operator "?." -</h2>
+<pre>
+void main() {
+  String? x;   //Here x has null value.
+  print(x.toUpperCase());  // ❌ Error
+}
+
+
+o/p
+====
+Error because here x is null. and toUpperCase() method can not be called on a null value.
+To fix the issue we need to use "?.". -using this we can call toUpperCase() method on a null value. And the result will be null.
+
+"If the value before ?. is not null, then do the operation.
+But if it is null, don’t do anything — just return null safely."
+
+
+void main() {
+  String? x;  //Here x has null value.
+  print(x?.toUpperCase());
+}
+
+o/p
+====
+The result is null .
+
+
+
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+<h2>2. ? operator -</h2>
+<pre>
+ void main() {
+  String x = "Hi";
+  print(x.startsWith('H') ? 'It is' : 'It is not');
+  print(x.startsWith('K') ? 'It is' : 'It is not');
+   }
+   
+o/p
+========
+It is
+It is not
+
+
+? - uses the if condition. If true print 1st statement, else 2nd statement.
+
+</pre>
+
+</body>
+
+</html>

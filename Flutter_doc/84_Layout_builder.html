@@ -1,0 +1,201 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>LayoutBuilder widget</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. What is LayoutBuilder ?-</h2>
+<pre>
+- LayoutBuilder lets you know how much space your widget is getting, and build UI based on that space.
+
+what problem does LayoutBuilder solve?
+-------------------
+Flutter normally builds UI like this: "Just draw the widget with the size the parent gives."
+
+But sometimes you want to say: "IF I get small space → show small UI IF I get big space → show big UI"
+That’s where LayoutBuilder comes in.
+
+
+
+Imagine you are asked to decorate a room.But first you ask:
+-------------------
+- How big is the room?
+If the room is:
+- Small → 1 chair
+- Big → sofa + table
+LayoutBuilder does exactly this.
+
+
+Why not MediaQuery?
+--------------------
+Gives full screen size
+Same everywhere
+
+LayoutBuilder:
+-------------
+Gives available space of THAT widget
+Changes depending on parent
+
+
+LayoutBuilder helps a widget understand its parent’s size
+Not screen size
+Not phone size
+Only available space
+
+
+MediaQuery	-- Full screen size
+LayoutBuilder -- Parent’s given size
+
+
+</pre>
+
+<h2>2. Basic structure of LayoutBuilder</h2>
+<pre>
+LayoutBuilder(
+  builder: (context, constraints) {
+    // build UI here
+  },
+)
+
+
+Two important things here:
+context → normal Flutter context
+constraints → tells how much space you have
+</pre>
+
+<h2>3. Example 1:  Change color based on width</h2>
+<pre>
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth &lt; 300) {
+      return Container(
+        color: Colors.red,
+        height: 100,
+      );
+    } else {
+      return Container(
+        color: Colors.green,
+        height: 100,
+      );
+    }
+  },
+)
+
+
+What happens?
+- Small screen → red box
+- Large screen → green box
+</pre>
+
+<h2>4. second Example</h2>
+<pre>
+Row(
+  children: [
+    Expanded(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          print(constraints.maxWidth);
+          return Container(color: Colors.blue);
+        },
+      ),
+    ),
+  ],
+)
+
+Here:
+- LayoutBuilder only knows width inside Expanded
+- Not whole screen
+</pre>
+
+
+<h2>5. Very beginner-friendly example (text size changes)</h2>
+<pre>
+LayoutBuilder(
+  builder: (context, constraints) {
+    return Text(
+      "Hello",
+      style: TextStyle(
+        fontSize: constraints.maxWidth &lt; 200 ? 14 : 24,
+      ),
+    );
+  },
+)
+
+
+
+Small space → small text
+Big space → big text
+</pre>
+
+
+<h2>6. Another example </h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class AppLayoutBuilderWidget extends StatelessWidget {
+
+  final int randomDivider; //final means value can be set only once.
+  const AppLayoutBuilderWidget({super.key,required this.randomDivider}); //super.key - Helps flutter identify widgets
+
+  @override
+  Widget build(BuildContext context) {
+  
+   //“Before building UI, tell me how much space I have”
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        //print("The width is ${constraints.constrainWidth()}"); //prints actual available width.
+        return Flex(
+          direction: Axis.horizontal, //same like row
+          mainAxisAlignment: MainAxisAlignment.spaceBetween, //This spreads children evenly across width.
+          children: List.generate((constraints.constrainWidth()/randomDivider).floor(), (index) => 
+            SizedBox(
+              width: 2,
+              height: 1,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+List.generate --- dynamically creating widgets., child1, child2, child3...
+constraints.constrainWidth() ---- Available width
+constraints.constrainWidth() / randomDivider ---- Divides width by your divider, Controls how many items fit
+onstraints.constrainWidth()/randomDivider).floor() ---- floor() Removes decimal part, Ensures an integer
+Example: Width = 300,Divider = 10,Items = 30
+index -->it is the position, 0,1,2,3 ...
+List.generate((constraints.constrainWidth()/randomDivider).floor(), (index)--- Widget builder for each item
+
+
+What does this widget ACTUALLY DO?
+Based on available width, it draws many tiny white lines/dots horizontally.
+Used for: Dividers,Dotted lines,Decorative UI And it adapts automatically to screen size.
+
+This widget creates a responsive dotted horizontal divider that adjusts based on available width.
+
+</pre>
+
+
+</body>
+
+</html>

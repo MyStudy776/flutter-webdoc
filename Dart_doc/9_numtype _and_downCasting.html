@@ -1,0 +1,47 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>num type  and down casting</h1>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. num type  and down casting -   (as)</h2>
+<pre>
+void main() {
+  num x = 5;
+  int y = x; //error, a num type variable can not assign to an int type variable.
+  print(y);
+}
+
+
+
+===================
+
+void main() {
+  num x = 5;
+  int y = x as int; //this is down casting
+  print(y);
+}
+
+
+o/p
+==
+5
+
+</pre>
+
+
+</body>
+
+</html>

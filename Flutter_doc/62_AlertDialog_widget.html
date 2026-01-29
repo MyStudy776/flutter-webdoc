@@ -110,6 +110,113 @@ class _MyHomePageState extends State<MyHomePage> {
 </pre>
 
 
+<h2>2. Example of alert dialog and show bottom sheet-</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Alertdialogfile extends StatelessWidget {
+  const Alertdialogfile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text("Alert Dialog file"),
+      ),
+
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(onPressed: (){
+
+              showDialog(
+                context: context, 
+                builder: (context){
+                  return AlertDialog(
+                    icon: Icon(Icons.logout),
+                    title: Text("LOgout"),
+                    content: Text("Are you sure , You want to logout?"),
+                    actions: [
+                      TextButton(onPressed: (){Navigator.pop(context);}, child: Text("No")),
+                      TextButton(onPressed: (){}, child: Text("Yes")),
+                    ],
+                  );
+                }
+                );
+
+            }, child: Text("show dialog")),
+
+
+              ElevatedButton(onPressed: (){
+
+              showDialog(
+                context: context, 
+                builder: (context){
+                  return AlertDialog(
+                    
+                    title: Text("Read our privacy terms and conditions"),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                        Text("line and profilesssssssssssssssss"),
+                      ],
+                    ),
+                   
+                  );
+                }
+                );
+
+            }, child: Text("show dialog 2")),
+
+            ElevatedButton(onPressed: (){
+
+              showModalBottomSheet(
+                context: context,
+                showDragHandle: true, 
+                builder: (context){
+                  return ListView(
+                    children: [
+                      ListTile(
+                        title: Text("There is a text"),
+                      ),
+
+                       ListTile(
+                        title: Text("There is a text"),
+                      ),
+
+                       ListTile(
+                        title: Text("There is a text"),
+                      ),
+                    ],
+
+                  );
+                });
+
+            }, child: Text("show bottom sheet")),
+          ],
+        ),
+      ),
+
+
+    );
+  }
+}
+</pre>
+
+
 
 
 </body>

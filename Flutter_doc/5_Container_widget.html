@@ -136,6 +136,62 @@ class MyApp extends StatelessWidget{
 
 
 </pre>
+
+<h2>7. Container example -</h2>
+<pre>
+   Container(
+          height: 50,
+          width: 200,
+          margin: EdgeInsets.all(20),
+          padding: EdgeInsets.only(left: 10,right: 20,top: 10,bottom: 20),
+          constraints: BoxConstraints(
+            maxHeight: 50,
+          ),
+          
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.red, width: 5),
+            boxShadow: [
+              BoxShadow(color: Colors.black.withAlpha(100),blurRadius: 5, offset: Offset(10, 5))
+            ],
+            shape: BoxShape.rectangle,
+            gradient: LinearGradient(colors: [
+              Colors.blue,
+              Colors.deepOrange,
+              Colors.green
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight)
+
+          ),
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+          ),
+        ),
+</pre>
+
+<h2>8. Container example -</h2>
+<pre>
+       Container(
+          height: 100,
+          width: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage('https://www.hdwallpapers.in/thumbs/2020/earth_sunset_hd-t2.jpg'),
+              fit: BoxFit.cover)
+          ),
+        )
+        ],
+
+        ),
+      ),
+
+
+</pre>
+
+
 </body>
 
 </html>

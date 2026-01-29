@@ -1,0 +1,884 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Class</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>1. Create a class and call using class object -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  myC.printName();
+
+}
+
+class myClass {
+  void printName() {
+    print("hello world");
+  }
+}
+
+o/p
+====
+hello world
+
+Note: void printName() ---> void is used in function printName, means it can accept to retun any kind of data type.
+      int printName() ----> int is used means it will return only integer type data type.
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>OR</h2>
+<pre>
+void main () {
+
+  <mark>MyClass</mark> myC = MyClass();
+  myC.printName();
+
+}
+
+class MyClass {
+  void printName() {
+    print("hello world");
+  }
+}
+
+
+o/p
+====
+hello world
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>2. Enter a string in class -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  myC.printName("Raman");
+  myC.printName("Seili");
+  
+
+}
+
+class myClass {
+  void printName(String name1) {
+    print(name1);
+  }
+}
+
+
+o/p
+====
+Raman
+Seili
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>3. 3rd example -</h2>
+<pre>
+class Car {
+  // Properties (variables)
+  String brand = '';
+  int year = 0;
+
+  // Method (function inside class)
+  void start() {
+    print('$brand car from $year is starting...');
+  }
+}
+
+void main() {
+  // Create (make) an object
+  var myCar = Car();
+
+  // Set values
+  myCar.brand = 'Tesla';
+  myCar.year = 2023;
+
+  // Call method
+  myCar.start();
+}
+
+
+o/p
+=====
+Tesla car from 2023 is starting...
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<h2>4. Use int to add numbers using class -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  print(myC.Add(5,6));
+}
+
+class myClass {
+  int Add(int n1, int n2) {
+
+     int sum = n1+n2;
+     return sum;
+  }
+}
+
+o/p
+===
+11
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>5. Use void to add numbers in class -</h2>
+<pre>
+void main () {
+
+  var myC = myClass();
+  myC.Add(5,6);
+}
+
+class myClass {
+  void Add(int n1, int n2) {
+
+     int sum = n1+n2;
+     print(sum);
+  }
+}
+</pre>
+
+
+
+<h2>Use of static keyword</h2>
+<pre>
+Static ---> will be used , so that the function can be used anywhere . Means the function becomes a global function.
+class Addition{
+  
+  static void add(){
+    int a = 20;
+    int b = 30 ;
+    print(a+b);
+  }
+  
+   void mul(){
+    int c = 20;
+    int d = 30 ;
+    print(c*d);
+  }
+  
+  
+
+}
+
+
+
+class Test{
+  
+  note(){
+  
+    Addition.add(); 
+    Addition.mul(); ----->Error, Instance member mul can not be accessed using static access.
+    
+  }
+  
+}
+
+
+void main(){
+  
+  Test obj1 = Test();
+  obj1.note();
+  
+}
+
+
+}
+
+
+
+o/p
+====
+50 
+
+
+
+
+</pre>
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>6. Class -</h2>
+<pre>
+- Class is the blueprint of objects .
+- Objects are the instance of the class.
+- Objects are declared by using new keyword followed by the class name.
+
+class Cls1 {
+ 
+    String name = '';
+    String name2 = " ";
+     
+    void fun1()
+    {
+        print("Welcome to $name");
+    }
+
+     
+     String get fun2 { 
+         return name2; 
+     } 
+  
+    void set fun2(String name2) { 
+         this.name2 = name2; 
+     } 
+  
+     void result(){
+         print(name2);
+    }
+} 
+ 
+void main()
+{
+    // Creating Instance of class
+    Cls1 x = new Cls1();
+ 
+    x.name = 'Radha';
+    x.fun1();
+    x.name2="Hell the world";
+    x.result(); 
+  
+  
+}
+
+
+o/p
+====
+Welcome to Radha
+Hell the world
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>7. Class -</h2>
+<pre>
+ void main() {
+   
+   print(Cookie().shape);
+   print(Cookie());
+   print('${Cookie().size}cm');
+   Cookie().baking();
+   final x = Cookie().iscooling();
+   print(x);
+
+ }
+
+
+class Cookie {
+  
+  //variables
+  String shape = 'circle';
+  double size = 12.2; //cm
+  
+  //method
+  void baking(){
+    print('baking has started');
+  }
+  
+  bool iscooling() {
+    return false;
+  }
+}
+
+
+o/p
+=====
+circle
+Instance of 'Cookie'
+12.2cm
+baking has started
+false
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>8. create object for the class  -</h2>
+<pre>
+void main() {
+   
+   
+   Cookie cok = Cookie(); ------------>Type class , assign variable cok to cookie() instance
+   print(cok.shape);
+   print(cok);
+   print('${cok.size}cm');
+   cok.baking();
+   final x = cok.iscooling();
+   print(x);
+
+ }
+
+
+class Cookie {
+  
+  //variables
+  String shape = 'circle';
+  double size = 12.2; //cm
+  
+  //method
+  void baking(){
+    print('baking has started');
+  }
+  
+  bool iscooling() {
+    return false;
+  }
+}
+
+
+o/p
+====
+circle
+Instance of 'Cookie'
+12.2cm
+baking has started
+false
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>9. class</h2>
+<pre>
+void main() {
+    
+print(Cookie().shape); ------> This cookie object take the property of Cookie class.
+Cookie().shape = 'rectangle'; ---> Another cookie class initiated and the shape proeprty changed. But it can not be used until it stored in a variable.
+print(Cookie().shape);   
+
+ }
+
+class Cookie {
+  String shape = 'circle';
+ }
+ 
+ 
+o/p
+====
+circle
+circle
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>10. object creation in class -</h2>
+<pre>
+ void main() {
+    
+print(Cookie().shape);
+final cok = Cookie(); ----->object created. here final is given to cookie() class, not to the string shape. so shape value when changed, it accepted.
+cok.shape = 'rectangle';
+print(cok.shape);   
+
+ }
+
+
+class Cookie {
+  String shape = 'circle';
+ }
+ 
+o/p
+====
+circle
+rectangle
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>11. Class Constructor  -</h2>
+<pre>
+- constructor runs, when you create instance of the cookie class Cookei().
+- constructor name should be identical to the class name.
+- It should not return anything. so no return type.
+
+
+ void main() {
+    
+final cok = Cookie('round', 20);
+print(cok.shape);
+print(cok.size);
+  
+
+ }
+
+
+class Cookie {
+  
+  String shape;
+  double size;
+  
+  Cookie(this.shape,this.size){
+    print("Cookie constructor called");
+    baking();
+    
+  }
+  
+  void baking(){
+    print('baking has started');
+  }
+  
+  bool iscooling() {
+    return false;
+  }
+  
+ }
+ 
+ 
+ o/p
+ ===
+Cookie constructor called
+baking has started
+round
+20
+
+
+
+this --> keyword --> It will access to the current class.
+        without "this",  the variables are not considered the variables of Cookie class.
+		
+		
+Note -
+class Cookie {
+  
+  String? shape;
+  double? size;
+  
+  Cookie(shape,size){
+    print("Cookie constructor called");
+    baking();
+    
+  }
+  
+  
+without this o/p will be : -
+
+Cookie constructor called
+baking has started
+null
+null
+
+</pre>
+
+
+<h2>46. difference between extend and implement in dart class -</h2>
+<pre>
+1. What is extends?
+👉 Think of it like:
+
+A child copying everything from the parent.
+
+If Class B extends Class A:
+
+B gets all the properties of A
+
+B gets all the methods of A
+
+B can use them directly
+
+B can also change them (override)
+
+✔ Example:
+class Animal {
+  void eat() {
+    print("Animal eating");
+  }
+}
+
+class Dog extends Animal {
+  void bark() {
+    print("Dog barking");
+  }
+}
+
+void main() {
+  Dog d = Dog();
+  d.eat();  // from Animal
+  d.bark(); // from Dog
+}
+
+💡 Meaning:
+
+Dog extends Animal → Dog is an Animal.
+
+🎭 2. What is implements?
+👉 Think of it like:
+
+A class promises to follow a rule/contract.
+But it must write all the methods by itself.
+
+If Class B implements Class A:
+
+B does NOT get code from A
+
+B must re-write all methods of A
+
+B only gets method names, not the logic
+
+✔ Example:
+class Animal {
+  void eat() {}
+}
+
+class RobotDog implements Animal {
+  @override
+  void eat() {
+    print("RobotDog charging instead of eating");
+  }
+}
+
+
+Here RobotDog must rewrite eat() because implements means:
+
+“I promise to create these methods myself.”
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>11. Class with constructor -</h2>
+<pre>
+void main(){
+  
+  
+  //obj1 object create of type Student class
+  <mark>Student</mark> obj1 = Student('Rana',20,55);
+  print(obj1.name);
+  
+}
+
+
+class Student {
+  
+  int age;
+  String name;
+  int marks;
+  
+  //Constructor
+  //as the above variables are not initialized , they must specified in the constructor with this keyword
+ <mark> Student(this.name,this.age, this.marks);</mark>
+  
+}
+
+
+
+
+o/p
+====
+Rana
+
+</pre>
+
+<pre>
+void main(){
+  
+  Student obj1 = Student('Rana',20,55);
+  obj1.marksheet();
+    
+}
+
+
+class Student {
+  
+  int age;
+  String name;
+  int marks;
+  
+  //Constructor
+  Student(this.name,this.age, this.marks);
+  
+  void marksheet(){
+    print('$name having age $age got the mark $marks');
+  }
+  
+}
+
+
+o/p
+=====
+Rana having age 20 got the mark 55
+
+
+</pre>
+
+<pre>
+void main(){
+  
+  Student obj1 = Student('Rana',20,55);
+  obj1.marksheet('Male');
+    
+}
+
+
+class Student {
+  
+  int age;
+  String name;
+  int marks;
+  
+  //Constructor
+  Student(this.name,this.age, this.marks);
+  
+  //gender variable directly defined in the argument of marksheet function
+  void marksheet(String gender){
+    print('$name having age $age got the mark $marks');
+    print('$name is $gender');
+  }
+  
+}
+
+o/p
+======
+Rana having age 20 got the mark 55
+Rana is Male
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>12. Class with constructor -</h2>
+<pre>
+void main(){
+  Student obj1 = Student(); //object created
+}
+ 
+
+
+class Student {
+   Student(){
+    print('I am printed');
+    }
+
+}
+
+
+o/p
+======
+I am printed //automatically the constructor called, when object created .
+
+
+</pre>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>13.Encapsulation: In one file no error: main.dart -</h2>
+<pre>
+void main(){
+  Student obj1 = Student('Megha',20);
+  print(obj1.name);
+  print(obj1._age);
+}
+ 
+
+
+
+
+class Student {
+  
+  String name;
+  int _age; //It is a private variable. It can not be accessed outside of this file
+  
+   Student(this.name,this._age){
+    print('I am printed');
+    }
+
+}
+
+
+o/p
+======
+I am printed
+Megha
+20
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>14.Encapsulation: Accessed from other file : - error -</h2>
+<pre>
+
+studentfile.dart
+==================
+class Student {
+  
+  String name;
+  int _age;
+  
+   Student(this.name,this._age){
+    print('I am printed');
+    }
+
+}
+
+
+
+main.dart
+=============
+import 'studentfile.dart';
+
+void main(){
+  Student obj1 = Student('Megha',20);
+  print(obj1.name);
+  print(obj1._age); //error, because age is a private variable, can not be used outside of studentfile.dart
+}
+ 
+
+
+o/p
+======
+I am printed
+Megha
+error- Error: The getter '_age' isn't defined for the type 'Student'.
+
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>15. Super keyword -</h2>
+<pre>
+
+Personfile.dart
+==================
+class Person {
+  
+  String name;
+  int age;
+
+  Person(this.name, this.age);
+  
+ 
+}
+
+
+
+studentfile.dart
+=============
+import 'presonfile.dart';
+
+class Student extends Person{
+  
+  String? rollno;
+  int ? marks;
+
+  Student(this.rollno, this.marks, String name, int age):<mark>super</mark>(name, age){
+    print('Student Object Created');
+  }
+  
+ 
+}
+ 
+//super keyword is used to access the variable of parent class .
+
+main.dart
+==========
+import 'studentfile.dart';
+
+void main(){
+  
+  Student obj1 = Student('501', 85, 'Alice', 20);
+  print(obj1.name);
+}
+ 
+
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>16. Super keyword -</h2>
+<pre>
+
+Personfile.dart
+==================
+class Person {
+  
+  String name;
+  int age;
+
+  Person(this.name, this.age);
+  
+   void display(){
+      print('Name: $name, Age: $age');
+    }
+ 
+}
+
+
+
+studentfile.dart
+=============
+import 'presonfile.dart';
+
+class Student extends Person{
+  
+  String? rollno;
+  int ? marks;
+
+  Student(this.rollno, this.marks, String name, int age):super(name, age){
+    print('Student Object Created');
+    super.display(); //access the function of parent class
+  }
+  
+ 
+}
+ 
+//super keyword is used to access the variable of parent class .
+
+main.dart
+==========
+import 'studentfile.dart';
+
+void main(){
+  
+  Student obj1 = Student('501', 85, 'Alice', 20);
+  print(obj1.name);
+}
+ 
+
+
+
+
+o/p
+===
+Student Object Created
+Name: Alice, Age: 20
+Alice
+
+</pre>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>OOPs</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Oops</mark></h2>
+<h2>1.Object oriented programmimg  -</h2>
+<pre>
+void main() {  
+final date = DateTime.now();
+   print(date);
+}
+
+o/p
+===
+2023-11-19 11:57:18.241
+
+Note-
+DateTime ---> It is a class
+now() -->It is a method of DateTime function.It is a static function.
+date --> It is an object
+
+There are 4 type object oriented programming concepts .
+1.Polymorphism
+2. Abstraction
+3. Inheritance
+4. Encapsulation
+</pre>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Polymorphism -</h2>
+<pre>
+Poly = many
+Morph = forms
+So it means “many forms.”
+
+Polymorphism allows one method or object to behave differently based on which class is using it.
+You can call the same method name on different objects,and each one can do something different!
+
+
+Polymorphism - It is the ability of object to take many form.
+             - This thing achieved using inheritance and method overriding.
+			 - I allows object of different class will be treated as object of common superclass.
+
+
+			 
+class Animal{
+  void sound(){
+    print("Animal making sound");
+  } 
+}
+  
+  
+class Cat extends Animal{
+  @override
+    void sound(){
+    print("Cat making sound");
+  }
+}
+
+class Dog extends Animal{
+  @override
+    void sound(){
+    print("Dog making sound");
+  }
+}
+
+void main() {
+  Animal obj1 = Cat();
+  obj1.sound();
+  
+  obj1 = Dog();
+  obj1.sound();
+  
+  Cat obj2 = Cat();
+  obj2.sound();
+  
+  Animal obj3 = Animal();
+  obj3.sound();
+  
+}
+
+o/p
+====
+Cat making sound
+Dog making sound
+Cat making sound
+Animal making sound
+
+</pre>
+
+<h2>Another example of polymorphism -</h2>
+<pre>
+class Shape {
+  void draw() {
+    print('🟦 Drawing a shape...');
+  }
+}
+
+class Circle extends Shape {
+  @override
+  void draw() {
+    print('⚪ Drawing a Circle');
+  }
+}
+
+class Square extends Shape {
+  @override
+  void draw() {
+    print('⬛ Drawing a Square');
+  }
+}
+
+void main() {
+  List<Shape> shapes = [Circle(), Square(), Circle()];
+
+  for (var shape in shapes) {
+    shape.draw(); // same method name → different behavior
+  }
+}
+
+
+
+o/p
+-----
+⚪ Drawing a Circle
+⬛ Drawing a Square
+⚪ Drawing a Circle
+
+
+Imagine a drawing app like MS Paint 🎨
+You click "Draw", and it can draw:
+
+Circle
+
+Square
+
+Rectangle
+without writing different code for each one!
+
+That’s the power of polymorphism — same code, different behavior.
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Abstract class</mark></h2>
+<h2>3. Abstract class -</h2>
+<pre>
+Abstraction - It is hiding of internal details and complexity of object and only exposing the essential features and functionalities.
+
+abstract class Animal{
+  void sound();  ---------------------->Hiding internal details
+}
+  
+  
+class Cat extends Animal{
+  
+  @override
+    void sound(){
+    print("Cat making sound");
+  }
+}
+
+class Dog extends Animal{
+  
+  @override
+    void sound(){
+    print("Dog making sound");
+  }
+}
+
+void main() {
+  Animal obj1 = Cat();
+  obj1.sound();
+  
+  obj1 = Dog();
+  obj1.sound();
+  
+  Cat obj2 = Cat();
+  obj2.sound();
+  
+  Animal obj3 = Animal(); ----------->error . Abstract class can not be instantiated.
+  obj3.sound();
+  
+}
+
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2><mark>Generic</mark></h2>
+
+<h2>1. Use of generic  -</h2>
+<pre>
+class Student &lt;String>{
+  final String name;
+  final String grade;
+  
+  Student(this.name, this.grade); //constructor
+}
+
+void main() {
+
+ 
+  final obj2 = Student('ram', 'A');
+  print(obj2.name);
+}
+
+
+
+&lt;String> --> generic --->means here the class wil accept only string variable.
+</pre>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<h2>2. Use of generic  -</h2>
+<pre>
+class Student &lt;T>{
+  final T name;
+  final T grade;
+  
+  Student(this.name, this.grade); //constructor
+}
+
+void main() {
+
+ 
+  final obj2 = Student('ram', 10);
+  print(obj2.name);
+  print(obj2.grade);
+}
+
+
+&lt;T> ---> generic --> if we give any name it will consider the type as per the value inserted.
+name considered as String type due to 'ram' in quotation.
+
+</pre>
+
+
+
+</body>
+
+</html>

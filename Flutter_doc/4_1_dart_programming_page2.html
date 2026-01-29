@@ -225,23 +225,98 @@ Hard to debug if values go wrong.	Easy to check or block wrong input.
 
 <!-- ############################################################################### -->
 
-<h2><mark>2. Comments</mark></h2>
+<h2><mark>5. Override method</mark></h2>
 <pre>
+The child class can change (override) the behavior of a parent’s method
+
+class Animal {
+  void sound() {
+    print('Animal makes a sound');
+  }
+}
+
+class Cat extends Animal {
+  @override
+  void sound() {
+    print('🐱 Meow Meow!');
+  }
+}
+
+void main() {
+  var c = Cat();
+  c.sound(); // calls the Cat's version
+}
+
+
+o/p
+===
+Meow Meow!
+</pre>
+
+<!-- ############################################################################### -->
+
+<h2><mark>6. Using super keyword</mark></h2>
+<pre>
+
+class Robot {
+  void start() {
+    print('🤖 Starting basic robot...');
+  }
+}
+
+class SuperRobot extends Robot {
+  @override
+  void start() {
+    super.start(); // calls parent method
+    print('⚡ Powering up SuperRobot!');
+  }
+}
+
+void main() {
+  var sr = SuperRobot();
+  sr.start();
+}
+
+
+o/p
+====
+🤖 Starting basic robot...
+⚡ Powering up SuperRobot!
+
+super means “call something from the parent class”.
 
 </pre>
 
 <!-- ############################################################################### -->
 
-<h2><mark>2. Comments</mark></h2>
+<h2><mark>7. Constructor in Inheritance</mark></h2>
 <pre>
+class Animal {
+  Animal() {
+    print('🐾 Animal created');
+  }
+}
 
-</pre>
+class Dog extends Animal {
+  Dog() {
+    print('🐶 Dog created');
+  }
+}
 
-<!-- ############################################################################### -->
+void main() {
+  var d = Dog();
+}
 
-<h2><mark>2. Comments</mark></h2>
-<pre>
 
+
+o/p
+====
+🐾 Animal created
+🐶 Dog created
+
+
+
+When you make an object of a child class,the parent class’s constructor runs first.
 </pre>
 
 <!-- ############################################################################### -->

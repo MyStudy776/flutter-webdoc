@@ -1,0 +1,79 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>Mixin</h1>
+
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>46.  Enum-</h2>
+<pre>
+Imagine you have a box of fixed options.
+You cannot add new things inside it.
+You can only choose one from the list.
+
+That box is called enum.
+
+Why do we use enum?
+=====================
+- To store fixed, limited choices.
+
+Example:
+Days of the week
+Colors
+Order status
+User roles
+These things never change.
+
+Enum is a list of constant values (options) that you can choose from.
+
+</pre>
+
+<pre>
+void main() {
+
+print(Gender.Male);
+print(Gender.Male.index);
+print(Gender.Male.index);
+
+Gender x= Gender.Female;
+print(x);
+
+}
+
+
+enum Gender {Male,Female,Others}
+
+
+o/p
+=====
+Gender.Male
+2
+0
+Gender.Female
+</pre>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

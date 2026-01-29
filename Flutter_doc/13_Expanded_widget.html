@@ -286,6 +286,291 @@ class MyApp extends StatelessWidget{
 
 </pre>
 
+<h2>Flex -</h2>
+<pre>
+//####1st example to make responsive using flexible
+///without Flex, when you rotate your screen, you will see overflow issue
+
+
+import 'package:flutter/material.dart';
+
+class Responseui extends StatefulWidget {
+  const Responseui({super.key});
+
+  @override
+  State&lt;Responseui> createState() => _ResponseuiState();
+}
+
+class _ResponseuiState extends State&lt;Responseui> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Responsive UI"),
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Column(
+        children: [
+          Flexible(
+            child: Container(
+              height: 500,
+              width: 100,
+              color: Colors.amber,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+
+<h2>Flex -</h2>
+<pre>
+
+////########2nd Example for responsive screen using expandable in column################
+/*
+import 'package:flutter/material.dart';
+
+class Responseui extends StatefulWidget {
+  const Responseui({super.key});
+
+  @override
+  State&lt;Responseui> createState() => _ResponseuiState();
+}
+
+class _ResponseuiState extends State&lt;Responseui> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Responsive UI"),
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              color: Colors.red,
+              width: double.infinity,
+            ),
+          ),
+
+           Expanded(
+             child: Container(
+              color: Colors.green,
+              width: double.infinity,
+                       ),
+           ),
+
+
+           Expanded(
+             child: Container(
+              color: Colors.blue,
+              width: double.infinity,
+                       ),
+           ),
+
+           Expanded(
+             child: Container(
+              color: Colors.black,
+              width: double.infinity,
+                       ),
+           ),
+        ],
+      )
+    );
+  }
+}
+
+
+</pre>
+
+<h2>Flex -</h2>
+<pre>
+///########3rd Example for responsive screen, using flex in expandable################
+/*
+import 'package:flutter/material.dart';
+
+class Responseui extends StatefulWidget {
+  const Responseui({super.key});
+
+  @override
+  State&lt;Responseui> createState() => _ResponseuiState();
+}
+
+class _ResponseuiState extends State<Responseui> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Responsive UI"),
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Column(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+              color: Colors.blue,
+              width: double.infinity,
+            ),
+          ),
+
+           Expanded(
+             child: Container(
+              color: Colors.green,
+              width: double.infinity,
+                       ),
+           ),
+
+
+           Expanded(
+             child: Container(
+              color: Colors.amber,
+              width: double.infinity,
+                       ),
+           ),
+
+           Expanded(
+             child: Container(
+              color: Colors.orange,
+              width: double.infinity,
+                       ),
+           ),
+        ],
+      )
+    );
+  }
+}
+
+
+
+
+</pre>
+
+<h2>Flex -</h2>
+<pre>
+
+///########4th Example for responsive screen, using ################
+/*
+import 'package:flutter/material.dart';
+
+class Responseui extends StatefulWidget {
+  const Responseui({super.key});
+
+  @override
+  State&lt;Responseui> createState() => _ResponseuiState();
+}
+
+class _ResponseuiState extends State&lt;Responseui> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Responsive UI"),
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+              color: Colors.blue,
+              width: double.infinity,
+              height: 200,
+            ),
+          ),
+
+           Expanded(
+             child: Container(
+              color: Colors.green,
+              width: double.infinity,
+                       ),
+           ),
+
+
+           Expanded(
+             child: Container(
+              color: Colors.amber,
+              width: double.infinity,
+                       ),
+           ),
+
+           Expanded(
+             child: Container(
+              color: Colors.orange,
+              width: double.infinity,
+                       ),
+           ),
+        ],
+      )
+    );
+  }
+}
+
+
+
+</pre>
+
+<h2>Flex -</h2>
+<pre>
+//########5th Example for responsive screen, using Expanded and Flexible################
+///##########Diffference between expandable and Flexible
+
+import 'package:flutter/material.dart';
+
+class Responseui extends StatefulWidget {
+  const Responseui({super.key});
+
+  @override
+  State&lt;Responseui> createState() => _ResponseuiState();
+}
+
+class _ResponseuiState extends State&lt;Responseui> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Responsive UI"),
+        backgroundColor: Colors.yellow,
+      ),
+
+      body: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+              color: Colors.blue,
+              width: double.infinity,
+              height: 200,
+            ),
+          ),
+
+           Flexible(
+             child: Container(
+              color: Colors.green,
+              width: double.infinity,
+                       ),
+           ),
+
+
+          
+        ],
+      )
+    );
+  }
+}
+
+
+</pre>
+
 
 </body>
 

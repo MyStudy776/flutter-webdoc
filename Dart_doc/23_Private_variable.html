@@ -1,0 +1,55 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+<h1>private variable</h1>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<h2>1. private variable -</h2>
+<pre>
+
+int _xyz = 25 ----> private variable.
+
+THis variable will be used only inside the file. It can not be used outside of the file.
+
+void main() {
+final cok = Cookie();
+print(cok.sal);
+print(cok._height);
+ }
+
+class Cookie {
+int sal = 200; //public variable
+int _height = 22; //private variable
+ }
+ 
+o/p
+===
+200
+22 ---->o/p came because the variable work inside the file but if we call it outside from anyother file, it won't work
+
+
+
+</pre>
+
+
+
+
+
+
+
+</body>
+
+</html>

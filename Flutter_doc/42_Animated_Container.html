@@ -45,10 +45,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State {
 
-  var _width = 200.0;
-  var _height = 100.0;
-  var color1 = Colors.blueGrey;
-  bool flag = true;
+ <mark> var _width = 200.0;</mark>
+ <mark>var _height = 100.0;</mark>
+ <mark> var color1 = Colors.blueGrey;</mark>
+ <mark> bool flag = true;</mark>
 
 
   @override
@@ -365,8 +365,130 @@ class _MyHomePageState extends State {
 
 </pre>
 
+<h2>5. Animated Container Example- button shape changes, when pressed</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Testpage extends StatefulWidget {
+  const Testpage({super.key});
+
+  @override
+  State&lt;Testpage> createState() => _TestpageState();
+}
 
 
+//2ndpart
+class _TestpageState extends State&lt;Testpage> {
+
+  <mark>bool changedbutton = false ;</mark>
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Test Page"),
+      ),
+      body: Column(
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: 'Enter something',
+              labelText: 'Test Input',
+              border: OutlineInputBorder(),
+            ),
+            
+          ),
+
+
+          //Inkwell is used so that container will behave like a clickable button
+          InkWell(
+
+          <mark>  onTap: () => setState(() {
+              changedbutton = true;
+            }),</mark>
+
+
+            child: AnimatedContainer(
+              duration: Duration(seconds: 1),
+              <mark>width: changedbutton ? 80 : 150,</mark>
+             <mark> height: changedbutton ? 50 : 40, </mark>           
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular<mark>(changedbutton ? 11 : 8),</mark>
+                color: Colors.deepPurple,
+               ),
+              child: Text("Submit",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
+            ),
+          )
+
+         
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>6. button will be changed to an icon, when clicked</h2>
+<pre>
+InkWell(
+
+    onTap: () => setState(() {
+      changedbutton = true;
+    }),
+
+
+    child: AnimatedContainer(
+      duration: Duration(seconds: 1),
+      width: changedbutton ? 80 : 150,
+      height: changedbutton ? 50 : 40,            
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(changedbutton ? 11 : 8),
+        color: Colors.deepPurple,
+       ),
+     <mark> child: changedbutton?Icon(Icons.done,color:Colors.white): Text("Submit",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),</mark>
+            ),
+          )
+</pre>
+
+
+<h2>7. navigatee to other page</h2>
+<pre>
+
+
+  InkWell(
+    onTap: () async {
+      setState(() {
+        changedbutton = true;
+      });
+
+     <mark> await Future.delayed(const Duration(seconds: 1)); </mark> //After waiting 1sec, it will go to start page
+     <mark> Navigator.pushNamed(context, Myroute.startPage); </mark>
+    }, 
+	
+	
+</pre>
+
+
+<h2>8. when back to previous page, again the container button set back</h2>
+<pre>
+InkWell(
+            onTap: () async {
+              setState(() {
+                changedbutton = true;
+              });
+
+              await Future.delayed(const Duration(seconds: 1));
+
+              Navigator.pushNamed(context, Myroute.startPage);
+
+              setState(() {
+               <mark> changedbutton = false; </mark> 
+              });
+            }, // ✅ onTap properly closed here
+
+</pre>
 
 </body>
 

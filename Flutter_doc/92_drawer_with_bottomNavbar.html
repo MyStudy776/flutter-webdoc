@@ -1,0 +1,188 @@
+<!Docttype html>
+<html>
+
+<head>
+<title>Generali Wiki</title>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<h1>Drawe with Bottom Navbar-</h1>
+
+
+<h2>1. TabBar widge -</h2>
+<pre>
+drawer_with_bottom_navbar.dart
+======================
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:shikar/screens/drawerWithBottomNav/home_screen.dart';
+import 'package:shikar/screens/drawerWithBottomNav/setting_screen.dart';
+import 'package:shikar/screens/drawerWithBottomNav/profile_screen.dart';
+
+
+class DrawerwithFile extends StatefulWidget {
+  const DrawerwithFile({super.key});
+
+  @override
+  State<DrawerwithFile> createState() => _DrawerwithFileState();
+}
+
+class _DrawerwithFileState extends State<DrawerwithFile> {
+
+  List<Widget> widgets = [
+    Homescreen(),
+    ProfileScreen(),
+    Steeing_screen()
+    ];
+
+    int currentIndex1 = 0;
+
+    GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      key: globalKey,
+
+      appBar: AppBar(
+        title: Text("Drawer with"),
+      ),
+
+
+      body: widgets[currentIndex1],
+
+     
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            SizedBox(height: 50,),
+            FlutterLogo(size: 100,),
+            SizedBox(height: 20,),
+            ListTile(
+              //selected: true,
+              selected: currentIndex1==0,
+              selectedColor: Colors.amber,
+              onTap: (){
+                setState(() {
+                  currentIndex1 = 0;
+
+                  globalKey.currentState?.closeDrawer();
+                });
+              },
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+            ),
+
+            ListTile(
+              //selected: true,
+              selected: currentIndex1==1,
+              selectedColor: Colors.amber,
+              onTap: (){
+                setState(() {
+                  currentIndex1 = 1;
+                  globalKey.currentState?.closeDrawer();
+                });
+              },
+              title: Text("Profile"),
+              leading: Icon(CupertinoIcons.profile_circled),
+            ),
+
+
+            ListTile(
+              selected: currentIndex1==2,
+              selectedColor: Colors.amber,
+              onTap: (){
+                setState(() {
+                  
+                  currentIndex1 = 2;
+                  globalKey.currentState?.closeDrawer();
+                });
+              },
+              title: Text("Settings"),
+              leading: Icon(Icons.settings),
+            )
+
+
+          ],
+        ),
+      ),
+
+
+
+      /////////////////
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex1,
+        onTap: (value) {
+          print ('The value is $value');
+          setState(() {
+            currentIndex1 = value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.profile_circled), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+        ]),
+    );
+  }
+}
+
+</pre>
+
+<h2>2. shikar/screens/drawerWithBottomNav/home_screen.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Homescreen extends StatelessWidget {
+  const Homescreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text("HOME"));
+  }
+}
+</pre>
+
+<h2>3. shikar/screens/drawerWithBottomNav/setting_screen.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class Steeing_screen extends StatelessWidget {
+  const Steeing_screen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text("Settings"));
+  }
+}
+</pre>
+
+<h2>4. shikar/screens/drawerWithBottomNav/profile_screen.dart</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text("Profile"));
+  }
+}
+</pre>
+
+<h2></h2>
+<pre>
+</pre>
+
+
+</body>
+
+</html>

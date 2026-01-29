@@ -53,7 +53,7 @@ class MyHomePage extends StatelessWidget {
 
 
 
-<h2>2. Intropage.dart page  (Inside the lib folder)-</h2>
+<h2>1.2. Intropage.dart page  (Inside the lib folder)-</h2>
 <pre>
 import 'package:flutter/material.dart';
 import 'main.dart';
@@ -98,6 +98,284 @@ Navigator.push ---> use LIFO (last in First out). The page which is entered will
 </pre>
 
 
+<h2>2.Example- using Navigator.pushNamed</h2>
+<pre>
+main.dart
+=============
+import 'package:flutter/material.dart';
+import 'package:mama100/home_page.dart';
+import 'package:mama100/login_page.dart';
+import 'package:mama100/signup_page.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      //home: HomePage(),
+
+      //initialRoute decides which screen opens first when the app starts.
+     <mark> initialRoute: '/home',
+      routes: {
+        
+        '/home': (context) => HomePage(),
+        '/signup': (context) => SignUp(),
+        '/signin': (context) => SignIn(),
+      },</mark>
+      
+    );
+  }
+}
+</pre>
+<pre>
+home_page.dart
+===============
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+         <mark> ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/signup');}, child: Text("Sign Up")),</mark>
+         <mark> ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/signin');}, child: Text("Sign In")) </mark>
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<pre>
+signup_page.dart
+=================
+import 'package:flutter/material.dart';
+
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("SignUp"),
+      ),
+      body: Text("I am the Signup body"),
+    );
+  }
+}
+</pre>
+<pre>
+login_page.dart
+===================
+import 'package:flutter/material.dart';
+
+class SignIn extends StatelessWidget {
+  const SignIn({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("SignIn"),
+      ),
+      body: Text("I am the SignIn body"),
+    );
+  }
+}
+</pre>
+
+
+<h2>3.Example- using Routes class</h2>
+<pre>
+lib/utils/routes.dart
+===================
+class Myroute{
+  static String homePage="/homepage";
+  static String loginpage="/loginpage";
+  static String signupPage="/signupPage";
+}
+</pre>
+<pre>
+main.dart
+=========
+import 'package:flutter/material.dart';
+import 'package:mama100/home_page.dart';
+import 'package:mama100/login_page.dart';
+import 'package:mama100/signup_page.dart';
+import 'package:mama100/utils/routes.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      //home: HomePage(),
+
+      //initialRoute decides which screen opens first when the app starts.
+      //initialRoute: '/home',
+      routes: {
+        
+       // '/home': (context) => HomePage(),
+        //'/signup': (context) => SignUp(),
+        //'/signin': (context) => SignIn(),
+		<mark> Myroute.homePage:(context)=>HomePage(),</mark> 
+       <mark>  Myroute.signupPage:(context)=>SignUp(),</mark> 
+       <mark>  Myroute.loginpage:(context)=>SignIn(),</mark> 
+      },
+      
+    );
+  }
+}
+
+</pre>
+<pre>
+home_page.dart
+==============
+import 'package:flutter/material.dart';
+import 'package:mama100/utils/routes.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/signup');}, child: Text("Sign Up")),
+          //ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/signin');}, child: Text("Sign In"))
+
+         <mark> ElevatedButton(onPressed: (){Navigator.pushNamed(context, Myroute.signupPage);}, child: Text("Sign Up")),</mark>
+         <mark> ElevatedButton(onPressed: (){Navigator.pushNamed(context, Myroute.loginpage);}, child: Text("Sign In")) </mark>
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<h2>4. Example</h2>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:shikar/screens/profiles/profile_screen.dart';
+
+class Navigationfile extends StatelessWidget {
+  const Navigationfile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+        backgroundColor: Colors.indigo,
+      ),
+
+      body: Column(
+        spacing:  15,
+        children: [
+          ElevatedButton(
+            onPressed: (){
+          
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context){
+          
+                  return ProfileScreen();
+          
+                }
+                ));
+            }, 
+            child: Text("Next screen")
+            ),
+
+
+           ///There will be no back button
+            ElevatedButton(
+            onPressed: (){
+          
+             //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return ProfileScreen();}) );
+             Navigator.pushReplacementNamed(context, '/profiles');
+             },
+             
+
+            child: Text("Go to setting")
+            ),
+        ],
+      ),
+    );
+  }
+}
+</pre>
+
+<pre>
+profile_screen.dart
+---------------------
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("I am second screen"),
+        backgroundColor: Colors.yellow,
+      ),
+      body: Column(
+        children: [
+          Text("i am the profile page"),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.pop(context);
+            }, 
+            child: Text("Go back"),
+            ),
+
+
+
+
+        ],
+      ),
+    );
+  }
+}
+
+</pre>
+
+<h2>5. Example</h2>
+<pre>
+</pre>
 
 </body>
 
